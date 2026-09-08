@@ -11542,12 +11542,12 @@
    "nifty_pe": 19.98,
    "nifty_pb": 2.86,
    "nifty_div_yield": 1.2,
-   "usd_inr": 94.8175,
-   "fii_net": 280.13,
-   "dii_net": 566.76,
+   "usd_inr": 94.808,
+   "fii_net": -123.19,
+   "dii_net": 1349.64,
    "repo": 5.25,
-   "us_10y": 4.784,
-   "us_5y": 4.55
+   "us_10y": 4.792,
+   "us_5y": 4.564
   }
  ]
 }

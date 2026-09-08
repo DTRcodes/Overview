@@ -1,7 +1,12 @@
 {
-  "generated_at": "2026-09-08T17:43:46+05:30",
-  "generated_at_utc": "2026-09-08T12:13:46+00:00",
-  "failures": [],
+  "generated_at": "2026-09-08T20:17:27+05:30",
+  "generated_at_utc": "2026-09-08T14:47:27+00:00",
+  "failures": [
+    {
+      "source": "india_yields",
+      "error": "RuntimeError: investing.com blocked (Cloudflare) and no FRED_API_KEY set for the monthly fallback"
+    }
+  ],
   "sections": {
     "rbi": {
       "rates": {
@@ -21,27 +26,27 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-08T17:43:46+05:30",
+      "fetched_at": "2026-09-08T20:17:20+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "dii": {
-          "date": "07-Sep-2026",
-          "buy": 13154.13,
-          "sell": 12587.37,
-          "net": 566.76
+          "date": "08-Sep-2026",
+          "buy": 14678.53,
+          "sell": 13328.89,
+          "net": 1349.64
         },
         "fii": {
-          "date": "07-Sep-2026",
-          "buy": 9581.19,
-          "sell": 9301.06,
-          "net": 280.13
+          "date": "08-Sep-2026",
+          "buy": 11704.84,
+          "sell": 11828.03,
+          "net": -123.19
         }
       },
       "unit": "INR crore",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-08T17:40:24+05:30",
+      "fetched_at": "2026-09-08T20:17:20+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -106,7 +111,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-08T17:43:46+05:30",
+      "fetched_at": "2026-09-08T20:17:20+05:30",
       "stale": false
     },
     "india_yields": {
@@ -117,33 +122,33 @@
     "us_rates": {
       "rates": {
         "us_3m": {
-          "value": 3.757,
-          "date": "2026-09-04"
+          "value": 3.763,
+          "date": "2026-09-08"
         },
         "us_5y": {
-          "value": 4.55,
-          "date": "2026-09-04"
+          "value": 4.564,
+          "date": "2026-09-08"
         },
         "us_10y": {
-          "value": 4.784,
-          "date": "2026-09-04"
+          "value": 4.792,
+          "date": "2026-09-08"
         },
         "us_30y": {
           "value": 5.246,
-          "date": "2026-09-04"
+          "date": "2026-09-08"
         }
       },
       "unit": "percent",
       "via": "yfinance",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-08T17:40:28+05:30",
+      "fetched_at": "2026-09-08T20:17:23+05:30",
       "stale": false
     },
     "fx_spot": {
-      "usd_inr": 94.8175,
+      "usd_inr": 94.808,
       "as_of": "2026-09-08",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-08T17:41:25+05:30",
+      "fetched_at": "2026-09-08T20:17:23+05:30",
       "stale": false
     },
     "gilt_funds": {
@@ -247,7 +252,7 @@
       ],
       "count_matched": 333,
       "source": "portal.amfiindia.com",
-      "fetched_at": "2026-09-08T17:40:29+05:30",
+      "fetched_at": "2026-09-08T20:17:25+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -285,6 +290,22 @@
           "status": "Active"
         },
         {
+          "company": "Veegaland Developers Limited",
+          "symbol": "VEEGALAND",
+          "price": "Rs.130 to Rs.140",
+          "opens": "10-Sep-2026",
+          "closes": "15-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
+          "company": "Karamtara Engineering Limited",
+          "symbol": "KARAMTARA",
+          "price": "Rs.241 to Rs.254",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
           "company": "Asset Reconstruction Company (India) Limited",
           "symbol": "ARCIL",
           "price": "Rs.132 to Rs.139",
@@ -309,25 +330,17 @@
           "status": "Forthcoming"
         },
         {
-          "company": "LCC Projects Limited",
-          "symbol": "LCCPROJECT",
-          "price": "Rs.139 to Rs.146",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
-        },
-        {
-          "company": "Karamtara Engineering Limited",
-          "symbol": "KARAMTARA",
-          "price": "Rs.241 to Rs.254",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
-        },
-        {
           "company": "Rentomojo Limited",
           "symbol": "RENTOMOJO",
           "price": "Rs.384 to Rs.404",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
+          "company": "LCC Projects Limited",
+          "symbol": "LCCPROJECT",
+          "price": "Rs.139 to Rs.146",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "status": "Forthcoming"
@@ -625,7 +638,7 @@
       ],
       "past_total": 1429,
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-08T17:40:30+05:30",
+      "fetched_at": "2026-09-08T20:17:26+05:30",
       "stale": false
     },
     "earnings": {
@@ -739,7 +752,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-08T17:40:32+05:30",
+      "fetched_at": "2026-09-08T20:17:27+05:30",
       "stale": false
     }
   }

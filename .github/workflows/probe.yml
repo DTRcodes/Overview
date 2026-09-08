@@ -1,0 +1,25 @@
+name: Source reachability probe
+
+# Settles the one question this design could not answer locally: can a GitHub
+# runner reach NSE at all? NSE firewalls cloud-provider IP ranges, and Actions
+# runs on Azure. Run this once, read the log, then decide.
+#
+#   all sources ok            -> phase 1 is the whole job, nothing else needed
+#   NSE blocked, rest ok      -> phase 2: a self-hosted runner at home for the
+#                                FII/DII and IPO tiles; everything else stays
+#                                on GitHub's runners
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python fetch.py --probe

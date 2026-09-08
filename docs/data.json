@@ -1,0 +1,746 @@
+{
+  "generated_at": "2026-09-08T17:43:46+05:30",
+  "generated_at_utc": "2026-09-08T12:13:46+00:00",
+  "failures": [],
+  "sections": {
+    "rbi": {
+      "rates": {
+        "policy_repo_rate": 5.25,
+        "standing_deposit_facility": 5.0,
+        "marginal_standing_facility": 5.5,
+        "bank_rate": 5.5,
+        "reverse_repo_rate": 3.35,
+        "crr": 3.0,
+        "slr": 18.0
+      },
+      "fx_reference": {
+        "USD": 94.7178,
+        "GBP": 128.2792,
+        "EUR": 110.1416,
+        "JPY_100": 61.69
+      },
+      "unit": "percent",
+      "source": "rbi.org.in",
+      "fetched_at": "2026-09-08T17:43:46+05:30",
+      "stale": false
+    },
+    "nse_fii_dii": {
+      "flows": {
+        "dii": {
+          "date": "07-Sep-2026",
+          "buy": 13154.13,
+          "sell": 12587.37,
+          "net": 566.76
+        },
+        "fii": {
+          "date": "07-Sep-2026",
+          "buy": 9581.19,
+          "sell": 9301.06,
+          "net": 280.13
+        }
+      },
+      "unit": "INR crore",
+      "source": "nseindia.com/api",
+      "fetched_at": "2026-09-08T17:40:24+05:30",
+      "stale": false
+    },
+    "nse_valuation": {
+      "as_of": "2026-09-08",
+      "indices": {
+        "Nifty 50": {
+          "close": 23635.1,
+          "change_pct": -0.61,
+          "pe": 19.98,
+          "pb": 2.86,
+          "div_yield": 1.2
+        },
+        "Nifty Next 50": {
+          "close": 72950.65,
+          "change_pct": 0.52,
+          "pe": 19.28,
+          "pb": 3.25,
+          "div_yield": 0.99
+        },
+        "Nifty 500": {
+          "close": 23106.1,
+          "change_pct": -0.22,
+          "pe": 22.39,
+          "pb": 3.21,
+          "div_yield": 0.97
+        },
+        "Nifty Auto": {
+          "close": 27775.35,
+          "change_pct": 0.28,
+          "pe": 32.27,
+          "pb": 4.24,
+          "div_yield": 1.04
+        },
+        "Nifty Bank": {
+          "close": 56777.55,
+          "change_pct": -0.54,
+          "pe": 13.43,
+          "pb": 1.7,
+          "div_yield": 0.69
+        },
+        "Nifty IT": {
+          "close": 29883.45,
+          "change_pct": -0.37,
+          "pe": 19.06,
+          "pb": 5.26,
+          "div_yield": 2.69
+        },
+        "Nifty Smallcap 250": {
+          "close": 18527.2,
+          "change_pct": 0.23,
+          "pe": 34.19,
+          "pb": 3.57,
+          "div_yield": 0.55
+        },
+        "Nifty Midcap 150": {
+          "close": 23089.95,
+          "change_pct": 0.12,
+          "pe": 28.87,
+          "pb": 4.36,
+          "div_yield": 0.58
+        }
+      },
+      "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
+      "source": "nsearchives.nseindia.com",
+      "fetched_at": "2026-09-08T17:43:46+05:30",
+      "stale": false
+    },
+    "india_yields": {
+      "stale": true,
+      "stale_reason": "RuntimeError: investing.com blocked (Cloudflare) and no FRED_API_KEY set for the monthly fallback",
+      "fetched_at": null
+    },
+    "us_rates": {
+      "rates": {
+        "us_3m": {
+          "value": 3.757,
+          "date": "2026-09-04"
+        },
+        "us_5y": {
+          "value": 4.55,
+          "date": "2026-09-04"
+        },
+        "us_10y": {
+          "value": 4.784,
+          "date": "2026-09-04"
+        },
+        "us_30y": {
+          "value": 5.246,
+          "date": "2026-09-04"
+        }
+      },
+      "unit": "percent",
+      "via": "yfinance",
+      "source": "yahoo finance",
+      "fetched_at": "2026-09-08T17:40:28+05:30",
+      "stale": false
+    },
+    "fx_spot": {
+      "usd_inr": 94.8175,
+      "as_of": "2026-09-08",
+      "source": "yahoo finance (INR=X spot)",
+      "fetched_at": "2026-09-08T17:41:25+05:30",
+      "stale": false
+    },
+    "gilt_funds": {
+      "funds": [
+        {
+          "code": "153206",
+          "name": "Bajaj Finserv Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Growth",
+          "nav": 1076.6418,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "118464",
+          "name": "Bandhan Gilt   Fund",
+          "plan": "Direct Plan",
+          "option": "Growth",
+          "nav": 40.7826,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "119341",
+          "name": "BARODA BNP PARIBAS GILT FUND",
+          "plan": "Direct Plan",
+          "option": "Growth Option",
+          "nav": 48.3489,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "119099",
+          "name": "DSP Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Growth",
+          "nav": 105.8803,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "119116",
+          "name": "HDFC Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Growth Option",
+          "nav": 60.4197,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "120590",
+          "name": "ICICI Prudential Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Growth",
+          "nav": 117.0447,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "119757",
+          "name": "Kotak Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Investment Provident Fund and Trust-Growth",
+          "nav": 114.1036,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "119759",
+          "name": "Kotak Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Growth",
+          "nav": 111.404,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "118672",
+          "name": "Nippon India Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Growth Option",
+          "nav": 44.373,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "138472",
+          "name": "PGIM India Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Direct Growth",
+          "nav": 33.5631,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "151228",
+          "name": "quant Gilt Fund",
+          "plan": "Direct Plan",
+          "option": "Growth Option",
+          "nav": 12.5828,
+          "date": "07-Sep-2026"
+        },
+        {
+          "code": "119707",
+          "name": "SBI GILT FUND",
+          "plan": "Direct Plan",
+          "option": "Growth",
+          "nav": 72.6873,
+          "date": "07-Sep-2026"
+        }
+      ],
+      "count_matched": 333,
+      "source": "portal.amfiindia.com",
+      "fetched_at": "2026-09-08T17:40:29+05:30",
+      "stale": false
+    },
+    "nse_ipo": {
+      "current": [
+        {
+          "company": "Prasol Chemicals Limited",
+          "symbol": "PRASOLCHEM",
+          "price": "Rs.643 to Rs.676",
+          "opens": "08-Sep-2026",
+          "closes": "10-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Glass Wall Systems (India) Limited",
+          "symbol": "GLASSWALL",
+          "price": "Rs.172 to Rs.182",
+          "opens": "08-Sep-2026",
+          "closes": "10-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Kanohar Electricals Limited",
+          "symbol": "KANOHAR",
+          "price": "Rs.601 to Rs.632",
+          "opens": "08-Sep-2026",
+          "closes": "10-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Pranav Constructions Limited",
+          "symbol": "PRANAV",
+          "price": "Rs.118 to Rs.124",
+          "opens": "07-Sep-2026",
+          "closes": "09-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Asset Reconstruction Company (India) Limited",
+          "symbol": "ARCIL",
+          "price": "Rs.132 to Rs.139",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
+          "company": "Steamhouse India Limited",
+          "symbol": "STEAMHOUSE",
+          "price": "Rs.77 to Rs.81",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "symbol": "MPIMANIPAL",
+          "price": "Rs.322 to Rs.339",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
+          "company": "LCC Projects Limited",
+          "symbol": "LCCPROJECT",
+          "price": "Rs.139 to Rs.146",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
+          "company": "Karamtara Engineering Limited",
+          "symbol": "KARAMTARA",
+          "price": "Rs.241 to Rs.254",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
+          "company": "Rentomojo Limited",
+          "symbol": "RENTOMOJO",
+          "price": "Rs.384 to Rs.404",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
+          "company": "Vinod Texworld Limited",
+          "symbol": "VINOD",
+          "price": "Rs.94",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Forthcoming"
+        }
+      ],
+      "recent_past": [
+        {
+          "company": "Rays of Belief Limited- For Profit Social Enterprise (FPSE)",
+          "symbol": "MOMSBELIEF",
+          "price_range": "Rs.227 to Rs.239",
+          "issue_price": "-",
+          "listing_date": "-"
+        },
+        {
+          "company": "Deepa Jewellers Limited",
+          "symbol": "DEEPA",
+          "price_range": "Rs.168 to Rs.177",
+          "issue_price": "   177",
+          "listing_date": "08-SEP-2026"
+        },
+        {
+          "company": "Purple Style Labs Limited",
+          "symbol": "PERNIASPOP",
+          "price_range": "Rs.546 to Rs.575",
+          "issue_price": "   575",
+          "listing_date": "07-SEP-2026"
+        },
+        {
+          "company": "Shanti Inorganics Limited",
+          "symbol": "SHANTIINOR",
+          "price_range": "Rs.79 to Rs.83",
+          "issue_price": "83",
+          "listing_date": "07-SEP-2026"
+        },
+        {
+          "company": "Ashutosh Fibre Limited",
+          "symbol": "ASHUTOSH",
+          "price_range": "Rs.87 to Rs.92",
+          "issue_price": "92",
+          "listing_date": "07-SEP-2026"
+        },
+        {
+          "company": "Priority Jewels Limited",
+          "symbol": "PRIORITY",
+          "price_range": "Rs.190 to Rs.200",
+          "issue_price": "   200",
+          "listing_date": "04-SEP-2026"
+        },
+        {
+          "company": "ESDS Software Solution Limited",
+          "symbol": "ESDS",
+          "price_range": "Rs.408 to Rs.429",
+          "issue_price": "   429",
+          "listing_date": "04-SEP-2026"
+        },
+        {
+          "company": "Lumino Industries Limited",
+          "symbol": "LUMINO",
+          "price_range": "Rs.78 to Rs.82",
+          "issue_price": "    82",
+          "listing_date": "03-SEP-2026"
+        },
+        {
+          "company": "Annu Projects Limited",
+          "symbol": "ANNU",
+          "price_range": "Rs.94 to Rs.99",
+          "issue_price": "    99",
+          "listing_date": "02-SEP-2026"
+        },
+        {
+          "company": "Sumax Engineering Limited",
+          "symbol": "SUMAX",
+          "price_range": "Rs.95 to Rs.101",
+          "issue_price": "101",
+          "listing_date": "02-SEP-2026"
+        },
+        {
+          "company": "Symbiotec Pharmalab Limited",
+          "symbol": "SYMBIOTEC",
+          "price_range": "Rs.938 to Rs.988",
+          "issue_price": "   988",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "Hy-Tech Engineers Limited",
+          "symbol": "HTEL",
+          "price_range": "Rs.50 to Rs.53",
+          "issue_price": "    53",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "Skyways Air Services Limited",
+          "symbol": "SKYWAYS",
+          "price_range": "Rs.131 to Rs.138",
+          "issue_price": "   138",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "ABH Healthcare Limited",
+          "symbol": "ABH",
+          "price_range": "Rs.96 to Rs.102",
+          "issue_price": "102",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "Madhur Knit Crafts Limited",
+          "symbol": "MADHURKNIT",
+          "price_range": "Rs.95 to Rs.100",
+          "issue_price": "100",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "Augmont Enterprises Limited",
+          "symbol": "AUGMONT",
+          "price_range": "Rs.750 to Rs.788",
+          "issue_price": "   788",
+          "listing_date": "31-AUG-2026"
+        },
+        {
+          "company": "Tempsens Instruments (India) Limited",
+          "symbol": "TEMPSENS",
+          "price_range": "Rs.285 to Rs.300",
+          "issue_price": "   300",
+          "listing_date": "28-AUG-2026"
+        },
+        {
+          "company": "Gaja Alternative Asset Management Limited",
+          "symbol": "GAJA",
+          "price_range": "Rs.152 to Rs.160",
+          "issue_price": "   160",
+          "listing_date": "26-AUG-2026"
+        },
+        {
+          "company": "Sunshine Pictures Limited",
+          "symbol": "SUNSHINE",
+          "price_range": "Rs.342 to Rs.360",
+          "issue_price": "   360",
+          "listing_date": "25-AUG-2026"
+        },
+        {
+          "company": "Shankesh Jewellers Limited",
+          "symbol": "SHANKESH",
+          "price_range": "Rs.88 to Rs.93",
+          "issue_price": "    93",
+          "listing_date": "25-AUG-2026"
+        },
+        {
+          "company": "Lalithaa Jewellery Mart Limited",
+          "symbol": "LALITHAA",
+          "price_range": "Rs.190 to Rs.201",
+          "issue_price": "   201",
+          "listing_date": "24-AUG-2026"
+        },
+        {
+          "company": "Horizon Industrial Parks Limited",
+          "symbol": "HORIZONIND",
+          "price_range": "Rs.57 to Rs.60",
+          "issue_price": "    60",
+          "listing_date": "24-AUG-2026"
+        },
+        {
+          "company": "Skytech Infinite Platform Limited",
+          "symbol": "SKYTECH",
+          "price_range": "Rs.73 to Rs.77",
+          "issue_price": "77",
+          "listing_date": "21-AUG-2026"
+        },
+        {
+          "company": "Credent Connect N Care Limited",
+          "symbol": "CREDENT",
+          "price_range": "Rs.179 to Rs.189",
+          "issue_price": "189",
+          "listing_date": "20-AUG-2026"
+        },
+        {
+          "company": "Shiprocket Limited",
+          "symbol": "SHIPROCKET",
+          "price_range": "Rs.92 to Rs.97",
+          "issue_price": "    97",
+          "listing_date": "19-AUG-2026"
+        },
+        {
+          "company": "Behari Lal Engineering Limited",
+          "symbol": "BLEL",
+          "price_range": "Rs.271 to Rs.285",
+          "issue_price": "   285",
+          "listing_date": "19-AUG-2026"
+        },
+        {
+          "company": "Pramodini Medicare Limited",
+          "symbol": "PRAMODINI",
+          "price_range": "Rs.110 to Rs.118",
+          "issue_price": "118",
+          "listing_date": "19-AUG-2026"
+        },
+        {
+          "company": "Milky Mist Dairy Food Limited",
+          "symbol": "MILKYMIST",
+          "price_range": "Rs.133 to Rs.140",
+          "issue_price": "   140",
+          "listing_date": "18-AUG-2026"
+        },
+        {
+          "company": "Fascinate Textiles Limited",
+          "symbol": "FASCINATE",
+          "price_range": "Rs.142 to Rs.151",
+          "issue_price": "151",
+          "listing_date": "24-AUG-2026"
+        },
+        {
+          "company": "Molbio Diagnostics Limited",
+          "symbol": "MOLBIO",
+          "price_range": "Rs.768 to Rs.807",
+          "issue_price": "   807",
+          "listing_date": "17-AUG-2026"
+        },
+        {
+          "company": "Dhoot Transmission Limited",
+          "symbol": "DHOOTTRANS",
+          "price_range": "Rs.829 to Rs.871",
+          "issue_price": "   871",
+          "listing_date": "17-AUG-2026"
+        },
+        {
+          "company": "Leap India Limited",
+          "symbol": "LEAP",
+          "price_range": "Rs.151 to Rs.159",
+          "issue_price": "   159",
+          "listing_date": "14-AUG-2026"
+        },
+        {
+          "company": "Technocraft Ventures Limited",
+          "symbol": "TECHNOCRAF",
+          "price_range": "Rs.200 to Rs.212",
+          "issue_price": "   212",
+          "listing_date": "14-AUG-2026"
+        },
+        {
+          "company": "Optimystix Entertainment India Limited",
+          "symbol": "OPTIMYSTIX",
+          "price_range": "Rs.166 to Rs.175",
+          "issue_price": "175",
+          "listing_date": "14-AUG-2026"
+        },
+        {
+          "company": "Ardee Industries Limited",
+          "symbol": "ARDEE",
+          "price_range": "Rs.50 to Rs.53",
+          "issue_price": "    53",
+          "listing_date": "12-AUG-2026"
+        },
+        {
+          "company": "Anawil Wire and Engineering Limited",
+          "symbol": "ANAWIL",
+          "price_range": "Rs.257 to Rs.270",
+          "issue_price": "270",
+          "listing_date": "10-AUG-2026"
+        },
+        {
+          "company": "Juniper Green Energy Limited",
+          "symbol": "JNPR",
+          "price_range": "Rs.214 to Rs.225",
+          "issue_price": "   225",
+          "listing_date": "06-AUG-2026"
+        },
+        {
+          "company": "MV Electrosystems Limited",
+          "symbol": "MVELECTRO",
+          "price_range": "Rs.400 to Rs.425",
+          "issue_price": "   425",
+          "listing_date": "06-AUG-2026"
+        },
+        {
+          "company": "Manipal Health Enterprises Limited",
+          "symbol": "MANIPALHOS",
+          "price_range": "Rs.560 to Rs.590",
+          "issue_price": "   590",
+          "listing_date": "05-AUG-2026"
+        },
+        {
+          "company": "Propshop Events and Exhibitions Limited",
+          "symbol": "PROPSHOP",
+          "price_range": "Rs.65 to Rs.69",
+          "issue_price": "69",
+          "listing_date": "03-AUG-2026"
+        }
+      ],
+      "past_total": 1429,
+      "source": "nseindia.com/api",
+      "fetched_at": "2026-09-08T17:40:30+05:30",
+      "stale": false
+    },
+    "earnings": {
+      "companies": {
+        "RELIANCE.NS": [
+          {
+            "quarter": "2026-06-30",
+            "revenue": 3094680000000.0,
+            "net_income": 209460000000.0
+          },
+          {
+            "quarter": "2026-03-31",
+            "revenue": 2940590000000.0,
+            "net_income": 169710000000.0
+          },
+          {
+            "quarter": "2025-12-31",
+            "revenue": 2649050000000.0,
+            "net_income": 186450000000.0
+          },
+          {
+            "quarter": "2025-06-30",
+            "revenue": 2436320000000.0,
+            "net_income": 269940000000.0
+          }
+        ],
+        "HDFCBANK.NS": [
+          {
+            "quarter": "2025-06-30",
+            "revenue": 853464600000.0,
+            "net_income": 162579100000.0
+          },
+          {
+            "quarter": "2025-03-31",
+            "revenue": 953058900000.0,
+            "net_income": 153934600000.0
+          },
+          {
+            "quarter": "2024-12-31",
+            "revenue": 652796600000.0,
+            "net_income": 176566100000.0
+          }
+        ],
+        "TCS.NS": [
+          {
+            "quarter": "2026-06-30",
+            "revenue": 722750000000.0,
+            "net_income": 133490000000.0
+          },
+          {
+            "quarter": "2026-03-31",
+            "revenue": 706980000000.0,
+            "net_income": 137180000000.0
+          },
+          {
+            "quarter": "2025-12-31",
+            "revenue": 670870000000.0,
+            "net_income": 106570000000.0
+          },
+          {
+            "quarter": "2025-06-30",
+            "revenue": 634370000000.0,
+            "net_income": 127600000000.0
+          }
+        ],
+        "INFY.NS": [
+          {
+            "quarter": "2026-06-30",
+            "revenue": 5082000000.0,
+            "net_income": 819000000.0
+          },
+          {
+            "quarter": "2026-03-31",
+            "revenue": 5040000000.0,
+            "net_income": 919000000.0
+          },
+          {
+            "quarter": "2025-12-31",
+            "revenue": 5099000000.0,
+            "net_income": 747000000.0
+          },
+          {
+            "quarter": "2025-09-30",
+            "revenue": 5076000000.0,
+            "net_income": 839000000.0
+          }
+        ],
+        "ICICIBANK.NS": [
+          {
+            "quarter": "2026-06-30",
+            "revenue": 383657400000.0,
+            "net_income": 154400600000.0
+          },
+          {
+            "quarter": "2026-03-31",
+            "revenue": 357423400000.0,
+            "net_income": 147550600000.0
+          },
+          {
+            "quarter": "2025-12-31",
+            "revenue": 352926000000.0,
+            "net_income": 125379800000.0
+          },
+          {
+            "quarter": "2025-09-30",
+            "revenue": 346048700000.0,
+            "net_income": 133570600000.0
+          }
+        ]
+      },
+      "unit": "INR",
+      "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
+      "source": "yahoo finance",
+      "fetched_at": "2026-09-08T17:40:32+05:30",
+      "stale": false
+    }
+  }
+}

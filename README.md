@@ -25,6 +25,8 @@ are hit exactly once a day by one process; visitors only ever touch a CDN.
 | Nifty P/E, P/B, div yield | `nsearchives.nseindia.com` | One CSV per trading day, all indices, no cookie |
 | FII / DII cash flows | `nseindia.com/api/fiidiiTradeReact` | Plain UA header is enough |
 | IPOs | `nseindia.com/api/…issues` | 1,400+ past issues |
+| IPO listing gains | `sec_bhavdata_full` join | Computed: issue price vs listing-day open/close |
+| Japan & UK 10Y | FRED OECD series | **Monthly and lagged**, like India |
 | Gilt NAVs | `portal.amfiindia.com/spages/NAVAll.txt` | Note the 302 from the old host |
 | US rates | FRED (with key) → Yahoo fallback | Works without a key |
 | USD/INR spot | Yahoo `INR=X` | Deliberately separate from the RBI fixing |
@@ -49,6 +51,7 @@ python fetch.py --probe            # which hosts can this machine reach?
 python fetch.py --max-age 86400    # replay from cache, hit nothing
 python fetch.py --backfill 180     # rebuild history from NSE archives + Yahoo
 python fetch.py --nifty-history    # weekly Nifty P/E back to 1999
+python fetch.py --backfill-ipo 60  # price N past listing dates (one call each)
 ```
 
 **Use `--max-age 86400` while editing the dashboard.** It replays responses
@@ -74,6 +77,14 @@ rather than duplicates.
 - FII/DII: accumulates forward only — NSE publishes no history endpoint.
 
 `NiftyPE_History.txt` is the readable dump of the deep series with percentiles.
+
+`docs/ipo_listings.json` accumulates listing-day gains. NSE gives the issue
+price and listing date but not the listing print, so the gain is computed by
+joining each listing date to that day's `sec_bhavdata_full` bhavcopy — one
+request per date, covering every stock that listed that day. Both the open
+(the flip) and the close (holding day one out) are kept; they diverge a lot.
+Note the older `cmDDMMMYYYYbhav.csv.zip` path that most tutorials still use
+now 404s.
 
 > **Level break:** NSE switched Nifty P/E from standalone to consolidated
 > earnings on 31-Mar-2021. Readings either side are not on the same basis.

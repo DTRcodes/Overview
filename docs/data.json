@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-08T20:24:23+05:30",
-  "generated_at_utc": "2026-09-08T14:54:23+00:00",
+  "generated_at": "2026-09-08T20:45:18+05:30",
+  "generated_at_utc": "2026-09-08T15:15:18+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-08T20:24:15+05:30",
+      "fetched_at": "2026-09-08T20:17:20+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -41,7 +41,7 @@
       },
       "unit": "INR crore",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-08T20:24:16+05:30",
+      "fetched_at": "2026-09-08T20:17:20+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -106,68 +106,49 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-08T20:24:16+05:30",
+      "fetched_at": "2026-09-08T20:17:20+05:30",
       "stale": false
     },
     "india_yields": {
-      "yields": {
-        "10Y": 6.89
-      },
-      "unit": "percent",
-      "via": "FRED INDIRLTLT01STM (monthly, lagged)",
-      "as_of": "2026-06-01",
-      "fragile": true,
-      "caveat": "India yields have no reliable free live source. Point this at a broker feed for real coverage.",
-      "source": "FRED INDIRLTLT01STM (monthly, lagged)",
-      "fetched_at": "2026-09-08T20:24:16+05:30",
-      "stale": false
+      "stale": true,
+      "stale_reason": "RuntimeError: investing.com blocked (Cloudflare) and no FRED_API_KEY set for the monthly fallback",
+      "fetched_at": null
     },
     "us_rates": {
       "rates": {
-        "fed_target_upper": {
-          "value": 3.75,
+        "us_3m": {
+          "value": 3.763,
           "date": "2026-09-08"
-        },
-        "fed_target_lower": {
-          "value": 3.5,
-          "date": "2026-09-08"
-        },
-        "fed_effective": {
-          "value": 3.63,
-          "date": "2026-09-04"
-        },
-        "us_2y": {
-          "value": 4.34,
-          "date": "2026-09-03"
         },
         "us_5y": {
-          "value": 4.52,
-          "date": "2026-09-03"
+          "value": 4.564,
+          "date": "2026-09-08"
         },
         "us_10y": {
-          "value": 4.77,
-          "date": "2026-09-03"
+          "value": 4.792,
+          "date": "2026-09-08"
         },
         "us_30y": {
-          "value": 5.25,
-          "date": "2026-09-03"
-        },
-        "us_10y_2y_spread": {
-          "value": 0.41,
-          "date": "2026-09-04"
+          "value": 5.246,
+          "date": "2026-09-08"
         }
       },
       "unit": "percent",
-      "via": "fred",
-      "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-08T20:24:18+05:30",
+      "via": "yfinance",
+      "source": "yahoo finance",
+      "fetched_at": "2026-09-08T20:17:23+05:30",
       "stale": false
+    },
+    "world_yields": {
+      "stale": true,
+      "stale_reason": "RuntimeError: FRED_API_KEY not set - required for JP/UK yields",
+      "fetched_at": null
     },
     "fx_spot": {
       "usd_inr": 94.808,
       "as_of": "2026-09-08",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-08T20:24:19+05:30",
+      "fetched_at": "2026-09-08T20:17:23+05:30",
       "stale": false
     },
     "gilt_funds": {
@@ -271,7 +252,7 @@
       ],
       "count_matched": 333,
       "source": "portal.amfiindia.com",
-      "fetched_at": "2026-09-08T20:24:21+05:30",
+      "fetched_at": "2026-09-08T20:17:25+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -657,7 +638,434 @@
       ],
       "past_total": 1429,
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-08T20:24:22+05:30",
+      "fetched_at": "2026-09-08T20:17:26+05:30",
+      "stale": false
+    },
+    "ipo_gains": {
+      "listings": [
+        {
+          "symbol": "DEEPA",
+          "company": "Deepa Jewellers Limited",
+          "issue_price": 177.0,
+          "listing_date": "2026-09-08",
+          "open": 221.0,
+          "close": 194.37,
+          "gain_open_pct": 24.86,
+          "gain_close_pct": 9.81
+        },
+        {
+          "symbol": "PERNIASPOP",
+          "company": "Purple Style Labs Limited",
+          "issue_price": 575.0,
+          "listing_date": "2026-09-07",
+          "open": 535.0,
+          "close": 568.55,
+          "gain_open_pct": -6.96,
+          "gain_close_pct": -1.12
+        },
+        {
+          "symbol": "SHANTIINOR",
+          "company": "Shanti Inorganics Limited",
+          "issue_price": 83.0,
+          "listing_date": "2026-09-07",
+          "open": 157.7,
+          "close": 165.55,
+          "gain_open_pct": 90.0,
+          "gain_close_pct": 99.46
+        },
+        {
+          "symbol": "ASHUTOSH",
+          "company": "Ashutosh Fibre Limited",
+          "issue_price": 92.0,
+          "listing_date": "2026-09-07",
+          "open": 140.0,
+          "close": 147.0,
+          "gain_open_pct": 52.17,
+          "gain_close_pct": 59.78
+        },
+        {
+          "symbol": "PRIORITY",
+          "company": "Priority Jewels Limited",
+          "issue_price": 200.0,
+          "listing_date": "2026-09-04",
+          "open": 230.0,
+          "close": 241.5,
+          "gain_open_pct": 15.0,
+          "gain_close_pct": 20.75
+        },
+        {
+          "symbol": "ESDS",
+          "company": "ESDS Software Solution Limited",
+          "issue_price": 429.0,
+          "listing_date": "2026-09-04",
+          "open": 757.0,
+          "close": 908.4,
+          "gain_open_pct": 76.46,
+          "gain_close_pct": 111.75
+        },
+        {
+          "symbol": "LUMINO",
+          "company": "Lumino Industries Limited",
+          "issue_price": 82.0,
+          "listing_date": "2026-09-03",
+          "open": 110.0,
+          "close": 110.32,
+          "gain_open_pct": 34.15,
+          "gain_close_pct": 34.54
+        },
+        {
+          "symbol": "ANNU",
+          "company": "Annu Projects Limited",
+          "issue_price": 99.0,
+          "listing_date": "2026-09-02",
+          "open": 72.0,
+          "close": 75.6,
+          "gain_open_pct": -27.27,
+          "gain_close_pct": -23.64
+        },
+        {
+          "symbol": "SUMAX",
+          "company": "Sumax Engineering Limited",
+          "issue_price": 101.0,
+          "listing_date": "2026-09-02",
+          "open": 111.0,
+          "close": 110.45,
+          "gain_open_pct": 9.9,
+          "gain_close_pct": 9.36
+        },
+        {
+          "symbol": "SYMBIOTEC",
+          "company": "Symbiotec Pharmalab Limited",
+          "issue_price": 988.0,
+          "listing_date": "2026-09-01",
+          "open": 988.0,
+          "close": 1097.7,
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 11.1
+        },
+        {
+          "symbol": "HTEL",
+          "company": "Hy-Tech Engineers Limited",
+          "issue_price": 53.0,
+          "listing_date": "2026-09-01",
+          "open": 75.0,
+          "close": 78.75,
+          "gain_open_pct": 41.51,
+          "gain_close_pct": 48.58
+        },
+        {
+          "symbol": "SKYWAYS",
+          "company": "Skyways Air Services Limited",
+          "issue_price": 138.0,
+          "listing_date": "2026-09-01",
+          "open": 124.0,
+          "close": 125.56,
+          "gain_open_pct": -10.14,
+          "gain_close_pct": -9.01
+        },
+        {
+          "symbol": "ABH",
+          "company": "ABH Healthcare Limited",
+          "issue_price": 102.0,
+          "listing_date": "2026-09-01",
+          "open": 99.0,
+          "close": 94.05,
+          "gain_open_pct": -2.94,
+          "gain_close_pct": -7.79
+        },
+        {
+          "symbol": "MADHURKNIT",
+          "company": "Madhur Knit Crafts Limited",
+          "issue_price": 100.0,
+          "listing_date": "2026-09-01",
+          "open": 100.0,
+          "close": 95.0,
+          "gain_open_pct": 0.0,
+          "gain_close_pct": -5.0
+        },
+        {
+          "symbol": "AUGMONT",
+          "company": "Augmont Enterprises Limited",
+          "issue_price": 788.0,
+          "listing_date": "2026-08-31",
+          "open": 961.0,
+          "close": 908.15,
+          "gain_open_pct": 21.95,
+          "gain_close_pct": 15.25
+        },
+        {
+          "symbol": "TEMPSENS",
+          "company": "Tempsens Instruments (India) Limited",
+          "issue_price": 300.0,
+          "listing_date": "2026-08-28",
+          "open": 634.0,
+          "close": 586.65,
+          "gain_open_pct": 111.33,
+          "gain_close_pct": 95.55
+        },
+        {
+          "symbol": "GAJA",
+          "company": "Gaja Alternative Asset Management Limited",
+          "issue_price": 160.0,
+          "listing_date": "2026-08-26",
+          "open": 185.0,
+          "close": 168.67,
+          "gain_open_pct": 15.62,
+          "gain_close_pct": 5.42
+        },
+        {
+          "symbol": "SUNSHINE",
+          "company": "Sunshine Pictures Limited",
+          "issue_price": 360.0,
+          "listing_date": "2026-08-25",
+          "open": 395.9,
+          "close": 369.2,
+          "gain_open_pct": 9.97,
+          "gain_close_pct": 2.56
+        },
+        {
+          "symbol": "SHANKESH",
+          "company": "Shankesh Jewellers Limited",
+          "issue_price": 93.0,
+          "listing_date": "2026-08-25",
+          "open": 103.3,
+          "close": 94.82,
+          "gain_open_pct": 11.08,
+          "gain_close_pct": 1.96
+        },
+        {
+          "symbol": "LALITHAA",
+          "company": "Lalithaa Jewellery Mart Limited",
+          "issue_price": 201.0,
+          "listing_date": "2026-08-24",
+          "open": 265.0,
+          "close": 248.44,
+          "gain_open_pct": 31.84,
+          "gain_close_pct": 23.6
+        },
+        {
+          "symbol": "HORIZONIND",
+          "company": "Horizon Industrial Parks Limited",
+          "issue_price": 60.0,
+          "listing_date": "2026-08-24",
+          "open": 60.25,
+          "close": 58.16,
+          "gain_open_pct": 0.42,
+          "gain_close_pct": -3.07
+        },
+        {
+          "symbol": "FASCINATE",
+          "company": "Fascinate Textiles Limited",
+          "issue_price": 151.0,
+          "listing_date": "2026-08-24",
+          "open": 120.8,
+          "close": 114.8,
+          "gain_open_pct": -20.0,
+          "gain_close_pct": -23.97
+        },
+        {
+          "symbol": "SKYTECH",
+          "company": "Skytech Infinite Platform Limited",
+          "issue_price": 77.0,
+          "listing_date": "2026-08-21",
+          "open": 74.0,
+          "close": 70.3,
+          "gain_open_pct": -3.9,
+          "gain_close_pct": -8.7
+        },
+        {
+          "symbol": "CREDENT",
+          "company": "Credent Connect N Care Limited",
+          "issue_price": 189.0,
+          "listing_date": "2026-08-20",
+          "open": 359.1,
+          "close": 377.05,
+          "gain_open_pct": 90.0,
+          "gain_close_pct": 99.5
+        },
+        {
+          "symbol": "SHIPROCKET",
+          "company": "Shiprocket Limited",
+          "issue_price": 97.0,
+          "listing_date": "2026-08-19",
+          "open": 131.0,
+          "close": 143.45,
+          "gain_open_pct": 35.05,
+          "gain_close_pct": 47.89
+        },
+        {
+          "symbol": "BLEL",
+          "company": "Behari Lal Engineering Limited",
+          "issue_price": 285.0,
+          "listing_date": "2026-08-19",
+          "open": 465.0,
+          "close": 502.2,
+          "gain_open_pct": 63.16,
+          "gain_close_pct": 76.21
+        },
+        {
+          "symbol": "PRAMODINI",
+          "company": "Pramodini Medicare Limited",
+          "issue_price": 118.0,
+          "listing_date": "2026-08-19",
+          "open": 120.0,
+          "close": 121.65,
+          "gain_open_pct": 1.69,
+          "gain_close_pct": 3.09
+        },
+        {
+          "symbol": "MILKYMIST",
+          "company": "Milky Mist Dairy Food Limited",
+          "issue_price": 140.0,
+          "listing_date": "2026-08-18",
+          "open": 165.0,
+          "close": 181.5,
+          "gain_open_pct": 17.86,
+          "gain_close_pct": 29.64
+        },
+        {
+          "symbol": "MOLBIO",
+          "company": "Molbio Diagnostics Limited",
+          "issue_price": 807.0,
+          "listing_date": "2026-08-17",
+          "open": 980.0,
+          "close": 1041.7,
+          "gain_open_pct": 21.44,
+          "gain_close_pct": 29.08
+        },
+        {
+          "symbol": "DHOOTTRANS",
+          "company": "Dhoot Transmission Limited",
+          "issue_price": 871.0,
+          "listing_date": "2026-08-17",
+          "open": 1200.0,
+          "close": 1187.05,
+          "gain_open_pct": 37.77,
+          "gain_close_pct": 36.29
+        },
+        {
+          "symbol": "TECHNOCRAF",
+          "company": "Technocraft Ventures Limited",
+          "issue_price": 212.0,
+          "listing_date": "2026-08-14",
+          "open": 284.0,
+          "close": 311.15,
+          "gain_open_pct": 33.96,
+          "gain_close_pct": 46.77
+        },
+        {
+          "symbol": "OPTIMYSTIX",
+          "company": "Optimystix Entertainment India Limited",
+          "issue_price": 175.0,
+          "listing_date": "2026-08-14",
+          "open": 180.0,
+          "close": 189.0,
+          "gain_open_pct": 2.86,
+          "gain_close_pct": 8.0
+        },
+        {
+          "symbol": "SWARAJ",
+          "company": "Swaraj Suiting Limited",
+          "issue_price": 360.0,
+          "listing_date": "2026-08-13",
+          "open": 373.9,
+          "close": 371.5,
+          "gain_open_pct": 3.86,
+          "gain_close_pct": 3.19
+        },
+        {
+          "symbol": "ARDEE",
+          "company": "Ardee Industries Limited",
+          "issue_price": 53.0,
+          "listing_date": "2026-08-12",
+          "open": 72.0,
+          "close": 67.12,
+          "gain_open_pct": 35.85,
+          "gain_close_pct": 26.64
+        },
+        {
+          "symbol": "ANNAPURNA",
+          "company": "Annapurna Swadisht Limited",
+          "issue_price": 157.0,
+          "listing_date": "2026-08-12",
+          "open": 160.0,
+          "close": 147.2,
+          "gain_open_pct": 1.91,
+          "gain_close_pct": -6.24
+        },
+        {
+          "symbol": "ANAWIL",
+          "company": "Anawil Wire and Engineering Limited",
+          "issue_price": 270.0,
+          "listing_date": "2026-08-10",
+          "open": 329.65,
+          "close": 346.1,
+          "gain_open_pct": 22.09,
+          "gain_close_pct": 28.19
+        },
+        {
+          "symbol": "JNPR",
+          "company": "Juniper Green Energy Limited",
+          "issue_price": 225.0,
+          "listing_date": "2026-08-06",
+          "open": 245.0,
+          "close": 259.71,
+          "gain_open_pct": 8.89,
+          "gain_close_pct": 15.43
+        },
+        {
+          "symbol": "MVELECTRO",
+          "company": "MV Electrosystems Limited",
+          "issue_price": 425.0,
+          "listing_date": "2026-08-06",
+          "open": 520.0,
+          "close": 624.0,
+          "gain_open_pct": 22.35,
+          "gain_close_pct": 46.82
+        },
+        {
+          "symbol": "MANIPALHOS",
+          "company": "Manipal Health Enterprises Limited",
+          "issue_price": 590.0,
+          "listing_date": "2026-08-05",
+          "open": 652.0,
+          "close": 666.95,
+          "gain_open_pct": 10.51,
+          "gain_close_pct": 13.04
+        },
+        {
+          "symbol": "PROPSHOP",
+          "company": "Propshop Events and Exhibitions Limited",
+          "issue_price": 69.0,
+          "listing_date": "2026-08-03",
+          "open": 55.2,
+          "close": 57.15,
+          "gain_open_pct": -20.0,
+          "gain_close_pct": -17.17
+        }
+      ],
+      "resolved_total": 93,
+      "added_this_run": 14,
+      "bhavcopy_calls": 12,
+      "stats_last_50": {
+        "count": 50,
+        "median_open_pct": 12.99,
+        "median_close_pct": 13.04,
+        "positive_open_pct": 78.0,
+        "best": "TEMPSENS",
+        "worst": "ANNU"
+      },
+      "stats_all": {
+        "count": 93,
+        "median_open_pct": 7.09,
+        "median_close_pct": 7.86,
+        "positive_open_pct": 69.9,
+        "best": "TEMPSENS",
+        "worst": "ANNU"
+      },
+      "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
+      "source": "nseindia.com/api + sec_bhavdata_full",
+      "fetched_at": "2026-09-08T20:45:18+05:30",
       "stale": false
     },
     "earnings": {
@@ -771,7 +1179,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-08T20:24:23+05:30",
+      "fetched_at": "2026-09-08T20:17:27+05:30",
       "stale": false
     }
   }

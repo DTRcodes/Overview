@@ -424,6 +424,8 @@ function render(){
   const usc  = [{key:'us_10y', label:'US 10Y', color:cssv('--series-1')},
                 {key:'us_5y',  label:'US 5Y',  color:cssv('--series-2')}];
   const fx   = [{key:'usd_inr', label:'USD/INR', color:cssv('--series-2')}];
+  const world= [{key:'jp_10y', label:'Japan 10Y', color:cssv('--series-1')},
+                {key:'uk_10y', label:'UK 10Y',    color:cssv('--series-2')}];
   const flows= [{key:'fii_net', label:'FII net', color:cssv('--series-1')},
                 {key:'dii_net', label:'DII net', color:cssv('--series-2')}];
 
@@ -433,6 +435,9 @@ function render(){
     VIEW==='chart' ? '<div class="chart" data-c="close"></div>' : histTable(close)));
   b.push(card('US Treasury yields', 'Two tenors, one scale.', S.us_rates,
     VIEW==='chart' ? '<div class="chart" data-c="us"></div>' : histTable(usc)));
+  b.push(card('Japan & UK 10Y', dig('world_yields','frequency') || 'Monthly, OECD via FRED.',
+    S.world_yields,
+    VIEW==='chart' ? '<div class="chart" data-c="world"></div>' : histTable(world)));
   b.push(card('USD / INR', 'Traded spot. The RBI reference fixing is in the FX table.', S.fx_spot,
     VIEW==='chart' ? '<div class="chart" data-c="fx"></div>' : histTable(fx)));
   b.push(card('Institutional flows', 'Daily net cash-market activity, ₹ crore.',
@@ -500,6 +505,35 @@ function render(){
       : `<div class="note">Nothing open right now.</div>`) +
     `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.</div>`, 'wide'));
 
+  // ---- IPO listing-day gains
+  const ig = S.ipo_gains, gl = (ig && ig.listings) || [], gs = ig && ig.stats_last_50;
+  const pc = v => v == null ? '–' :
+    `<span class="${sign(v)}">${arrow(v)} ${nf(v,1)}%</span>`;
+  b.push(card('IPO listing-day gains',
+    'Measured against the issue price. Open = the listing pop; close = holding day one out.',
+    ig,
+    (gs ? `<div class="stats" style="margin-bottom:11px">
+       <div class="stat"><div class="t">Median pop</div>
+         <div class="n ${sign(gs.median_open_pct)}">${nf(gs.median_open_pct,1)}%</div>
+         <div class="m">last ${gs.count} listings</div></div>
+       <div class="stat"><div class="t">Positive on open</div>
+         <div class="n">${nf(gs.positive_open_pct,0)}%</div>
+         <div class="m">median close ${nf(gs.median_close_pct,1)}%</div></div>
+     </div>` : '') +
+    `<div class="scroll"><table><thead><tr><th>Company</th>
+      <th>Open %</th><th>Close %</th><th>Listed</th>
+      <th>Issue</th><th>Open</th><th>Close</th>
+      </tr></thead><tbody>` +
+    gl.slice(0,25).map(x => `<tr>
+      <td>${esc(x.company || x.symbol)}<br>
+        <span style="color:var(--text-muted);font-size:11px">${esc(x.symbol)}</span></td>
+      <td>${pc(x.gain_open_pct)}</td><td>${pc(x.gain_close_pct)}</td>
+      <td>${esc(x.listing_date)}</td><td>${nf(x.issue_price,0)}</td>
+      <td>${nf(x.open,1)}</td><td>${nf(x.close,1)}</td></tr>`).join('') +
+    `</tbody></table></div>
+     <div class="note">${ig ? esc(ig.resolved_total) : 0} listings priced from the
+      NSE bhavcopy. ${ig && ig.note ? esc(ig.note) : ''}</div>`, 'wide'));
+
   // ---- earnings
   const e = S.earnings, ec = (e && e.companies) || {};
   const cr = v => v == null ? '–' : nf(v/1e7, 0);
@@ -516,8 +550,8 @@ function render(){
   document.getElementById('board').innerHTML = b.join('');
 
   if(VIEW === 'chart'){
-    const map = {pe, close, us: usc, fx, flows};
-    const opts = {pe:{dp:2}, close:{dp:0}, us:{dp:2}, fx:{dp:2},
+    const map = {pe, close, us: usc, fx, flows, world};
+    const opts = {pe:{dp:2}, close:{dp:0}, us:{dp:2}, fx:{dp:2}, world:{dp:2},
                   flows:{dp:0, zeroLine:true, height:210}};
     document.querySelectorAll('.chart').forEach(el =>
       lineChart(el, map[el.dataset.c], opts[el.dataset.c] || {}));

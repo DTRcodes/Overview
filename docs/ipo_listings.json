@@ -1,0 +1,957 @@
+{
+ "listings": {
+  "DEEPA": {
+   "symbol": "DEEPA",
+   "company": "Deepa Jewellers Limited",
+   "issue_price": 177.0,
+   "listing_date": "2026-09-08",
+   "open": 221.0,
+   "close": 194.37,
+   "gain_open_pct": 24.86,
+   "gain_close_pct": 9.81
+  },
+  "PERNIASPOP": {
+   "symbol": "PERNIASPOP",
+   "company": "Purple Style Labs Limited",
+   "issue_price": 575.0,
+   "listing_date": "2026-09-07",
+   "open": 535.0,
+   "close": 568.55,
+   "gain_open_pct": -6.96,
+   "gain_close_pct": -1.12
+  },
+  "SHANTIINOR": {
+   "symbol": "SHANTIINOR",
+   "company": "Shanti Inorganics Limited",
+   "issue_price": 83.0,
+   "listing_date": "2026-09-07",
+   "open": 157.7,
+   "close": 165.55,
+   "gain_open_pct": 90.0,
+   "gain_close_pct": 99.46
+  },
+  "ASHUTOSH": {
+   "symbol": "ASHUTOSH",
+   "company": "Ashutosh Fibre Limited",
+   "issue_price": 92.0,
+   "listing_date": "2026-09-07",
+   "open": 140.0,
+   "close": 147.0,
+   "gain_open_pct": 52.17,
+   "gain_close_pct": 59.78
+  },
+  "PRIORITY": {
+   "symbol": "PRIORITY",
+   "company": "Priority Jewels Limited",
+   "issue_price": 200.0,
+   "listing_date": "2026-09-04",
+   "open": 230.0,
+   "close": 241.5,
+   "gain_open_pct": 15.0,
+   "gain_close_pct": 20.75
+  },
+  "ESDS": {
+   "symbol": "ESDS",
+   "company": "ESDS Software Solution Limited",
+   "issue_price": 429.0,
+   "listing_date": "2026-09-04",
+   "open": 757.0,
+   "close": 908.4,
+   "gain_open_pct": 76.46,
+   "gain_close_pct": 111.75
+  },
+  "LUMINO": {
+   "symbol": "LUMINO",
+   "company": "Lumino Industries Limited",
+   "issue_price": 82.0,
+   "listing_date": "2026-09-03",
+   "open": 110.0,
+   "close": 110.32,
+   "gain_open_pct": 34.15,
+   "gain_close_pct": 34.54
+  },
+  "ANNU": {
+   "symbol": "ANNU",
+   "company": "Annu Projects Limited",
+   "issue_price": 99.0,
+   "listing_date": "2026-09-02",
+   "open": 72.0,
+   "close": 75.6,
+   "gain_open_pct": -27.27,
+   "gain_close_pct": -23.64
+  },
+  "SUMAX": {
+   "symbol": "SUMAX",
+   "company": "Sumax Engineering Limited",
+   "issue_price": 101.0,
+   "listing_date": "2026-09-02",
+   "open": 111.0,
+   "close": 110.45,
+   "gain_open_pct": 9.9,
+   "gain_close_pct": 9.36
+  },
+  "SYMBIOTEC": {
+   "symbol": "SYMBIOTEC",
+   "company": "Symbiotec Pharmalab Limited",
+   "issue_price": 988.0,
+   "listing_date": "2026-09-01",
+   "open": 988.0,
+   "close": 1097.7,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 11.1
+  },
+  "HTEL": {
+   "symbol": "HTEL",
+   "company": "Hy-Tech Engineers Limited",
+   "issue_price": 53.0,
+   "listing_date": "2026-09-01",
+   "open": 75.0,
+   "close": 78.75,
+   "gain_open_pct": 41.51,
+   "gain_close_pct": 48.58
+  },
+  "SKYWAYS": {
+   "symbol": "SKYWAYS",
+   "company": "Skyways Air Services Limited",
+   "issue_price": 138.0,
+   "listing_date": "2026-09-01",
+   "open": 124.0,
+   "close": 125.56,
+   "gain_open_pct": -10.14,
+   "gain_close_pct": -9.01
+  },
+  "ABH": {
+   "symbol": "ABH",
+   "company": "ABH Healthcare Limited",
+   "issue_price": 102.0,
+   "listing_date": "2026-09-01",
+   "open": 99.0,
+   "close": 94.05,
+   "gain_open_pct": -2.94,
+   "gain_close_pct": -7.79
+  },
+  "MADHURKNIT": {
+   "symbol": "MADHURKNIT",
+   "company": "Madhur Knit Crafts Limited",
+   "issue_price": 100.0,
+   "listing_date": "2026-09-01",
+   "open": 100.0,
+   "close": 95.0,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -5.0
+  },
+  "AUGMONT": {
+   "symbol": "AUGMONT",
+   "company": "Augmont Enterprises Limited",
+   "issue_price": 788.0,
+   "listing_date": "2026-08-31",
+   "open": 961.0,
+   "close": 908.15,
+   "gain_open_pct": 21.95,
+   "gain_close_pct": 15.25
+  },
+  "TEMPSENS": {
+   "symbol": "TEMPSENS",
+   "company": "Tempsens Instruments (India) Limited",
+   "issue_price": 300.0,
+   "listing_date": "2026-08-28",
+   "open": 634.0,
+   "close": 586.65,
+   "gain_open_pct": 111.33,
+   "gain_close_pct": 95.55
+  },
+  "GAJA": {
+   "symbol": "GAJA",
+   "company": "Gaja Alternative Asset Management Limited",
+   "issue_price": 160.0,
+   "listing_date": "2026-08-26",
+   "open": 185.0,
+   "close": 168.67,
+   "gain_open_pct": 15.62,
+   "gain_close_pct": 5.42
+  },
+  "SUNSHINE": {
+   "symbol": "SUNSHINE",
+   "company": "Sunshine Pictures Limited",
+   "issue_price": 360.0,
+   "listing_date": "2026-08-25",
+   "open": 395.9,
+   "close": 369.2,
+   "gain_open_pct": 9.97,
+   "gain_close_pct": 2.56
+  },
+  "SHANKESH": {
+   "symbol": "SHANKESH",
+   "company": "Shankesh Jewellers Limited",
+   "issue_price": 93.0,
+   "listing_date": "2026-08-25",
+   "open": 103.3,
+   "close": 94.82,
+   "gain_open_pct": 11.08,
+   "gain_close_pct": 1.96
+  },
+  "LALITHAA": {
+   "symbol": "LALITHAA",
+   "company": "Lalithaa Jewellery Mart Limited",
+   "issue_price": 201.0,
+   "listing_date": "2026-08-24",
+   "open": 265.0,
+   "close": 248.44,
+   "gain_open_pct": 31.84,
+   "gain_close_pct": 23.6
+  },
+  "HORIZONIND": {
+   "symbol": "HORIZONIND",
+   "company": "Horizon Industrial Parks Limited",
+   "issue_price": 60.0,
+   "listing_date": "2026-08-24",
+   "open": 60.25,
+   "close": 58.16,
+   "gain_open_pct": 0.42,
+   "gain_close_pct": -3.07
+  },
+  "FASCINATE": {
+   "symbol": "FASCINATE",
+   "company": "Fascinate Textiles Limited",
+   "issue_price": 151.0,
+   "listing_date": "2026-08-24",
+   "open": 120.8,
+   "close": 114.8,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -23.97
+  },
+  "SKYTECH": {
+   "symbol": "SKYTECH",
+   "company": "Skytech Infinite Platform Limited",
+   "issue_price": 77.0,
+   "listing_date": "2026-08-21",
+   "open": 74.0,
+   "close": 70.3,
+   "gain_open_pct": -3.9,
+   "gain_close_pct": -8.7
+  },
+  "CREDENT": {
+   "symbol": "CREDENT",
+   "company": "Credent Connect N Care Limited",
+   "issue_price": 189.0,
+   "listing_date": "2026-08-20",
+   "open": 359.1,
+   "close": 377.05,
+   "gain_open_pct": 90.0,
+   "gain_close_pct": 99.5
+  },
+  "SHIPROCKET": {
+   "symbol": "SHIPROCKET",
+   "company": "Shiprocket Limited",
+   "issue_price": 97.0,
+   "listing_date": "2026-08-19",
+   "open": 131.0,
+   "close": 143.45,
+   "gain_open_pct": 35.05,
+   "gain_close_pct": 47.89
+  },
+  "BLEL": {
+   "symbol": "BLEL",
+   "company": "Behari Lal Engineering Limited",
+   "issue_price": 285.0,
+   "listing_date": "2026-08-19",
+   "open": 465.0,
+   "close": 502.2,
+   "gain_open_pct": 63.16,
+   "gain_close_pct": 76.21
+  },
+  "PRAMODINI": {
+   "symbol": "PRAMODINI",
+   "company": "Pramodini Medicare Limited",
+   "issue_price": 118.0,
+   "listing_date": "2026-08-19",
+   "open": 120.0,
+   "close": 121.65,
+   "gain_open_pct": 1.69,
+   "gain_close_pct": 3.09
+  },
+  "MILKYMIST": {
+   "symbol": "MILKYMIST",
+   "company": "Milky Mist Dairy Food Limited",
+   "issue_price": 140.0,
+   "listing_date": "2026-08-18",
+   "open": 165.0,
+   "close": 181.5,
+   "gain_open_pct": 17.86,
+   "gain_close_pct": 29.64
+  },
+  "MOLBIO": {
+   "symbol": "MOLBIO",
+   "company": "Molbio Diagnostics Limited",
+   "issue_price": 807.0,
+   "listing_date": "2026-08-17",
+   "open": 980.0,
+   "close": 1041.7,
+   "gain_open_pct": 21.44,
+   "gain_close_pct": 29.08
+  },
+  "DHOOTTRANS": {
+   "symbol": "DHOOTTRANS",
+   "company": "Dhoot Transmission Limited",
+   "issue_price": 871.0,
+   "listing_date": "2026-08-17",
+   "open": 1200.0,
+   "close": 1187.05,
+   "gain_open_pct": 37.77,
+   "gain_close_pct": 36.29
+  },
+  "TECHNOCRAF": {
+   "symbol": "TECHNOCRAF",
+   "company": "Technocraft Ventures Limited",
+   "issue_price": 212.0,
+   "listing_date": "2026-08-14",
+   "open": 284.0,
+   "close": 311.15,
+   "gain_open_pct": 33.96,
+   "gain_close_pct": 46.77
+  },
+  "OPTIMYSTIX": {
+   "symbol": "OPTIMYSTIX",
+   "company": "Optimystix Entertainment India Limited",
+   "issue_price": 175.0,
+   "listing_date": "2026-08-14",
+   "open": 180.0,
+   "close": 189.0,
+   "gain_open_pct": 2.86,
+   "gain_close_pct": 8.0
+  },
+  "SWARAJ": {
+   "symbol": "SWARAJ",
+   "company": "Swaraj Suiting Limited",
+   "issue_price": 360.0,
+   "listing_date": "2026-08-13",
+   "open": 373.9,
+   "close": 371.5,
+   "gain_open_pct": 3.86,
+   "gain_close_pct": 3.19
+  },
+  "ARDEE": {
+   "symbol": "ARDEE",
+   "company": "Ardee Industries Limited",
+   "issue_price": 53.0,
+   "listing_date": "2026-08-12",
+   "open": 72.0,
+   "close": 67.12,
+   "gain_open_pct": 35.85,
+   "gain_close_pct": 26.64
+  },
+  "ANNAPURNA": {
+   "symbol": "ANNAPURNA",
+   "company": "Annapurna Swadisht Limited",
+   "issue_price": 157.0,
+   "listing_date": "2026-08-12",
+   "open": 160.0,
+   "close": 147.2,
+   "gain_open_pct": 1.91,
+   "gain_close_pct": -6.24
+  },
+  "ANAWIL": {
+   "symbol": "ANAWIL",
+   "company": "Anawil Wire and Engineering Limited",
+   "issue_price": 270.0,
+   "listing_date": "2026-08-10",
+   "open": 329.65,
+   "close": 346.1,
+   "gain_open_pct": 22.09,
+   "gain_close_pct": 28.19
+  },
+  "JNPR": {
+   "symbol": "JNPR",
+   "company": "Juniper Green Energy Limited",
+   "issue_price": 225.0,
+   "listing_date": "2026-08-06",
+   "open": 245.0,
+   "close": 259.71,
+   "gain_open_pct": 8.89,
+   "gain_close_pct": 15.43
+  },
+  "MVELECTRO": {
+   "symbol": "MVELECTRO",
+   "company": "MV Electrosystems Limited",
+   "issue_price": 425.0,
+   "listing_date": "2026-08-06",
+   "open": 520.0,
+   "close": 624.0,
+   "gain_open_pct": 22.35,
+   "gain_close_pct": 46.82
+  },
+  "MANIPALHOS": {
+   "symbol": "MANIPALHOS",
+   "company": "Manipal Health Enterprises Limited",
+   "issue_price": 590.0,
+   "listing_date": "2026-08-05",
+   "open": 652.0,
+   "close": 666.95,
+   "gain_open_pct": 10.51,
+   "gain_close_pct": 13.04
+  },
+  "PROPSHOP": {
+   "symbol": "PROPSHOP",
+   "company": "Propshop Events and Exhibitions Limited",
+   "issue_price": 69.0,
+   "listing_date": "2026-08-03",
+   "open": 55.2,
+   "close": 57.15,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -17.17
+  },
+  "CUBEINVIT": {
+   "symbol": "CUBEINVIT",
+   "company": "Cube Highways Trust",
+   "issue_price": 156.0,
+   "listing_date": "2026-07-31",
+   "open": 155.0,
+   "close": 156.96,
+   "gain_open_pct": -0.64,
+   "gain_close_pct": 0.62
+  },
+  "XTRANET": {
+   "symbol": "XTRANET",
+   "company": "Xtranet Technologies Limited",
+   "issue_price": 127.0,
+   "listing_date": "2026-07-30",
+   "open": 136.0,
+   "close": 129.2,
+   "gain_open_pct": 7.09,
+   "gain_close_pct": 1.73
+  },
+  "INDOMIM": {
+   "symbol": "INDOMIM",
+   "company": "INDO-MIM Limited",
+   "issue_price": 485.0,
+   "listing_date": "2026-07-30",
+   "open": 700.0,
+   "close": 741.75,
+   "gain_open_pct": 44.33,
+   "gain_close_pct": 52.94
+  },
+  "LCL": {
+   "symbol": "LCL",
+   "company": "Lohia Corp Limited",
+   "issue_price": 425.0,
+   "listing_date": "2026-07-30",
+   "open": 461.0,
+   "close": 494.6,
+   "gain_open_pct": 8.47,
+   "gain_close_pct": 16.38
+  },
+  "METALIC": {
+   "symbol": "METALIC",
+   "company": "Metalic Technoforge Limited",
+   "issue_price": 77.0,
+   "listing_date": "2026-07-28",
+   "open": 87.0,
+   "close": 83.05,
+   "gain_open_pct": 12.99,
+   "gain_close_pct": 7.86
+  },
+  "CMLL": {
+   "symbol": "CMLL",
+   "company": "Caliber Mining and Logistics Limited",
+   "issue_price": 424.0,
+   "listing_date": "2026-07-24",
+   "open": 500.25,
+   "close": 528.2,
+   "gain_open_pct": 17.98,
+   "gain_close_pct": 24.58
+  },
+  "ALPINETEX": {
+   "symbol": "ALPINETEX",
+   "company": "Alpine Texworld Limited",
+   "issue_price": 105.0,
+   "listing_date": "2026-07-21",
+   "open": 105.0,
+   "close": 99.75,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -5.0
+  },
+  "SBIFUNDS": {
+   "symbol": "SBIFUNDS",
+   "company": "SBI Funds Management Limited",
+   "issue_price": 574.0,
+   "listing_date": "2026-07-21",
+   "open": 613.3,
+   "close": 609.75,
+   "gain_open_pct": 6.85,
+   "gain_close_pct": 6.23
+  },
+  "LASERPOWER": {
+   "symbol": "LASERPOWER",
+   "company": "Laser Power & Infra Limited",
+   "issue_price": 214.0,
+   "listing_date": "2026-07-16",
+   "open": 250.0,
+   "close": 262.42,
+   "gain_open_pct": 16.82,
+   "gain_close_pct": 22.63
+  },
+  "HAPPY": {
+   "symbol": "HAPPY",
+   "company": "Happy Steels Limited",
+   "issue_price": 66.0,
+   "listing_date": "2026-07-16",
+   "open": 68.0,
+   "close": 68.5,
+   "gain_open_pct": 3.03,
+   "gain_close_pct": 3.79
+  },
+  "KUSUMGAR": {
+   "symbol": "KUSUMGAR",
+   "company": "Kusumgar Limited",
+   "issue_price": 419.0,
+   "listing_date": "2026-07-15",
+   "open": 569.0,
+   "close": 602.8,
+   "gain_open_pct": 35.8,
+   "gain_close_pct": 43.87
+  },
+  "ICELCO": {
+   "symbol": "ICELCO",
+   "company": "IC Electricals Company Limited",
+   "issue_price": 99.0,
+   "listing_date": "2026-07-10",
+   "open": 166.0,
+   "close": 174.3,
+   "gain_open_pct": 67.68,
+   "gain_close_pct": 76.06
+  },
+  "KNACK": {
+   "symbol": "KNACK",
+   "company": "Knack Packaging Limited",
+   "issue_price": 170.0,
+   "listing_date": "2026-07-08",
+   "open": 188.0,
+   "close": 182.98,
+   "gain_open_pct": 10.59,
+   "gain_close_pct": 7.64
+  },
+  "VMOBILE": {
+   "symbol": "VMOBILE",
+   "company": "Vinit Mobile Limited",
+   "issue_price": 158.0,
+   "listing_date": "2026-07-07",
+   "open": 155.0,
+   "close": 147.25,
+   "gain_open_pct": -1.9,
+   "gain_close_pct": -6.8
+  },
+  "TEJA": {
+   "symbol": "TEJA",
+   "company": "Teja Engineering Industries Limited",
+   "issue_price": 220.0,
+   "listing_date": "2026-07-07",
+   "open": 418.0,
+   "close": 438.9,
+   "gain_open_pct": 90.0,
+   "gain_close_pct": 99.5
+  },
+  "AASTHA": {
+   "symbol": "AASTHA",
+   "company": "Aastha Spintex Limited",
+   "issue_price": 136.0,
+   "listing_date": "2026-07-06",
+   "open": 130.0,
+   "close": 136.49,
+   "gain_open_pct": -4.41,
+   "gain_close_pct": 0.36
+  },
+  "CSM": {
+   "symbol": "CSM",
+   "company": "CSM Technologies Limited",
+   "issue_price": 113.0,
+   "listing_date": "2026-07-02",
+   "open": 113.0,
+   "close": 107.35,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -5.0
+  },
+  "RAMBHAJO": {
+   "symbol": "RAMBHAJO",
+   "company": "Advit Jewels Limited",
+   "issue_price": 138.0,
+   "listing_date": "2026-07-01",
+   "open": 188.9,
+   "close": 179.46,
+   "gain_open_pct": 36.88,
+   "gain_close_pct": 30.04
+  },
+  "CORDELIA": {
+   "symbol": "CORDELIA",
+   "company": "Waterways Leisure Tourism Limited",
+   "issue_price": 808.0,
+   "listing_date": "2026-07-01",
+   "open": 681.0,
+   "close": 668.1,
+   "gain_open_pct": -15.72,
+   "gain_close_pct": -17.31
+  },
+  "SHREEDHAR": {
+   "symbol": "SHREEDHAR",
+   "company": "Shreedhar Spinners Limited",
+   "issue_price": 53.0,
+   "listing_date": "2026-07-01",
+   "open": 54.4,
+   "close": 57.1,
+   "gain_open_pct": 2.64,
+   "gain_close_pct": 7.74
+  },
+  "TURTLEMINT": {
+   "symbol": "TURTLEMINT",
+   "company": "Turtlemint Fintech Solutions Limited",
+   "issue_price": 152.0,
+   "listing_date": "2026-06-29",
+   "open": 134.9,
+   "close": 135.37,
+   "gain_open_pct": -11.25,
+   "gain_close_pct": -10.94
+  },
+  "AVIENCE": {
+   "symbol": "AVIENCE",
+   "company": "Avience Biomedicals Limited",
+   "issue_price": 208.0,
+   "listing_date": "2026-06-25",
+   "open": 395.2,
+   "close": 414.95,
+   "gain_open_pct": 90.0,
+   "gain_close_pct": 99.5
+  },
+  "CLAYCRAFT": {
+   "symbol": "CLAYCRAFT",
+   "company": "Clay Craft India Limited",
+   "issue_price": 203.0,
+   "listing_date": "2026-06-24",
+   "open": 211.0,
+   "close": 221.55,
+   "gain_open_pct": 3.94,
+   "gain_close_pct": 9.14
+  },
+  "QMSMEDI": {
+   "symbol": "QMSMEDI",
+   "company": "QMS Medical Allied Services Limited",
+   "issue_price": 96.0,
+   "listing_date": "2026-06-18",
+   "open": 108.95,
+   "close": 101.75,
+   "gain_open_pct": 13.49,
+   "gain_close_pct": 5.99
+  },
+  "UTKAL": {
+   "symbol": "UTKAL",
+   "company": "Utkal Speciality Industries India Limited",
+   "issue_price": 66.0,
+   "listing_date": "2026-06-17",
+   "open": 66.0,
+   "close": 62.7,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -5.0
+  },
+  "HEXAGON": {
+   "symbol": "HEXAGON",
+   "company": "Hexagon Nutrition Limited",
+   "issue_price": 45.0,
+   "listing_date": "2026-06-12",
+   "open": 48.25,
+   "close": 50.66,
+   "gain_open_pct": 7.22,
+   "gain_close_pct": 12.58
+  },
+  "GENXAI": {
+   "symbol": "GENXAI",
+   "company": "GenXAI Analytics Limited",
+   "issue_price": 116.0,
+   "listing_date": "2026-06-12",
+   "open": 92.8,
+   "close": 97.4,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -16.03
+  },
+  "CMRGREEN": {
+   "symbol": "CMRGREEN",
+   "company": "CMR Green Technologies Limited",
+   "issue_price": 192.0,
+   "listing_date": "2026-06-10",
+   "open": 268.0,
+   "close": 241.2,
+   "gain_open_pct": 39.58,
+   "gain_close_pct": 25.62
+  },
+  "BMLL": {
+   "symbol": "BMLL",
+   "company": "Bio Medica Laboratories Limited",
+   "issue_price": 139.0,
+   "listing_date": "2026-05-29",
+   "open": 111.2,
+   "close": 115.8,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -16.69
+  },
+  "QLINE": {
+   "symbol": "QLINE",
+   "company": "Q-Line Biotech Limited",
+   "issue_price": 343.0,
+   "listing_date": "2026-05-29",
+   "open": 452.0,
+   "close": 474.6,
+   "gain_open_pct": 31.78,
+   "gain_close_pct": 38.37
+  },
+  "TEAMTECH": {
+   "symbol": "TEAMTECH",
+   "company": "Teamtech Formwork Solutions Limited",
+   "issue_price": 63.0,
+   "listing_date": "2026-05-26",
+   "open": 75.0,
+   "close": 72.75,
+   "gain_open_pct": 19.05,
+   "gain_close_pct": 15.48
+  },
+  "NFPSAMPOOR": {
+   "symbol": "NFPSAMPOOR",
+   "company": "NFP Sampoorna Foods Limited",
+   "issue_price": 55.0,
+   "listing_date": "2026-05-25",
+   "open": 54.5,
+   "close": 51.8,
+   "gain_open_pct": -0.91,
+   "gain_close_pct": -5.82
+  },
+  "RFBL": {
+   "symbol": "RFBL",
+   "company": "RFBL Flexi Pack Limited",
+   "issue_price": 50.0,
+   "listing_date": "2026-05-19",
+   "open": 52.5,
+   "close": 55.1,
+   "gain_open_pct": 5.0,
+   "gain_close_pct": 10.2
+  },
+  "SIMCA": {
+   "symbol": "SIMCA",
+   "company": "Simca Advertising Limited",
+   "issue_price": 183.0,
+   "listing_date": "2026-05-15",
+   "open": 156.0,
+   "close": 163.8,
+   "gain_open_pct": -14.75,
+   "gain_close_pct": -10.49
+  },
+  "BAGMANE": {
+   "symbol": "BAGMANE",
+   "company": "Bagmane Prime Office REIT",
+   "issue_price": 100.0,
+   "listing_date": "2026-05-14",
+   "open": 103.5,
+   "close": 103.6,
+   "gain_open_pct": 3.5,
+   "gain_close_pct": 3.6
+  },
+  "VALUE360": {
+   "symbol": "VALUE360",
+   "company": "Value 360 Communications Limited",
+   "issue_price": 98.0,
+   "listing_date": "2026-05-11",
+   "open": 78.4,
+   "close": 82.3,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -16.02
+  },
+  "KISSHT": {
+   "symbol": "KISSHT",
+   "company": "Onemi Technology Solutions Limited",
+   "issue_price": 171.0,
+   "listing_date": "2026-05-08",
+   "open": 190.0,
+   "close": 208.63,
+   "gain_open_pct": 11.11,
+   "gain_close_pct": 22.01
+  },
+  "AMBAAUTO": {
+   "symbol": "AMBAAUTO",
+   "company": "Amba Auto Sales and Services Limited",
+   "issue_price": 135.0,
+   "listing_date": "2026-05-05",
+   "open": 134.5,
+   "close": 135.15,
+   "gain_open_pct": -0.37,
+   "gain_close_pct": 0.11
+  },
+  "ADISOFT": {
+   "symbol": "ADISOFT",
+   "company": "Adisoft Technologies Limited",
+   "issue_price": 172.0,
+   "listing_date": "2026-04-30",
+   "open": 205.0,
+   "close": 215.25,
+   "gain_open_pct": 19.19,
+   "gain_close_pct": 25.15
+  },
+  "CITIUSINVT": {
+   "symbol": "CITIUSINVT",
+   "company": "Citius Transnet Investment Trust",
+   "issue_price": 100.0,
+   "listing_date": "2026-04-29",
+   "open": 104.6,
+   "close": 106.23,
+   "gain_open_pct": 4.6,
+   "gain_close_pct": 6.23
+  },
+  "OMPOWER": {
+   "symbol": "OMPOWER",
+   "company": "Om Power Transmission Limited",
+   "issue_price": 175.0,
+   "listing_date": "2026-04-17",
+   "open": 186.0,
+   "close": 193.38,
+   "gain_open_pct": 6.29,
+   "gain_close_pct": 10.5
+  },
+  "VIVIDEL": {
+   "symbol": "VIVIDEL",
+   "company": "Vivid Electromech Limited",
+   "issue_price": 555.0,
+   "listing_date": "2026-04-07",
+   "open": 565.0,
+   "close": 563.05,
+   "gain_open_pct": 1.8,
+   "gain_close_pct": 1.45
+  },
+  "AMIRCHAND": {
+   "symbol": "AMIRCHAND",
+   "company": "Amir Chand Jagdish Kumar (Exports) Limited",
+   "issue_price": 212.0,
+   "listing_date": "2026-04-02",
+   "open": 200.0,
+   "close": 180.0,
+   "gain_open_pct": -5.66,
+   "gain_close_pct": -15.09
+  },
+  "SAIPARENT": {
+   "symbol": "SAIPARENT",
+   "company": "Sai Parenteral's Limited",
+   "issue_price": 392.0,
+   "listing_date": "2026-04-02",
+   "open": 400.0,
+   "close": 405.7,
+   "gain_open_pct": 2.04,
+   "gain_close_pct": 3.49
+  },
+  "POWERICA": {
+   "symbol": "POWERICA",
+   "company": "Powerica Limited",
+   "issue_price": 395.0,
+   "listing_date": "2026-04-02",
+   "open": 366.0,
+   "close": 390.0,
+   "gain_open_pct": -7.34,
+   "gain_close_pct": -1.27
+  },
+  "CMPDI": {
+   "symbol": "CMPDI",
+   "company": "Central Mine Planning & Design Institute Limited",
+   "issue_price": 172.0,
+   "listing_date": "2026-03-30",
+   "open": 160.0,
+   "close": 154.06,
+   "gain_open_pct": -6.98,
+   "gain_close_pct": -10.43
+  },
+  "GSPCROP": {
+   "symbol": "GSPCROP",
+   "company": "GSP Crop Science Limited",
+   "issue_price": 320.0,
+   "listing_date": "2026-03-24",
+   "open": 328.0,
+   "close": 356.25,
+   "gain_open_pct": 2.5,
+   "gain_close_pct": 11.33
+  },
+  "RIIT": {
+   "symbol": "RIIT",
+   "company": "Raajmarg Infra Investment Trust",
+   "issue_price": 100.0,
+   "listing_date": "2026-03-24",
+   "open": 107.0,
+   "close": 106.88,
+   "gain_open_pct": 7.0,
+   "gain_close_pct": 6.88
+  },
+  "INNOVISION": {
+   "symbol": "INNOVISION",
+   "company": "Innovision Limited",
+   "issue_price": 519.0,
+   "listing_date": "2026-03-23",
+   "open": 467.7,
+   "close": 374.2,
+   "gain_open_pct": -9.88,
+   "gain_close_pct": -27.9
+  },
+  "RSL": {
+   "symbol": "RSL",
+   "company": "Rajputana Stainless Limited",
+   "issue_price": 122.0,
+   "listing_date": "2026-03-19",
+   "open": 122.0,
+   "close": 113.03,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -7.35
+  },
+  "APSISAERO": {
+   "symbol": "APSISAERO",
+   "company": "Apsis Aerocom Limited",
+   "issue_price": 110.0,
+   "listing_date": "2026-03-18",
+   "open": 153.0,
+   "close": 160.65,
+   "gain_open_pct": 39.09,
+   "gain_close_pct": 46.05
+  },
+  "SPCON": {
+   "symbol": "SPCON",
+   "company": "Srinibas Pradhan Constructions Limited",
+   "issue_price": 98.0,
+   "listing_date": "2026-03-13",
+   "open": 100.05,
+   "close": 104.4,
+   "gain_open_pct": 2.09,
+   "gain_close_pct": 6.53
+  },
+  "KOTYARK": {
+   "symbol": "KOTYARK",
+   "company": "Kotyark Industries Limited",
+   "issue_price": 281.0,
+   "listing_date": "2026-03-12",
+   "open": 316.0,
+   "close": 360.65,
+   "gain_open_pct": 12.46,
+   "gain_close_pct": 28.35
+  }
+ },
+ "unresolvable": [
+  "10MWL29",
+  "1150VIES30",
+  "115AFIL28A",
+  "1165ESF32",
+  "12AIL28",
+  "12VPT28A",
+  "1305DCCL29",
+  "727NGEL36",
+  "734IREDA29",
+  "783LTFL29",
+  "783PHFL29",
+  "783TCHFL31",
+  "788TACA31",
+  "815CHLI36",
+  "888CIFCL33",
+  "904NACL28",
+  "915ICFL28A",
+  "920ISF28",
+  "925IIFL28",
+  "LEAP",
+  "PFC2026"
+ ]
+}

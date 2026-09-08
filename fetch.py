@@ -335,6 +335,63 @@ def fetch_us_rates():
             "source": "fred.stlouisfed.org" if via == "fred" else "yahoo finance"}
 
 
+# FRED renamed this OECD family part-way through its life, so both spellings
+# are live depending on the country. India's working id uses the second form.
+# Try each in turn rather than guessing - whichever answers, wins.
+WORLD_10Y = {
+    "Japan": ["IRLTLT01JPM156N", "JPNIRLTLT01STM"],
+    "UK": ["IRLTLT01GBM156N", "GBRIRLTLT01STM"],
+}
+WORLD_HISTORY_KEY = {"Japan": "jp_10y", "UK": "uk_10y"}
+
+
+@source("world_yields")
+def fetch_world_yields():
+    """Japan and UK 10-year government bond yields.
+
+    Same problem as India: no free live source. Yahoo has no tenor for either,
+    and the usual scrape targets render in JavaScript. FRED's OECD series are
+    authoritative but **monthly and lagged**, so the card says so rather than
+    implying a live quote.
+
+    Returns the last decade of observations too, so the chart has real history
+    on day one instead of accumulating a point a month.
+    """
+    key = os.environ.get("FRED_API_KEY", "").strip()
+    if not key:
+        raise RuntimeError("FRED_API_KEY not set - required for JP/UK yields")
+
+    latest, series, used = {}, {}, {}
+    for country, candidates in WORLD_10Y.items():
+        for sid in candidates:
+            try:
+                r = get("https://api.stlouisfed.org/fred/series/observations",
+                        params={"series_id": sid, "api_key": key,
+                                "file_type": "json", "sort_order": "desc",
+                                "limit": 130})
+                obs = [o for o in r.json().get("observations", [])
+                       if o.get("value") not in (".", "", None)]
+            except Exception:
+                continue
+            if not obs:
+                continue
+            latest[country] = {"value": num(obs[0]["value"]),
+                               "date": obs[0]["date"]}
+            series[country] = [[o["date"], num(o["value"])] for o in obs]
+            used[country] = sid
+            break
+
+    if not latest:
+        raise RuntimeError("no JP/UK series resolved from " +
+                           str({k: v for k, v in WORLD_10Y.items()}))
+
+    return {"latest": latest, "series": series, "series_ids": used,
+            "unit": "percent", "frequency": "monthly (OECD via FRED)",
+            "caveat": ("Monthly and lagged - these are not live quotes. "
+                       "No free live source exists for either tenor."),
+            "source": "fred.stlouisfed.org"}
+
+
 @source("fx_spot")
 def fetch_fx_spot():
     """USD/INR market spot.
@@ -433,6 +490,158 @@ def fetch_ipo():
             "past_total": len(past), "source": "nseindia.com/api"}
 
 
+IPO_STORE = ROOT / "docs" / "ipo_listings.json"
+IPO_PER_RUN = 12          # cap bhavcopy requests in a normal daily run
+
+
+def _price_from(rec):
+    """Issue price. Falls back to the top of the band, which is where Indian
+    IPOs price in practice when the book is covered."""
+    p = num(rec.get("issuePrice"))
+    if p:
+        return p
+    band = re.findall(r"([0-9][0-9,.]*)", rec.get("priceRange") or "")
+    return num(band[-1]) if band else None
+
+
+def _bhavcopy(day):
+    """All symbols' OHLC for one trading day, keyed by symbol.
+
+    One request covers every stock that listed that day, so resolving N IPOs
+    costs one call per distinct listing date rather than one per company.
+    (Note the old `cmDDMMMYYYYbhav.csv.zip` path most tutorials use now 404s;
+    `sec_bhavdata_full` is the live one.)
+    """
+    url = ("https://nsearchives.nseindia.com/products/content/"
+           "sec_bhavdata_full_" + day.strftime("%d%m%Y") + ".csv")
+    lines = get(url).text.splitlines()
+    if not lines:
+        raise RuntimeError("empty bhavcopy")
+    hdr = [h.strip() for h in lines[0].split(",")]
+    out = {}
+    for ln in lines[1:]:
+        parts = [c.strip() for c in ln.split(",")]
+        if len(parts) < len(hdr):
+            continue
+        row = dict(zip(hdr, parts))
+        sym, series = row.get("SYMBOL"), row.get("SERIES")
+        # EQ/SM are the tradable listing series; BE/GS etc. would shadow them
+        if sym and (sym not in out or series in ("EQ", "SM")):
+            out[sym] = row
+    return out
+
+
+def _load_ipo_store():
+    if IPO_STORE.exists():
+        try:
+            return json.loads(IPO_STORE.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"listings": {}, "unresolvable": []}
+
+
+def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
+    """Fill in listing-day gains for IPOs we have not priced yet.
+
+    NSE gives issue price and listing date but not the listing print, so the
+    gain has to be computed: join each listing date to that day's bhavcopy.
+    Two numbers come out of it - the open (the pop you'd get flipping at the
+    bell) and the close (holding the day out). They differ a lot, so both are
+    kept rather than picking one and calling it "the" listing gain.
+    """
+    store = _load_ipo_store()
+    done, bad = store["listings"], set(store.get("unresolvable", []))
+
+    past = get("https://www.nseindia.com/api/public-past-issues").json()
+    todo = []
+    for rec in past:
+        sym = (rec.get("symbol") or "").strip()
+        ld = (rec.get("listingDate") or "").strip()
+        if not sym or sym in done or sym in bad or ld in ("", "-"):
+            continue
+        price = _price_from(rec)
+        if not price:
+            continue
+        try:
+            day = dt.datetime.strptime(ld.title(), "%d-%b-%Y").date()
+        except ValueError:
+            continue
+        todo.append((day, sym, rec.get("company"), price))
+
+    todo.sort(key=lambda t: t[0], reverse=True)     # newest first
+    by_day = {}
+    for day, sym, company, price in todo:
+        by_day.setdefault(day, []).append((sym, company, price))
+
+    added, calls = 0, 0
+    for day in sorted(by_day, reverse=True):
+        if calls >= limit:
+            break
+        try:
+            bhav = _bhavcopy(day)
+            calls += 1
+        except Exception:
+            for sym, _, _ in by_day[day]:
+                bad.add(sym)          # holiday or missing file: do not retry forever
+            continue
+        for sym, company, price in by_day[day]:
+            row = bhav.get(sym)
+            if not row:
+                bad.add(sym)
+                continue
+            op, cl = num(row.get("OPEN_PRICE")), num(row.get("CLOSE_PRICE"))
+            if not op or not cl:
+                bad.add(sym)
+                continue
+            done[sym] = {
+                "symbol": sym, "company": company,
+                "issue_price": price, "listing_date": day.isoformat(),
+                "open": op, "close": cl,
+                "gain_open_pct": round((op - price) / price * 100, 2),
+                "gain_close_pct": round((cl - price) / price * 100, 2),
+            }
+            added += 1
+        time.sleep(pause)
+
+    store["listings"], store["unresolvable"] = done, sorted(bad)
+    IPO_STORE.parent.mkdir(parents=True, exist_ok=True)
+    IPO_STORE.write_text(json.dumps(store, indent=1, ensure_ascii=False),
+                         encoding="utf-8")
+    return added, len(done), calls
+
+
+@source("ipo_gains")
+def fetch_ipo_gains():
+    """Listing-day performance, newest first, plus hit-rate stats."""
+    added, total, calls = resolve_ipo_gains()
+    store = _load_ipo_store()
+    rows = sorted(store["listings"].values(),
+                  key=lambda r: r["listing_date"], reverse=True)
+    if not rows:
+        raise RuntimeError("no IPO listings resolved yet")
+
+    def stats(sample):
+        if not sample:
+            return None
+        opens = sorted(r["gain_open_pct"] for r in sample)
+        closes = sorted(r["gain_close_pct"] for r in sample)
+        mid = lambda xs: xs[len(xs) // 2]
+        return {"count": len(sample),
+                "median_open_pct": round(mid(opens), 2),
+                "median_close_pct": round(mid(closes), 2),
+                "positive_open_pct": round(
+                    100 * sum(1 for v in opens if v > 0) / len(opens), 1),
+                "best": max(sample, key=lambda r: r["gain_open_pct"])["symbol"],
+                "worst": min(sample, key=lambda r: r["gain_open_pct"])["symbol"]}
+
+    return {"listings": rows[:40], "resolved_total": total,
+            "added_this_run": added, "bhavcopy_calls": calls,
+            "stats_last_50": stats(rows[:50]), "stats_all": stats(rows),
+            "note": ("Gain measured against the issue price. Open = the "
+                     "listing pop; close = holding the first day out."),
+            "source": "nseindia.com/api + sec_bhavdata_full"}
+
+
 @source("earnings")
 def fetch_earnings():
     """Quarterly revenue and net income. Yahoo's Indian fundamentals have
@@ -468,6 +677,7 @@ def fetch_earnings():
 
 HISTORY_FIELDS = ["nifty_close", "nifty_pe", "nifty_pb", "nifty_div_yield",
                   "fii_net", "dii_net", "repo", "us_10y", "us_2y", "us_5y",
+                  "jp_10y", "uk_10y",
                   "india_10y", "usd_inr"]
 
 
@@ -533,6 +743,8 @@ def row_from_sections(S):
         "us_2y": usv("us_2y"),
         "us_5y": usv("us_5y"),
         "india_10y": dig("india_yields", "yields", "10Y"),
+        "jp_10y": (dig("world_yields", "latest", "Japan") or {}).get("value"),
+        "uk_10y": (dig("world_yields", "latest", "UK") or {}).get("value"),
     }
 
 
@@ -802,6 +1014,9 @@ def main():
                     help="connectivity check only, writes nothing")
     ap.add_argument("--backfill", type=int, metavar="DAYS",
                     help="rebuild history from NSE archives + Yahoo, then exit")
+    ap.add_argument("--backfill-ipo", type=int, metavar="N", default=0,
+                    help="resolve listing-day gains for up to N past listing "
+                         "dates (one bhavcopy request each); run once")
     ap.add_argument("--nifty-history", action="store_true",
                     help="fetch weekly Nifty P/E back to 1999, write "
                          "NiftyPE_History.txt and merge into history.json")
@@ -816,6 +1031,11 @@ def main():
 
     if args.probe:
         return probe()
+    if args.backfill_ipo:
+        added, total, calls = resolve_ipo_gains(limit=args.backfill_ipo)
+        print("Resolved %d new listings in %d bhavcopy calls; %d total -> %s"
+              % (added, calls, total, IPO_STORE))
+        return 0
     if args.nifty_history:
         return nifty_pe_history()
     if args.backfill:
@@ -827,7 +1047,13 @@ def main():
     OUT.write_text(json.dumps(data, indent=2, ensure_ascii=False),
                    encoding="utf-8")
 
-    hist = merge_rows(load_history(), [row_from_sections(data["sections"])])
+    rows = [row_from_sections(data["sections"])]
+    wy = data["sections"].get("world_yields") or {}
+    for country, obs in (wy.get("series") or {}).items():
+        key = WORLD_HISTORY_KEY.get(country)
+        if key:
+            rows += [{"date": d, key: v} for d, v in obs if v is not None]
+    hist = merge_rows(load_history(), rows)
     save_history(hist)
 
     print("\nWrote %s  (%d bytes)" % (OUT, OUT.stat().st_size))

@@ -726,39 +726,67 @@ def run(only=None):
 def probe():
     """Connectivity check - the point is to find out which hosts a cloud
     runner can actually reach. Writes nothing."""
+    # Probe a real dated CSV, not a bare directory: nsearchives serves files,
+    # not listings, so the directory 404s even from an unblocked connection.
+    # That false alarm made the first run report a block that was not there.
+    day = dt.datetime.now(IST).date()
+    while day.weekday() >= 5:
+        day -= dt.timedelta(days=1)
+    archive_url = ("https://nsearchives.nseindia.com/content/indices/"
+                   "ind_close_all_" + day.strftime("%d%m%Y") + ".csv")
+
     targets = [
-        ("RBI homepage", "https://www.rbi.org.in/"),
-        ("NSE api (FII/DII)", "https://www.nseindia.com/api/fiidiiTradeReact"),
+        ("RBI homepage", "https://www.rbi.org.in/", "rbi", None),
+        ("NSE api (FII/DII)", "https://www.nseindia.com/api/fiidiiTradeReact",
+         "nse", None),
         ("NSE api (IPO)",
-         "https://www.nseindia.com/api/all-upcoming-issues?category=ipo"),
-        ("NSE archives",
-         "https://nsearchives.nseindia.com/content/indices/"),
-        ("AMFI portal", "https://portal.amfiindia.com/spages/NAVAll.txt"),
+         "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+         "nse", None),
+        ("NSE archives", archive_url, "nse", None),
+        ("AMFI portal", "https://portal.amfiindia.com/spages/NAVAll.txt",
+         "amfi", None),
         ("investing.com",
-         "https://in.investing.com/rates-bonds/india-10-year-bond-yield"),
-        ("FRED api", "https://api.stlouisfed.org/fred/series?series_id=DGS10"),
+         "https://in.investing.com/rates-bonds/india-10-year-bond-yield",
+         "india_yields", "403 here is routine Cloudflare; FRED is the fallback"),
+        # 400 "api_key is not set" proves reachability - it is an auth error,
+        # not a network block.
+        ("FRED api", "https://api.stlouisfed.org/fred/series?series_id=DGS10",
+         "fred", "400 = reachable, key not set"),
         ("Yahoo Finance",
-         "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX"),
+         "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX",
+         "yahoo", None),
     ]
+
     print("Connectivity probe @ " + now_iso())
-    print("-" * 64)
-    nse_blocked = False
-    for label, url in targets:
+    print("-" * 72)
+    failed = set()
+    for label, url, group, hint in targets:
         try:
             r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
-            flag = "ok" if r.status_code < 400 else "BLOCKED?"
-            if r.status_code >= 400 and "nseindia" in url:
-                nse_blocked = True
-            print("%-20s HTTP %-4s %9d b  %s"
-                  % (label, r.status_code, len(r.content), flag))
+            code = r.status_code
+            reachable = code < 400 or (group == "fred" and code == 400)
+            if not reachable:
+                failed.add(group)
+            note = "ok" if reachable else "BLOCKED"
+            if hint:
+                note += "  (" + hint + ")"
+            print("%-20s HTTP %-4s %9d b  %s" % (label, code, len(r.content), note))
         except Exception as e:
+            failed.add(group)
             print("%-20s ERROR  %s: %s" % (label, type(e).__name__, e))
-            if "nseindia" in url:
-                nse_blocked = True
-    print("-" * 64)
-    print("NSE reachable from here." if not nse_blocked else
-          "NSE unreachable from here -> phase 2 (self-hosted runner) needed "
-          "for FII/DII and IPO.")
+
+    print("-" * 72)
+    if "nse" in failed:
+        print("NSE unreachable -> phase 2: run the fetch on a self-hosted "
+              "runner at home for the FII/DII, IPO and valuation tiles.")
+    else:
+        print("NSE reachable from this runner -> no self-hosted runner needed.")
+    if "india_yields" in failed:
+        print("investing.com blocked - expected. Set FRED_API_KEY for the "
+              "monthly India-yield fallback; every other tile is unaffected.")
+    core = failed - {"india_yields"}
+    print("All core sources reachable." if not core
+          else "Core sources blocked: " + ", ".join(sorted(core)))
     return 0
 
 

@@ -98,18 +98,17 @@ Pages + Cloudflare Access instead.
 `.github/workflows/update.yml` runs at 13:30 UTC = **19:00 IST**, weekdays, and
 commits the two JSON files if anything changed.
 
-## The one open question
+## Where the fetch runs — settled
 
-NSE firewalls cloud-provider IP ranges, and GitHub Actions runs on Azure. Six of
-the nine sources are unaffected, but FII/DII and IPOs may 403 from a runner.
+Probed from a GitHub Actions runner on 2026-09-08: **NSE answers Azure runners
+fine.** FII/DII, IPO and the index archive all returned 200. No self-hosted
+runner is needed; phase 1 is the whole job.
 
-Run the **Source reachability probe** workflow once (Actions tab → Run workflow)
-and read the log:
+(The first probe reported a block. It was wrong: it requested a bare directory
+on `nsearchives`, which 404s from any connection because that host serves files
+and not listings. It also read FRED's `400 api_key is not set` as a block rather
+than a missing key. Both fixed.)
 
-- *all ok* → phase 1 is the whole job.
-- *NSE blocked* → phase 2: register a self-hosted runner on a home machine or a
-  Raspberry Pi. The workflow stays on GitHub; execution happens on a residential
-  IP, where NSE answers. Everything else keeps running on GitHub's runners.
-
-Until that is settled, those two tiles simply show their last good value with a
-stale badge — which is why the carry-forward behaviour exists.
+The one genuine block is **investing.com**, which 403s behind Cloudflare from
+the runner. Set a `FRED_API_KEY` secret and the India-yield tile falls back to
+FRED's monthly series; every other tile is unaffected.

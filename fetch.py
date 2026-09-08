@@ -66,6 +66,10 @@ FRED_SERIES = {
     "fed_target_lower": "DFEDTARL",
     "fed_effective": "EFFR",
     "us_2y": "DGS2",
+    # DGS5 must stay in this list: the yfinance fallback supplies us_5y, and
+    # the dashboard plots us_10y against us_5y. Without it, switching to FRED
+    # silently stops feeding that series and the chart line freezes.
+    "us_5y": "DGS5",
     "us_10y": "DGS10",
     "us_30y": "DGS30",
     "us_10y_2y_spread": "T10Y2Y",

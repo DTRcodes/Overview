@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-08T20:45:18+05:30",
-  "generated_at_utc": "2026-09-08T15:15:18+00:00",
+  "generated_at": "2026-09-09T19:08:45+05:30",
+  "generated_at_utc": "2026-09-09T13:38:45+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -14,141 +14,1228 @@
         "slr": 18.0
       },
       "fx_reference": {
-        "USD": 94.7178,
-        "GBP": 128.2792,
-        "EUR": 110.1416,
-        "JPY_100": 61.69
+        "USD": 95.1483,
+        "GBP": 129.0195,
+        "EUR": 110.777,
+        "JPY_100": 62.17
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-08T20:17:20+05:30",
+      "fetched_at": "2026-09-09T19:08:26+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "dii": {
-          "date": "08-Sep-2026",
-          "buy": 14678.53,
-          "sell": 13328.89,
-          "net": 1349.64
+          "date": "09-Sep-2026",
+          "buy": 18130.76,
+          "sell": 16621.72,
+          "net": 1509.04
         },
         "fii": {
-          "date": "08-Sep-2026",
-          "buy": 11704.84,
-          "sell": 11828.03,
-          "net": -123.19
+          "date": "09-Sep-2026",
+          "buy": 16392.9,
+          "sell": 16975.89,
+          "net": -582.99
         }
       },
       "unit": "INR crore",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-08T20:17:20+05:30",
+      "fetched_at": "2026-09-09T19:08:27+05:30",
       "stale": false
     },
     "nse_valuation": {
-      "as_of": "2026-09-08",
+      "as_of": "2026-09-09",
       "indices": {
         "Nifty 50": {
-          "close": 23635.1,
-          "change_pct": -0.61,
-          "pe": 19.98,
-          "pb": 2.86,
-          "div_yield": 1.2
+          "close": 23431.5,
+          "change_pct": -0.86,
+          "pe": 19.81,
+          "pb": 2.83,
+          "div_yield": 1.21
         },
         "Nifty Next 50": {
-          "close": 72950.65,
-          "change_pct": 0.52,
-          "pe": 19.28,
-          "pb": 3.25,
+          "close": 72853.85,
+          "change_pct": -0.13,
+          "pe": 19.26,
+          "pb": 3.24,
           "div_yield": 0.99
         },
         "Nifty 500": {
-          "close": 23106.1,
-          "change_pct": -0.22,
-          "pe": 22.39,
-          "pb": 3.21,
+          "close": 22958.75,
+          "change_pct": -0.64,
+          "pe": 22.25,
+          "pb": 3.19,
           "div_yield": 0.97
         },
         "Nifty Auto": {
-          "close": 27775.35,
-          "change_pct": 0.28,
-          "pe": 32.27,
-          "pb": 4.24,
-          "div_yield": 1.04
+          "close": 27653.35,
+          "change_pct": -0.44,
+          "pe": 32.13,
+          "pb": 4.22,
+          "div_yield": 1.05
         },
         "Nifty Bank": {
-          "close": 56777.55,
-          "change_pct": -0.54,
-          "pe": 13.43,
-          "pb": 1.7,
-          "div_yield": 0.69
+          "close": 56295.55,
+          "change_pct": -0.85,
+          "pe": 13.32,
+          "pb": 1.69,
+          "div_yield": 0.7
         },
         "Nifty IT": {
-          "close": 29883.45,
-          "change_pct": -0.37,
-          "pe": 19.06,
-          "pb": 5.26,
-          "div_yield": 2.69
+          "close": 28913.95,
+          "change_pct": -3.24,
+          "pe": 18.45,
+          "pb": 5.09,
+          "div_yield": 2.78
         },
         "Nifty Smallcap 250": {
-          "close": 18527.2,
-          "change_pct": 0.23,
-          "pe": 34.19,
-          "pb": 3.57,
+          "close": 18431.95,
+          "change_pct": -0.51,
+          "pe": 34.01,
+          "pb": 3.55,
           "div_yield": 0.55
         },
         "Nifty Midcap 150": {
-          "close": 23089.95,
-          "change_pct": 0.12,
-          "pe": 28.87,
-          "pb": 4.36,
+          "close": 22990.95,
+          "change_pct": -0.43,
+          "pe": 28.75,
+          "pb": 4.34,
           "div_yield": 0.58
         }
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-08T20:17:20+05:30",
+      "fetched_at": "2026-09-09T19:08:27+05:30",
       "stale": false
     },
     "india_yields": {
-      "stale": true,
-      "stale_reason": "RuntimeError: investing.com blocked (Cloudflare) and no FRED_API_KEY set for the monthly fallback",
-      "fetched_at": null
+      "yields": {
+        "10Y": 6.89
+      },
+      "unit": "percent",
+      "via": "FRED INDIRLTLT01STM (monthly, lagged)",
+      "as_of": "2026-06-01",
+      "fragile": true,
+      "caveat": "India yields have no reliable free live source. Point this at a broker feed for real coverage.",
+      "source": "FRED INDIRLTLT01STM (monthly, lagged)",
+      "fetched_at": "2026-09-09T19:08:27+05:30",
+      "stale": false
     },
     "us_rates": {
       "rates": {
-        "us_3m": {
-          "value": 3.763,
+        "fed_target_upper": {
+          "value": 3.75,
+          "date": "2026-09-09"
+        },
+        "fed_target_lower": {
+          "value": 3.5,
+          "date": "2026-09-09"
+        },
+        "fed_effective": {
+          "value": 3.63,
           "date": "2026-09-08"
+        },
+        "us_2y": {
+          "value": 4.37,
+          "date": "2026-09-04"
         },
         "us_5y": {
-          "value": 4.564,
-          "date": "2026-09-08"
+          "value": 4.54,
+          "date": "2026-09-04"
         },
         "us_10y": {
-          "value": 4.792,
-          "date": "2026-09-08"
+          "value": 4.78,
+          "date": "2026-09-04"
         },
         "us_30y": {
-          "value": 5.246,
+          "value": 5.24,
+          "date": "2026-09-04"
+        },
+        "us_10y_2y_spread": {
+          "value": 0.41,
           "date": "2026-09-08"
         }
       },
       "unit": "percent",
-      "via": "yfinance",
-      "source": "yahoo finance",
-      "fetched_at": "2026-09-08T20:17:23+05:30",
+      "via": "fred",
+      "source": "fred.stlouisfed.org",
+      "fetched_at": "2026-09-09T19:08:30+05:30",
       "stale": false
     },
     "world_yields": {
-      "stale": true,
-      "stale_reason": "RuntimeError: FRED_API_KEY not set - required for JP/UK yields",
-      "fetched_at": null
+      "latest": {
+        "Japan": {
+          "value": 2.67,
+          "date": "2026-06-01"
+        },
+        "UK": {
+          "value": 4.796,
+          "date": "2026-06-01"
+        }
+      },
+      "series": {
+        "Japan": [
+          [
+            "2026-06-01",
+            2.67
+          ],
+          [
+            "2026-05-01",
+            2.65
+          ],
+          [
+            "2026-04-01",
+            2.515
+          ],
+          [
+            "2026-03-01",
+            2.345
+          ],
+          [
+            "2026-02-01",
+            2.11
+          ],
+          [
+            "2026-01-01",
+            2.24
+          ],
+          [
+            "2025-12-01",
+            2.06
+          ],
+          [
+            "2025-11-01",
+            1.805
+          ],
+          [
+            "2025-10-01",
+            1.655
+          ],
+          [
+            "2025-09-01",
+            1.645
+          ],
+          [
+            "2025-08-01",
+            1.6
+          ],
+          [
+            "2025-07-01",
+            1.545
+          ],
+          [
+            "2025-06-01",
+            1.42
+          ],
+          [
+            "2025-05-01",
+            1.5
+          ],
+          [
+            "2025-04-01",
+            1.31
+          ],
+          [
+            "2025-03-01",
+            1.485
+          ],
+          [
+            "2025-02-01",
+            1.37
+          ],
+          [
+            "2025-01-01",
+            1.245
+          ],
+          [
+            "2024-12-01",
+            1.09
+          ],
+          [
+            "2024-11-01",
+            1.05
+          ],
+          [
+            "2024-10-01",
+            0.935
+          ],
+          [
+            "2024-09-01",
+            0.855
+          ],
+          [
+            "2024-08-01",
+            0.89
+          ],
+          [
+            "2024-07-01",
+            1.045
+          ],
+          [
+            "2024-06-01",
+            1.05
+          ],
+          [
+            "2024-05-01",
+            1.07
+          ],
+          [
+            "2024-04-01",
+            0.87
+          ],
+          [
+            "2024-03-01",
+            0.725
+          ],
+          [
+            "2024-02-01",
+            0.71
+          ],
+          [
+            "2024-01-01",
+            0.73
+          ],
+          [
+            "2023-12-01",
+            0.62
+          ],
+          [
+            "2023-11-01",
+            0.66
+          ],
+          [
+            "2023-10-01",
+            0.95
+          ],
+          [
+            "2023-09-01",
+            0.765
+          ],
+          [
+            "2023-08-01",
+            0.64
+          ],
+          [
+            "2023-07-01",
+            0.595
+          ],
+          [
+            "2023-06-01",
+            0.395
+          ],
+          [
+            "2023-05-01",
+            0.43
+          ],
+          [
+            "2023-04-01",
+            0.385
+          ],
+          [
+            "2023-03-01",
+            0.32
+          ],
+          [
+            "2023-02-01",
+            0.5
+          ],
+          [
+            "2023-01-01",
+            0.49
+          ],
+          [
+            "2022-12-01",
+            0.41
+          ],
+          [
+            "2022-11-01",
+            0.25
+          ],
+          [
+            "2022-10-01",
+            0.245
+          ],
+          [
+            "2022-09-01",
+            0.24
+          ],
+          [
+            "2022-08-01",
+            0.22
+          ],
+          [
+            "2022-07-01",
+            0.18
+          ],
+          [
+            "2022-06-01",
+            0.225
+          ],
+          [
+            "2022-05-01",
+            0.235
+          ],
+          [
+            "2022-04-01",
+            0.215
+          ],
+          [
+            "2022-03-01",
+            0.21
+          ],
+          [
+            "2022-02-01",
+            0.18
+          ],
+          [
+            "2022-01-01",
+            0.17
+          ],
+          [
+            "2021-12-01",
+            0.07
+          ],
+          [
+            "2021-11-01",
+            0.05
+          ],
+          [
+            "2021-10-01",
+            0.095
+          ],
+          [
+            "2021-09-01",
+            0.065
+          ],
+          [
+            "2021-08-01",
+            0.02
+          ],
+          [
+            "2021-07-01",
+            0.015
+          ],
+          [
+            "2021-06-01",
+            0.05
+          ],
+          [
+            "2021-05-01",
+            0.08
+          ],
+          [
+            "2021-04-01",
+            0.09
+          ],
+          [
+            "2021-03-01",
+            0.12
+          ],
+          [
+            "2021-02-01",
+            0.15
+          ],
+          [
+            "2021-01-01",
+            0.055
+          ],
+          [
+            "2020-12-01",
+            0.02
+          ],
+          [
+            "2020-11-01",
+            0.03
+          ],
+          [
+            "2020-10-01",
+            0.04
+          ],
+          [
+            "2020-09-01",
+            0.015
+          ],
+          [
+            "2020-08-01",
+            0.045
+          ],
+          [
+            "2020-07-01",
+            0.01
+          ],
+          [
+            "2020-06-01",
+            0.03
+          ],
+          [
+            "2020-05-01",
+            0.0
+          ],
+          [
+            "2020-04-01",
+            -0.04
+          ],
+          [
+            "2020-03-01",
+            0.005
+          ],
+          [
+            "2020-02-01",
+            -0.155
+          ],
+          [
+            "2020-01-01",
+            -0.065
+          ],
+          [
+            "2019-12-01",
+            -0.025
+          ],
+          [
+            "2019-11-01",
+            -0.08
+          ],
+          [
+            "2019-10-01",
+            -0.15
+          ],
+          [
+            "2019-09-01",
+            -0.215
+          ],
+          [
+            "2019-08-01",
+            -0.28
+          ],
+          [
+            "2019-07-01",
+            -0.16
+          ],
+          [
+            "2019-06-01",
+            -0.165
+          ],
+          [
+            "2019-05-01",
+            -0.095
+          ],
+          [
+            "2019-04-01",
+            -0.045
+          ],
+          [
+            "2019-03-01",
+            -0.095
+          ],
+          [
+            "2019-02-01",
+            -0.015
+          ],
+          [
+            "2019-01-01",
+            0.0
+          ],
+          [
+            "2018-12-01",
+            -0.01
+          ],
+          [
+            "2018-11-01",
+            0.085
+          ],
+          [
+            "2018-10-01",
+            0.13
+          ],
+          [
+            "2018-09-01",
+            0.125
+          ],
+          [
+            "2018-08-01",
+            0.11
+          ],
+          [
+            "2018-07-01",
+            0.06
+          ],
+          [
+            "2018-06-01",
+            0.03
+          ],
+          [
+            "2018-05-01",
+            0.03
+          ],
+          [
+            "2018-04-01",
+            0.05
+          ],
+          [
+            "2018-03-01",
+            0.045
+          ],
+          [
+            "2018-02-01",
+            0.045
+          ],
+          [
+            "2018-01-01",
+            0.08
+          ],
+          [
+            "2017-12-01",
+            0.045
+          ],
+          [
+            "2017-11-01",
+            0.035
+          ],
+          [
+            "2017-10-01",
+            0.065
+          ],
+          [
+            "2017-09-01",
+            0.06
+          ],
+          [
+            "2017-08-01",
+            0.01
+          ],
+          [
+            "2017-07-01",
+            0.075
+          ],
+          [
+            "2017-06-01",
+            0.075
+          ],
+          [
+            "2017-05-01",
+            0.04
+          ],
+          [
+            "2017-04-01",
+            0.015
+          ],
+          [
+            "2017-03-01",
+            0.065
+          ],
+          [
+            "2017-02-01",
+            0.05
+          ],
+          [
+            "2017-01-01",
+            0.085
+          ],
+          [
+            "2016-12-01",
+            0.04
+          ],
+          [
+            "2016-11-01",
+            0.02
+          ],
+          [
+            "2016-10-01",
+            -0.05
+          ],
+          [
+            "2016-09-01",
+            -0.085
+          ],
+          [
+            "2016-08-01",
+            -0.07
+          ],
+          [
+            "2016-07-01",
+            -0.195
+          ],
+          [
+            "2016-06-01",
+            -0.23
+          ],
+          [
+            "2016-05-01",
+            -0.12
+          ],
+          [
+            "2016-04-01",
+            -0.085
+          ],
+          [
+            "2016-03-01",
+            -0.05
+          ],
+          [
+            "2016-02-01",
+            -0.065
+          ],
+          [
+            "2016-01-01",
+            0.095
+          ],
+          [
+            "2015-12-01",
+            0.27
+          ],
+          [
+            "2015-11-01",
+            0.3
+          ],
+          [
+            "2015-10-01",
+            0.3
+          ],
+          [
+            "2015-09-01",
+            0.35
+          ]
+        ],
+        "UK": [
+          [
+            "2026-06-01",
+            4.796
+          ],
+          [
+            "2026-05-01",
+            4.9416
+          ],
+          [
+            "2026-04-01",
+            4.8207
+          ],
+          [
+            "2026-03-01",
+            4.7007
+          ],
+          [
+            "2026-02-01",
+            4.4324
+          ],
+          [
+            "2026-01-01",
+            4.451
+          ],
+          [
+            "2025-12-01",
+            4.4826
+          ],
+          [
+            "2025-11-01",
+            4.4985
+          ],
+          [
+            "2025-10-01",
+            4.5721
+          ],
+          [
+            "2025-09-01",
+            4.6885
+          ],
+          [
+            "2025-08-01",
+            4.6369
+          ],
+          [
+            "2025-07-01",
+            4.5924
+          ],
+          [
+            "2025-06-01",
+            4.5248
+          ],
+          [
+            "2025-05-01",
+            4.6004
+          ],
+          [
+            "2025-04-01",
+            4.5762
+          ],
+          [
+            "2025-03-01",
+            4.6448
+          ],
+          [
+            "2025-02-01",
+            4.5063
+          ],
+          [
+            "2025-01-01",
+            4.6627
+          ],
+          [
+            "2024-12-01",
+            4.4345
+          ],
+          [
+            "2024-11-01",
+            4.4164
+          ],
+          [
+            "2024-10-01",
+            4.1993
+          ],
+          [
+            "2024-09-01",
+            3.9053
+          ],
+          [
+            "2024-08-01",
+            3.9444
+          ],
+          [
+            "2024-07-01",
+            4.1386
+          ],
+          [
+            "2024-06-01",
+            4.1644
+          ],
+          [
+            "2024-05-01",
+            4.2229
+          ],
+          [
+            "2024-04-01",
+            4.2172
+          ],
+          [
+            "2024-03-01",
+            4.033
+          ],
+          [
+            "2024-02-01",
+            4.123
+          ],
+          [
+            "2024-01-01",
+            3.9319
+          ],
+          [
+            "2023-12-01",
+            3.8622
+          ],
+          [
+            "2023-11-01",
+            4.2721
+          ],
+          [
+            "2023-10-01",
+            4.5695
+          ],
+          [
+            "2023-09-01",
+            4.4199
+          ],
+          [
+            "2023-08-01",
+            4.5298
+          ],
+          [
+            "2023-07-01",
+            4.4372
+          ],
+          [
+            "2023-06-01",
+            4.3659
+          ],
+          [
+            "2023-05-01",
+            3.9621
+          ],
+          [
+            "2023-04-01",
+            3.6503
+          ],
+          [
+            "2023-03-01",
+            3.5638
+          ],
+          [
+            "2023-02-01",
+            3.5553
+          ],
+          [
+            "2023-01-01",
+            3.5115
+          ],
+          [
+            "2022-12-01",
+            3.5015
+          ],
+          [
+            "2022-11-01",
+            3.4171
+          ],
+          [
+            "2022-10-01",
+            4.1096
+          ],
+          [
+            "2022-09-01",
+            3.5007
+          ],
+          [
+            "2022-08-01",
+            2.3278
+          ],
+          [
+            "2022-07-01",
+            2.1454
+          ],
+          [
+            "2022-06-01",
+            2.3824
+          ],
+          [
+            "2022-05-01",
+            1.9069
+          ],
+          [
+            "2022-04-01",
+            1.8362
+          ],
+          [
+            "2022-03-01",
+            1.5457
+          ],
+          [
+            "2022-02-01",
+            1.4891
+          ],
+          [
+            "2022-01-01",
+            1.2051
+          ],
+          [
+            "2021-12-01",
+            0.8375
+          ],
+          [
+            "2021-11-01",
+            0.9394
+          ],
+          [
+            "2021-10-01",
+            1.083
+          ],
+          [
+            "2021-09-01",
+            0.8023
+          ],
+          [
+            "2021-08-01",
+            0.644
+          ],
+          [
+            "2021-07-01",
+            0.6979
+          ],
+          [
+            "2021-06-01",
+            0.8549
+          ],
+          [
+            "2021-05-01",
+            0.9058
+          ],
+          [
+            "2021-04-01",
+            0.8515
+          ],
+          [
+            "2021-03-01",
+            0.8456
+          ],
+          [
+            "2021-02-01",
+            0.6222
+          ],
+          [
+            "2021-01-01",
+            0.3672
+          ],
+          [
+            "2020-12-01",
+            0.3224
+          ],
+          [
+            "2020-11-01",
+            0.3836
+          ],
+          [
+            "2020-10-01",
+            0.3058
+          ],
+          [
+            "2020-09-01",
+            0.273
+          ],
+          [
+            "2020-08-01",
+            0.2717
+          ],
+          [
+            "2020-07-01",
+            0.2094
+          ],
+          [
+            "2020-06-01",
+            0.278
+          ],
+          [
+            "2020-05-01",
+            0.2743
+          ],
+          [
+            "2020-04-01",
+            0.3577
+          ],
+          [
+            "2020-03-01",
+            0.4609
+          ],
+          [
+            "2020-02-01",
+            0.633
+          ],
+          [
+            "2020-01-01",
+            0.7235
+          ],
+          [
+            "2019-12-01",
+            0.8308
+          ],
+          [
+            "2019-11-01",
+            0.765
+          ],
+          [
+            "2019-10-01",
+            0.6373
+          ],
+          [
+            "2019-09-01",
+            0.5981
+          ],
+          [
+            "2019-08-01",
+            0.5776
+          ],
+          [
+            "2019-07-01",
+            0.8304
+          ],
+          [
+            "2019-06-01",
+            0.919
+          ],
+          [
+            "2019-05-01",
+            1.13
+          ],
+          [
+            "2019-04-01",
+            1.1906
+          ],
+          [
+            "2019-03-01",
+            1.19
+          ],
+          [
+            "2019-02-01",
+            1.239
+          ],
+          [
+            "2019-01-01",
+            1.3221
+          ],
+          [
+            "2018-12-01",
+            1.3125
+          ],
+          [
+            "2018-11-01",
+            1.4541
+          ],
+          [
+            "2018-10-01",
+            1.5462
+          ],
+          [
+            "2018-09-01",
+            1.5023
+          ],
+          [
+            "2018-08-01",
+            1.3991
+          ],
+          [
+            "2018-07-01",
+            1.3739
+          ],
+          [
+            "2018-06-01",
+            1.4229
+          ],
+          [
+            "2018-05-01",
+            1.5016
+          ],
+          [
+            "2018-04-01",
+            1.5108
+          ],
+          [
+            "2018-03-01",
+            1.508
+          ],
+          [
+            "2018-02-01",
+            1.6034
+          ],
+          [
+            "2018-01-01",
+            1.3931
+          ],
+          [
+            "2017-12-01",
+            1.2781
+          ],
+          [
+            "2017-11-01",
+            1.3299
+          ],
+          [
+            "2017-10-01",
+            1.3816
+          ],
+          [
+            "2017-09-01",
+            1.2436
+          ],
+          [
+            "2017-08-01",
+            1.1241
+          ],
+          [
+            "2017-07-01",
+            1.2713
+          ],
+          [
+            "2017-06-01",
+            1.0846
+          ],
+          [
+            "2017-05-01",
+            1.1175
+          ],
+          [
+            "2017-04-01",
+            1.0789
+          ],
+          [
+            "2017-03-01",
+            1.194
+          ],
+          [
+            "2017-02-01",
+            1.3058
+          ],
+          [
+            "2017-01-01",
+            1.4203
+          ],
+          [
+            "2016-12-01",
+            1.4336
+          ],
+          [
+            "2016-11-01",
+            1.3818
+          ],
+          [
+            "2016-10-01",
+            1.078
+          ],
+          [
+            "2016-09-01",
+            0.8243
+          ],
+          [
+            "2016-08-01",
+            0.7421
+          ],
+          [
+            "2016-07-01",
+            0.9569
+          ],
+          [
+            "2016-06-01",
+            1.3105
+          ],
+          [
+            "2016-05-01",
+            1.5366
+          ],
+          [
+            "2016-04-01",
+            1.5688
+          ],
+          [
+            "2016-03-01",
+            1.5434
+          ],
+          [
+            "2016-02-01",
+            1.5032
+          ],
+          [
+            "2016-01-01",
+            1.7833
+          ],
+          [
+            "2015-12-01",
+            1.9234
+          ],
+          [
+            "2015-11-01",
+            1.9779
+          ],
+          [
+            "2015-10-01",
+            1.846
+          ],
+          [
+            "2015-09-01",
+            1.8814
+          ]
+        ]
+      },
+      "series_ids": {
+        "Japan": "IRLTLT01JPM156N",
+        "UK": "IRLTLT01GBM156N"
+      },
+      "unit": "percent",
+      "frequency": "monthly (OECD via FRED)",
+      "caveat": "Monthly and lagged - these are not live quotes. No free live source exists for either tenor.",
+      "source": "fred.stlouisfed.org",
+      "fetched_at": "2026-09-09T19:08:31+05:30",
+      "stale": false
     },
     "fx_spot": {
-      "usd_inr": 94.808,
-      "as_of": "2026-09-08",
+      "usd_inr": 95.095,
+      "as_of": "2026-09-09",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-08T20:17:23+05:30",
+      "fetched_at": "2026-09-09T19:08:33+05:30",
       "stale": false
     },
     "gilt_funds": {
@@ -158,105 +1245,153 @@
           "name": "Bajaj Finserv Gilt Fund",
           "plan": "Direct Plan",
           "option": "Growth",
-          "nav": 1076.6418,
-          "date": "07-Sep-2026"
+          "nav": 1076.6491,
+          "date": "08-Sep-2026"
         },
         {
           "code": "118464",
           "name": "Bandhan Gilt   Fund",
           "plan": "Direct Plan",
           "option": "Growth",
-          "nav": 40.7826,
-          "date": "07-Sep-2026"
+          "nav": 40.7832,
+          "date": "08-Sep-2026"
         },
         {
           "code": "119341",
           "name": "BARODA BNP PARIBAS GILT FUND",
           "plan": "Direct Plan",
           "option": "Growth Option",
-          "nav": 48.3489,
-          "date": "07-Sep-2026"
+          "nav": 48.3637,
+          "date": "08-Sep-2026"
         },
         {
           "code": "119099",
           "name": "DSP Gilt Fund",
           "plan": "Direct Plan",
           "option": "Growth",
-          "nav": 105.8803,
-          "date": "07-Sep-2026"
+          "nav": 105.9032,
+          "date": "08-Sep-2026"
         },
         {
           "code": "119116",
           "name": "HDFC Gilt Fund",
           "plan": "Direct Plan",
           "option": "Growth Option",
-          "nav": 60.4197,
-          "date": "07-Sep-2026"
+          "nav": 60.433,
+          "date": "08-Sep-2026"
         },
         {
           "code": "120590",
           "name": "ICICI Prudential Gilt Fund",
           "plan": "Direct Plan",
           "option": "Growth",
-          "nav": 117.0447,
-          "date": "07-Sep-2026"
+          "nav": 117.0984,
+          "date": "08-Sep-2026"
         },
         {
           "code": "119757",
           "name": "Kotak Gilt Fund",
           "plan": "Direct Plan",
           "option": "Investment Provident Fund and Trust-Growth",
-          "nav": 114.1036,
-          "date": "07-Sep-2026"
+          "nav": 114.1439,
+          "date": "08-Sep-2026"
         },
         {
           "code": "119759",
           "name": "Kotak Gilt Fund",
           "plan": "Direct Plan",
           "option": "Growth",
-          "nav": 111.404,
-          "date": "07-Sep-2026"
+          "nav": 111.4434,
+          "date": "08-Sep-2026"
         },
         {
           "code": "118672",
           "name": "Nippon India Gilt Fund",
           "plan": "Direct Plan",
           "option": "Growth Option",
-          "nav": 44.373,
-          "date": "07-Sep-2026"
+          "nav": 44.3785,
+          "date": "08-Sep-2026"
         },
         {
           "code": "138472",
           "name": "PGIM India Gilt Fund",
           "plan": "Direct Plan",
           "option": "Direct Growth",
-          "nav": 33.5631,
-          "date": "07-Sep-2026"
+          "nav": 33.5753,
+          "date": "08-Sep-2026"
         },
         {
           "code": "151228",
           "name": "quant Gilt Fund",
           "plan": "Direct Plan",
           "option": "Growth Option",
-          "nav": 12.5828,
-          "date": "07-Sep-2026"
+          "nav": 12.5935,
+          "date": "08-Sep-2026"
         },
         {
           "code": "119707",
           "name": "SBI GILT FUND",
           "plan": "Direct Plan",
           "option": "Growth",
-          "nav": 72.6873,
-          "date": "07-Sep-2026"
+          "nav": 72.709,
+          "date": "08-Sep-2026"
         }
       ],
       "count_matched": 333,
       "source": "portal.amfiindia.com",
-      "fetched_at": "2026-09-08T20:17:25+05:30",
+      "fetched_at": "2026-09-09T19:08:35+05:30",
       "stale": false
     },
     "nse_ipo": {
       "current": [
+        {
+          "company": "LCC Projects Limited",
+          "symbol": "LCCPROJECT",
+          "price": "Rs.139 to Rs.146",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Karamtara Engineering Limited",
+          "symbol": "KARAMTARA",
+          "price": "Rs.241 to Rs.254",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Asset Reconstruction Company (India) Limited",
+          "symbol": "ARCIL",
+          "price": "Rs.132 to Rs.139",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Steamhouse India Limited",
+          "symbol": "STEAMHOUSE",
+          "price": "Rs.77 to Rs.81",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "symbol": "MPIMANIPAL",
+          "price": "Rs.322 to Rs.339",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Active"
+        },
+        {
+          "company": "Rentomojo Limited",
+          "symbol": "RENTOMOJO",
+          "price": "Rs.384 to Rs.404",
+          "opens": "09-Sep-2026",
+          "closes": "11-Sep-2026",
+          "status": "Active"
+        },
         {
           "company": "Prasol Chemicals Limited",
           "symbol": "PRASOLCHEM",
@@ -290,71 +1425,30 @@
           "status": "Active"
         },
         {
+          "company": "Manika Plastech Limited",
+          "symbol": "MANIKA",
+          "price": "Rs.40 to Rs.43",
+          "opens": "11-Sep-2026",
+          "closes": "16-Sep-2026",
+          "status": "Forthcoming"
+        },
+        {
           "company": "Veegaland Developers Limited",
           "symbol": "VEEGALAND",
           "price": "Rs.130 to Rs.140",
           "opens": "10-Sep-2026",
           "closes": "15-Sep-2026",
           "status": "Forthcoming"
-        },
-        {
-          "company": "Karamtara Engineering Limited",
-          "symbol": "KARAMTARA",
-          "price": "Rs.241 to Rs.254",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
-        },
-        {
-          "company": "Asset Reconstruction Company (India) Limited",
-          "symbol": "ARCIL",
-          "price": "Rs.132 to Rs.139",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
-        },
-        {
-          "company": "Steamhouse India Limited",
-          "symbol": "STEAMHOUSE",
-          "price": "Rs.77 to Rs.81",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
-        },
-        {
-          "company": "Manipal Payment and Identity Solutions Limited",
-          "symbol": "MPIMANIPAL",
-          "price": "Rs.322 to Rs.339",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
-        },
-        {
-          "company": "Rentomojo Limited",
-          "symbol": "RENTOMOJO",
-          "price": "Rs.384 to Rs.404",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
-        },
-        {
-          "company": "LCC Projects Limited",
-          "symbol": "LCCPROJECT",
-          "price": "Rs.139 to Rs.146",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
-        },
-        {
-          "company": "Vinod Texworld Limited",
-          "symbol": "VINOD",
-          "price": "Rs.94",
-          "opens": "09-Sep-2026",
-          "closes": "11-Sep-2026",
-          "status": "Forthcoming"
         }
       ],
       "recent_past": [
+        {
+          "company": "Qualiance International Limited",
+          "symbol": "QUALIANCE",
+          "price_range": "Rs.120 to Rs.127",
+          "issue_price": "-",
+          "listing_date": "-"
+        },
         {
           "company": "Rays of Belief Limited- For Profit Social Enterprise (FPSE)",
           "symbol": "MOMSBELIEF",
@@ -377,17 +1471,17 @@
           "listing_date": "07-SEP-2026"
         },
         {
-          "company": "Shanti Inorganics Limited",
-          "symbol": "SHANTIINOR",
-          "price_range": "Rs.79 to Rs.83",
-          "issue_price": "83",
-          "listing_date": "07-SEP-2026"
-        },
-        {
           "company": "Ashutosh Fibre Limited",
           "symbol": "ASHUTOSH",
           "price_range": "Rs.87 to Rs.92",
           "issue_price": "92",
+          "listing_date": "07-SEP-2026"
+        },
+        {
+          "company": "Shanti Inorganics Limited",
+          "symbol": "SHANTIINOR",
+          "price_range": "Rs.79 to Rs.83",
+          "issue_price": "83",
           "listing_date": "07-SEP-2026"
         },
         {
@@ -627,18 +1721,11 @@
           "price_range": "Rs.560 to Rs.590",
           "issue_price": "   590",
           "listing_date": "05-AUG-2026"
-        },
-        {
-          "company": "Propshop Events and Exhibitions Limited",
-          "symbol": "PROPSHOP",
-          "price_range": "Rs.65 to Rs.69",
-          "issue_price": "69",
-          "listing_date": "03-AUG-2026"
         }
       ],
-      "past_total": 1429,
+      "past_total": 1430,
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-08T20:17:26+05:30",
+      "fetched_at": "2026-09-09T19:08:36+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -1044,8 +2131,8 @@
           "gain_close_pct": -17.17
         }
       ],
-      "resolved_total": 93,
-      "added_this_run": 14,
+      "resolved_total": 113,
+      "added_this_run": 20,
       "bhavcopy_calls": 12,
       "stats_last_50": {
         "count": 50,
@@ -1056,16 +2143,16 @@
         "worst": "ANNU"
       },
       "stats_all": {
-        "count": 93,
-        "median_open_pct": 7.09,
-        "median_close_pct": 7.86,
-        "positive_open_pct": 69.9,
+        "count": 113,
+        "median_open_pct": 4.6,
+        "median_close_pct": 6.53,
+        "positive_open_pct": 64.6,
         "best": "TEMPSENS",
-        "worst": "ANNU"
+        "worst": "SRTL"
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-08T20:45:18+05:30",
+      "fetched_at": "2026-09-09T19:08:45+05:30",
       "stale": false
     },
     "earnings": {
@@ -1179,7 +2266,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-08T20:17:27+05:30",
+      "fetched_at": "2026-09-09T19:08:45+05:30",
       "stale": false
     }
   }

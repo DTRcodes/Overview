@@ -129,6 +129,28 @@ td:first-child{color:var(--text-primary)}
 .err{background:var(--warn-bg);border:1px solid var(--warn);color:var(--warn);
   border-radius:9px;padding:9px 11px;font-size:12px}
 .foot{color:var(--text-muted);font-size:11.5px;padding:20px 0 0}
+/* IPO pipeline row states. The left rule carries the same information as the
+   tint, so the table still reads correctly in greyscale or for a red-green /
+   blue-green colour deficiency. Tint goes on the td, not the tr: a tr
+   background sits behind the cells and is invisible here. */
+tr.lists-today td { background: color-mix(in srgb, var(--up) 15%, transparent); }
+tr.lists-today td:first-child { box-shadow: inset 3px 0 0 var(--up); }
+tr.awaiting td { background: color-mix(in srgb, var(--series-1) 14%, transparent); }
+tr.awaiting td:first-child { box-shadow: inset 3px 0 0 var(--series-1); }
+.pill{display:inline-block;padding:1px 7px;border-radius:999px;font-size:10.5px;
+  font-weight:600;border:1px solid var(--line);color:var(--text-muted)}
+.pill.today{background:color-mix(in srgb,var(--up) 20%,transparent);
+  border-color:var(--up);color:var(--up)}
+.pill.soon{background:color-mix(in srgb,var(--series-1) 20%,transparent);
+  border-color:var(--series-1);color:var(--series-1)}
+.tvbox{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:9px}
+.tvbox code{flex:1 1 240px;min-width:0;overflow-x:auto;white-space:nowrap;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+  padding:6px 9px;font-size:11.5px;color:var(--text-secondary)}
+.btn{cursor:pointer;border:1px solid var(--line);background:var(--surface-2);
+  color:var(--text-primary);border-radius:6px;padding:6px 11px;font-size:11.5px;
+  font-weight:600;font-family:inherit}
+.btn:hover{border-color:var(--text-muted)}
 </style>
 </head>
 <body>
@@ -426,6 +448,8 @@ function render(){
   const fx   = [{key:'usd_inr', label:'USD/INR', color:cssv('--series-2')}];
   const world= [{key:'jp_10y', label:'Japan 10Y', color:cssv('--series-1')},
                 {key:'uk_10y', label:'UK 10Y',    color:cssv('--series-2')}];
+  const deriv= [{key:'fii_idx_fut_net', label:'FII net idx futures', color:cssv('--series-1')},
+                {key:'dii_idx_fut_net', label:'DII net idx futures', color:cssv('--series-2')}];
   const flows= [{key:'fii_net', label:'FII net', color:cssv('--series-1')},
                 {key:'dii_net', label:'DII net', color:cssv('--series-2')}];
 
@@ -435,6 +459,11 @@ function render(){
     VIEW==='chart' ? '<div class="chart" data-c="close"></div>' : histTable(close)));
   b.push(card('US Treasury yields', 'Two tenors, one scale.', S.us_rates,
     VIEW==='chart' ? '<div class="chart" data-c="us"></div>' : histTable(usc)));
+  b.push(card('FII / DII derivatives positioning',
+    'Net index-futures open interest, in contracts. This is positioning, not the ' +
+    'cash flow on the FII/DII tile — NSE archives this one, so it goes back years.',
+    S.fii_derivatives,
+    VIEW==='chart' ? '<div class="chart" data-c="deriv"></div>' : histTable(deriv)));
   b.push(card('Japan & UK 10Y', dig('world_yields','frequency') || 'Monthly, OECD via FRED.',
     S.world_yields,
     VIEW==='chart' ? '<div class="chart" data-c="world"></div>' : histTable(world)));
@@ -495,20 +524,55 @@ function render(){
 
   // ---- IPOs
   const ip = S.nse_ipo, cur = (ip && ip.current) || [];
-  b.push(card('IPOs — open & upcoming', null, ip,
-    (cur.length
-      ? `<div class="scroll"><table><thead><tr><th>Company</th><th>Price</th>
-         <th>Opens</th><th>Closes</th></tr></thead><tbody>` +
-        cur.map(x => `<tr><td>${esc(x.company)}</td><td>${esc(x.price)}</td>
-          <td>${esc(x.opens)}</td><td>${esc(x.closes)}</td></tr>`).join('') +
-        `</tbody></table></div>`
-      : `<div class="note">Nothing open right now.</div>`) +
-    `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.</div>`, 'wide'));
+  // ---- IPO pipeline: listing today (green), awaiting listing (blue), open now
+  const today = (ip && ip.listing_today) || [];
+  const soon  = (ip && ip.awaiting) || [];
+  const cur2  = (ip && ip.open_now) || cur;
+  const tvAll = (ip && ip.tv_watchlist) || [];
+  const tvRow = (id, list) => !list.length ? '' :
+    `<div class="tvbox"><code id="${id}">${esc(list.join(','))}</code>
+      <button class="btn" data-copy="${id}">Copy</button></div>`;
+
+  b.push(card('IPO pipeline', ip && ip.tv_note, ip,
+    `<div class="scroll"><table><thead><tr><th>Company</th><th>Ticker</th>
+       <th>State</th><th>Series</th><th>Price</th><th>Window</th>
+       </tr></thead><tbody>` +
+    today.map(x => `<tr class="lists-today"><td>${esc(x.company)}</td>
+        <td><b>${esc(x.symbol)}</b></td>
+        <td><span class="pill today">Lists today</span></td>
+        <td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
+        <td>${esc(x.listing_date)}</td></tr>`).join('') +
+    soon.map(x => `<tr class="awaiting"><td>${esc(x.company)}</td>
+        <td><b>${esc(x.symbol)}</b></td>
+        <td><span class="pill soon">Awaiting listing</span></td>
+        <td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
+        <td>closed ${esc(x.ipo_closed)} (${x.days_since_close}d)</td></tr>`).join('') +
+    cur2.map(x => `<tr><td>${esc(x.company)}</td><td><b>${esc(x.symbol)}</b></td>
+        <td><span class="pill">${x.live ? 'Open now' : esc(x.status || 'Upcoming')}</span></td>
+        <td>${esc(x.series)}</td><td>${esc(x.price)}</td>
+        <td>${esc(x.opens)} &rarr; ${esc(x.closes)}</td></tr>`).join('') +
+    `</tbody></table></div>` +
+    ((today.length || soon.length || cur2.length) ? '' :
+      `<div class="note">Nothing in the pipeline right now.</div>`) +
+    `<div class="note" style="margin-top:10px"><b>TradingView</b> — all tickers in the pipeline:</div>` +
+    tvRow('tv-all', tvAll) +
+    (today.length ? `<div class="note" style="margin-top:6px">Listing today only:</div>` +
+        tvRow('tv-today', today.map(x => x.tv)) : '') +
+    `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.
+      NSE publishes no forward listing date, so "awaiting listing" means the
+      book has closed and the stock has not started trading yet.</div>`, 'wide'));
 
   // ---- IPO listing-day gains
   const ig = S.ipo_gains, gl = (ig && ig.listings) || [], gs = ig && ig.stats_last_50;
   const pc = v => v == null ? '–' :
     `<span class="${sign(v)}">${arrow(v)} ${nf(v,1)}%</span>`;
+  // Intraday move on listing day: what the open-day buyer made or lost, which
+  // is a different question from the allottee's gain off the issue price.
+  const oc = x => (x.open && x.close) ? (x.close - x.open) / x.open * 100 : null;
+  // The store keeps ISO dates so they sort; display them the way NSE prints them.
+  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dmy = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
+    return m ? `${m[3]}-${MON[+m[2]-1]}-${m[1]}` : (s || '–'); };
   b.push(card('IPO listing-day gains',
     'Measured against the issue price. Open = the listing pop; close = holding day one out.',
     ig,
@@ -521,14 +585,16 @@ function render(){
          <div class="m">median close ${nf(gs.median_close_pct,1)}%</div></div>
      </div>` : '') +
     `<div class="scroll"><table><thead><tr><th>Company</th>
-      <th>Open %</th><th>Close %</th><th>Listed</th>
+      <th>Open %</th><th title="Move from the listing open to the listing close">Open&rarr;Close %</th>
+      <th>Close %</th><th>Listed</th>
       <th>Issue</th><th>Open</th><th>Close</th>
       </tr></thead><tbody>` +
     gl.slice(0,25).map(x => `<tr>
       <td>${esc(x.company || x.symbol)}<br>
         <span style="color:var(--text-muted);font-size:11px">${esc(x.symbol)}</span></td>
-      <td>${pc(x.gain_open_pct)}</td><td>${pc(x.gain_close_pct)}</td>
-      <td>${esc(x.listing_date)}</td><td>${nf(x.issue_price,0)}</td>
+      <td>${pc(x.gain_open_pct)}</td><td>${pc(oc(x))}</td>
+      <td>${pc(x.gain_close_pct)}</td>
+      <td>${esc(dmy(x.listing_date))}</td><td>${nf(x.issue_price,0)}</td>
       <td>${nf(x.open,1)}</td><td>${nf(x.close,1)}</td></tr>`).join('') +
     `</tbody></table></div>
      <div class="note">${ig ? esc(ig.resolved_total) : 0} listings priced from the
@@ -550,8 +616,8 @@ function render(){
   document.getElementById('board').innerHTML = b.join('');
 
   if(VIEW === 'chart'){
-    const map = {pe, close, us: usc, fx, flows, world};
-    const opts = {pe:{dp:2}, close:{dp:0}, us:{dp:2}, fx:{dp:2}, world:{dp:2},
+    const map = {pe, close, us: usc, fx, flows, world, deriv};
+    const opts = {pe:{dp:2}, close:{dp:0}, us:{dp:2}, fx:{dp:2}, world:{dp:2}, deriv:{dp:0},
                   flows:{dp:0, zeroLine:true, height:210}};
     document.querySelectorAll('.chart').forEach(el =>
       lineChart(el, map[el.dataset.c], opts[el.dataset.c] || {}));
@@ -591,6 +657,29 @@ vc.addEventListener('click', () => { VIEW='chart'; vc.setAttribute('aria-pressed
   vt.setAttribute('aria-pressed',false); if(DATA) render(); });
 vt.addEventListener('click', () => { VIEW='table'; vt.setAttribute('aria-pressed',true);
   vc.setAttribute('aria-pressed',false); if(DATA) render(); });
+
+// Copy the TradingView ticker list. execCommand is the fallback because
+// navigator.clipboard needs a secure context, and this page is opened over
+// plain http on the LAN as often as over https from Pages.
+document.addEventListener('click', async e => {
+  const btn = e.target.closest('[data-copy]');
+  if (!btn) return;
+  const el = document.getElementById(btn.dataset.copy);
+  if (!el) return;
+  const text = el.textContent.trim();
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; }
+  catch (_) {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand('copy'); } catch (__) { ok = false; }
+    ta.remove();
+  }
+  const was = btn.textContent;
+  btn.textContent = ok ? 'Copied' : 'Select manually';
+  setTimeout(() => { btn.textContent = was; }, 1600);
+});
 
 document.getElementById('stamp').addEventListener('click', load);
 document.addEventListener('visibilitychange', () => { if(!document.hidden) load(); });

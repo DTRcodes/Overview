@@ -198,6 +198,88 @@ def fetch_fii_dii():
     return {"flows": out, "unit": "INR crore", "source": "nseindia.com/api"}
 
 
+def participant_oi(day):
+    """FII/DII/Pro/Client open interest in equity derivatives for one day.
+
+    This is the only FII/DII series NSE actually archives. The cash-market
+    figure on the FII/DII tile (INR crore bought and sold) exists at
+    /api/fiidiiTradeReact for the latest day ONLY - it ignores any date
+    parameter, and no dated cash file exists under nsearchives (probed
+    several path shapes, all 404). So cash can only accumulate forward,
+    while this one backfills to 2015.
+
+    Different metric, deliberately kept in different history keys: contracts
+    of open interest, not rupees traded.
+    """
+    url = ("https://nsearchives.nseindia.com/content/nsccl/"
+           "fao_participant_oi_" + day.strftime("%d%m%Y") + ".csv")
+    lines = [l for l in get(url).text.splitlines() if l.strip()]
+    hdr = None
+    out = {}
+    for ln in lines:
+        cells = [c.strip().strip('"') for c in ln.split(",")]
+        if cells[0].lower() == "client type":
+            hdr = cells
+            continue
+        if hdr is None or cells[0] not in ("FII", "DII", "Pro", "Client"):
+            continue
+        row = dict(zip(hdr, cells))
+        who = cells[0].lower()
+        fl, fs = num(row.get("Future Index Long")), num(row.get("Future Index Short"))
+        sl, ss = num(row.get("Future Stock Long")), num(row.get("Future Stock Short"))
+        out[who] = {
+            "index_fut_long": fl, "index_fut_short": fs,
+            "index_fut_net": (fl - fs) if (fl is not None and fs is not None) else None,
+            "stock_fut_net": (sl - ss) if (sl is not None and ss is not None) else None,
+        }
+    if "fii" not in out:
+        raise RuntimeError("no FII row in participant OI for " + str(day))
+    return out
+
+
+@source("fii_derivatives")
+def fetch_fii_derivatives():
+    """Latest FII/DII positioning in equity derivatives (walk back to last file)."""
+    today = dt.datetime.now(IST).date()
+    for back in range(0, 8):
+        day = today - dt.timedelta(days=back)
+        try:
+            data = participant_oi(day)
+        except Exception:
+            continue
+        return {"date": day.isoformat(), "participants": data,
+                "unit": "contracts of open interest",
+                "caveat": ("Open interest in equity derivatives - NOT the cash "
+                           "INR-crore flow shown on the FII/DII tile."),
+                "source": "nsearchives.nseindia.com/content/nsccl"}
+    raise RuntimeError("no participant OI file in the last 8 days")
+
+
+def backfill_participants(days=400, pause=0.3):
+    """Walk back N calendar days building FII/DII derivatives history."""
+    today = dt.datetime.now(IST).date()
+    rows, hits, miss = [], 0, 0
+    for back in range(0, days + 1):
+        day = today - dt.timedelta(days=back)
+        if day.weekday() >= 5:               # skip weekends without a request
+            continue
+        try:
+            d = participant_oi(day)
+        except Exception:
+            miss += 1
+            continue
+        hits += 1
+        rows.append({"date": day.isoformat(),
+                     "fii_idx_fut_net": d["fii"]["index_fut_net"],
+                     "dii_idx_fut_net": d["dii"]["index_fut_net"],
+                     "fii_stk_fut_net": d["fii"]["stock_fut_net"],
+                     "dii_stk_fut_net": d["dii"]["stock_fut_net"]})
+        time.sleep(pause)
+    hist = merge_rows(load_history(), rows)
+    save_history(hist)
+    return hits, miss, len(hist["rows"] if isinstance(hist, dict) else hist)
+
+
 @source("nse_valuation")
 def fetch_index_valuation():
     """Index close + P/E + P/B + dividend yield from the NSE archives CSV.
@@ -463,31 +545,104 @@ def fetch_gilt_funds():
             "source": "portal.amfiindia.com"}
 
 
+def _d(s):
+    """'08-SEP-2026' -> date, or None."""
+    s = (s or "").strip()
+    if s in ("", "-"):
+        return None
+    try:
+        return dt.datetime.strptime(s.title(), "%d-%b-%Y").date()
+    except ValueError:
+        return None
+
+
 @source("nse_ipo")
 def fetch_ipo():
-    """Current/upcoming IPOs plus the past-issues archive. Cloud IPs may block.
+    """The IPO pipeline, split by where each issue actually is.
 
-    Listing-day gain is not in this payload; it needs a join to the listing-date
-    close from the bhavcopy. Phase 2.
+    NSE assigns the trading symbol when the issue opens, well before listing,
+    so the TradingView ticker is knowable in advance - that is the whole point
+    of the tv field below.
+
+    NSE never publishes a *future* listing date (checked: 0 of 1431 rows), so
+    "lists tomorrow" is not something any endpoint can tell you. What it does
+    give is an issue whose subscription has closed and whose listingDate is
+    still blank - that is an imminent listing, which is the useful signal.
+
+    Three buckets:
+      listing_today   - listingDate == today          (green on the board)
+      awaiting        - closed, listingDate still '-'  (blue on the board)
+      open_now        - inside the subscription window
     """
+    today = dt.datetime.now(IST).date()
     current = get("https://www.nseindia.com/api/all-upcoming-issues"
                   "?category=ipo").json()
     past = get("https://www.nseindia.com/api/public-past-issues").json()
 
-    def clean_current(r):
-        return {"company": r.get("companyName"), "symbol": r.get("symbol"),
-                "price": r.get("issuePrice"), "opens": r.get("issueStartDate"),
-                "closes": r.get("issueEndDate"), "status": r.get("status")}
+    def tv(sym):
+        """TradingView needs the exchange prefix to resolve a fresh listing."""
+        sym = (sym or "").strip()
+        return "NSE:" + sym if sym else None
+
+    # past-issues mixes equity with debt paper - 40 N0 rows, 22 DEBT, 13 Z9.
+    # Tata Capital's 805TACA29 NCD listed today and would otherwise show up as
+    # an "IPO listing today" and land in the TradingView watchlist.
+    EQUITY = {"EQ", "SME", "BE"}
+
+    listing_today, awaiting = [], []
+    for r in past:
+        sym = (r.get("symbol") or "").strip()
+        if not sym or (r.get("securityType") or "").strip().upper() not in EQUITY:
+            continue
+        ld, closed = _d(r.get("listingDate")), _d(r.get("ipoEndDate"))
+        row = {"company": r.get("company"), "symbol": sym, "tv": tv(sym),
+               "series": (r.get("securityType") or "").strip(),
+               "price_range": r.get("priceRange"),
+               "issue_price": r.get("issuePrice"),
+               "listing_date": r.get("listingDate"),
+               "ipo_closed": r.get("ipoEndDate")}
+        if ld == today:
+            listing_today.append(row)
+        elif ld is None and closed and 0 <= (today - closed).days <= 45:
+            # Closed recently and still unlisted: listing is imminent. The 45-day
+            # window drops withdrawn issues that never list and would otherwise
+            # sit in this bucket forever.
+            row["days_since_close"] = (today - closed).days
+            awaiting.append(row)
+
+    awaiting.sort(key=lambda r: r["days_since_close"])
+
+    open_now = []
+    for r in current:
+        sym = (r.get("symbol") or "").strip()
+        o, c = _d(r.get("issueStartDate")), _d(r.get("issueEndDate"))
+        open_now.append({"company": r.get("companyName"), "symbol": sym,
+                         "tv": tv(sym), "price": r.get("issuePrice"),
+                         "opens": r.get("issueStartDate"),
+                         "closes": r.get("issueEndDate"),
+                         "series": r.get("series"), "status": r.get("status"),
+                         "live": bool(o and c and o <= today <= c)})
+    open_now.sort(key=lambda r: (not r["live"], r["closes"] or ""))
 
     def clean_past(r):
         return {"company": r.get("company"), "symbol": r.get("symbol"),
+                "tv": tv(r.get("symbol")),
                 "price_range": r.get("priceRange"),
                 "issue_price": r.get("issuePrice"),
                 "listing_date": r.get("listingDate")}
 
-    return {"current": [clean_current(r) for r in current][:15],
+    # Everything with a ticker worth adding to a watchlist, newest state first.
+    watchlist = [r["tv"] for r in listing_today + awaiting + open_now if r["tv"]]
+
+    return {"listing_today": listing_today, "awaiting": awaiting[:15],
+            "open_now": open_now[:15],
+            "current": open_now[:15],          # kept: older card reads this
             "recent_past": [clean_past(r) for r in past][:40],
-            "past_total": len(past), "source": "nseindia.com/api"}
+            "past_total": len(past),
+            "tv_watchlist": watchlist,
+            "tv_note": ("NSE assigns the symbol at issue open, so these "
+                        "resolve on TradingView before the stock lists."),
+            "as_of": today.isoformat(), "source": "nseindia.com/api"}
 
 
 IPO_STORE = ROOT / "docs" / "ipo_listings.json"
@@ -678,6 +833,8 @@ def fetch_earnings():
 HISTORY_FIELDS = ["nifty_close", "nifty_pe", "nifty_pb", "nifty_div_yield",
                   "fii_net", "dii_net", "repo", "us_10y", "us_2y", "us_5y",
                   "jp_10y", "uk_10y",
+                  "fii_idx_fut_net", "dii_idx_fut_net",
+                  "fii_stk_fut_net", "dii_stk_fut_net",
                   "india_10y", "usd_inr"]
 
 
@@ -1014,6 +1171,9 @@ def main():
                     help="connectivity check only, writes nothing")
     ap.add_argument("--backfill", type=int, metavar="DAYS",
                     help="rebuild history from NSE archives + Yahoo, then exit")
+    ap.add_argument("--backfill-participants", type=int, metavar="N", default=0,
+                    help="walk back N calendar days building FII/DII "
+                         "derivatives-OI history from the NSE archive")
     ap.add_argument("--backfill-ipo", type=int, metavar="N", default=0,
                     help="resolve listing-day gains for up to N past listing "
                          "dates (one bhavcopy request each); run once")
@@ -1031,6 +1191,11 @@ def main():
 
     if args.probe:
         return probe()
+    if args.backfill_participants:
+        hits, miss, total = backfill_participants(args.backfill_participants)
+        print("Participant OI: %d days fetched, %d missing (holidays), "
+              "history now %d rows" % (hits, miss, total))
+        return 0
     if args.backfill_ipo:
         added, total, calls = resolve_ipo_gains(limit=args.backfill_ipo)
         print("Resolved %d new listings in %d bhavcopy calls; %d total -> %s"

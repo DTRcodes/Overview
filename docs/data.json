@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-10T13:30:43+05:30",
-  "generated_at_utc": "2026-09-10T08:00:43+00:00",
+  "generated_at": "2026-09-10T19:06:34+05:30",
+  "generated_at_utc": "2026-09-10T13:36:34+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,126 +21,126 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-10T13:24:39+05:30",
+      "fetched_at": "2026-09-10T19:06:10+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "dii": {
-          "date": "09-Sep-2026",
-          "buy": 18130.76,
-          "sell": 16621.72,
-          "net": 1509.04
+          "date": "10-Sep-2026",
+          "buy": 13326.33,
+          "sell": 12300.48,
+          "net": 1025.85
         },
         "fii": {
-          "date": "09-Sep-2026",
-          "buy": 16392.9,
-          "sell": 16975.89,
-          "net": -582.99
+          "date": "10-Sep-2026",
+          "buy": 11882.95,
+          "sell": 12321.19,
+          "net": -438.24
         }
       },
       "unit": "INR crore",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-10T13:24:39+05:30",
+      "fetched_at": "2026-09-10T19:06:10+05:30",
       "stale": false
     },
     "fii_derivatives": {
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "participants": {
         "client": {
-          "index_fut_long": 283444.0,
-          "index_fut_short": 52964.0,
-          "index_fut_net": 230480.0,
-          "stock_fut_net": 3239982.0
+          "index_fut_long": 286829.0,
+          "index_fut_short": 55858.0,
+          "index_fut_net": 230971.0,
+          "stock_fut_net": 3245811.0
         },
         "dii": {
-          "index_fut_long": 43738.0,
-          "index_fut_short": 29127.0,
-          "index_fut_net": 14611.0,
-          "stock_fut_net": -4305229.0
+          "index_fut_long": 43284.0,
+          "index_fut_short": 28392.0,
+          "index_fut_net": 14892.0,
+          "stock_fut_net": -4281465.0
         },
         "fii": {
-          "index_fut_long": 39027.0,
-          "index_fut_short": 315277.0,
-          "index_fut_net": -276250.0,
-          "stock_fut_net": 564468.0
+          "index_fut_long": 39694.0,
+          "index_fut_short": 321538.0,
+          "index_fut_net": -281844.0,
+          "stock_fut_net": 541920.0
         },
         "pro": {
-          "index_fut_long": 63306.0,
-          "index_fut_short": 32147.0,
-          "index_fut_net": 31159.0,
-          "stock_fut_net": 500779.0
+          "index_fut_long": 66741.0,
+          "index_fut_short": 30760.0,
+          "index_fut_net": 35981.0,
+          "stock_fut_net": 493734.0
         }
       },
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-10T13:24:41+05:30",
+      "fetched_at": "2026-09-10T19:06:11+05:30",
       "stale": false
     },
     "nse_valuation": {
-      "as_of": "2026-09-09",
+      "as_of": "2026-09-10",
       "indices": {
         "Nifty 50": {
-          "close": 23431.5,
-          "change_pct": -0.86,
-          "pe": 19.81,
-          "pb": 2.83,
+          "close": 23477.8,
+          "change_pct": 0.2,
+          "pe": 19.85,
+          "pb": 2.84,
           "div_yield": 1.21
         },
         "Nifty Next 50": {
-          "close": 72853.85,
-          "change_pct": -0.13,
-          "pe": 19.26,
-          "pb": 3.24,
-          "div_yield": 0.99
+          "close": 72530.9,
+          "change_pct": -0.44,
+          "pe": 19.17,
+          "pb": 3.23,
+          "div_yield": 1.0
         },
         "Nifty 500": {
-          "close": 22958.75,
-          "change_pct": -0.64,
-          "pe": 22.25,
+          "close": 22952.35,
+          "change_pct": -0.03,
+          "pe": 22.24,
           "pb": 3.19,
           "div_yield": 0.97
         },
         "Nifty Auto": {
-          "close": 27653.35,
-          "change_pct": -0.44,
-          "pe": 32.13,
-          "pb": 4.22,
+          "close": 27540.95,
+          "change_pct": -0.41,
+          "pe": 32.0,
+          "pb": 4.2,
           "div_yield": 1.05
         },
         "Nifty Bank": {
-          "close": 56295.55,
-          "change_pct": -0.85,
-          "pe": 13.32,
+          "close": 56471.95,
+          "change_pct": 0.31,
+          "pe": 13.36,
           "pb": 1.69,
-          "div_yield": 0.7
+          "div_yield": 0.69
         },
         "Nifty IT": {
-          "close": 28913.95,
-          "change_pct": -3.24,
-          "pe": 18.45,
-          "pb": 5.09,
+          "close": 28890.9,
+          "change_pct": -0.08,
+          "pe": 18.43,
+          "pb": 5.08,
           "div_yield": 2.78
         },
         "Nifty Smallcap 250": {
-          "close": 18431.95,
-          "change_pct": -0.51,
+          "close": 18433.4,
+          "change_pct": 0.01,
           "pe": 34.01,
-          "pb": 3.55,
+          "pb": 3.54,
           "div_yield": 0.55
         },
         "Nifty Midcap 150": {
-          "close": 22990.95,
-          "change_pct": -0.43,
-          "pe": 28.75,
-          "pb": 4.34,
+          "close": 22904.25,
+          "change_pct": -0.38,
+          "pe": 28.64,
+          "pb": 4.32,
           "div_yield": 0.58
         }
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-10T13:30:43+05:30",
+      "fetched_at": "2026-09-10T19:06:11+05:30",
       "stale": false
     },
     "india_yields": {
@@ -153,33 +153,48 @@
       "fragile": true,
       "caveat": "India yields have no reliable free live source. Point this at a broker feed for real coverage.",
       "source": "FRED INDIRLTLT01STM (monthly, lagged)",
-      "fetched_at": "2026-09-09T19:08:27+05:30",
-      "stale": true,
-      "stale_reason": "RuntimeError: investing.com blocked (Cloudflare) and no FRED_API_KEY set for the monthly fallback"
+      "fetched_at": "2026-09-10T19:06:11+05:30",
+      "stale": false
     },
     "us_rates": {
       "rates": {
-        "us_3m": {
-          "value": 3.805,
+        "fed_target_upper": {
+          "value": 3.75,
           "date": "2026-09-09"
+        },
+        "fed_target_lower": {
+          "value": 3.5,
+          "date": "2026-09-09"
+        },
+        "fed_effective": {
+          "value": 3.63,
+          "date": "2026-09-08"
+        },
+        "us_2y": {
+          "value": 4.39,
+          "date": "2026-09-08"
         },
         "us_5y": {
-          "value": 4.614,
-          "date": "2026-09-09"
+          "value": 4.57,
+          "date": "2026-09-08"
         },
         "us_10y": {
-          "value": 4.837,
-          "date": "2026-09-09"
+          "value": 4.8,
+          "date": "2026-09-08"
         },
         "us_30y": {
-          "value": 5.286,
+          "value": 5.25,
+          "date": "2026-09-08"
+        },
+        "us_10y_2y_spread": {
+          "value": 0.4,
           "date": "2026-09-09"
         }
       },
       "unit": "percent",
-      "via": "yfinance",
-      "source": "yahoo finance",
-      "fetched_at": "2026-09-10T13:24:46+05:30",
+      "via": "fred",
+      "source": "fred.stlouisfed.org",
+      "fetched_at": "2026-09-10T19:06:14+05:30",
       "stale": false
     },
     "world_yields": {
@@ -194,12 +209,12 @@
             "date": "2026-09-09"
           },
           "UK": {
-            "value": 4.639,
-            "date": "2026-09-07"
+            "value": 4.6384,
+            "date": "2026-09-08"
           },
           "Germany": {
-            "value": 3.13,
-            "date": "2026-09-09"
+            "value": 3.18,
+            "date": "2026-09-10"
           }
         },
         "10": {
@@ -212,16 +227,22 @@
             "date": "2026-09-09"
           },
           "UK": {
-            "value": 5.1079,
-            "date": "2026-09-07"
+            "value": 5.0979,
+            "date": "2026-09-08"
           },
           "Germany": {
-            "value": 3.45,
-            "date": "2026-09-09"
+            "value": 3.51,
+            "date": "2026-09-10"
+          },
+          "India": {
+            "value": 6.89,
+            "date": "2026-06-01"
           }
         }
       },
-      "fred_series_ids": {},
+      "fred_series_ids": {
+        "India": "INDIRLTLT01STM"
+      },
       "order": [
         "US",
         "Germany",
@@ -231,8 +252,7 @@
         "China"
       ],
       "errors": {
-        "India": "FRED_API_KEY not set",
-        "China": "FRED_API_KEY not set"
+        "China": "no FRED series resolved"
       },
       "unit": "percent",
       "daily": [
@@ -241,10 +261,12 @@
         "UK",
         "Japan"
       ],
-      "monthly": [],
+      "monthly": [
+        "India"
+      ],
       "note": "US/DE/UK/JP are daily national sources. India and China are monthly via FRED and have no free 5Y, so they appear on the 10Y chart only.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-10T13:24:58+05:30",
+      "fetched_at": "2026-09-10T19:06:22+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 672,
@@ -254,14 +276,15 @@
         "y5_uk": 1500,
         "y10_uk": 1500,
         "y5_de": 1500,
-        "y10_de": 1500
+        "y10_de": 1500,
+        "y10_in": 175
       }
     },
     "fx_spot": {
-      "usd_inr": 95.34,
+      "usd_inr": 95.43,
       "as_of": "2026-09-10",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-10T13:24:58+05:30",
+      "fetched_at": "2026-09-10T19:06:24+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -302,6 +325,17 @@
       ],
       "open_now": [
         {
+          "company": "Kanohar Electricals Limited",
+          "symbol": "KANOHAR",
+          "tv": "NSE:KANOHAR",
+          "price": "Rs.601 to Rs.632",
+          "opens": "08-Sep-2026",
+          "closes": "10-Sep-2026",
+          "series": "EQ",
+          "status": "Active",
+          "live": true
+        },
+        {
           "company": "Prasol Chemicals Limited",
           "symbol": "PRASOLCHEM",
           "tv": "NSE:PRASOLCHEM",
@@ -324,21 +358,10 @@
           "live": true
         },
         {
-          "company": "Kanohar Electricals Limited",
-          "symbol": "KANOHAR",
-          "tv": "NSE:KANOHAR",
-          "price": "Rs.601 to Rs.632",
-          "opens": "08-Sep-2026",
-          "closes": "10-Sep-2026",
-          "series": "EQ",
-          "status": "Active",
-          "live": true
-        },
-        {
-          "company": "LCC Projects Limited",
-          "symbol": "LCCPROJECT",
-          "tv": "NSE:LCCPROJECT",
-          "price": "Rs.139 to Rs.146",
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "symbol": "MPIMANIPAL",
+          "tv": "NSE:MPIMANIPAL",
+          "price": "Rs.322 to Rs.339",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -379,10 +402,10 @@
           "live": true
         },
         {
-          "company": "Manipal Payment and Identity Solutions Limited",
-          "symbol": "MPIMANIPAL",
-          "tv": "NSE:MPIMANIPAL",
-          "price": "Rs.322 to Rs.339",
+          "company": "LCC Projects Limited",
+          "symbol": "LCCPROJECT",
+          "tv": "NSE:LCCPROJECT",
+          "price": "Rs.139 to Rs.146",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -410,17 +433,6 @@
           "series": "EQ",
           "status": "Active",
           "live": true
-        },
-        {
-          "company": "Pranav Constructions Limited",
-          "symbol": "PRANAV",
-          "tv": "NSE:PRANAV",
-          "price": "Rs.118 to Rs.124",
-          "opens": "07-Sep-2026",
-          "closes": "09-Sep-2026",
-          "series": "EQ",
-          "status": "Closed",
-          "live": false
         },
         {
           "company": "Manika Plastech Limited",
@@ -432,9 +444,31 @@
           "series": "EQ",
           "status": "Forthcoming",
           "live": false
+        },
+        {
+          "company": "Hero Motors Limited",
+          "symbol": "HEROMOTORS",
+          "tv": "NSE:HEROMOTORS",
+          "price": "Rs.79 to Rs.84",
+          "opens": "16-Sep-2026",
+          "closes": "17-Sep-2026",
+          "series": "EQ",
+          "status": "Forthcoming",
+          "live": false
         }
       ],
       "current": [
+        {
+          "company": "Kanohar Electricals Limited",
+          "symbol": "KANOHAR",
+          "tv": "NSE:KANOHAR",
+          "price": "Rs.601 to Rs.632",
+          "opens": "08-Sep-2026",
+          "closes": "10-Sep-2026",
+          "series": "EQ",
+          "status": "Active",
+          "live": true
+        },
         {
           "company": "Prasol Chemicals Limited",
           "symbol": "PRASOLCHEM",
@@ -458,21 +492,10 @@
           "live": true
         },
         {
-          "company": "Kanohar Electricals Limited",
-          "symbol": "KANOHAR",
-          "tv": "NSE:KANOHAR",
-          "price": "Rs.601 to Rs.632",
-          "opens": "08-Sep-2026",
-          "closes": "10-Sep-2026",
-          "series": "EQ",
-          "status": "Active",
-          "live": true
-        },
-        {
-          "company": "LCC Projects Limited",
-          "symbol": "LCCPROJECT",
-          "tv": "NSE:LCCPROJECT",
-          "price": "Rs.139 to Rs.146",
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "symbol": "MPIMANIPAL",
+          "tv": "NSE:MPIMANIPAL",
+          "price": "Rs.322 to Rs.339",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -513,10 +536,10 @@
           "live": true
         },
         {
-          "company": "Manipal Payment and Identity Solutions Limited",
-          "symbol": "MPIMANIPAL",
-          "tv": "NSE:MPIMANIPAL",
-          "price": "Rs.322 to Rs.339",
+          "company": "LCC Projects Limited",
+          "symbol": "LCCPROJECT",
+          "tv": "NSE:LCCPROJECT",
+          "price": "Rs.139 to Rs.146",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -546,23 +569,23 @@
           "live": true
         },
         {
-          "company": "Pranav Constructions Limited",
-          "symbol": "PRANAV",
-          "tv": "NSE:PRANAV",
-          "price": "Rs.118 to Rs.124",
-          "opens": "07-Sep-2026",
-          "closes": "09-Sep-2026",
-          "series": "EQ",
-          "status": "Closed",
-          "live": false
-        },
-        {
           "company": "Manika Plastech Limited",
           "symbol": "MANIKA",
           "tv": "NSE:MANIKA",
           "price": "Rs.40 to Rs.43",
           "opens": "11-Sep-2026",
           "closes": "16-Sep-2026",
+          "series": "EQ",
+          "status": "Forthcoming",
+          "live": false
+        },
+        {
+          "company": "Hero Motors Limited",
+          "symbol": "HEROMOTORS",
+          "tv": "NSE:HEROMOTORS",
+          "price": "Rs.79 to Rs.84",
+          "opens": "16-Sep-2026",
+          "closes": "17-Sep-2026",
           "series": "EQ",
           "status": "Forthcoming",
           "live": false
@@ -690,19 +713,19 @@
           "listing_date": "01-SEP-2026"
         },
         {
-          "company": "Madhur Knit Crafts Limited",
-          "symbol": "MADHURKNIT",
-          "tv": "NSE:MADHURKNIT",
-          "price_range": "Rs.95 to Rs.100",
-          "issue_price": "100",
-          "listing_date": "01-SEP-2026"
-        },
-        {
           "company": "ABH Healthcare Limited",
           "symbol": "ABH",
           "tv": "NSE:ABH",
           "price_range": "Rs.96 to Rs.102",
           "issue_price": "102",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "Madhur Knit Crafts Limited",
+          "symbol": "MADHURKNIT",
+          "tv": "NSE:MADHURKNIT",
+          "price_range": "Rs.95 to Rs.100",
+          "issue_price": "100",
           "listing_date": "01-SEP-2026"
         },
         {
@@ -894,23 +917,23 @@
       "tv_watchlist": [
         "NSE:QUALIANCE",
         "NSE:PRANAV",
+        "NSE:KANOHAR",
         "NSE:PRASOLCHEM",
         "NSE:GLASSWALL",
-        "NSE:KANOHAR",
-        "NSE:LCCPROJECT",
+        "NSE:MPIMANIPAL",
         "NSE:KARAMTARA",
         "NSE:ARCIL",
         "NSE:STEAMHOUSE",
-        "NSE:MPIMANIPAL",
+        "NSE:LCCPROJECT",
         "NSE:RENTOMOJO",
         "NSE:VEEGALAND",
-        "NSE:PRANAV",
-        "NSE:MANIKA"
+        "NSE:MANIKA",
+        "NSE:HEROMOTORS"
       ],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-10",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-10T13:29:34+05:30",
+      "fetched_at": "2026-09-10T19:06:25+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -1316,8 +1339,8 @@
           "gain_close_pct": 13.04
         }
       ],
-      "resolved_total": 151,
-      "added_this_run": 28,
+      "resolved_total": 164,
+      "added_this_run": 13,
       "bhavcopy_calls": 12,
       "stats_last_50": {
         "count": 50,
@@ -1328,16 +1351,16 @@
         "worst": "ANNU"
       },
       "stats_all": {
-        "count": 151,
-        "median_open_pct": 5.0,
+        "count": 164,
+        "median_open_pct": 5.26,
         "median_close_pct": 6.23,
-        "positive_open_pct": 63.6,
+        "positive_open_pct": 63.4,
         "best": "ADANIENPP1",
         "worst": "SRTL"
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-10T13:25:14+05:30",
+      "fetched_at": "2026-09-10T19:06:33+05:30",
       "stale": false
     },
     "earnings": {
@@ -1451,7 +1474,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-10T13:25:16+05:30",
+      "fetched_at": "2026-09-10T19:06:34+05:30",
       "stale": false
     }
   }

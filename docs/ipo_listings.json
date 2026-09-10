@@ -1229,6 +1229,286 @@
    "close": 32.75,
    "gain_open_pct": -15.98,
    "gain_close_pct": -20.12
+  },
+  "E2ERAIL": {
+   "symbol": "E2ERAIL",
+   "company": "E TO E Transportation Infrastructure Limited",
+   "issue_price": 174.0,
+   "listing_date": "2026-01-02",
+   "open": 330.6,
+   "close": 327.8,
+   "gain_open_pct": 90.0,
+   "gain_close_pct": 88.39
+  },
+  "DHARARAIL": {
+   "symbol": "DHARARAIL",
+   "company": "Dhara Rail Projects Limited",
+   "issue_price": 126.0,
+   "listing_date": "2025-12-31",
+   "open": 150.0,
+   "close": 157.5,
+   "gain_open_pct": 19.05,
+   "gain_close_pct": 25.0
+  },
+  "GKSL": {
+   "symbol": "GKSL",
+   "company": "Gujarat Kidney and Super Speciality Limited",
+   "issue_price": 114.0,
+   "listing_date": "2025-12-30",
+   "open": 120.0,
+   "close": 104.54,
+   "gain_open_pct": 5.26,
+   "gain_close_pct": -8.3
+  },
+  "EPWINDIA": {
+   "symbol": "EPWINDIA",
+   "company": "EPW India Limited",
+   "issue_price": 97.0,
+   "listing_date": "2025-12-30",
+   "open": 111.0,
+   "close": 116.55,
+   "gain_open_pct": 14.43,
+   "gain_close_pct": 20.15
+  },
+  "SHYAMDHANI": {
+   "symbol": "SHYAMDHANI",
+   "company": "Shyam Dhani Industries Limited",
+   "issue_price": 70.0,
+   "listing_date": "2025-12-30",
+   "open": 133.0,
+   "close": 139.65,
+   "gain_open_pct": 90.0,
+   "gain_close_pct": 99.5
+  },
+  "SOCL": {
+   "symbol": "SOCL",
+   "company": "Sundrex Oil Company Limited",
+   "issue_price": 86.0,
+   "listing_date": "2025-12-30",
+   "open": 68.8,
+   "close": 65.4,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -23.95
+  },
+  "KRISHNADEF": {
+   "symbol": "KRISHNADEF",
+   "company": "Krishna Defence And Allied Industries Limited",
+   "issue_price": 783.05,
+   "listing_date": "2025-12-30",
+   "open": 840.0,
+   "close": 813.8,
+   "gain_open_pct": 7.27,
+   "gain_close_pct": 3.93
+  },
+  "MARC": {
+   "symbol": "MARC",
+   "company": "Marc Technocrats Limited",
+   "issue_price": 93.0,
+   "listing_date": "2025-12-24",
+   "open": 74.4,
+   "close": 70.7,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -23.98
+  },
+  "KSHINTL": {
+   "symbol": "KSHINTL",
+   "company": "KSH International Limited",
+   "issue_price": 384.0,
+   "listing_date": "2025-12-23",
+   "open": 370.0,
+   "close": 355.0,
+   "gain_open_pct": -3.65,
+   "gain_close_pct": -7.55
+  },
+  "ICICIAMC": {
+   "symbol": "ICICIAMC",
+   "company": "ICICI Prudential Asset Management Company Limited",
+   "issue_price": 2165.0,
+   "listing_date": "2025-12-19",
+   "open": 2600.0,
+   "close": 2585.9,
+   "gain_open_pct": 20.09,
+   "gain_close_pct": 19.44
+  },
+  "ASHWINI": {
+   "symbol": "ASHWINI",
+   "company": "Ashwini Container Movers Limited",
+   "issue_price": 142.0,
+   "listing_date": "2025-12-19",
+   "open": 147.0,
+   "close": 140.1,
+   "gain_open_pct": 3.52,
+   "gain_close_pct": -1.34
+  },
+  "EXIMROUTES": {
+   "symbol": "EXIMROUTES",
+   "company": "Exim Routes Limited",
+   "issue_price": 88.0,
+   "listing_date": "2025-12-19",
+   "open": 110.0,
+   "close": 115.5,
+   "gain_open_pct": 25.0,
+   "gain_close_pct": 31.25
+  },
+  "NEPHROPLUS": {
+   "symbol": "NEPHROPLUS",
+   "company": "Nephrocare Health Services Limited",
+   "issue_price": 460.0,
+   "listing_date": "2025-12-17",
+   "open": 490.0,
+   "close": 471.25,
+   "gain_open_pct": 6.52,
+   "gain_close_pct": 2.45
+  },
+  "PARKHOSPS": {
+   "symbol": "PARKHOSPS",
+   "company": "Park Medi World Limited",
+   "issue_price": 162.0,
+   "listing_date": "2025-12-17",
+   "open": 158.8,
+   "close": 147.95,
+   "gain_open_pct": -1.98,
+   "gain_close_pct": -8.67
+  },
+  "WAKEFIT": {
+   "symbol": "WAKEFIT",
+   "company": "Wakefit Innovations Limited",
+   "issue_price": 195.0,
+   "listing_date": "2025-12-15",
+   "open": 195.0,
+   "close": 192.29,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -1.39
+  },
+  "CORONA": {
+   "symbol": "CORONA",
+   "company": "Corona Remedies Limited",
+   "issue_price": 1062.0,
+   "listing_date": "2025-12-15",
+   "open": 1470.0,
+   "close": 1438.4,
+   "gain_open_pct": 38.42,
+   "gain_close_pct": 35.44
+  },
+  "FWSTC": {
+   "symbol": "FWSTC",
+   "company": "Flywings Simulator Training Centre Limited",
+   "issue_price": 191.0,
+   "listing_date": "2025-12-12",
+   "open": 195.0,
+   "close": 204.75,
+   "gain_open_pct": 2.09,
+   "gain_close_pct": 7.2
+  },
+  "ENCOMPAS": {
+   "symbol": "ENCOMPAS",
+   "company": "Encompass Design India Limited",
+   "issue_price": 107.0,
+   "listing_date": "2025-12-12",
+   "open": 203.3,
+   "close": 193.15,
+   "gain_open_pct": 90.0,
+   "gain_close_pct": 80.51
+  },
+  "LEMERITE": {
+   "symbol": "LEMERITE",
+   "company": "LE MERITE EXPORTS LIMITED",
+   "issue_price": 507.0,
+   "listing_date": "2025-12-12",
+   "open": 522.0,
+   "close": 513.75,
+   "gain_open_pct": 2.96,
+   "gain_close_pct": 1.33
+  },
+  "VIDYAWIRES": {
+   "symbol": "VIDYAWIRES",
+   "company": "Vidya Wires Limited",
+   "issue_price": 52.0,
+   "listing_date": "2025-12-10",
+   "open": 52.0,
+   "close": 53.17,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 2.25
+  },
+  "AEQUS": {
+   "symbol": "AEQUS",
+   "company": "Aequs Limited",
+   "issue_price": 124.0,
+   "listing_date": "2025-12-10",
+   "open": 140.0,
+   "close": 151.29,
+   "gain_open_pct": 12.9,
+   "gain_close_pct": 22.01
+  },
+  "MEESHO": {
+   "symbol": "MEESHO",
+   "company": "Meesho Limited",
+   "issue_price": 111.0,
+   "listing_date": "2025-12-10",
+   "open": 162.5,
+   "close": 170.09,
+   "gain_open_pct": 46.4,
+   "gain_close_pct": 53.23
+  },
+  "SHRIKANHA": {
+   "symbol": "SHRIKANHA",
+   "company": "Shri Kanha Stainless Limited",
+   "issue_price": 90.0,
+   "listing_date": "2025-12-10",
+   "open": 88.0,
+   "close": 83.6,
+   "gain_open_pct": -2.22,
+   "gain_close_pct": -7.11
+  },
+  "NEOCHEM": {
+   "symbol": "NEOCHEM",
+   "company": "Neochem Bio Solutions Limited",
+   "issue_price": 98.0,
+   "listing_date": "2025-12-09",
+   "open": 108.0,
+   "close": 111.8,
+   "gain_open_pct": 10.2,
+   "gain_close_pct": 14.08
+  },
+  "KNAGRI": {
+   "symbol": "KNAGRI",
+   "company": "KN Agri Resources Limited",
+   "issue_price": 197.0,
+   "listing_date": "2025-12-09",
+   "open": 196.0,
+   "close": 203.25,
+   "gain_open_pct": -0.51,
+   "gain_close_pct": 3.17
+  },
+  "INVICTA": {
+   "symbol": "INVICTA",
+   "company": "Invicta Diagnostic Limited",
+   "issue_price": 85.0,
+   "listing_date": "2025-12-08",
+   "open": 100.0,
+   "close": 96.7,
+   "gain_open_pct": 17.65,
+   "gain_close_pct": 13.76
+  },
+  "CSSL": {
+   "symbol": "CSSL",
+   "company": "Clear Secured Services Limited",
+   "issue_price": 132.0,
+   "listing_date": "2025-12-08",
+   "open": 119.0,
+   "close": 113.05,
+   "gain_open_pct": -9.85,
+   "gain_close_pct": -14.36
+  },
+  "SPEB": {
+   "symbol": "SPEB",
+   "company": "Speb Adhesives Limited",
+   "issue_price": 56.0,
+   "listing_date": "2025-12-08",
+   "open": 60.0,
+   "close": 57.0,
+   "gain_open_pct": 7.14,
+   "gain_close_pct": 1.79
   }
  },
  "unresolvable": [
@@ -1247,6 +1527,7 @@
   "788TACA31",
   "805TACA29",
   "815CHLI36",
+  "815MOFS28",
   "888CIFCL33",
   "904NACL28",
   "915ICFL28A",

@@ -77,9 +77,6 @@ FRED_SERIES = {
 
 EARNINGS_TICKERS = ["RELIANCE.NS", "HDFCBANK.NS", "TCS.NS", "INFY.NS", "ICICIBANK.NS"]
 
-GILT_MATCH = re.compile(r"gilt", re.I)
-GILT_PREFER = re.compile(r"direct.*growth", re.I)
-GILT_LIMIT = 12
 
 REGISTRY = {}
 
@@ -417,61 +414,207 @@ def fetch_us_rates():
             "source": "fred.stlouisfed.org" if via == "fred" else "yahoo finance"}
 
 
-# FRED renamed this OECD family part-way through its life, so both spellings
-# are live depending on the country. India's working id uses the second form.
-# Try each in turn rather than guessing - whichever answers, wins.
-WORLD_10Y = {
-    "Japan": ["IRLTLT01JPM156N", "JPNIRLTLT01STM"],
-    "UK": ["IRLTLT01GBM156N", "GBRIRLTLT01STM"],
+# Major-economy government bond yields, 5Y and 10Y.
+#
+# FRED's cross-country OECD family (IRLTLT01...) is TEN-YEAR ONLY, so a 5Y
+# comparison needs a national source per country. Each of these publishes a
+# free, key-less daily curve:
+#
+#   US       home.treasury.gov      daily par yield curve, every tenor
+#   Japan    mof.go.jp              daily JGB curve, 1Y..40Y
+#   UK       bankofengland.co.uk    IUDSNPY = 5Y, IUDMNPY = 10Y nominal par
+#   Germany  api.statistiken.bundesbank.de  BBSIS daily svensson curve
+#
+# India and China have no free 5Y at all, and only a monthly 10Y via FRED.
+# They appear on the 10Y chart and are absent from the 5Y one rather than
+# being faked from a nearby tenor.
+WORLD_FRED_10Y = {
+    "India": ["INDIRLTLT01STM", "IRLTLT01INM156N"],
+    "China": ["IRLTLT01CNM156N", "CHNIRLTLT01STM"],
 }
-WORLD_HISTORY_KEY = {"Japan": "jp_10y", "UK": "uk_10y"}
+YKEY = {"US": "us", "Japan": "jp", "UK": "uk", "Germany": "de",
+        "India": "in", "China": "cn"}
+WORLD_ORDER = ["US", "Germany", "UK", "Japan", "India", "China"]
+
+
+def _hkey(tenor, country):
+    """History column: y10_us, y5_de, ..."""
+    return "y%s_%s" % (tenor, YKEY[country])
+
+
+def _us_curve():
+    """US Treasury daily par yields. One CSV per calendar year."""
+    out = {}
+    year = dt.datetime.now(IST).year
+    for y in (year, year - 1, year - 2):
+        url = ("https://home.treasury.gov/resource-center/data-chart-center/"
+               "interest-rates/daily-treasury-rates.csv/%d/all"
+               "?type=daily_treasury_yield_curve&field_tdr_date_value=%d"
+               "&page&_format=csv" % (y, y))
+        try:
+            lines = get(url).text.splitlines()
+        except Exception:
+            continue
+        hdr = [h.strip().strip('"') for h in lines[0].split(",")]
+        try:
+            i5, i10 = hdr.index("5 Yr"), hdr.index("10 Yr")
+        except ValueError:
+            continue
+        for ln in lines[1:]:
+            c = [x.strip().strip('"') for x in ln.split(",")]
+            if len(c) <= i10:
+                continue
+            try:
+                d = dt.datetime.strptime(c[0], "%m/%d/%Y").date().isoformat()
+            except ValueError:
+                continue
+            out[d] = {"5": num(c[i5]), "10": num(c[i10])}
+    return out
+
+
+def _jp_curve():
+    """JGB curve. The 'all' file stops at last month-end, so the current
+    month's file is layered on top of it."""
+    out = {}
+    base = ("https://www.mof.go.jp/english/policy/jgbs/reference/interest_rate/")
+    for part in ("historical/jgbcme_all.csv", "jgbcme.csv"):
+        try:
+            lines = get(base + part).text.splitlines()
+        except Exception:
+            continue
+        hdr = None
+        for ln in lines:
+            c = [x.strip() for x in ln.split(",")]
+            if c[0] == "Date":
+                hdr = c
+                continue
+            if not hdr or not re.match(r"^\d{4}/\d{1,2}/\d{1,2}$", c[0] or ""):
+                continue
+            row = dict(zip(hdr, c))
+            try:
+                d = dt.datetime.strptime(c[0], "%Y/%m/%d").date().isoformat()
+            except ValueError:
+                continue
+            out[d] = {"5": num(row.get("5Y")), "10": num(row.get("10Y"))}
+    return out
+
+
+def _uk_curve():
+    """Bank of England IADB. IUDSNPY = 5Y, IUDMNPY = 10Y nominal par yield."""
+    url = ("https://www.bankofengland.co.uk/boeapps/iadb/fromshowcolumns.asp"
+           "?csv.x=yes&Datefrom=01/Jan/2015&Dateto=now"
+           "&SeriesCodes=IUDSNPY,IUDMNPY&CSVF=TN&UsingCodes=Y&VPD=Y&VFD=N")
+    lines = get(url).text.splitlines()
+    hdr = [h.strip() for h in lines[0].split(",")]
+    i5, i10 = hdr.index("IUDSNPY"), hdr.index("IUDMNPY")
+    out = {}
+    for ln in lines[1:]:
+        c = [x.strip() for x in ln.split(",")]
+        if len(c) <= i10:
+            continue
+        try:
+            d = dt.datetime.strptime(c[0], "%d %b %Y").date().isoformat()
+        except ValueError:
+            continue
+        out[d] = {"5": num(c[i5]), "10": num(c[i10])}
+    return out
+
+
+def _de_curve():
+    """Bundesbank BBSIS. Semicolon separated, comma decimal separator."""
+    ids = {"5": "D.I.ZST.ZI.EUR.S1311.B.A604.R05XX.R.A.A._Z._Z.A",
+           "10": "D.I.ZST.ZI.EUR.S1311.B.A604.R10XX.R.A.A._Z._Z.A"}
+    out = {}
+    for tenor, sid in ids.items():
+        try:
+            lines = get("https://api.statistiken.bundesbank.de/rest/data/"
+                        "BBSIS/" + sid + "?format=csv").text.splitlines()
+        except Exception:
+            continue
+        # Bundesbank content-negotiates on Accept-Language: German locale gives
+        # "2026-09-09;3,45;" while en-GB (what HEADERS sends) gives
+        # "2026-09-09,3.45,". Accept either rather than depending on a header.
+        for ln in lines:
+            m = re.match(r"^(\d{4}-\d{2}-\d{2})[;,]\s*([-\d.,]+)", ln.strip())
+            if not m:
+                continue
+            raw = m.group(2).rstrip(",;")
+            if "," in raw and "." not in raw:      # German decimal comma
+                raw = raw.replace(",", ".")
+            v = num(raw)
+            if v is not None:
+                out.setdefault(m.group(1), {})[tenor] = v
+    return out
 
 
 @source("world_yields")
 def fetch_world_yields():
-    """Japan and UK 10-year government bond yields.
+    """5Y and 10Y government bond yields for the major economies.
 
-    Same problem as India: no free live source. Yahoo has no tenor for either,
-    and the usual scrape targets render in JavaScript. FRED's OECD series are
-    authoritative but **monthly and lagged**, so the card says so rather than
-    implying a live quote.
-
-    Returns the last decade of observations too, so the chart has real history
-    on day one instead of accumulating a point a month.
+    Every national source here is daily and needs no key. India and China are
+    monthly-only via FRED and have no free 5Y, which the payload states rather
+    than papering over.
     """
+    curves, errors = {}, {}
+    for country, fn in (("US", _us_curve), ("Japan", _jp_curve),
+                        ("UK", _uk_curve), ("Germany", _de_curve)):
+        try:
+            c = fn()
+            if c:
+                curves[country] = c
+            else:
+                errors[country] = "empty"
+        except Exception as e:
+            errors[country] = "%s: %s" % (type(e).__name__, e)
+
+    # India / China: FRED monthly, 10Y only.
     key = os.environ.get("FRED_API_KEY", "").strip()
-    if not key:
-        raise RuntimeError("FRED_API_KEY not set - required for JP/UK yields")
+    series_ids = {}
+    if key:
+        for country, cands in WORLD_FRED_10Y.items():
+            for sid in cands:
+                try:
+                    r = get("https://api.stlouisfed.org/fred/series/observations",
+                            params={"series_id": sid, "api_key": key,
+                                    "file_type": "json", "sort_order": "desc",
+                                    "limit": 200})
+                    obs = [o for o in r.json().get("observations", [])
+                           if o.get("value") not in (".", "", None)]
+                except Exception:
+                    continue
+                if not obs:
+                    continue
+                curves[country] = {o["date"]: {"10": num(o["value"])} for o in obs}
+                series_ids[country] = sid
+                break
+            else:
+                errors[country] = "no FRED series resolved"
+    else:
+        errors["India"] = errors["China"] = "FRED_API_KEY not set"
 
-    latest, series, used = {}, {}, {}
-    for country, candidates in WORLD_10Y.items():
-        for sid in candidates:
-            try:
-                r = get("https://api.stlouisfed.org/fred/series/observations",
-                        params={"series_id": sid, "api_key": key,
-                                "file_type": "json", "sort_order": "desc",
-                                "limit": 130})
-                obs = [o for o in r.json().get("observations", [])
-                       if o.get("value") not in (".", "", None)]
-            except Exception:
+    if not curves:
+        raise RuntimeError("no yield curve resolved: " + json.dumps(errors))
+
+    latest, series = {"5": {}, "10": {}}, {}
+    for country, curve in curves.items():
+        for tenor in ("5", "10"):
+            pts = sorted((d, v[tenor]) for d, v in curve.items()
+                         if v.get(tenor) is not None)
+            if not pts:
                 continue
-            if not obs:
-                continue
-            latest[country] = {"value": num(obs[0]["value"]),
-                               "date": obs[0]["date"]}
-            series[country] = [[o["date"], num(o["value"])] for o in obs]
-            used[country] = sid
-            break
+            series[_hkey(tenor, country)] = pts[-1500:]
+            latest[tenor][country] = {"value": pts[-1][1], "date": pts[-1][0]}
 
-    if not latest:
-        raise RuntimeError("no JP/UK series resolved from " +
-                           str({k: v for k, v in WORLD_10Y.items()}))
+    return {"latest": latest, "series": series, "fred_series_ids": series_ids,
+            "order": WORLD_ORDER, "errors": errors, "unit": "percent",
+            "daily": ["US", "Germany", "UK", "Japan"],
+            "monthly": [c for c in ("India", "China") if c in curves],
+            "note": ("US/DE/UK/JP are daily national sources. India and China "
+                     "are monthly via FRED and have no free 5Y, so they appear "
+                     "on the 10Y chart only."),
+            "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, "
+                      "bundesbank.de, fred.stlouisfed.org"}
 
-    return {"latest": latest, "series": series, "series_ids": used,
-            "unit": "percent", "frequency": "monthly (OECD via FRED)",
-            "caveat": ("Monthly and lagged - these are not live quotes. "
-                       "No free live source exists for either tenor."),
-            "source": "fred.stlouisfed.org"}
 
 
 @source("fx_spot")
@@ -492,57 +635,6 @@ def fetch_fx_spot():
             "source": "yahoo finance (INR=X spot)"}
 
 
-@source("gilt_funds")
-def fetch_gilt_funds():
-    """Gilt fund NAVs from AMFI. Note the 302 to portal.amfiindia.com."""
-    txt = get("https://portal.amfiindia.com/spages/NAVAll.txt",
-              allow_redirects=True).text
-    lines = txt.splitlines()
-
-    # Column layout is read from the header rather than hardcoded: AMFI split
-    # Plan and Option into their own columns, so the file is 8 fields wide, not
-    # the 6 that older scrapers assume.
-    header = next((l for l in lines if l.startswith("Scheme Code;")), None)
-    if not header:
-        raise RuntimeError("NAVAll.txt header row not found")
-    col = {h.strip().lower(): i for i, h in enumerate(header.split(";"))}
-    try:
-        c_code = col["scheme code"]
-        c_name = col["scheme name"]
-        c_nav = col["net asset value"]
-        c_date = col["date"]
-    except KeyError as e:
-        raise RuntimeError("NAVAll.txt columns changed: %s" % e)
-    c_plan = col.get("plan")
-    c_opt = col.get("option")
-    width = len(col)
-
-    picks, fallback = [], []
-    for line in lines:
-        if ";" not in line or line.startswith("Scheme Code;"):
-            continue
-        parts = line.split(";")
-        if len(parts) < width:
-            continue
-        name = parts[c_name].strip()
-        if not GILT_MATCH.search(name):
-            continue
-        nav = num(parts[c_nav])
-        if nav is None:
-            continue
-        plan = parts[c_plan].strip() if c_plan is not None else ""
-        option = parts[c_opt].strip() if c_opt is not None else ""
-        rec = {"code": parts[c_code].strip(), "name": name, "plan": plan,
-               "option": option, "nav": nav, "date": parts[c_date].strip()}
-        direct_growth = (GILT_PREFER.search(plan + " " + option)
-                         or GILT_PREFER.search(name))
-        (picks if direct_growth else fallback).append(rec)
-
-    funds = (picks or fallback)[:GILT_LIMIT]
-    if not funds:
-        raise RuntimeError("no gilt schemes parsed from NAVAll.txt")
-    return {"funds": funds, "count_matched": len(picks) + len(fallback),
-            "source": "portal.amfiindia.com"}
 
 
 def _d(s):
@@ -899,7 +991,8 @@ def fetch_earnings():
 
 HISTORY_FIELDS = ["nifty_close", "nifty_pe", "nifty_pb", "nifty_div_yield",
                   "fii_net", "dii_net", "repo", "us_10y", "us_2y", "us_5y",
-                  "jp_10y", "uk_10y",
+                  "y10_us", "y10_de", "y10_uk", "y10_jp", "y10_in", "y10_cn",
+                  "y5_us", "y5_de", "y5_uk", "y5_jp",
                   "fii_idx_fut_net", "dii_idx_fut_net",
                   "fii_stk_fut_net", "dii_stk_fut_net",
                   "india_10y", "usd_inr"]
@@ -967,8 +1060,6 @@ def row_from_sections(S):
         "us_2y": usv("us_2y"),
         "us_5y": usv("us_5y"),
         "india_10y": dig("india_yields", "yields", "10Y"),
-        "jp_10y": (dig("world_yields", "latest", "Japan") or {}).get("value"),
-        "uk_10y": (dig("world_yields", "latest", "UK") or {}).get("value"),
     }
 
 
@@ -1275,18 +1366,24 @@ def main():
 
     print("Fetching @ " + now_iso())
     data = run(only=set(args.only) if args.only else None)
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(data, indent=2, ensure_ascii=False),
-                   encoding="utf-8")
 
     rows = [row_from_sections(data["sections"])]
     wy = data["sections"].get("world_yields") or {}
-    for country, obs in (wy.get("series") or {}).items():
-        key = WORLD_HISTORY_KEY.get(country)
-        if key:
-            rows += [{"date": d, key: v} for d, v in obs if v is not None]
+    for key, obs in (wy.get("series") or {}).items():
+        rows += [{"date": d, key: v} for d, v in obs if v is not None]
     hist = merge_rows(load_history(), rows)
     save_history(hist)
+
+    # Those series are bulk history and are now in history.json. Leaving them
+    # in data.json as well made it 798 KB - every visitor downloading a decade
+    # of yields twice, on a page whose whole point is loading fast on mobile.
+    if isinstance(wy, dict) and "series" in wy:
+        wy["series_points"] = {k: len(v) for k, v in wy["series"].items()}
+        del wy["series"]
+
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(data, indent=2, ensure_ascii=False),
+                   encoding="utf-8")
 
     print("\nWrote %s  (%d bytes)" % (OUT, OUT.stat().st_size))
     print("History %d rows -> %s" % (len(hist["rows"]), HISTORY))

@@ -19,6 +19,9 @@
   --series-1:#2a78d6;
   --series-2:#eb6834;
   --series-3:#1baf7a;
+  --series-4:#8b5cf6;
+  --series-5:#c026a3;
+  --series-6:#b08900;
   --up:#1baf7a;
   --down:#e34948;
   --warn:#a8620a;
@@ -39,6 +42,9 @@
     --series-1:#3987e5;
     --series-2:#d95926;
     --series-3:#199e70;
+    --series-4:#a78bfa;
+    --series-5:#e05fc4;
+    --series-6:#d4a72c;
     --up:#199e70;
     --down:#e66767;
     --warn:#e0a458;
@@ -237,17 +243,18 @@ function smoothPath(pts){
 }
 
 /* --------------------------------------------------------------- charting */
-function rangedRows(){
+function rangedRows(minDays){
   const rows = HIST.filter(r => r.date);
-  if(!RANGE) return rows;
-  const cut = Date.now() - RANGE * 86400000;
+  if(!RANGE) return rows;              // "All" always wins
+  const span = Math.max(RANGE, minDays || 0);
+  const cut = Date.now() - span * 86400000;
   return rows.filter(r => new Date(r.date + 'T00:00:00') >= cut);
 }
 
 /* series: [{key, label, color, fmt}] — one axis only, always. Two measures of
    different scale get two charts, never a second y-axis. */
 function lineChart(el, series, opts = {}){
-  const rows = rangedRows().filter(r => series.some(s => r[s.key] != null));
+  const rows = rangedRows(opts.minDays).filter(r => series.some(s => r[s.key] != null));
   if(rows.length < 2){
     el.innerHTML = `<div class="empty">Not enough history yet — the nightly run
       appends one row a day.</div>`;
@@ -446,8 +453,12 @@ function render(){
   const usc  = [{key:'us_10y', label:'US 10Y', color:cssv('--series-1')},
                 {key:'us_5y',  label:'US 5Y',  color:cssv('--series-2')}];
   const fx   = [{key:'usd_inr', label:'USD/INR', color:cssv('--series-2')}];
-  const world= [{key:'jp_10y', label:'Japan 10Y', color:cssv('--series-1')},
-                {key:'uk_10y', label:'UK 10Y',    color:cssv('--series-2')}];
+  const CTRY = [['us','US'],['de','Germany'],['uk','UK'],
+                ['jp','Japan'],['in','India'],['cn','China']];
+  const wy = t => CTRY.map(([k,label],i) =>
+    ({key:`y${t}_${k}`, label, color:cssv(`--series-${i+1}`)}))
+    .filter(s => HIST.some(r => r[s.key] != null));
+  const w10 = wy(10), w5 = wy(5);
   const deriv= [{key:'fii_idx_fut_net', label:'FII net idx futures', color:cssv('--series-1')},
                 {key:'dii_idx_fut_net', label:'DII net idx futures', color:cssv('--series-2')}];
   const flows= [{key:'fii_net', label:'FII net', color:cssv('--series-1')},
@@ -464,9 +475,15 @@ function render(){
     'cash flow on the FII/DII tile — NSE archives this one, so it goes back years.',
     S.fii_derivatives,
     VIEW==='chart' ? '<div class="chart" data-c="deriv"></div>' : histTable(deriv)));
-  b.push(card('Japan & UK 10Y', dig('world_yields','frequency') || 'Monthly, OECD via FRED.',
+  const wyNote = (S.world_yields && S.world_yields.note) || '';
+  b.push(card('Major economies — 10Y government bond yields',
+    'Always shows at least 2 years; these move too slowly for a 1M window. ' + wyNote,
     S.world_yields,
-    VIEW==='chart' ? '<div class="chart" data-c="world"></div>' : histTable(world)));
+    VIEW==='chart' ? '<div class="chart" data-c="w10"></div>' : histTable(w10)));
+  b.push(card('Major economies — 5Y government bond yields',
+    'US, Germany, UK and Japan only — no free 5Y series exists for India or China.',
+    S.world_yields,
+    VIEW==='chart' ? '<div class="chart" data-c="w5"></div>' : histTable(w5)));
   b.push(card('USD / INR', 'Traded spot. The RBI reference fixing is in the FX table.', S.fx_spot,
     VIEW==='chart' ? '<div class="chart" data-c="fx"></div>' : histTable(fx)));
   b.push(card('Institutional flows', 'Daily net cash-market activity, ₹ crore.',
@@ -510,17 +527,6 @@ function render(){
       `<tr><td>India ${esc(k)}</td><td>${nf(v)}%</td></tr>`).join('') +
     `</tbody></table></div>` +
     (dig('india_yields','caveat') ? `<div class="note">${esc(dig('india_yields','caveat'))}</div>` : '')));
-
-  // ---- gilt funds
-  const g = S.gilt_funds, gf = (g && g.funds) || [];
-  b.push(card('Gilt fund NAVs', 'Direct-plan growth options, from AMFI.', g,
-    `<div class="scroll"><table><thead><tr><th>Scheme</th><th>NAV</th><th>Date</th></tr></thead>
-     <tbody>` + gf.map(x =>
-      `<tr><td>${esc(x.name)}<br><span style="color:var(--text-muted);font-size:11px">${
-        esc(x.plan)} · ${esc(x.option)}</span></td>
-       <td>${nf(x.nav,4)}</td><td>${esc(x.date)}</td></tr>`).join('') +
-    `</tbody></table></div><div class="note">${g?esc(g.count_matched):0} gilt schemes matched;
-     showing ${gf.length}.</div>`, 'wide'));
 
   // ---- IPOs
   const ip = S.nse_ipo, cur = (ip && ip.current) || [];
@@ -616,8 +622,10 @@ function render(){
   document.getElementById('board').innerHTML = b.join('');
 
   if(VIEW === 'chart'){
-    const map = {pe, close, us: usc, fx, flows, world, deriv};
-    const opts = {pe:{dp:2}, close:{dp:0}, us:{dp:2}, fx:{dp:2}, world:{dp:2}, deriv:{dp:0},
+    const map = {pe, close, us: usc, fx, flows, deriv, w10, w5};
+    const opts = {pe:{dp:2}, close:{dp:0}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
+                  w10:{dp:2, minDays:730, height:230},
+                  w5:{dp:2, minDays:730, height:230},
                   flows:{dp:0, zeroLine:true, height:210}};
     document.querySelectorAll('.chart').forEach(el =>
       lineChart(el, map[el.dataset.c], opts[el.dataset.c] || {}));

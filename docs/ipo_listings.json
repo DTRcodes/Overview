@@ -929,6 +929,206 @@
    "close": 360.65,
    "gain_open_pct": 12.46,
    "gain_close_pct": 28.35
+  },
+  "SEDEMAC": {
+   "symbol": "SEDEMAC",
+   "company": "Sedemac Mechatronics Limited",
+   "issue_price": 1352.0,
+   "listing_date": "2026-03-11",
+   "open": 1535.0,
+   "close": 1451.1,
+   "gain_open_pct": 13.54,
+   "gain_close_pct": 7.33
+  },
+  "VITAL": {
+   "symbol": "VITAL",
+   "company": "Vital Chemtech Limited",
+   "issue_price": 46.0,
+   "listing_date": "2026-03-11",
+   "open": 41.3,
+   "close": 41.5,
+   "gain_open_pct": -10.22,
+   "gain_close_pct": -9.78
+  },
+  "ACETEC": {
+   "symbol": "ACETEC",
+   "company": "Acetech E-Commerce Limited",
+   "issue_price": 112.0,
+   "listing_date": "2026-03-09",
+   "open": 112.0,
+   "close": 117.6,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 5.0
+  },
+  "STRIDERS": {
+   "symbol": "STRIDERS",
+   "company": "Striders Impex Limited",
+   "issue_price": 72.0,
+   "listing_date": "2026-03-06",
+   "open": 70.0,
+   "close": 66.5,
+   "gain_open_pct": -2.78,
+   "gain_close_pct": -7.64
+  },
+  "OMNI": {
+   "symbol": "OMNI",
+   "company": "Omnitech Engineering Limited",
+   "issue_price": 227.0,
+   "listing_date": "2026-03-05",
+   "open": 202.0,
+   "close": 204.93,
+   "gain_open_pct": -11.01,
+   "gain_close_pct": -9.72
+  },
+  "YAAP": {
+   "symbol": "YAAP",
+   "company": "Yaap Digital Limited",
+   "issue_price": 145.0,
+   "listing_date": "2026-03-05",
+   "open": 127.0,
+   "close": 133.35,
+   "gain_open_pct": -12.41,
+   "gain_close_pct": -8.03
+  },
+  "PNGSREVA": {
+   "symbol": "PNGSREVA",
+   "company": "PNGS Reva Diamond Jewellery Limited",
+   "issue_price": 386.0,
+   "listing_date": "2026-03-04",
+   "open": 375.0,
+   "close": 411.7,
+   "gain_open_pct": -2.85,
+   "gain_close_pct": 6.66
+  },
+  "SRTL": {
+   "symbol": "SRTL",
+   "company": "Shree Ram Twistex Limited",
+   "issue_price": 104.0,
+   "listing_date": "2026-03-02",
+   "open": 68.0,
+   "close": 71.4,
+   "gain_open_pct": -34.62,
+   "gain_close_pct": -31.35
+  },
+  "CLEANMAX": {
+   "symbol": "CLEANMAX",
+   "company": "Clean Max Enviro Energy Solutions Limited",
+   "issue_price": 1053.0,
+   "listing_date": "2026-03-02",
+   "open": 960.0,
+   "close": 867.5,
+   "gain_open_pct": -8.83,
+   "gain_close_pct": -17.62
+  },
+  "MOBILISE": {
+   "symbol": "MOBILISE",
+   "company": "Mobilise App Lab Limited",
+   "issue_price": 80.0,
+   "listing_date": "2026-03-02",
+   "open": 64.1,
+   "close": 67.3,
+   "gain_open_pct": -19.88,
+   "gain_close_pct": -15.88
+  },
+  "GAUDIUMIVF": {
+   "symbol": "GAUDIUMIVF",
+   "company": "Gaudium IVF and Women Health Limited",
+   "issue_price": 79.0,
+   "listing_date": "2026-02-27",
+   "open": 83.0,
+   "close": 80.26,
+   "gain_open_pct": 5.06,
+   "gain_close_pct": 1.59
+  },
+  "MANILAM": {
+   "symbol": "MANILAM",
+   "company": "Manilam Industries India Limited",
+   "issue_price": 69.0,
+   "listing_date": "2026-02-27",
+   "open": 55.2,
+   "close": 52.45,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -23.99
+  },
+  "MARUSHIKA": {
+   "symbol": "MARUSHIKA",
+   "company": "Marushika Technology Limited",
+   "issue_price": 117.0,
+   "listing_date": "2026-02-19",
+   "open": 120.0,
+   "close": 114.0,
+   "gain_open_pct": 2.56,
+   "gain_close_pct": -2.56
+  },
+  "SILGOPP": {
+   "symbol": "SILGOPP",
+   "company": "Silgo Retail Limited",
+   "issue_price": 30.0,
+   "listing_date": "2026-02-19",
+   "open": 37.04,
+   "close": 37.04,
+   "gain_open_pct": 23.47,
+   "gain_close_pct": 23.47
+  },
+  "GICL": {
+   "symbol": "GICL",
+   "company": "Globe International Carriers Limited",
+   "issue_price": 45.0,
+   "listing_date": "2026-02-18",
+   "open": 50.3,
+   "close": 49.2,
+   "gain_open_pct": 11.78,
+   "gain_close_pct": 9.33
+  },
+  "FRACTAL": {
+   "symbol": "FRACTAL",
+   "company": "Fractal Analytics Limited",
+   "issue_price": 900.0,
+   "listing_date": "2026-02-16",
+   "open": 876.0,
+   "close": 847.15,
+   "gain_open_pct": -2.67,
+   "gain_close_pct": -5.87
+  },
+  "AYE": {
+   "symbol": "AYE",
+   "company": "Aye Finance Limited",
+   "issue_price": 129.0,
+   "listing_date": "2026-02-16",
+   "open": 129.0,
+   "close": 128.91,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -0.07
+  },
+  "BIOPOL": {
+   "symbol": "BIOPOL",
+   "company": "Biopol Chemicals Limited",
+   "issue_price": 108.0,
+   "listing_date": "2026-02-13",
+   "open": 111.0,
+   "close": 105.5,
+   "gain_open_pct": 2.78,
+   "gain_close_pct": -2.31
+  },
+  "BRANDMAN": {
+   "symbol": "BRANDMAN",
+   "company": "Brandman Retail Limited",
+   "issue_price": 176.0,
+   "listing_date": "2026-02-11",
+   "open": 183.0,
+   "close": 192.15,
+   "gain_open_pct": 3.98,
+   "gain_close_pct": 9.18
+  },
+  "GJL": {
+   "symbol": "GJL",
+   "company": "Grover Jewells Limited",
+   "issue_price": 88.0,
+   "listing_date": "2026-02-11",
+   "open": 96.0,
+   "close": 100.8,
+   "gain_open_pct": 9.09,
+   "gain_close_pct": 14.55
   }
  },
  "unresolvable": [
@@ -945,13 +1145,17 @@
   "783PHFL29",
   "783TCHFL31",
   "788TACA31",
+  "805TACA29",
   "815CHLI36",
   "888CIFCL33",
   "904NACL28",
   "915ICFL28A",
   "920ISF28",
   "925IIFL28",
+  "975SCL35",
   "LEAP",
-  "PFC2026"
+  "NMC01",
+  "PFC2026",
+  "SCL004"
  ]
 }

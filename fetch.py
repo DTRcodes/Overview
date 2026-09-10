@@ -589,24 +589,48 @@ def fetch_ipo():
     # an "IPO listing today" and land in the TradingView watchlist.
     EQUITY = {"EQ", "SME", "BE"}
 
-    listing_today, awaiting = [], []
+    # NSE's listingDate is NOT reliable: MOMSBELIEF listed 08-Sep-2026 (it is in
+    # that day's bhavcopy at 239.00/228.34) and still reads '-' days later. So
+    # listingDate is treated as a hint and the bhavcopy as the fact - if a
+    # symbol trades, it has listed, whatever the field says.
+    candidates = []
     for r in past:
         sym = (r.get("symbol") or "").strip()
         if not sym or (r.get("securityType") or "").strip().upper() not in EQUITY:
             continue
         ld, closed = _d(r.get("listingDate")), _d(r.get("ipoEndDate"))
+        if ld is None and not (closed and 0 <= (today - closed).days <= 45):
+            continue                       # old, or withdrawn and never listed
+        candidates.append((r, sym, ld, closed))
+
+    # One request settles "has it started trading?" for every candidate at once:
+    # a stock that listed at any point is still in the newest bhavcopy.
+    trading = set()
+    for back in range(0, 8):
+        try:
+            trading = set(_bhavcopy(today - dt.timedelta(days=back)))
+            break
+        except Exception:
+            continue
+
+    listing_today, awaiting = [], []
+    for r, sym, ld, closed in candidates:
         row = {"company": r.get("company"), "symbol": sym, "tv": tv(sym),
                "series": (r.get("securityType") or "").strip(),
                "price_range": r.get("priceRange"),
                "issue_price": r.get("issuePrice"),
                "listing_date": r.get("listingDate"),
                "ipo_closed": r.get("ipoEndDate")}
+
+        if ld is None and sym in trading:
+            # Trades but NSE never filled the field in: find the real first day.
+            ld = first_traded_day(sym, closed)
+            row["listing_date"] = ld.strftime("%d-%b-%Y").upper() if ld else "listed"
+            row["listing_date_source"] = "bhavcopy (NSE field blank)"
+
         if ld == today:
             listing_today.append(row)
-        elif ld is None and closed and 0 <= (today - closed).days <= 45:
-            # Closed recently and still unlisted: listing is imminent. The 45-day
-            # window drops withdrawn issues that never list and would otherwise
-            # sit in this bucket forever.
+        elif ld is None and sym not in trading and closed:
             row["days_since_close"] = (today - closed).days
             awaiting.append(row)
 
@@ -659,6 +683,32 @@ def _price_from(rec):
     return num(band[-1]) if band else None
 
 
+_BHAV_MEMO = {}
+
+
+def first_traded_day(symbol, closed, window=25):
+    """First day `symbol` appears in a bhavcopy after its issue closed.
+
+    NSE leaves listingDate blank on a fair number of issues even after they
+    start trading, so this reconstructs it. Scans forward from the close;
+    bhavcopies are memoised per run because candidates share dates.
+    """
+    if not closed:
+        return None
+    for step in range(1, window + 1):
+        day = closed + dt.timedelta(days=step)
+        if day > dt.datetime.now(IST).date():
+            return None
+        if day.weekday() >= 5:
+            continue
+        try:
+            if symbol in _bhavcopy(day):
+                return day
+        except Exception:
+            continue          # holiday / missing file
+    return None
+
+
 def _bhavcopy(day):
     """All symbols' OHLC for one trading day, keyed by symbol.
 
@@ -667,6 +717,8 @@ def _bhavcopy(day):
     (Note the old `cmDDMMMYYYYbhav.csv.zip` path most tutorials use now 404s;
     `sec_bhavdata_full` is the live one.)
     """
+    if day in _BHAV_MEMO:
+        return _BHAV_MEMO[day]
     url = ("https://nsearchives.nseindia.com/products/content/"
            "sec_bhavdata_full_" + day.strftime("%d%m%Y") + ".csv")
     lines = get(url).text.splitlines()
@@ -683,6 +735,7 @@ def _bhavcopy(day):
         # EQ/SM are the tradable listing series; BE/GS etc. would shadow them
         if sym and (sym not in out or series in ("EQ", "SM")):
             out[sym] = row
+    _BHAV_MEMO[day] = out
     return out
 
 
@@ -712,14 +765,28 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
     for rec in past:
         sym = (rec.get("symbol") or "").strip()
         ld = (rec.get("listingDate") or "").strip()
-        if not sym or sym in done or sym in bad or ld in ("", "-"):
+        if not sym or sym in done or sym in bad:
             continue
         price = _price_from(rec)
         if not price:
             continue
-        try:
-            day = dt.datetime.strptime(ld.title(), "%d-%b-%Y").date()
-        except ValueError:
+
+        day = None
+        if ld not in ("", "-"):
+            try:
+                day = dt.datetime.strptime(ld.title(), "%d-%b-%Y").date()
+            except ValueError:
+                day = None
+        else:
+            # NSE leaves listingDate blank on plenty of issues that HAVE listed
+            # - MOMSBELIEF traded from 08-Sep-2026 while the field still read
+            # '-'. Skipping those silently lost them from the gains table
+            # entirely, so recover the date from the bhavcopy instead. Bounded
+            # to recent closes; older blanks are genuinely withdrawn issues.
+            closed = _d(rec.get("ipoEndDate"))
+            if closed and 0 <= (dt.datetime.now(IST).date() - closed).days <= 60:
+                day = first_traded_day(sym, closed)
+        if day is None:
             continue
         todo.append((day, sym, rec.get("company"), price))
 

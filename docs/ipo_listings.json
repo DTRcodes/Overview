@@ -1129,6 +1129,106 @@
    "close": 100.8,
    "gain_open_pct": 9.09,
    "gain_close_pct": 14.55
+  },
+  "MOMSBELIEF": {
+   "symbol": "MOMSBELIEF",
+   "company": "Rays of Belief Limited- For Profit Social Enterprise (FPSE)",
+   "issue_price": 239.0,
+   "listing_date": "2026-09-08",
+   "open": 239.0,
+   "close": 228.34,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -4.46
+  },
+  "ADANIENPP1": {
+   "symbol": "ADANIENPP1",
+   "company": "Adani Enterprises Limited",
+   "issue_price": 450.0,
+   "listing_date": "2026-02-10",
+   "open": 1750.0,
+   "close": 1749.7,
+   "gain_open_pct": 288.89,
+   "gain_close_pct": 288.82
+  },
+  "CKKRETAIL": {
+   "symbol": "CKKRETAIL",
+   "company": "C K K Retail Mart Limited",
+   "issue_price": 163.0,
+   "listing_date": "2026-02-06",
+   "open": 163.0,
+   "close": 171.15,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 5.0
+  },
+  "KRMAYURVED": {
+   "symbol": "KRMAYURVED",
+   "company": "KRM Ayurveda Limited",
+   "issue_price": 135.0,
+   "listing_date": "2026-01-29",
+   "open": 172.1,
+   "close": 180.7,
+   "gain_open_pct": 27.48,
+   "gain_close_pct": 33.85
+  },
+  "SHADOWFAX": {
+   "symbol": "SHADOWFAX",
+   "company": "Shadowfax Technologies Limited",
+   "issue_price": 124.0,
+   "listing_date": "2026-01-28",
+   "open": 112.6,
+   "close": 109.98,
+   "gain_open_pct": -9.19,
+   "gain_close_pct": -11.31
+  },
+  "ARMOUR": {
+   "symbol": "ARMOUR",
+   "company": "Armour Security (India). Ltd",
+   "issue_price": 57.0,
+   "listing_date": "2026-01-22",
+   "open": 45.6,
+   "close": 43.35,
+   "gain_open_pct": -20.0,
+   "gain_close_pct": -23.95
+  },
+  "AMAGI": {
+   "symbol": "AMAGI",
+   "company": "Amagi Media Labs Limited",
+   "issue_price": 361.0,
+   "listing_date": "2026-01-21",
+   "open": 318.0,
+   "close": 348.25,
+   "gain_open_pct": -11.91,
+   "gain_close_pct": -3.53
+  },
+  "AVANA": {
+   "symbol": "AVANA",
+   "company": "Avana Electrosystems Limited",
+   "issue_price": 59.0,
+   "listing_date": "2026-01-20",
+   "open": 77.5,
+   "close": 80.3,
+   "gain_open_pct": 31.36,
+   "gain_close_pct": 36.1
+  },
+  "BHARATCOAL": {
+   "symbol": "BHARATCOAL",
+   "company": "Bharat Coking Coal Limited",
+   "issue_price": 23.0,
+   "listing_date": "2026-01-19",
+   "open": 45.0,
+   "close": 40.58,
+   "gain_open_pct": 95.65,
+   "gain_close_pct": 76.43
+  },
+  "VICTORYEV": {
+   "symbol": "VICTORYEV",
+   "company": "Victory Electric Vehicles International Limited",
+   "issue_price": 41.0,
+   "listing_date": "2026-01-14",
+   "open": 34.45,
+   "close": 32.75,
+   "gain_open_pct": -15.98,
+   "gain_close_pct": -20.12
   }
  },
  "unresolvable": [
@@ -1153,9 +1253,12 @@
   "920ISF28",
   "925IIFL28",
   "975SCL35",
+  "AVTL29",
   "LEAP",
   "NMC01",
   "PFC2026",
-  "SCL004"
+  "SCL003",
+  "SCL004",
+  "SCL19325A"
  ]
 }

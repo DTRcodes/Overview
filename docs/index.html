@@ -262,7 +262,11 @@ function lineChart(el, series, opts = {}){
   }
   const W = Math.max(el.clientWidth || 320, 260);
   const H = opts.height || 190;
-  const padL = 6, padR = 46, padT = 12, padB = 22;
+  // A second axis is a deliberate exception, not the norm: it is only for a
+  // faded context line (the index behind the P/E), never for two series the
+  // reader is meant to compare directly.
+  const ctx = opts.context || null;
+  const padL = ctx ? 44 : 6, padR = 46, padT = 12, padB = 22;
   const iw = W - padL - padR, ih = H - padT - padB;
 
   let lo = Infinity, hi = -Infinity;
@@ -288,8 +292,33 @@ function lineChart(el, series, opts = {}){
     const v = lo + (hi - lo) * (i / ticks), y = Y(v);
     gridlines.push(`<line class="gridline" x1="${padL}" y1="${y.toFixed(1)}"
       x2="${padL+iw}" y2="${y.toFixed(1)}"/>`);
-    labels.push(`<text class="axis" x="${padL+iw+7}" y="${(y+3.5).toFixed(1)}">${
+    labels.push(`<text class="axis" x="${ctx ? padL-7 : padL+iw+7}"
+      y="${(y+3.5).toFixed(1)}" text-anchor="${ctx ? 'end' : 'start'}">${
       nf(v, opts.dp ?? 1)}</text>`);
+  }
+
+  // ---- context series: its own scale, drawn behind, dashed and faded
+  let ctxPath = '', ctxLo = 0, ctxHi = 1, ctxY = v => v;
+  if(ctx){
+    const cv = rows.map(r => r[ctx.key]).filter(v => v != null);
+    if(cv.length > 1){
+      ctxLo = Math.min(...cv); ctxHi = Math.max(...cv);
+      const cs = (ctxHi - ctxLo) || Math.abs(ctxHi) || 1;
+      ctxLo -= cs * 0.12; ctxHi += cs * 0.12;
+      ctxY = v => padT + ih - ((v - ctxLo) / (ctxHi - ctxLo)) * ih;
+      const cpts = rows.map(r => r[ctx.key] == null ? null
+                    : {x:X(r), y:ctxY(r[ctx.key])}).filter(Boolean);
+      ctxPath =
+        `<path d="${smoothPath(cpts)}" fill="none" stroke="${ctx.color}"
+           stroke-width="1.6" stroke-dasharray="5 4" opacity=".42"
+           stroke-linecap="round" stroke-linejoin="round"/>`;
+      for(let i = 0; i <= ticks; i++){
+        const v = ctxLo + (ctxHi - ctxLo) * (i / ticks);
+        labels.push(`<text class="axis" x="${padL+iw+7}"
+          y="${(ctxY(v)+3.5).toFixed(1)}" opacity=".6" fill="${ctx.color}">${
+          nf(v, ctx.dp ?? 0)}</text>`);
+      }
+    }
   }
   if(opts.zeroLine && lo < 0 && hi > 0){
     gridlines.push(`<line x1="${padL}" y1="${Y(0).toFixed(1)}" x2="${padL+iw}"
@@ -338,7 +367,7 @@ function lineChart(el, series, opts = {}){
   el.innerHTML =
     `<svg viewBox="0 0 ${W} ${H}" role="img"
        aria-label="${esc(series.map(s=>s.label).join(' and '))} over time">
-       ${gridlines.join('')}${xlabels}${labels.join('')}${paths}
+       ${gridlines.join('')}${ctxPath}${xlabels}${labels.join('')}${paths}
        <g id="cross" style="opacity:0">
          <line y1="${padT}" y2="${padT+ih}" stroke="${cssv('--text-muted')}"
            stroke-width="1" stroke-dasharray="3 3"/>
@@ -346,9 +375,12 @@ function lineChart(el, series, opts = {}){
        <rect x="${padL}" y="${padT}" width="${iw}" height="${ih}" fill="transparent"/>
      </svg>
      <div class="tip"></div>` +
-    (series.length > 1
+    ((series.length > 1 || ctx)
       ? `<div class="legend">${series.map(s =>
-          `<span><i style="background:${s.color}"></i>${esc(s.label)}</span>`).join('')}</div>`
+          `<span><i style="background:${s.color}"></i>${esc(s.label)}</span>`).join('')
+        + (ctx ? `<span><i style="background:${ctx.color};opacity:.45"></i>${
+             esc(ctx.label)} <span style="color:var(--text-muted)">(right axis)</span></span>` : '')
+        }</div>`
       : '');
 
   // ---- hover layer: crosshair + shared tooltip
@@ -464,7 +496,7 @@ function render(){
   const flows= [{key:'fii_net', label:'FII net', color:cssv('--series-1')},
                 {key:'dii_net', label:'DII net', color:cssv('--series-2')}];
 
-  b.push(card('Nifty 50 P/E', 'Earnings multiple, from the NSE daily archive.',
+  b.push(card('Nifty 50 P/E', 'Earnings multiple, from the NSE daily archive. The index sits behind it, dashed, on the right axis — context for the multiple, not a second subject.',
     S.nse_valuation, VIEW==='chart' ? '<div class="chart" data-c="pe"></div>' : histTable(pe)));
   b.push(card('Nifty 50', 'Index level.', S.nse_valuation,
     VIEW==='chart' ? '<div class="chart" data-c="close"></div>' : histTable(close)));
@@ -548,11 +580,22 @@ function render(){
         <td><span class="pill today">Lists today</span></td>
         <td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
         <td>${esc(x.listing_date)}</td></tr>`).join('') +
-    soon.map(x => `<tr class="awaiting"><td>${esc(x.company)}</td>
+    soon.map(x => {
+      // An expected T+3 date is an estimate, and the row says so. Only a real
+      // bhavcopy appearance turns a row green.
+      const st = x.lists_today_expected ? ['soon','Expected today']
+               : x.lists_tomorrow_expected ? ['soon','Lists tomorrow']
+               : ['soon','Awaiting listing'];
+      const when = x.expected_listing_dmy
+        ? `expected <b>${esc(x.expected_listing_dmy)}</b>
+           <span style="color:var(--text-muted)">· T+3 est.</span>`
+        : `closed ${esc(x.ipo_closed)} (${x.days_since_close}d)`;
+      return `<tr class="awaiting"><td>${esc(x.company)}</td>
         <td><b>${esc(x.symbol)}</b></td>
-        <td><span class="pill soon">Awaiting listing</span></td>
+        <td><span class="pill ${st[0]}">${st[1]}</span></td>
         <td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
-        <td>closed ${esc(x.ipo_closed)} (${x.days_since_close}d)</td></tr>`).join('') +
+        <td>${when}</td></tr>`;
+    }).join('') +
     cur2.map(x => `<tr><td>${esc(x.company)}</td><td><b>${esc(x.symbol)}</b></td>
         <td><span class="pill">${x.live ? 'Open now' : esc(x.status || 'Upcoming')}</span></td>
         <td>${esc(x.series)}</td><td>${esc(x.price)}</td>
@@ -565,8 +608,11 @@ function render(){
     (today.length ? `<div class="note" style="margin-top:6px">Listing today only:</div>` +
         tvRow('tv-today', today.map(x => x.tv)) : '') +
     `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.
-      NSE publishes no forward listing date, so "awaiting listing" means the
-      book has closed and the stock has not started trading yet.</div>`, 'wide'));
+      Neither NSE nor Chittorgarh publishes a forward listing date, so the
+      expected date is computed from SEBI's T+3 rule &mdash; 83% of 151 past
+      listings landed exactly on T+3, ~93% within T+2 to T+6. It is an estimate
+      until the stock appears in a bhavcopy, which is what turns a row
+      green.</div>`, 'wide'));
 
   // ---- IPO listing-day gains
   const ig = S.ipo_gains, gl = (ig && ig.listings) || [], gs = ig && ig.stats_last_50;
@@ -623,7 +669,8 @@ function render(){
 
   if(VIEW === 'chart'){
     const map = {pe, close, us: usc, fx, flows, deriv, w10, w5};
-    const opts = {pe:{dp:2}, close:{dp:0}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
+    const opts = {pe:{dp:2, height:225, context:{key:'nifty_close',
+                    label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, close:{dp:0}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
                   w10:{dp:2, minDays:730, height:230},
                   w5:{dp:2, minDays:730, height:230},
                   flows:{dp:0, zeroLine:true, height:210}};

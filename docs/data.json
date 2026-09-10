@@ -1,12 +1,7 @@
 {
-  "generated_at": "2026-09-10T13:25:16+05:30",
-  "generated_at_utc": "2026-09-10T07:55:16+00:00",
-  "failures": [
-    {
-      "source": "india_yields",
-      "error": "RuntimeError: investing.com blocked (Cloudflare) and no FRED_API_KEY set for the monthly fallback"
-    }
-  ],
+  "generated_at": "2026-09-10T13:30:43+05:30",
+  "generated_at_utc": "2026-09-10T08:00:43+00:00",
+  "failures": [],
   "sections": {
     "rbi": {
       "rates": {
@@ -145,7 +140,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-10T13:24:41+05:30",
+      "fetched_at": "2026-09-10T13:30:43+05:30",
       "stale": false
     },
     "india_yields": {
@@ -273,17 +268,6 @@
       "listing_today": [],
       "awaiting": [
         {
-          "company": "Pranav Constructions Limited",
-          "symbol": "PRANAV",
-          "tv": "NSE:PRANAV",
-          "series": "EQ",
-          "price_range": "Rs.118 to Rs.124",
-          "issue_price": "-",
-          "listing_date": "-",
-          "ipo_closed": "09-SEP-2026",
-          "days_since_close": 1
-        },
-        {
           "company": "Qualiance International Limited",
           "symbol": "QUALIANCE",
           "tv": "NSE:QUALIANCE",
@@ -292,7 +276,28 @@
           "issue_price": "-",
           "listing_date": "-",
           "ipo_closed": "08-SEP-2026",
-          "days_since_close": 2
+          "days_since_close": 2,
+          "expected_listing": "2026-09-11",
+          "expected_listing_dmy": "11-Sep-2026",
+          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
+          "lists_today_expected": false,
+          "lists_tomorrow_expected": true
+        },
+        {
+          "company": "Pranav Constructions Limited",
+          "symbol": "PRANAV",
+          "tv": "NSE:PRANAV",
+          "series": "EQ",
+          "price_range": "Rs.118 to Rs.124",
+          "issue_price": "-",
+          "listing_date": "-",
+          "ipo_closed": "09-SEP-2026",
+          "days_since_close": 1,
+          "expected_listing": "2026-09-15",
+          "expected_listing_dmy": "15-Sep-2026",
+          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
+          "lists_today_expected": false,
+          "lists_tomorrow_expected": false
         }
       ],
       "open_now": [
@@ -887,8 +892,8 @@
       ],
       "past_total": 1431,
       "tv_watchlist": [
-        "NSE:PRANAV",
         "NSE:QUALIANCE",
+        "NSE:PRANAV",
         "NSE:PRASOLCHEM",
         "NSE:GLASSWALL",
         "NSE:KANOHAR",
@@ -905,7 +910,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-10",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-10T13:25:02+05:30",
+      "fetched_at": "2026-09-10T13:29:34+05:30",
       "stale": false
     },
     "ipo_gains": {

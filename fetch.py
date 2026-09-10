@@ -637,6 +637,53 @@ def fetch_fx_spot():
 
 
 
+_HOLIDAYS = None
+
+
+def nse_holidays():
+    """NSE trading holidays, for business-day arithmetic. Empty set on failure -
+    that only shifts an estimate by a day, never breaks the run."""
+    global _HOLIDAYS
+    if _HOLIDAYS is not None:
+        return _HOLIDAYS
+    out = set()
+    try:
+        j = get("https://www.nseindia.com/api/holiday-master?type=trading").json()
+        for seg in j.values():
+            for r in seg:
+                d = _d(r.get("tradingDate"))
+                if d:
+                    out.add(d)
+    except Exception:
+        pass
+    _HOLIDAYS = out
+    return out
+
+
+def add_business_days(start, n):
+    """Advance `n` NSE trading days from `start`."""
+    hol, d, left = nse_holidays(), start, n
+    while left > 0:
+        d += dt.timedelta(days=1)
+        if d.weekday() < 5 and d not in hol:
+            left -= 1
+    return d
+
+
+def expected_listing(closed):
+    """SEBI's T+3 rule: listing within 3 working days of issue close.
+
+    Measured against 151 resolved listings in this repo: 82.8% land exactly on
+    T+3, and ~93% fall between T+2 and T+6. Neither NSE nor Chittorgarh
+    publishes a forward listing date - Chittorgarh's Listing Date column is
+    blank for every upcoming issue, same as NSE's - so computing it is the only
+    way to know before the fact. It is labelled an estimate everywhere it
+    surfaces, and is replaced by the real date as soon as the stock appears in
+    a bhavcopy.
+    """
+    return add_business_days(closed, 3) if closed else None
+
+
 def _d(s):
     """'08-SEP-2026' -> date, or None."""
     s = (s or "").strip()
@@ -724,9 +771,18 @@ def fetch_ipo():
             listing_today.append(row)
         elif ld is None and sym not in trading and closed:
             row["days_since_close"] = (today - closed).days
+            exp = expected_listing(closed)
+            row["expected_listing"] = exp.isoformat() if exp else None
+            row["expected_listing_dmy"] = (
+                exp.strftime("%d-%b-%Y") if exp else None)
+            row["expected_basis"] = "T+3 (SEBI rule; 83% exact over 151 past listings)"
+            row["lists_today_expected"] = (exp == today)
+            row["lists_tomorrow_expected"] = (
+                exp == add_business_days(today, 1) if exp else False)
             awaiting.append(row)
 
-    awaiting.sort(key=lambda r: r["days_since_close"])
+    awaiting.sort(key=lambda r: (r.get("expected_listing") or "9999",
+                                 r["days_since_close"]))
 
     open_now = []
     for r in current:

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-11T15:29:01+05:30",
-  "generated_at_utc": "2026-09-11T09:59:01+00:00",
+  "generated_at": "2026-09-11T19:07:07+05:30",
+  "generated_at_utc": "2026-09-11T13:37:07+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-11T15:28:01+05:30",
+      "fetched_at": "2026-09-11T19:06:24+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,151 +63,167 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-11T15:28:01+05:30",
+      "fetched_at": "2026-09-11T19:06:25+05:30",
       "stale": false,
       "series_days": 23
     },
     "fii_derivatives": {
-      "date": "2026-09-10",
+      "date": "2026-09-11",
       "participants": {
         "client": {
-          "index_fut_long": 286829.0,
-          "index_fut_short": 55858.0,
-          "index_fut_net": 230971.0,
-          "stock_fut_net": 3245811.0
+          "index_fut_long": 286353.0,
+          "index_fut_short": 54865.0,
+          "index_fut_net": 231488.0,
+          "stock_fut_net": 3265326.0
         },
         "dii": {
-          "index_fut_long": 43284.0,
-          "index_fut_short": 28392.0,
-          "index_fut_net": 14892.0,
-          "stock_fut_net": -4281465.0
+          "index_fut_long": 43743.0,
+          "index_fut_short": 29395.0,
+          "index_fut_net": 14348.0,
+          "stock_fut_net": -4291548.0
         },
         "fii": {
-          "index_fut_long": 39694.0,
-          "index_fut_short": 321538.0,
-          "index_fut_net": -281844.0,
-          "stock_fut_net": 541920.0
+          "index_fut_long": 41252.0,
+          "index_fut_short": 326134.0,
+          "index_fut_net": -284882.0,
+          "stock_fut_net": 519602.0
         },
         "pro": {
-          "index_fut_long": 66741.0,
-          "index_fut_short": 30760.0,
-          "index_fut_net": 35981.0,
-          "stock_fut_net": 493734.0
+          "index_fut_long": 66613.0,
+          "index_fut_short": 27567.0,
+          "index_fut_net": 39046.0,
+          "stock_fut_net": 506620.0
         }
       },
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-11T15:28:03+05:30",
+      "fetched_at": "2026-09-11T19:06:25+05:30",
       "stale": false
     },
     "nse_valuation": {
-      "as_of": "2026-09-10",
+      "as_of": "2026-09-11",
       "indices": {
         "Nifty 50": {
-          "close": 23477.8,
-          "change_pct": 0.2,
-          "pe": 19.85,
-          "pb": 2.84,
+          "close": 23398.1,
+          "change_pct": -0.34,
+          "pe": 19.78,
+          "pb": 2.83,
           "div_yield": 1.21
         },
         "Nifty Next 50": {
-          "close": 72530.9,
-          "change_pct": -0.44,
-          "pe": 19.17,
-          "pb": 3.23,
+          "close": 72083.7,
+          "change_pct": -0.62,
+          "pe": 19.06,
+          "pb": 3.21,
           "div_yield": 1.0
         },
         "Nifty 500": {
-          "close": 22952.35,
-          "change_pct": -0.03,
-          "pe": 22.24,
-          "pb": 3.19,
-          "div_yield": 0.97
+          "close": 22866.5,
+          "change_pct": -0.37,
+          "pe": 22.16,
+          "pb": 3.18,
+          "div_yield": 0.98
         },
         "Nifty Auto": {
-          "close": 27540.95,
-          "change_pct": -0.41,
-          "pe": 32.0,
-          "pb": 4.2,
-          "div_yield": 1.05
+          "close": 27304.5,
+          "change_pct": -0.86,
+          "pe": 31.72,
+          "pb": 4.17,
+          "div_yield": 1.06
         },
         "Nifty Bank": {
-          "close": 56471.95,
-          "change_pct": 0.31,
-          "pe": 13.36,
-          "pb": 1.69,
+          "close": 56606.55,
+          "change_pct": 0.24,
+          "pe": 13.39,
+          "pb": 1.7,
           "div_yield": 0.69
         },
         "Nifty IT": {
-          "close": 28890.9,
-          "change_pct": -0.08,
-          "pe": 18.43,
-          "pb": 5.08,
-          "div_yield": 2.78
+          "close": 28921.5,
+          "change_pct": 0.11,
+          "pe": 18.45,
+          "pb": 5.09,
+          "div_yield": 2.77
         },
         "Nifty Smallcap 250": {
-          "close": 18433.4,
-          "change_pct": 0.01,
-          "pe": 34.01,
-          "pb": 3.54,
-          "div_yield": 0.55
+          "close": 18339.9,
+          "change_pct": -0.51,
+          "pe": 33.84,
+          "pb": 3.53,
+          "div_yield": 0.56
         },
         "Nifty Midcap 150": {
-          "close": 22904.25,
-          "change_pct": -0.38,
-          "pe": 28.64,
-          "pb": 4.32,
-          "div_yield": 0.58
+          "close": 22847.85,
+          "change_pct": -0.25,
+          "pe": 28.57,
+          "pb": 4.31,
+          "div_yield": 0.59
         }
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-11T15:28:04+05:30",
+      "fetched_at": "2026-09-11T19:06:26+05:30",
       "stale": false
     },
     "india_yields": {
       "yields": {
         "1Y": 5.89,
-        "2Y": 6.2,
-        "3Y": 6.33,
-        "5Y": 6.59,
-        "7Y": 6.78,
-        "10Y": 7.0,
-        "30Y": 7.61
+        "2Y": 6.23,
+        "3Y": 6.38,
+        "5Y": 6.65,
+        "7Y": 6.87,
+        "10Y": 7.05,
+        "30Y": 7.63
       },
       "unit": "percent",
       "via": "FBIL par yield (semi-annual)",
-      "as_of": "2026-09-10",
-      "spread_10y_2y": 0.8,
+      "as_of": "2026-09-11",
+      "spread_10y_2y": 0.82,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-11T15:28:05+05:30",
+      "fetched_at": "2026-09-11T19:06:27+05:30",
       "stale": false
     },
     "us_rates": {
       "rates": {
-        "us_3m": {
-          "value": 3.845,
+        "fed_target_upper": {
+          "value": 3.75,
+          "date": "2026-09-11"
+        },
+        "fed_target_lower": {
+          "value": 3.5,
+          "date": "2026-09-11"
+        },
+        "fed_effective": {
+          "value": 3.63,
           "date": "2026-09-10"
+        },
+        "us_2y": {
+          "value": 4.43,
+          "date": "2026-09-09"
         },
         "us_5y": {
-          "value": 4.733,
-          "date": "2026-09-10"
+          "value": 4.61,
+          "date": "2026-09-09"
         },
         "us_10y": {
-          "value": 4.944,
-          "date": "2026-09-10"
+          "value": 4.83,
+          "date": "2026-09-09"
         },
         "us_30y": {
-          "value": 5.361,
+          "value": 5.28,
+          "date": "2026-09-09"
+        },
+        "us_10y_2y_spread": {
+          "value": 0.39,
           "date": "2026-09-10"
         }
       },
       "unit": "percent",
-      "via": "yfinance",
-      "source": "yahoo finance",
-      "fetched_at": "2026-09-11T15:28:07+05:30",
+      "via": "fred",
+      "source": "fred.stlouisfed.org",
+      "fetched_at": "2026-09-11T19:06:29+05:30",
       "stale": false
     },
     "world_yields": {
@@ -226,16 +242,16 @@
             "date": "2026-09-09"
           },
           "Germany": {
-            "value": 3.18,
-            "date": "2026-09-10"
+            "value": 3.26,
+            "date": "2026-09-11"
           },
           "China": {
             "value": 1.4226,
             "date": "2026-09-11"
           },
           "India": {
-            "value": 6.59,
-            "date": "2026-09-10"
+            "value": 6.65,
+            "date": "2026-09-11"
           }
         },
         "10": {
@@ -252,16 +268,16 @@
             "date": "2026-09-09"
           },
           "Germany": {
-            "value": 3.51,
-            "date": "2026-09-10"
+            "value": 3.56,
+            "date": "2026-09-11"
           },
           "China": {
             "value": 1.6899,
             "date": "2026-09-11"
           },
           "India": {
-            "value": 7.0,
-            "date": "2026-09-10"
+            "value": 7.05,
+            "date": "2026-09-11"
           }
         }
       },
@@ -287,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T15:28:25+05:30",
+      "fetched_at": "2026-09-11T19:06:38+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 673,
@@ -300,15 +316,15 @@
         "y10_de": 1500,
         "y5_cn": 268,
         "y10_cn": 268,
-        "y5_in": 263,
-        "y10_in": 263
+        "y5_in": 264,
+        "y10_in": 264
       }
     },
     "fx_spot": {
-      "usd_inr": 95.53,
+      "usd_inr": 95.54,
       "as_of": "2026-09-11",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-11T15:28:25+05:30",
+      "fetched_at": "2026-09-11T19:06:38+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -439,10 +455,10 @@
           "gmp_direction": "premium"
         },
         {
-          "company": "Karamtara Engineering Limited",
-          "symbol": "KARAMTARA",
-          "tv": "NSE:KARAMTARA",
-          "price": "Rs.241 to Rs.254",
+          "company": "Steamhouse India Limited",
+          "symbol": "STEAMHOUSE",
+          "tv": "NSE:STEAMHOUSE",
+          "price": "Rs.77 to Rs.81",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -451,9 +467,9 @@
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 69.0,
-          "gmp_est_listing": 323.0,
-          "gmp_est_gain_pct": 27.17,
+          "gmp": 22.0,
+          "gmp_est_listing": 103.0,
+          "gmp_est_gain_pct": 27.16,
           "gmp_direction": "premium"
         },
         {
@@ -475,10 +491,10 @@
           "gmp_direction": "premium"
         },
         {
-          "company": "Steamhouse India Limited",
-          "symbol": "STEAMHOUSE",
-          "tv": "NSE:STEAMHOUSE",
-          "price": "Rs.77 to Rs.81",
+          "company": "LCC Projects Limited",
+          "symbol": "LCCPROJECT",
+          "tv": "NSE:LCCPROJECT",
+          "price": "Rs.139 to Rs.146",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -487,9 +503,9 @@
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 22.0,
-          "gmp_est_listing": 103.0,
-          "gmp_est_gain_pct": 27.16,
+          "gmp": 50.0,
+          "gmp_est_listing": 196.0,
+          "gmp_est_gain_pct": 34.25,
           "gmp_direction": "premium"
         },
         {
@@ -511,10 +527,10 @@
           "gmp_direction": "premium"
         },
         {
-          "company": "LCC Projects Limited",
-          "symbol": "LCCPROJECT",
-          "tv": "NSE:LCCPROJECT",
-          "price": "Rs.139 to Rs.146",
+          "company": "Karamtara Engineering Limited",
+          "symbol": "KARAMTARA",
+          "tv": "NSE:KARAMTARA",
+          "price": "Rs.241 to Rs.254",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -523,9 +539,9 @@
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 50.0,
-          "gmp_est_listing": 196.0,
-          "gmp_est_gain_pct": 34.25,
+          "gmp": 69.0,
+          "gmp_est_listing": 323.0,
+          "gmp_est_gain_pct": 27.17,
           "gmp_direction": "premium"
         },
         {
@@ -581,6 +597,60 @@
           "gmp_est_listing": 92.0,
           "gmp_est_gain_pct": 9.52,
           "gmp_direction": "premium"
+        },
+        {
+          "company": "Jindal Supreme (India) Limited",
+          "symbol": "JSIPL",
+          "tv": "NSE:JSIPL",
+          "price": "Rs.88 to Rs.93",
+          "opens": "16-Sep-2026",
+          "closes": "18-Sep-2026",
+          "series": "EQ",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-09-23",
+          "expected_listing_dmy": "23-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "gmp": 13.0,
+          "gmp_est_listing": 106.0,
+          "gmp_est_gain_pct": 13.98,
+          "gmp_direction": "premium"
+        },
+        {
+          "company": "SS Retail Limited",
+          "symbol": "SSRETAIL",
+          "tv": "NSE:SSRETAIL",
+          "price": "Rs.403 to Rs.424",
+          "opens": "16-Sep-2026",
+          "closes": "18-Sep-2026",
+          "series": "EQ",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-09-23",
+          "expected_listing_dmy": "23-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "gmp": 30.0,
+          "gmp_est_listing": 454.0,
+          "gmp_est_gain_pct": 7.08,
+          "gmp_direction": "premium"
+        },
+        {
+          "company": "Sonaselection India Limited",
+          "symbol": "SONA",
+          "tv": "NSE:SONA",
+          "price": "Rs.94 to Rs.99",
+          "opens": "17-Sep-2026",
+          "closes": "21-Sep-2026",
+          "series": "EQ",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-09-24",
+          "expected_listing_dmy": "24-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "gmp": null,
+          "gmp_est_listing": null,
+          "gmp_est_gain_pct": null,
+          "gmp_direction": "flat"
         }
       ],
       "current": [
@@ -603,10 +673,10 @@
           "gmp_direction": "premium"
         },
         {
-          "company": "Karamtara Engineering Limited",
-          "symbol": "KARAMTARA",
-          "tv": "NSE:KARAMTARA",
-          "price": "Rs.241 to Rs.254",
+          "company": "Steamhouse India Limited",
+          "symbol": "STEAMHOUSE",
+          "tv": "NSE:STEAMHOUSE",
+          "price": "Rs.77 to Rs.81",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -615,9 +685,9 @@
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 69.0,
-          "gmp_est_listing": 323.0,
-          "gmp_est_gain_pct": 27.17,
+          "gmp": 22.0,
+          "gmp_est_listing": 103.0,
+          "gmp_est_gain_pct": 27.16,
           "gmp_direction": "premium"
         },
         {
@@ -639,10 +709,10 @@
           "gmp_direction": "premium"
         },
         {
-          "company": "Steamhouse India Limited",
-          "symbol": "STEAMHOUSE",
-          "tv": "NSE:STEAMHOUSE",
-          "price": "Rs.77 to Rs.81",
+          "company": "LCC Projects Limited",
+          "symbol": "LCCPROJECT",
+          "tv": "NSE:LCCPROJECT",
+          "price": "Rs.139 to Rs.146",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -651,9 +721,9 @@
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 22.0,
-          "gmp_est_listing": 103.0,
-          "gmp_est_gain_pct": 27.16,
+          "gmp": 50.0,
+          "gmp_est_listing": 196.0,
+          "gmp_est_gain_pct": 34.25,
           "gmp_direction": "premium"
         },
         {
@@ -675,10 +745,10 @@
           "gmp_direction": "premium"
         },
         {
-          "company": "LCC Projects Limited",
-          "symbol": "LCCPROJECT",
-          "tv": "NSE:LCCPROJECT",
-          "price": "Rs.139 to Rs.146",
+          "company": "Karamtara Engineering Limited",
+          "symbol": "KARAMTARA",
+          "tv": "NSE:KARAMTARA",
+          "price": "Rs.241 to Rs.254",
           "opens": "09-Sep-2026",
           "closes": "11-Sep-2026",
           "series": "EQ",
@@ -687,9 +757,9 @@
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 50.0,
-          "gmp_est_listing": 196.0,
-          "gmp_est_gain_pct": 34.25,
+          "gmp": 69.0,
+          "gmp_est_listing": 323.0,
+          "gmp_est_gain_pct": 27.17,
           "gmp_direction": "premium"
         },
         {
@@ -745,6 +815,60 @@
           "gmp_est_listing": 92.0,
           "gmp_est_gain_pct": 9.52,
           "gmp_direction": "premium"
+        },
+        {
+          "company": "Jindal Supreme (India) Limited",
+          "symbol": "JSIPL",
+          "tv": "NSE:JSIPL",
+          "price": "Rs.88 to Rs.93",
+          "opens": "16-Sep-2026",
+          "closes": "18-Sep-2026",
+          "series": "EQ",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-09-23",
+          "expected_listing_dmy": "23-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "gmp": 13.0,
+          "gmp_est_listing": 106.0,
+          "gmp_est_gain_pct": 13.98,
+          "gmp_direction": "premium"
+        },
+        {
+          "company": "SS Retail Limited",
+          "symbol": "SSRETAIL",
+          "tv": "NSE:SSRETAIL",
+          "price": "Rs.403 to Rs.424",
+          "opens": "16-Sep-2026",
+          "closes": "18-Sep-2026",
+          "series": "EQ",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-09-23",
+          "expected_listing_dmy": "23-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "gmp": 30.0,
+          "gmp_est_listing": 454.0,
+          "gmp_est_gain_pct": 7.08,
+          "gmp_direction": "premium"
+        },
+        {
+          "company": "Sonaselection India Limited",
+          "symbol": "SONA",
+          "tv": "NSE:SONA",
+          "price": "Rs.94 to Rs.99",
+          "opens": "17-Sep-2026",
+          "closes": "21-Sep-2026",
+          "series": "EQ",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-09-24",
+          "expected_listing_dmy": "24-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "gmp": null,
+          "gmp_est_listing": null,
+          "gmp_est_gain_pct": null,
+          "gmp_direction": "flat"
         }
       ],
       "recent_past": [
@@ -1077,40 +1201,39 @@
         "NSE:KANOHAR",
         "NSE:PRASOLCHEM",
         "NSE:MPIMANIPAL",
-        "NSE:KARAMTARA",
-        "NSE:ARCIL",
         "NSE:STEAMHOUSE",
-        "NSE:RENTOMOJO",
+        "NSE:ARCIL",
         "NSE:LCCPROJECT",
+        "NSE:RENTOMOJO",
+        "NSE:KARAMTARA",
         "NSE:VEEGALAND",
         "NSE:MANIKA",
-        "NSE:HEROMOTORS"
+        "NSE:HEROMOTORS",
+        "NSE:JSIPL",
+        "NSE:SSRETAIL",
+        "NSE:SONA"
       ],
-      "deduped_from_open": [
-        "GLASSWALL",
-        "KANOHAR",
-        "PRASOLCHEM"
-      ],
+      "deduped_from_open": [],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-11",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-11T15:28:29+05:30",
+      "fetched_at": "2026-09-11T19:06:42+05:30",
       "stale": false,
       "circular_confirmed": 1,
-      "gmp_matched": 23
+      "gmp_matched": 29
     },
     "ipo_circulars": {
       "circulars": [
         {
-          "board": "mainboard",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76302.pdf",
-          "circular_date": "September 11, 2026",
           "company": "Pranav Constructions Limited",
-          "confirmed_listing": null,
-          "date_pending": true,
           "match": "pranavconstructions",
+          "board": "mainboard",
+          "circular_date": "September 11, 2026",
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76313.zip",
           "subject": "Listing of Equity Shares of Pranav Constructions Limited (IPO)",
-          "symbol": "PRANAV"
+          "confirmed_listing": null,
+          "symbol": "PRANAV",
+          "date_pending": false
         },
         {
           "board": "SME",
@@ -1186,11 +1309,11 @@
       ],
       "confirmed": 5,
       "checked": 7,
-      "remembered": 10,
-      "as_of": "2026-09-11T15:28:30+05:30",
+      "remembered": 11,
+      "as_of": "2026-09-11T19:06:46+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-11T15:28:30+05:30",
+      "fetched_at": "2026-09-11T19:06:46+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1207,7 +1330,7 @@
       ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-11T15:28:33+05:30",
+      "fetched_at": "2026-09-11T19:06:47+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -1227,10 +1350,10 @@
         {
           "company": "NSE",
           "board": "mainboard",
-          "gmp": 188.0,
+          "gmp": 200.0,
           "price_band_upper": 1785.0,
-          "est_listing": 1973.0,
-          "est_gain_pct": 10.53,
+          "est_listing": 1985.0,
+          "est_gain_pct": 11.2,
           "direction": "premium",
           "window": "17-21 Sept",
           "status": "Upcoming",
@@ -1989,10 +2112,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-11T15:28:33+05:30",
+      "as_of": "2026-09-11T19:06:49+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-11T15:28:33+05:30",
+      "fetched_at": "2026-09-11T19:06:49+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -2598,8 +2721,8 @@
           "intra_pop_pct": 2.06
         }
       ],
-      "resolved_total": 553,
-      "added_this_run": 20,
+      "resolved_total": 575,
+      "added_this_run": 22,
       "bhavcopy_calls": 12,
       "corrections": [],
       "verified_against_bhavcopy": 40,
@@ -2766,17 +2889,17 @@
       },
       "stats_all": {
         "label": "all listings",
-        "count": 553,
-        "from": "2024-03-07",
+        "count": 575,
+        "from": "2024-02-14",
         "to": "2026-09-08",
-        "median_listing_pct": 10.54,
-        "median_intra_pop_pct": 10.07,
+        "median_listing_pct": 11.08,
+        "median_intra_pop_pct": 9.37,
         "median_intra_close_pct": 2.68,
-        "positive_open_pct": 72.0
+        "positive_open_pct": 72.5
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-11T15:28:59+05:30",
+      "fetched_at": "2026-09-11T19:07:06+05:30",
       "stale": false
     },
     "earnings": {
@@ -2890,7 +3013,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-11T15:29:01+05:30",
+      "fetched_at": "2026-09-11T19:07:07+05:30",
       "stale": false
     }
   }

@@ -113,5 +113,16 @@
 "match": "pranavconstructions",
 "subject": "Listing of Equity Shares of Pranav Constructions Limited (IPO)",
 "symbol": "PRANAV"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76313.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76313.zip",
+"circular_date": "September 11, 2026",
+"company": "Pranav Constructions Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "pranavconstructions",
+"subject": "Listing of Equity Shares of Pranav Constructions Limited (IPO)",
+"symbol": "PRANAV"
 }
 }

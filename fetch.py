@@ -252,6 +252,40 @@ def fetch_fii_derivatives():
     raise RuntimeError("no participant OI file in the last 8 days")
 
 
+def prune_ipo_store():
+    """Drop stored listings whose gap fails LISTING_MAX_GAP_DAYS.
+
+    Needed once because those rows were written before the guard existed.
+    Idempotent, so it is safe to re-run.
+    """
+    store = _load_ipo_store()
+    past = get("https://www.nseindia.com/api/public-past-issues").json()
+    close = {(r.get("symbol") or "").strip(): r.get("ipoEndDate") for r in past}
+    dropped = store.setdefault("excluded", {})
+    keep = {}
+    for sym, rec in store["listings"].items():
+        cd = _d(close.get(sym) or rec.get("ipo_closed"))
+        ld = None
+        try:
+            ld = dt.date.fromisoformat(rec["listing_date"])
+        except Exception:
+            pass
+        if cd and ld:
+            gap = (ld - cd).days
+            if gap < 0 or gap > LISTING_MAX_GAP_DAYS:
+                rec["excluded_reason"] = (
+                    "listing %dd after issue close - migration or relisting, "
+                    "not a listing-day gain" % gap)
+                dropped[sym] = rec
+                continue
+        keep[sym] = rec
+    removed = len(store["listings"]) - len(keep)
+    store["listings"] = keep
+    IPO_STORE.write_text(json.dumps(store, indent=1, ensure_ascii=False),
+                         encoding="utf-8")
+    return removed, len(keep)
+
+
 def backfill_participants(days=400, pause=0.3):
     """Walk back N calendar days building FII/DII derivatives history."""
     today = dt.datetime.now(IST).date()
@@ -819,6 +853,10 @@ def fetch_ipo():
 
 IPO_STORE = ROOT / "docs" / "ipo_listings.json"
 IPO_PER_RUN = 12          # cap bhavcopy requests in a normal daily run
+# Beyond this many days between issue close and listing it is not a listing:
+# it is an SME-to-mainboard migration or a relisting recorded against the old
+# issue row. T+3 is the rule and ~93% land by T+6, so 30 days is generous.
+LISTING_MAX_GAP_DAYS = 30
 
 
 def _price_from(rec):
@@ -936,6 +974,19 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
                 day = first_traded_day(sym, closed)
         if day is None:
             continue
+
+        # A listing-day gain only means anything when the listing follows the
+        # issue. NSE's listingDate also records SME-to-mainboard migrations and
+        # relistings against the ORIGINAL issue row: Swaraj Suiting shows a
+        # 2022 IPO with a 13-AUG-2026 listing date, and ADANIENPP1 produced a
+        # "+288.89% listing gain" across a 522-day gap. Those are multi-year
+        # returns, not listing pops, and they were skewing the medians.
+        closed_d = _d(rec.get("ipoEndDate"))
+        if closed_d:
+            gap = (day - closed_d).days
+            if gap < 0 or gap > LISTING_MAX_GAP_DAYS:
+                bad.add(sym)
+                continue
         todo.append((day, sym, rec.get("company"), price))
 
     todo.sort(key=lambda t: t[0], reverse=True)     # newest first
@@ -943,6 +994,8 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
     for day, sym, company, price in todo:
         by_day.setdefault(day, []).append((sym, company, price))
 
+    rec_close = {(r.get("symbol") or "").strip(): (r.get("ipoEndDate") or "").strip()
+                 for r in past if r.get("symbol")}
     added, calls = 0, 0
     for day in sorted(by_day, reverse=True):
         if calls >= limit:
@@ -966,6 +1019,7 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
             done[sym] = {
                 "symbol": sym, "company": company,
                 "issue_price": price, "listing_date": day.isoformat(),
+                "ipo_closed": (rec_close.get(sym) or None),
                 "open": op, "close": cl,
                 "gain_open_pct": round((op - price) / price * 100, 2),
                 "gain_close_pct": round((cl - price) / price * 100, 2),
@@ -1385,6 +1439,8 @@ def main():
                     help="connectivity check only, writes nothing")
     ap.add_argument("--backfill", type=int, metavar="DAYS",
                     help="rebuild history from NSE archives + Yahoo, then exit")
+    ap.add_argument("--prune-ipo", action="store_true",
+                    help="re-validate the IPO store and drop migrations/relistings")
     ap.add_argument("--backfill-participants", type=int, metavar="N", default=0,
                     help="walk back N calendar days building FII/DII "
                          "derivatives-OI history from the NSE archive")
@@ -1405,6 +1461,11 @@ def main():
 
     if args.probe:
         return probe()
+    if args.prune_ipo:
+        removed, kept = prune_ipo_store()
+        print("Pruned %d migration/relisting rows; %d genuine listings kept."
+              % (removed, kept))
+        return 0
     if args.backfill_participants:
         hits, miss, total = backfill_participants(args.backfill_participants)
         print("Participant OI: %d days fetched, %d missing (holidays), "

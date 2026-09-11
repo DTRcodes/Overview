@@ -6,6 +6,10 @@ on:
     # GitHub's scheduler is best-effort and can run late under load; the
     # dashboard shows its own "last updated" stamp, so a slipped run is
     # visible rather than silent.
+    # 02:30 UTC = 08:00 IST - the pre-market read: IPO pipeline with expected
+    # listing dates, plus yesterday's FII/DII and closing valuations.
+    - cron: "30 2 * * 1-5"
+    # 13:30 UTC = 19:00 IST - after close, once the day's own data has landed.
     - cron: "30 13 * * 1-5"
   workflow_dispatch: {}          # lets you trigger a run by hand
 

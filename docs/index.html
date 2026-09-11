@@ -498,8 +498,6 @@ function render(){
 
   b.push(card('Nifty 50 P/E', 'Earnings multiple, from the NSE daily archive. The index sits behind it, dashed, on the right axis — context for the multiple, not a second subject.',
     S.nse_valuation, VIEW==='chart' ? '<div class="chart" data-c="pe"></div>' : histTable(pe)));
-  b.push(card('Nifty 50', 'Index level.', S.nse_valuation,
-    VIEW==='chart' ? '<div class="chart" data-c="close"></div>' : histTable(close)));
   b.push(card('US Treasury yields', 'Two tenors, one scale.', S.us_rates,
     VIEW==='chart' ? '<div class="chart" data-c="us"></div>' : histTable(usc)));
   b.push(card('FII / DII derivatives positioning',
@@ -668,9 +666,9 @@ function render(){
   document.getElementById('board').innerHTML = b.join('');
 
   if(VIEW === 'chart'){
-    const map = {pe, close, us: usc, fx, flows, deriv, w10, w5};
-    const opts = {pe:{dp:2, height:225, context:{key:'nifty_close',
-                    label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, close:{dp:0}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
+    const map = {pe, us: usc, fx, flows, deriv, w10, w5};
+    const opts = {pe:{dp:2, height:235, context:{key:'nifty_close',
+                    label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
                   w10:{dp:2, minDays:730, height:230},
                   w5:{dp:2, minDays:730, height:230},
                   flows:{dp:0, zeroLine:true, height:210}};

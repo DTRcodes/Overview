@@ -38,7 +38,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/data.json docs/history.json docs/ipo_listings.json \
-                  docs/china_yields.json docs/india_curve.json
+                  docs/china_yields.json docs/india_curve.json docs/ipo_circulars.json
           if git diff --staged --quiet; then
             echo "No change - FII/DII was already present."
           else

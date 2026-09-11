@@ -1516,7 +1516,9 @@ CIRCULAR_EFFECT = re.compile(
 CIRCULAR_SYMBOL = re.compile(
     r"Symbol[:\s]+([A-Z][A-Z0-9&]{2,14})\b"
     r"|\(Symbol:\s*([A-Z][A-Z0-9&]{2,14})\)")
-CIRCULARS_PER_RUN = 12
+CIRCULAR_STORE = ROOT / 'docs' / 'ipo_circulars.json'
+CIRCULARS_PER_RUN = 12     # cap on NEW circulars parsed per run
+CIRCULAR_KEEP_DAYS = 150   # how long a parsed circular is remembered
 
 
 def _circular_text(url):
@@ -1557,6 +1559,12 @@ def fetch_ipo_circulars():
              on 11-Sep. Worth surfacing anyway: it means NSE has admitted the
              security and a date circular follows within a day or two.
     """
+    # api/circulars is a ROLLING ~7-DAY WINDOW, so a confirmation re-derived
+    # from it each run would vanish once the circular scrolled off. Parsed
+    # circulars are therefore kept on disk: seen once, remembered. That also
+    # means the per-run cap applies only to circulars not yet parsed, so a
+    # busy week cannot starve the queue.
+    store = _load_curve(CIRCULAR_STORE)
     data = get("https://www.nseindia.com/api/circulars").json()
     rows = data.get("data") or []
 
@@ -1572,8 +1580,13 @@ def fetch_ipo_circulars():
         if not link or link in seen:
             continue
         seen.add(link)
-        if len(out) >= CIRCULARS_PER_RUN:
-            break
+
+        cached = store.get(link)
+        if cached:
+            out.append(cached)
+            continue
+        if sum(1 for x in out if x.get("_fresh")) >= CIRCULARS_PER_RUN:
+            continue          # leave the rest for the next run
 
         company = m.group(1).strip()
         rec = {"company": company, "match": _norm_name(company),
@@ -1613,11 +1626,52 @@ def fetch_ipo_circulars():
                 break
         rec["date_pending"] = ("separate circular" in text.lower()
                                and not rec["confirmed_listing"])
+        rec["_fresh"] = True
+        store[link] = rec
         out.append(rec)
 
+    # Circulars that have aged out of the API window but are still recent
+    # enough to matter stay on the board from the store.
+    cutoff = (dt.datetime.now(IST).date()
+              - dt.timedelta(days=CIRCULAR_KEEP_DAYS)).isoformat()
+    have = {r.get("circular") for r in out}
+    for link, rec in list(store.items()):
+        d = rec.get("confirmed_listing") or ""
+        if d and d < cutoff:
+            del store[link]            # prune
+            continue
+        if link not in have:
+            out.append(rec)
+
+    for rec in out:
+        rec.pop("_fresh", None)
+
+    def _iso(rec):
+        """One comparable key. circular_date is 'September 11, 2026' while
+        confirmed_listing is ISO - sorting the two raw put 'S' above '2'."""
+        if rec.get("confirmed_listing"):
+            return rec["confirmed_listing"]
+        try:
+            return dt.datetime.strptime(
+                rec.get("circular_date", ""), "%B %d, %Y").date().isoformat()
+        except (ValueError, TypeError):
+            return ""
+
+    # A company gets two circulars - "forthcoming" without a date, then the
+    # one carrying it. Show the dated one; keep both in the store.
+    best = {}
+    for rec in out:
+        k = rec.get("symbol") or rec.get("match")
+        cur = best.get(k)
+        if cur is None or (rec.get("confirmed_listing")
+                           and not cur.get("confirmed_listing")):
+            best[k] = rec
+    out = sorted(best.values(), key=_iso, reverse=True)
+    _save_curve(CIRCULAR_STORE, store)
+
     confirmed = [r for r in out if r["confirmed_listing"]]
-    return {"circulars": out, "confirmed": len(confirmed),
-            "checked": len(out), "as_of": now_iso(),
+    return {"circulars": out[:40], "confirmed": len(confirmed),
+            "checked": len(out), "remembered": len(store), "as_of": now_iso(),
             "note": ("NSE's own listing circular - the earliest authoritative "
                      "listing date. Supersedes the T+3 estimate."),
             "source": "nseindia.com/api/circulars"}

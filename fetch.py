@@ -1506,6 +1506,107 @@ def _norm_name(s):
     return re.sub(r"[^a-z0-9]", "", s)
 
 
+CIRCULAR_SUBJECT = re.compile(
+    r"Listing of Equity Shares of (.+?)\s*\((SME\s+)?IPO\)", re.I)
+CIRCULAR_EFFECT = re.compile(
+    r"with effect from\s+([A-Z][a-z]+ \d{1,2},\s*\d{4})", re.I)
+CIRCULAR_SYMBOL = re.compile(r"\b([A-Z][A-Z0-9&]{2,14})\s+INE[0-9A-Z]{9}")
+CIRCULARS_PER_RUN = 12
+
+
+def _circular_text(url):
+    """Circular body text. Some are PDFs, some are zips containing one."""
+    import io
+    import zipfile
+    from pypdf import PdfReader
+
+    raw = get(url).content
+    if raw[:2] == b"PK":
+        z = zipfile.ZipFile(io.BytesIO(raw))
+        names = [n for n in z.namelist()
+                 if n.lower().endswith(".pdf") and "SHP" not in n.upper()]
+        if not names:
+            return ""
+        raw = z.read(names[0])
+    reader = PdfReader(io.BytesIO(raw))
+    return re.sub(r"[ \t]+", " ",
+                  "\n".join((p.extract_text() or "") for p in reader.pages))
+
+
+@source("ipo_circulars")
+def fetch_ipo_circulars():
+    """Confirmed listing dates from NSE's own listing circulars.
+
+    This is the earliest AUTHORITATIVE answer to "when does it list". The T+3
+    rule is a good estimate (83% exact) but it is still an estimate; the
+    circular is NSE telling members the date.
+
+    Two forms exist and only one carries a date:
+
+      "...admitted to dealings ... with effect from September 11, 2026"
+          -> confirmed. Qualiance's was published 10-Sep for an 11-Sep listing.
+
+      "The date of listing of the security shall be informed through a
+       separate circular."
+          -> the listing is confirmed, the date is not. Pranav's read this way
+             on 11-Sep. Worth surfacing anyway: it means NSE has admitted the
+             security and a date circular follows within a day or two.
+    """
+    data = get("https://www.nseindia.com/api/circulars").json()
+    rows = data.get("data") or []
+
+    seen, out = set(), []
+    for r in rows:
+        if (r.get("circCategory") or "") != "Listing":
+            continue
+        subj = r.get("sub") or ""
+        m = CIRCULAR_SUBJECT.search(subj)
+        if not m:
+            continue
+        link = r.get("circFilelink")
+        if not link or link in seen:
+            continue
+        seen.add(link)
+        if len(out) >= CIRCULARS_PER_RUN:
+            break
+
+        company = m.group(1).strip()
+        rec = {"company": company, "match": _norm_name(company),
+               "board": "SME" if m.group(2) else "mainboard",
+               "circular_date": r.get("cirDisplayDate"),
+               "circular": link, "subject": subj,
+               "confirmed_listing": None, "symbol": None}
+        try:
+            text = _circular_text(link)
+        except Exception as e:
+            rec["error"] = "%s: %s" % (type(e).__name__, e)
+            out.append(rec)
+            continue
+
+        eff = CIRCULAR_EFFECT.search(text)
+        if eff:
+            try:
+                d = dt.datetime.strptime(re.sub(r"\s+", " ", eff.group(1)),
+                                         "%B %d, %Y").date()
+                rec["confirmed_listing"] = d.isoformat()
+                rec["confirmed_listing_dmy"] = d.strftime("%d-%b-%Y")
+            except ValueError:
+                pass
+        sym = CIRCULAR_SYMBOL.search(text)
+        if sym:
+            rec["symbol"] = sym.group(1)
+        rec["date_pending"] = ("separate circular" in text.lower()
+                               and not rec["confirmed_listing"])
+        out.append(rec)
+
+    confirmed = [r for r in out if r["confirmed_listing"]]
+    return {"circulars": out, "confirmed": len(confirmed),
+            "checked": len(out), "as_of": now_iso(),
+            "note": ("NSE's own listing circular - the earliest authoritative "
+                     "listing date. Supersedes the T+3 estimate."),
+            "source": "nseindia.com/api/circulars"}
+
+
 @source("ipo_listing_live")
 def fetch_listing_live():
     """Intraday prices for IPOs that listed this morning.
@@ -2214,6 +2315,34 @@ def main():
     # Cross-source, so it happens here rather than inside either fetcher: the
     # two name the same company differently ("Hero Motors Limited" vs "Hero
     # Motors"), and _norm_name is the single place that reconciles them.
+    # ---- confirmed listing dates from NSE circulars override the T+3 estimate.
+    circ = data["sections"].get("ipo_circulars") or {}
+    by_circ = {}
+    for c in circ.get("circulars") or []:
+        if c.get("confirmed_listing"):
+            by_circ[c["match"]] = c
+            if c.get("symbol"):
+                by_circ[c["symbol"]] = c
+    ipo_s = data["sections"].get("nse_ipo") or {}
+    confirmed_n = 0
+    for bucket in ("listing_today", "awaiting", "open_now", "current"):
+        for row in ipo_s.get(bucket) or []:
+            c = by_circ.get(row.get("symbol")) or by_circ.get(_norm_name(row.get("company")))
+            if not c:
+                continue
+            row["confirmed_listing"] = c["confirmed_listing"]
+            row["confirmed_listing_dmy"] = c.get("confirmed_listing_dmy")
+            row["confirmed_by"] = "NSE circular " + str(c.get("circular_date"))
+            row["circular_url"] = c.get("circular")
+            try:
+                d = dt.date.fromisoformat(c["confirmed_listing"])
+                row["listing_label"] = listing_label(d, dt.datetime.now(IST).date())
+            except Exception:
+                pass
+            confirmed_n += 1
+    if ipo_s:
+        ipo_s["circular_confirmed"] = confirmed_n
+
     gmp_sec = data["sections"].get("ipo_gmp") or {}
     by_name = {g["match"]: g for g in (gmp_sec.get("current") or [])
                if g.get("match")}

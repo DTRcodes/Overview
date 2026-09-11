@@ -628,6 +628,15 @@ function render(){
   const tvAll = (ip && ip.tv_watchlist) || [];
   // Grey market premium. Unofficial, so it is shown plainly with its implied
   // percentage and never styled as a forecast.
+  // A circular date is NSE stating the fact; T+3 is arithmetic. The board
+  // must never let the second look like the first.
+  const whenCell = x => x.confirmed_listing_dmy
+    ? `<b>${esc(x.confirmed_listing_dmy)}</b>
+       <span style="color:var(--up)">&middot; confirmed</span>`
+    : (x.expected_listing_dmy
+        ? `expected <b>${esc(x.expected_listing_dmy)}</b>
+           <span style="color:var(--text-muted)">&middot; T+3 est.</span>`
+        : '');
   const gmpCell = x => x.gmp == null ? '<span style="color:var(--text-muted)">—</span>'
     : `${nf(x.gmp,0)}<br><span style="font-size:11px" class="${sign(x.gmp_est_gain_pct)}">${
         nf(x.gmp_est_gain_pct,1)}%</span>`;
@@ -671,9 +680,8 @@ function render(){
       const est = x.expected_listing_dmy
         ? `<span style="color:var(--text-muted)">&middot; lists ~${esc(x.expected_listing_dmy)}</span>`
         : '';
-      const when = x.book_closed
-        ? `expected <b>${esc(x.expected_listing_dmy)}</b>
-           <span style="color:var(--text-muted)">&middot; T+3 est.</span>`
+      const when = (x.book_closed || x.confirmed_listing_dmy)
+        ? whenCell(x)
         : `${esc(x.opens)} &rarr; ${esc(x.closes)} ${est}`;
       return `<tr${x.book_closed ? ' class="awaiting"' : ''}>
         <td>${esc(x.company)}</td><td><b>${esc(x.symbol)}</b></td>
@@ -691,7 +699,10 @@ function render(){
     `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.
       Neither NSE nor Chittorgarh publishes a forward listing date, so the
       expected date is computed from SEBI's T+3 rule &mdash; three trading days
-      from the <b>issue close</b>, skipping NSE holidays &mdash; 83% of 151 past
+      from the <b>issue close</b>, skipping NSE holidays. A date marked
+      <span style="color:var(--up)">confirmed</span> comes from NSE's own
+      listing circular, which lands a day or two ahead and supersedes the
+      estimate &mdash; 83% of 151 past
       listings landed exactly on T+3, ~93% within T+2 to T+6. It is an estimate
       until the stock appears in a bhavcopy, which is what turns a row
       green.</div>`, 'wide'));

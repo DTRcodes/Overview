@@ -26,6 +26,7 @@ are hit exactly once a day by one process; visitors only ever touch a CDN.
 | FII / DII cash flows | `nseindia.com/api/fiidiiTradeReact` | Plain UA header is enough |
 | IPOs | `nseindia.com/api/…issues` | 1,400+ past issues |
 | IPO listing gains | `sec_bhavdata_full` join | Computed: issue price vs listing-day open/close |
+| IPO listing circulars | `nseindia.com/api/circulars` | **Confirmed** listing dates, 1-2 days ahead |
 | IPO grey market premium | ipowatch.in | **Unofficial**, scored against 275 past listings |
 | World 5Y & 10Y | US Treasury, Bundesbank, BoE, Japan MOF, ChinaBond, FBIL | All daily, all key-less |
 

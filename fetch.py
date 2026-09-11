@@ -1068,7 +1068,31 @@ def add_business_days(start, n):
     return d
 
 
-LISTING_BELL_HOUR = 10          # IPOs start trading at 10:00 IST
+LISTING_BELL_HOUR = 10          # IPOs are scheduled to start trading at 10:00
+
+
+def _has_traded_today(symbol):
+    """Has this symbol actually printed today?
+
+    The 10:00 bell is a schedule, not a fact - a listing can be delayed, and
+    saying "Listed Today" while nothing has traded would be wrong. The 10:01
+    capture records the first real prices, so that is what the tense waits on.
+    Falls back to the clock only when the capture has not run at all.
+    """
+    today = dt.datetime.now(IST).date()
+    # The bhavcopy is the authority and does not depend on source ordering:
+    # nse_ipo runs before ipo_gains, so consulting the store alone reported
+    # "not traded" for a stock that had in fact printed hours earlier.
+    try:
+        if symbol in _bhavcopy(today):
+            return True
+    except Exception:
+        pass                     # file not published yet - fall through
+    rec = (_load_ipo_store().get("listings") or {}).get(symbol)
+    if (rec and rec.get("listing_date") == today.isoformat()
+            and rec.get("open") is not None):
+        return True
+    return False
 
 
 def _past_listing_bell(now=None):
@@ -1076,7 +1100,7 @@ def _past_listing_bell(now=None):
     return now.hour >= LISTING_BELL_HOUR
 
 
-def listing_label(expected, today):
+def listing_label(expected, today, symbol=None):
     """How to describe an expected listing date to a human.
 
     "Lists tomorrow" must mean tomorrow on the CALENDAR. The expected date is
@@ -1094,7 +1118,10 @@ def listing_label(expected, today):
     if delta < 0:
         return "Awaiting listing"          # overdue; NSE has not confirmed
     if delta == 0:
-        return "Listed Today" if _past_listing_bell() else "Lists Today"
+        # Prefer evidence of an actual print; fall back to the clock only when
+        # we have no capture for this symbol.
+        traded = _has_traded_today(symbol) if symbol else _past_listing_bell()
+        return "Listed Today" if traded else "Lists Today"
     if delta == 1:
         return "Lists tomorrow"
     if delta <= 6:
@@ -1202,7 +1229,8 @@ def fetch_ipo():
         if ld == today:
             if not is_fresh_listing(r, ld):
                 continue                  # migration, not a new listing
-            row["listing_label"] = ("Listed Today" if _past_listing_bell()
+            row["traded_today"] = _has_traded_today(sym)
+            row["listing_label"] = ("Listed Today" if row["traded_today"]
                                     else "Lists Today")
             listing_today.append(row)
         elif ld is None and sym not in trading and closed:
@@ -1385,6 +1413,20 @@ def _bhavcopy(day):
     return out
 
 
+def _give_up_on(day, grace=10):
+    """Is a listing old enough that failing to price it is permanent?
+
+    A stock that has not listed YET fails to resolve for a perfectly good
+    reason, and blacklisting it forever means it is never priced. QUALIANCE
+    hit exactly that: it failed on a run before its bhavcopy was published,
+    landed in `unresolvable`, and was still being skipped hours after it had
+    traded. Only give up once the listing is well past.
+    """
+    if not day:
+        return True
+    return (dt.datetime.now(IST).date() - day).days > grace
+
+
 def _load_ipo_store():
     if IPO_STORE.exists():
         try:
@@ -1467,18 +1509,23 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
             bhav = _bhavcopy(day)
             calls += 1
         except Exception:
-            for sym, _, _ in by_day[day]:
-                bad.add(sym)          # holiday or missing file: do not retry forever
+            # Missing file: only permanent once the date is well past, since a
+            # bhavcopy that is merely not published yet must be retried.
+            if _give_up_on(day):
+                for sym, _, _ in by_day[day]:
+                    bad.add(sym)
             continue
         for sym, company, price in by_day[day]:
             row = bhav.get(sym)
             if not row:
-                bad.add(sym)
+                if _give_up_on(day):
+                    bad.add(sym)
                 continue
             op, cl = num(row.get("OPEN_PRICE")), num(row.get("CLOSE_PRICE"))
             hi, lo = num(row.get("HIGH_PRICE")), num(row.get("LOW_PRICE"))
             if not op or not cl:
-                bad.add(sym)
+                if _give_up_on(day):
+                    bad.add(sym)
                 continue
             done[sym] = {
                 "high": hi, "low": lo,
@@ -2133,8 +2180,12 @@ def row_from_sections(S):
         "nifty_pe": n50.get("pe"),
         "nifty_pb": n50.get("pb"),
         "nifty_div_yield": n50.get("div_yield"),
-        "fii_net": dig("nse_fii_dii", "flows", "fii", "net"),
-        "dii_net": dig("nse_fii_dii", "flows", "dii", "net"),
+        # FII/DII deliberately NOT written here. This row is stamped with
+        # today's date, but flows carries the latest PUBLISHED figure, which
+        # before ~19:00 is still yesterday's. Writing it stamped yesterday's
+        # number onto today, and the duplicate then satisfied --ensure-fii so
+        # the evening retry skipped the real fetch. The Sensibull series
+        # supplies correctly dated rows; that is the only writer.
         "repo": dig("rbi", "rates", "policy_repo_rate"),
         # market spot, not the RBI fixing - see fetch_fx_spot
         "usd_inr": dig("fx_spot", "usd_inr"),
@@ -2513,7 +2564,8 @@ def main():
             row["circular_url"] = c.get("circular")
             try:
                 d = dt.date.fromisoformat(c["confirmed_listing"])
-                row["listing_label"] = listing_label(d, dt.datetime.now(IST).date())
+                row["listing_label"] = listing_label(
+                    d, dt.datetime.now(IST).date(), row.get("symbol"))
             except Exception:
                 pass
             confirmed_n += 1

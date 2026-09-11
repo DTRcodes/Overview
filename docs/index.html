@@ -163,6 +163,7 @@ tr.awaiting td:first-child { box-shadow: inset 3px 0 0 var(--series-1); }
 .seg-sm button{padding:2px 7px;font-size:10.5px}
 table.tight th, table.tight td{padding:4px 8px;font-size:11.5px}
 table.tight td:first-child{min-width:150px}
+.pill.tiny{padding:0 5px;font-size:9.5px;vertical-align:1px;margin-left:4px}
 </style>
 </head>
 <body>
@@ -717,6 +718,11 @@ function render(){
   // What the grey market implies the stock lists at, with the premium or
   // discount that implies underneath. The rupee premium alone meant nothing
   // without the issue price beside it; the resulting price does.
+  // Name with its board as a pill, ticker underneath. Replaces the separate
+  // Ticker and Series columns.
+  const nameCell = x => `<td>${esc(x.company)}${
+      x.series ? ` <span class="pill tiny">${esc(x.series)}</span>` : ''}<br>
+    <span style="color:var(--text-muted);font-size:11px">${esc(x.symbol)}</span></td>`;
   const gmpCell = x => (x.gmp_est_listing == null && x.gmp_est_gain_pct == null)
     ? '<span style="color:var(--text-muted)">—</span>'
     : `${x.gmp_est_listing == null ? '—' : nf(x.gmp_est_listing,0)}<br>
@@ -727,14 +733,13 @@ function render(){
       <button class="btn" data-copy="${id}">Copy</button></div>`;
 
   b.push(card('IPO pipeline', ip && ip.tv_note, ip,
-    `<div class="scroll"><table><thead><tr><th>Company</th><th>Ticker</th>
+    `<div class="scroll"><table><thead><tr><th>Company</th>
        <th>State</th><th title="Grey market estimate of the listing price, and the premium or discount that implies. Unofficial.">Est. listing</th>
-       <th>Series</th><th>Price</th><th>Window</th>
+       <th>Price</th><th>Window</th>
        </tr></thead><tbody>` +
-    today.map(x => `<tr class="lists-today"><td>${esc(x.company)}</td>
-        <td><b>${esc(x.symbol)}</b></td>
+    today.map(x => `<tr class="lists-today">${nameCell(x)}
         <td><span class="pill today">${esc(x.listing_label || 'Lists Today')}</span></td>
-        <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
+        <td>${gmpCell(x)}</td><td>${esc(x.price_range || x.issue_price)}</td>
         <td>${esc(x.listing_date)}</td></tr>`).join('') +
     soon.map(x => {
       // An expected T+3 date is an estimate, and the row says so. Only a real
@@ -746,10 +751,9 @@ function render(){
         ? `expected <b>${esc(x.expected_listing_dmy)}</b>
            <span style="color:var(--text-muted)">· T+3 est.</span>`
         : `closed ${esc(x.ipo_closed)} (${x.days_since_close}d)`;
-      return `<tr class="awaiting"><td>${esc(x.company)}</td>
-        <td><b>${esc(x.symbol)}</b></td>
+      return `<tr class="awaiting">${nameCell(x)}
         <td><span class="pill ${st[0]}">${esc(st[1])}</span></td>
-        <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
+        <td>${gmpCell(x)}</td><td>${esc(x.price_range || x.issue_price)}</td>
         <td>${when}</td></tr>`;
     }).join('') +
     cur2.map(x => {
@@ -765,10 +769,9 @@ function render(){
       const when = (x.book_closed || x.confirmed_listing_dmy)
         ? whenCell(x)
         : `${esc(x.opens)} &rarr; ${esc(x.closes)} ${est}`;
-      return `<tr${x.book_closed ? ' class="awaiting"' : ''}>
-        <td>${esc(x.company)}</td><td><b>${esc(x.symbol)}</b></td>
+      return `<tr${x.book_closed ? ' class="awaiting"' : ''}>${nameCell(x)}
         <td><span class="pill${x.book_closed ? ' soon' : ''}">${esc(label)}</span></td>
-        <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price)}</td>
+        <td>${gmpCell(x)}</td><td>${esc(x.price)}</td>
         <td>${when}</td></tr>`;
     }).join('') +
     `</tbody></table></div>` +
@@ -842,7 +845,8 @@ function render(){
     gl.slice(0,25).map(x => `<tr>
       <td>${esc(x.company || x.symbol)}<br>
         <span style="color:var(--text-muted);font-size:11px">${esc(x.symbol)}</span>
-        <span style="font-size:11.5px;margin-left:7px">${pc(x.gain_open_pct)}</span></td>
+        <span style="font-size:11.5px;margin-left:7px"><span
+          style="color:var(--text-muted)">Listing %</span> ${pc(x.gain_open_pct)}</span></td>
       <td>${x.intra_pop_pct == null ? '—' : pc(x.intra_pop_pct)}</td>
       <td>${pc(x.intra_close_pct != null ? x.intra_close_pct : oc(x))}</td>
       <td>${esc(dmy(x.listing_date))}</td><td>${nf(x.issue_price,0)}</td>

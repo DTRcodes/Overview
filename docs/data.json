@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-11T19:07:07+05:30",
-  "generated_at_utc": "2026-09-11T13:37:07+00:00",
+  "generated_at": "2026-09-11T20:41:17+05:30",
+  "generated_at_utc": "2026-09-11T15:11:17+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,35 +21,35 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-11T19:06:24+05:30",
+      "fetched_at": "2026-09-11T20:40:19+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "buy": 11882.9501953125,
-          "sell": 12321.1904296875,
-          "net": -438.240234375,
+          "buy": 12616.8896484375,
+          "sell": 13547.7900390625,
+          "net": -930.900390625,
           "view": "BEARISH"
         },
         "dii": {
-          "buy": 13326.330078125,
-          "sell": 12300.48046875,
-          "net": 1025.849609375,
+          "buy": 15109.580078125,
+          "sell": 13141.41015625,
+          "net": 1968.169921875,
           "view": "BULLISH"
         }
       },
       "fno": {
-        "fii_call_oi_chg": 23772.0,
-        "fii_put_oi_chg": 2512.0,
-        "fii_fut_amt": -857.419921875,
-        "fii_fut_oi_chg": -5594.0,
-        "fii_fut_oi": -281844.0,
+        "fii_call_oi_chg": 31773.0,
+        "fii_put_oi_chg": 6947.0,
+        "fii_fut_amt": -450.059814453125,
+        "fii_fut_oi_chg": -3038.0,
+        "fii_fut_oi": -284882.0,
         "fut_view": "BEARISH",
         "call_view": "BULLISH",
         "put_view": "BEARISH"
       },
-      "as_of": "2026-09-10",
+      "as_of": "2026-09-11",
       "window_days": 23,
       "months_advertised": [
         "2026-March",
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-11T19:06:25+05:30",
+      "fetched_at": "2026-09-11T20:40:19+05:30",
       "stale": false,
       "series_days": 23
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-11T19:06:25+05:30",
+      "fetched_at": "2026-09-11T20:40:20+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-11T19:06:26+05:30",
+      "fetched_at": "2026-09-11T20:40:20+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,48 +182,32 @@
       "spread_10y_2y": 0.82,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-11T19:06:27+05:30",
+      "fetched_at": "2026-09-11T20:40:22+05:30",
       "stale": false
     },
     "us_rates": {
       "rates": {
-        "fed_target_upper": {
-          "value": 3.75,
+        "us_3m": {
+          "value": 3.885,
           "date": "2026-09-11"
-        },
-        "fed_target_lower": {
-          "value": 3.5,
-          "date": "2026-09-11"
-        },
-        "fed_effective": {
-          "value": 3.63,
-          "date": "2026-09-10"
-        },
-        "us_2y": {
-          "value": 4.43,
-          "date": "2026-09-09"
         },
         "us_5y": {
-          "value": 4.61,
-          "date": "2026-09-09"
+          "value": 4.751,
+          "date": "2026-09-11"
         },
         "us_10y": {
-          "value": 4.83,
-          "date": "2026-09-09"
+          "value": 4.934,
+          "date": "2026-09-11"
         },
         "us_30y": {
-          "value": 5.28,
-          "date": "2026-09-09"
-        },
-        "us_10y_2y_spread": {
-          "value": 0.39,
-          "date": "2026-09-10"
+          "value": 5.326,
+          "date": "2026-09-11"
         }
       },
       "unit": "percent",
-      "via": "fred",
-      "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T19:06:29+05:30",
+      "via": "yfinance",
+      "source": "yahoo finance",
+      "fetched_at": "2026-09-11T20:40:24+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +287,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T19:06:38+05:30",
+      "fetched_at": "2026-09-11T20:40:39+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 673,
@@ -324,7 +308,7 @@
       "usd_inr": 95.54,
       "as_of": "2026-09-11",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-11T19:06:38+05:30",
+      "fetched_at": "2026-09-11T20:40:39+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -338,6 +322,7 @@
           "issue_price": "127",
           "listing_date": "11-SEP-2026",
           "ipo_closed": "08-SEP-2026",
+          "traded_today": true,
           "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-11",
           "confirmed_listing_dmy": "11-Sep-2026",
@@ -1217,7 +1202,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-11",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-11T19:06:42+05:30",
+      "fetched_at": "2026-09-11T20:40:43+05:30",
       "stale": false,
       "circular_confirmed": 1,
       "gmp_matched": 29
@@ -1225,15 +1210,15 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Pranav Constructions Limited",
-          "match": "pranavconstructions",
           "board": "mainboard",
-          "circular_date": "September 11, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76313.zip",
-          "subject": "Listing of Equity Shares of Pranav Constructions Limited (IPO)",
+          "circular_date": "September 11, 2026",
+          "company": "Pranav Constructions Limited",
           "confirmed_listing": null,
-          "symbol": "PRANAV",
-          "date_pending": false
+          "date_pending": false,
+          "match": "pranavconstructions",
+          "subject": "Listing of Equity Shares of Pranav Constructions Limited (IPO)",
+          "symbol": "PRANAV"
         },
         {
           "board": "SME",
@@ -1310,10 +1295,10 @@
       "confirmed": 5,
       "checked": 7,
       "remembered": 11,
-      "as_of": "2026-09-11T19:06:46+05:30",
+      "as_of": "2026-09-11T20:40:44+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-11T19:06:46+05:30",
+      "fetched_at": "2026-09-11T20:40:44+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1330,7 +1315,7 @@
       ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-11T19:06:47+05:30",
+      "fetched_at": "2026-09-11T20:40:47+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2112,14 +2097,30 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-11T19:06:49+05:30",
+      "as_of": "2026-09-11T20:40:48+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-11T19:06:49+05:30",
+      "fetched_at": "2026-09-11T20:40:48+05:30",
       "stale": false
     },
     "ipo_gains": {
       "listings": [
+        {
+          "high": 236.1,
+          "low": 214.05,
+          "intra_pop_pct": 4.98,
+          "intra_close_pct": 4.98,
+          "symbol": "QUALIANCE",
+          "company": "Qualiance International Limited",
+          "issue_price": 127.0,
+          "listing_date": "2026-09-11",
+          "ipo_closed": "08-SEP-2026",
+          "open": 224.9,
+          "close": 236.1,
+          "gain_open_pct": 77.09,
+          "gain_close_pct": 85.91,
+          "price_source": "bhavcopy"
+        },
         {
           "symbol": "DEEPA",
           "company": "Deepa Jewellers Limited",
@@ -2704,24 +2705,9 @@
           "low": 52.45,
           "intra_close_pct": 3.53,
           "intra_pop_pct": 4.89
-        },
-        {
-          "symbol": "CUBEINVIT",
-          "company": "Cube Highways Trust",
-          "issue_price": 156.0,
-          "listing_date": "2026-07-31",
-          "open": 155.0,
-          "close": 156.96,
-          "gain_open_pct": -0.64,
-          "gain_close_pct": 0.62,
-          "price_source": "bhavcopy",
-          "high": 158.2,
-          "low": 155.0,
-          "intra_close_pct": 1.26,
-          "intra_pop_pct": 2.06
         }
       ],
-      "resolved_total": 575,
+      "resolved_total": 602,
       "added_this_run": 22,
       "bhavcopy_calls": 12,
       "corrections": [],
@@ -2849,8 +2835,8 @@
         },
         {
           "month": "2026-09",
-          "count": 15,
-          "median_listing_pct": 9.9,
+          "count": 16,
+          "median_listing_pct": 15.0,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 4.98
         }
@@ -2858,30 +2844,30 @@
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 65,
+          "count": 66,
           "from": "2026-06-12",
-          "to": "2026-09-08",
-          "median_listing_pct": 10.51,
+          "to": "2026-09-11",
+          "median_listing_pct": 10.59,
           "median_intra_pop_pct": 5.0,
-          "median_intra_close_pct": 2.29,
-          "positive_open_pct": 70.8
+          "median_intra_close_pct": 3.53,
+          "positive_open_pct": 71.2
         },
         {
           "label": "last 100 listings",
           "count": 100,
-          "from": "2026-02-27",
-          "to": "2026-09-08",
-          "median_listing_pct": 5.06,
+          "from": "2026-03-02",
+          "to": "2026-09-11",
+          "median_listing_pct": 6.29,
           "median_intra_pop_pct": 5.0,
-          "median_intra_close_pct": 2.29,
+          "median_intra_close_pct": 3.53,
           "positive_open_pct": 63.0
         }
       ],
       "stats_last_50": {
         "label": "last 50 listings",
         "count": 50,
-        "from": "2026-07-15",
-        "to": "2026-09-08",
+        "from": "2026-07-16",
+        "to": "2026-09-11",
         "median_listing_pct": 15.0,
         "median_intra_pop_pct": 5.0,
         "median_intra_close_pct": 2.29,
@@ -2889,17 +2875,17 @@
       },
       "stats_all": {
         "label": "all listings",
-        "count": 575,
-        "from": "2024-02-14",
-        "to": "2026-09-08",
-        "median_listing_pct": 11.08,
-        "median_intra_pop_pct": 9.37,
-        "median_intra_close_pct": 2.68,
-        "positive_open_pct": 72.5
+        "count": 602,
+        "from": "2023-12-29",
+        "to": "2026-09-11",
+        "median_listing_pct": 11.78,
+        "median_intra_pop_pct": 9.09,
+        "median_intra_close_pct": 3.14,
+        "positive_open_pct": 73.3
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-11T19:07:06+05:30",
+      "fetched_at": "2026-09-11T20:41:15+05:30",
       "stale": false
     },
     "earnings": {
@@ -3013,7 +2999,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-11T19:07:07+05:30",
+      "fetched_at": "2026-09-11T20:41:17+05:30",
       "stale": false
     }
   }

@@ -1510,7 +1510,12 @@ CIRCULAR_SUBJECT = re.compile(
     r"Listing of Equity Shares of (.+?)\s*\((SME\s+)?IPO\)", re.I)
 CIRCULAR_EFFECT = re.compile(
     r"with effect from\s+([A-Z][a-z]+ \d{1,2},\s*\d{4})", re.I)
-CIRCULAR_SYMBOL = re.compile(r"\b([A-Z][A-Z0-9&]{2,14})\s+INE[0-9A-Z]{9}")
+# The annexure is a label/value list, not a table: 'Symbol QUALIANCE' on its
+# own line, with 'ISIN INE1XJ401012' separately. Matching a token before the
+# ISIN grabbed the word ISIN itself, so key off the Symbol label instead.
+CIRCULAR_SYMBOL = re.compile(
+    r"Symbol[:\s]+([A-Z][A-Z0-9&]{2,14})\b"
+    r"|\(Symbol:\s*([A-Z][A-Z0-9&]{2,14})\)")
 CIRCULARS_PER_RUN = 12
 
 
@@ -1592,9 +1597,20 @@ def fetch_ipo_circulars():
                 rec["confirmed_listing_dmy"] = d.strftime("%d-%b-%Y")
             except ValueError:
                 pass
-        sym = CIRCULAR_SYMBOL.search(text)
-        if sym:
-            rec["symbol"] = sym.group(1)
+        # Two layouts. The confirmation circular labels it ("Symbol QUALIANCE");
+        # the forthcoming one prints a header row instead ("Name of the company
+        # Symbol ISIN") above the values, so a label match captures the word
+        # ISIN. Gather every candidate and drop the header words.
+        STOP = {"ISIN", "SYMBOL", "SERIES", "NAME", "THE", "AND", "NSE", "IPO"}
+        cands = []
+        for m in CIRCULAR_SYMBOL.finditer(text):
+            cands.append(m.group(1) or m.group(2))
+        for m in re.finditer(r"([A-Z][A-Z0-9&]{2,14})\s+INE[0-9A-Z]{9}", text):
+            cands.append(m.group(1))
+        for c in cands:
+            if c and c.upper() not in STOP:
+                rec["symbol"] = c
+                break
         rec["date_pending"] = ("separate circular" in text.lower()
                                and not rec["confirmed_listing"])
         out.append(rec)

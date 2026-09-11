@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-11T13:54:21+05:30",
-  "generated_at_utc": "2026-09-11T08:24:21+00:00",
+  "generated_at": "2026-09-11T14:10:25+05:30",
+  "generated_at_utc": "2026-09-11T08:40:25+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-11T13:53:33+05:30",
+      "fetched_at": "2026-09-11T14:09:16+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-11T13:53:33+05:30",
+      "fetched_at": "2026-09-11T14:09:16+05:30",
       "stale": false,
       "series_days": 23
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-11T13:53:34+05:30",
+      "fetched_at": "2026-09-11T14:09:17+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-11T13:53:35+05:30",
+      "fetched_at": "2026-09-11T14:09:18+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,48 +182,32 @@
       "spread_10y_2y": 0.8,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-11T13:53:37+05:30",
+      "fetched_at": "2026-09-11T14:09:19+05:30",
       "stale": false
     },
     "us_rates": {
       "rates": {
-        "fed_target_upper": {
-          "value": 3.75,
+        "us_3m": {
+          "value": 3.845,
           "date": "2026-09-10"
-        },
-        "fed_target_lower": {
-          "value": 3.5,
-          "date": "2026-09-10"
-        },
-        "fed_effective": {
-          "value": 3.63,
-          "date": "2026-09-09"
-        },
-        "us_2y": {
-          "value": 4.43,
-          "date": "2026-09-09"
         },
         "us_5y": {
-          "value": 4.61,
-          "date": "2026-09-09"
+          "value": 4.733,
+          "date": "2026-09-10"
         },
         "us_10y": {
-          "value": 4.83,
-          "date": "2026-09-09"
+          "value": 4.944,
+          "date": "2026-09-10"
         },
         "us_30y": {
-          "value": 5.28,
-          "date": "2026-09-09"
-        },
-        "us_10y_2y_spread": {
-          "value": 0.39,
+          "value": 5.361,
           "date": "2026-09-10"
         }
       },
       "unit": "percent",
-      "via": "fred",
-      "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T13:53:39+05:30",
+      "via": "yfinance",
+      "source": "yahoo finance",
+      "fetched_at": "2026-09-11T14:09:22+05:30",
       "stale": false
     },
     "world_yields": {
@@ -238,8 +222,8 @@
             "date": "2026-09-10"
           },
           "UK": {
-            "value": 4.6384,
-            "date": "2026-09-08"
+            "value": 4.735,
+            "date": "2026-09-09"
           },
           "Germany": {
             "value": 3.18,
@@ -264,8 +248,8 @@
             "date": "2026-09-10"
           },
           "UK": {
-            "value": 5.0979,
-            "date": "2026-09-08"
+            "value": 5.1922,
+            "date": "2026-09-09"
           },
           "Germany": {
             "value": 3.51,
@@ -303,7 +287,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T13:53:51+05:30",
+      "fetched_at": "2026-09-11T14:09:40+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 673,
@@ -321,10 +305,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.7525,
+      "usd_inr": 95.6675,
       "as_of": "2026-09-11",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-11T13:53:52+05:30",
+      "fetched_at": "2026-09-11T14:09:40+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -886,19 +870,19 @@
           "listing_date": "01-SEP-2026"
         },
         {
-          "company": "ABH Healthcare Limited",
-          "symbol": "ABH",
-          "tv": "NSE:ABH",
-          "price_range": "Rs.96 to Rs.102",
-          "issue_price": "102",
-          "listing_date": "01-SEP-2026"
-        },
-        {
           "company": "Madhur Knit Crafts Limited",
           "symbol": "MADHURKNIT",
           "tv": "NSE:MADHURKNIT",
           "price_range": "Rs.95 to Rs.100",
           "issue_price": "100",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "ABH Healthcare Limited",
+          "symbol": "ABH",
+          "tv": "NSE:ABH",
+          "price_range": "Rs.96 to Rs.102",
+          "issue_price": "102",
           "listing_date": "01-SEP-2026"
         },
         {
@@ -1087,7 +1071,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-11",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-11T13:53:54+05:30",
+      "fetched_at": "2026-09-11T14:09:44+05:30",
       "stale": false,
       "circular_confirmed": 1,
       "gmp_matched": 23
@@ -1113,7 +1097,7 @@
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76294.zip",
           "subject": "Listing of Equity Shares of Qualiance International Limited (SME IPO)",
           "confirmed_listing": "2026-09-11",
-          "symbol": "ISIN",
+          "symbol": "QUALIANCE",
           "confirmed_listing_dmy": "11-Sep-2026",
           "date_pending": false
         },
@@ -1125,7 +1109,7 @@
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76229.zip",
           "subject": "Listing of Equity Shares of Rays of Belief Limited (IPO)",
           "confirmed_listing": "2026-09-08",
-          "symbol": "ISIN",
+          "symbol": "MOMSBELIEF",
           "confirmed_listing_dmy": "08-Sep-2026",
           "date_pending": false
         },
@@ -1137,7 +1121,7 @@
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76228.zip",
           "subject": "Listing of Equity Shares of Deepa Jewellers Limited (IPO)",
           "confirmed_listing": "2026-09-08",
-          "symbol": "ISIN",
+          "symbol": "DEEPA",
           "confirmed_listing_dmy": "08-Sep-2026",
           "date_pending": false
         },
@@ -1171,7 +1155,7 @@
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76205.zip",
           "subject": "Listing of Equity Shares of Ashutosh Fibre Limited (SME IPO)",
           "confirmed_listing": null,
-          "symbol": "ISIN",
+          "symbol": "ASHUTOSH",
           "date_pending": false
         },
         {
@@ -1182,7 +1166,7 @@
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76203.zip",
           "subject": "Listing of Equity Shares of Shanti Inorganics Limited (SME IPO)",
           "confirmed_listing": "2026-09-07",
-          "symbol": "ISIN",
+          "symbol": "SHANTIINOR",
           "confirmed_listing_dmy": "07-Sep-2026",
           "date_pending": false
         },
@@ -1194,7 +1178,7 @@
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76199.zip",
           "subject": "Listing of Equity Shares of Purple Style Labs Limited (IPO)",
           "confirmed_listing": "2026-09-07",
-          "symbol": "ISIN",
+          "symbol": "PERNIASPOP",
           "confirmed_listing_dmy": "07-Sep-2026",
           "date_pending": false
         },
@@ -1212,10 +1196,10 @@
       ],
       "confirmed": 5,
       "checked": 10,
-      "as_of": "2026-09-11T13:54:03+05:30",
+      "as_of": "2026-09-11T14:09:57+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-11T13:54:03+05:30",
+      "fetched_at": "2026-09-11T14:09:57+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1232,7 +1216,7 @@
       ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-11T13:54:04+05:30",
+      "fetched_at": "2026-09-11T14:10:00+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2002,10 +1986,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-11T13:54:06+05:30",
+      "as_of": "2026-09-11T14:10:00+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-11T13:54:06+05:30",
+      "fetched_at": "2026-09-11T14:10:00+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -2451,8 +2435,8 @@
           "price_source": "bhavcopy"
         }
       ],
-      "resolved_total": 458,
-      "added_this_run": 29,
+      "resolved_total": 476,
+      "added_this_run": 18,
       "bhavcopy_calls": 12,
       "corrections": [],
       "verified_against_bhavcopy": 40,
@@ -2466,16 +2450,16 @@
         "worst": "ANNU"
       },
       "stats_all": {
-        "count": 458,
-        "median_open_pct": 8.43,
-        "median_close_pct": 9.18,
-        "positive_open_pct": 69.2,
+        "count": 476,
+        "median_open_pct": 9.38,
+        "median_close_pct": 9.67,
+        "positive_open_pct": 70.4,
         "best": "MAMATA",
         "worst": "ARUNAYA"
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-11T13:54:20+05:30",
+      "fetched_at": "2026-09-11T14:10:23+05:30",
       "stale": false
     },
     "earnings": {
@@ -2589,7 +2573,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-11T13:54:21+05:30",
+      "fetched_at": "2026-09-11T14:10:25+05:30",
       "stale": false
     }
   }

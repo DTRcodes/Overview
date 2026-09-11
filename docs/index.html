@@ -720,9 +720,16 @@ function render(){
   // without the issue price beside it; the resulting price does.
   // Name with its board as a pill, ticker underneath. Replaces the separate
   // Ticker and Series columns.
-  const nameCell = x => `<td>${esc(x.company)}${
-      x.series ? ` <span class="pill tiny">${esc(x.series)}</span>` : ''}<br>
-    <span style="color:var(--text-muted);font-size:11px">${esc(x.symbol)}</span></td>`;
+  // Calendar-only rows (SME, BSE-only) carry their platform instead, and no
+  // ticker until NSE assigns one.
+  const nameCell = x => {
+    const tag = x.platform || x.series;
+    const sub = x.symbol ||
+      (x.platform && /^BSE/.test(x.platform) ? 'BSE only' : 'no ticker yet');
+    return `<td>${esc(x.company)}${
+      tag ? ` <span class="pill tiny">${esc(tag)}</span>` : ''}<br>
+    <span style="color:var(--text-muted);font-size:11px${x.symbol ? '' : ';font-style:italic'}">${esc(sub)}</span></td>`;
+  };
   const gmpCell = x => (x.gmp_est_listing == null && x.gmp_est_gain_pct == null)
     ? '<span style="color:var(--text-muted)">—</span>'
     : `${x.gmp_est_listing == null ? '—' : nf(x.gmp_est_listing,0)}<br>
@@ -747,10 +754,7 @@ function render(){
       // Label comes from Python so "tomorrow" means tomorrow on the
       // calendar and holidays are already accounted for.
       const st = ['soon', x.listing_label || 'Awaiting listing'];
-      const when = x.expected_listing_dmy
-        ? `expected <b>${esc(x.expected_listing_dmy)}</b>
-           <span style="color:var(--text-muted)">· T+3 est.</span>`
-        : `closed ${esc(x.ipo_closed)} (${x.days_since_close}d)`;
+      const when = whenCell(x) || `closed ${esc(x.ipo_closed)} (${x.days_since_close}d)`;
       return `<tr class="awaiting">${nameCell(x)}
         <td><span class="pill ${st[0]}">${esc(st[1])}</span></td>
         <td>${gmpCell(x)}</td><td>${esc(x.price_range || x.issue_price)}</td>
@@ -781,6 +785,13 @@ function render(){
     tvRow('tv-all', tvAll) +
     (today.length ? `<div class="note" style="margin-top:6px">Listed today only:</div>` +
         tvRow('tv-today', today.map(x => x.tv)) : '') +
+    (ip && ip.horizon && ip.horizon.furthest_open_dmy
+      ? `<div class="note"><b>Reach:</b> furthest announced issue opens
+          <b>${esc(ip.horizon.furthest_open_dmy)}</b> (${esc(ip.horizon.furthest_company)},
+          ${ip.horizon.days_ahead}d ahead); ${ip.horizon.forthcoming} not yet open.
+          Everything dated is shown &mdash; issues only get dates once the RHP
+          and price band are filed, about a week before opening, so no source
+          can see a dated issue ${ip.horizon.min_days} days out.</div>` : '') +
     `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.
       Neither NSE nor Chittorgarh publishes a forward listing date, so the
       expected date is computed from SEBI's T+3 rule &mdash; three trading days

@@ -1282,13 +1282,20 @@ def fetch_ipo():
                 row["expected_basis"] = "T+3 trading days from issue close (SEBI)"
         # Only once the book has SHUT does the estimate become the row's
         # headline state; while open, the subscription window still leads.
+        # A shut book is an awaiting listing like any other, so it joins that
+        # bucket and sorts by its listing date - left here it sat below the
+        # live issues, out of listing order.
         if c and c < today:
             row["listing_label"] = listing_label(exp_any, today)
             row["book_closed"] = True
+            row.update(price_range=row["price"], ipo_closed=row["closes"],
+                       days_since_close=(today - c).days,
+                       days_to_listing=(exp_any - today).days if exp_any else None)
+            awaiting.append(row)
+            continue
         open_now.append(row)
 
-    # Order: live issues by how soon they shut, then the rest by close date.
-    open_now.sort(key=lambda r: (not r["live"], r["closes"] or ""))
+    sort_pipeline(awaiting, open_now)
     if dropped:
         ipo_dupes = sorted(set(dropped))
     else:
@@ -1304,9 +1311,12 @@ def fetch_ipo():
     # Everything with a ticker worth adding to a watchlist, newest state first.
     watchlist = [r["tv"] for r in listing_today + awaiting + open_now if r["tv"]]
 
-    return {"listing_today": listing_today, "awaiting": awaiting[:15],
-            "open_now": open_now[:15],
-            "current": open_now[:15],          # kept: older card reads this
+    # No row caps. The pipeline is bounded by dates - awaiting rows leave once
+    # they list, forthcoming ones only exist once dated - and a count cap
+    # silently cut the far end of it, which is exactly the part being asked for.
+    return {"listing_today": listing_today, "awaiting": awaiting,
+            "open_now": open_now,
+            "current": open_now,               # kept: older card reads this
             # Migrations are hidden everywhere, not just from the buckets
             # above: a 2022 SME issue carrying a 2026 listing date is not a
             # recent IPO and does not belong in a list of them.
@@ -1557,7 +1567,10 @@ GMP_URL = "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/"
 
 
 def _strip_tags(s):
-    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s)).strip()
+    """Tags out, entities decoded. ipowatch writes "Maharaja &amp; Speedex";
+    left encoded, the GMP name never matched the calendar's."""
+    import html as _html
+    return _html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s))).strip()
 
 
 def _rupee(s):
@@ -1990,6 +2003,218 @@ def fetch_ipo_gmp():
                        "is an indication of sentiment, not a price you can "
                        "trade or a forecast anyone stands behind."),
             "source": "ipowatch.in"}
+
+
+IPO_CAL_URL = "https://ipowatch.in/upcoming-ipo-calendar-ipo-list/"
+MONTHS = ["january", "february", "march", "april", "may", "june", "july",
+          "august", "september", "october", "november", "december"]
+# The board should reach at least this far ahead. It is a floor, not a cap:
+# nothing inside the window is ever cut, and the card says how far the
+# announced calendar actually reaches today.
+PIPELINE_MIN_HORIZON_DAYS = 20
+
+
+def _cal_window(txt, today):
+    """'18-22 September' -> (open, close) dates.
+
+    ipowatch names only the closing month, so a window across a month end
+    reads '28-1 September': a start day above the end day means the book
+    opened the month before. The table runs back months and carries no year,
+    so the year is the latest one that does not put the close more than 60
+    days ahead. "Nearest to today" read last January's issues as next
+    January's and pushed the board's reach out to March - but a dated issue
+    is never months away, because dates only exist once the RHP is filed."""
+    m = re.match(r"\s*(\d{1,2})\s*-\s*(\d{1,2})\s+([A-Za-z]+)", txt or "")
+    if not m:
+        return None, None
+    d1, d2, name = int(m.group(1)), int(m.group(2)), m.group(3).lower()
+    mon = next((i for i, k in enumerate(MONTHS, 1) if k.startswith(name[:3])),
+               None)
+    if not mon:
+        return None, None
+    best = None
+    for yr in (today.year - 1, today.year, today.year + 1):
+        try:
+            close = dt.date(yr, mon, d2)
+        except ValueError:
+            continue
+        if (close - today).days <= 60:
+            best = close
+    if best is None:
+        return None, None
+    sm, sy = (best.month, best.year) if d1 <= d2 else (
+        (best.month - 1, best.year) if best.month > 1 else (12, best.year - 1))
+    try:
+        return dt.date(sy, sm, d1), best
+    except ValueError:
+        return None, best
+
+
+def opens_label(opens, today):
+    """Same calendar logic as listing_label: 'tomorrow' means tomorrow."""
+    delta = (opens - today).days
+    if delta <= 0:
+        return "Opens today"
+    if delta == 1:
+        return "Opens tomorrow"
+    if delta <= 6:
+        return "Opens " + opens.strftime("%A")
+    return "Opens " + opens.strftime("%d %b")
+
+
+def sort_pipeline(awaiting, open_now):
+    """Everything in order of its next event. Dates are parsed, not compared
+    as 'dd-Mon-yyyy' strings - that put 30-Sep after 01-Oct."""
+    awaiting.sort(key=lambda r: (r.get("confirmed_listing")
+                                 or r.get("expected_listing") or "9999",
+                                 r.get("company") or ""))
+    far = dt.date(9999, 1, 1)
+    open_now.sort(key=lambda r: (
+        not r.get("live"),
+        (_d(r.get("closes")) if r.get("live") else _d(r.get("opens"))) or far,
+        r.get("company") or ""))
+
+
+@source("ipo_calendar")
+def fetch_ipo_calendar():
+    """Dated IPO calendar - mainboard and SME, NSE and BSE.
+
+    NSE's all-upcoming-issues carries mainboard issues only. Every SME variant
+    tried comes back empty (category=sme, SME, emerge, sme_ipo, forthcoming,
+    forthcomingIssues - the last two are the categories NSE's own page script
+    names), and BSE-only issues are never in it at all. On 12-Sep-2026 that
+    left 13 SME issues, and NSE's own IPO - which can only list on BSE - off
+    the board entirely.
+
+    ipowatch renders this page server-side and names the platform for every
+    SME issue, so it fills that gap. It gives no ticker: NSE's feed stays the
+    source of symbols, and a row found in both is taken from NSE.
+
+    An issue only gets dates once its RHP and price band are filed, typically
+    about a week before it opens. So the dated calendar reaches roughly ten
+    days ahead - nothing reliable reaches further, from any source.
+    """
+    import html as _html
+    today = dt.datetime.now(IST).date()
+    page = get(IPO_CAL_URL).text
+    tables = re.findall(r"<table[^>]*>(.*?)</table>", page, re.S)
+    if len(tables) < 2:
+        raise RuntimeError("ipowatch calendar layout changed - %d tables"
+                           % len(tables))
+    out = []
+    for tbl, board in ((tables[0], "mainboard"), (tables[1], "sme")):
+        for r in re.findall(r"<tr[^>]*>(.*?)</tr>", tbl, re.S)[1:]:
+            c = [_html.unescape(_strip_tags(x)).strip() for x in
+                 re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, re.S)]
+            if len(c) < 4:
+                continue
+            if re.search(r"\b(invit|reit)s?\b", c[0], re.I):
+                continue          # trust units, not equity listings
+            opens, closes = _cal_window(c[1], today)
+            if not closes or (today - closes).days > 20:
+                continue          # long since listed; the table runs back months
+            out.append({
+                "company": c[0], "board": board,
+                "platform": c[4] if board == "sme" and len(c) > 5 else None,
+                "opens": opens.isoformat() if opens else None,
+                "closes": closes.isoformat(),
+                "price_band": c[3].replace("\u20b9", "Rs."), "size": c[2],
+                "match": _norm_name(c[0])})
+    if not out:
+        raise RuntimeError("ipowatch calendar parsed to 0 dated rows")
+    return {"issues": out, "as_of": now_iso(), "source": "ipowatch.in"}
+
+
+def merge_calendar(sections):
+    """Fold the issues NSE's feed lacks into the pipeline.
+
+    State is worked out here from the dates, not in the fetcher, so a calendar
+    carried forward stale still moves each issue along correctly: forthcoming
+    -> open -> awaiting listing -> gone.
+
+    A calendar-only issue that has closed can only ever be an ESTIMATE - there
+    is no NSE bhavcopy to confirm a BSE listing against. So it reads "Lists
+    Today" on its T+3 day and never turns into "Listed Today", and it leaves
+    the board the day after rather than lingering as overdue.
+    """
+    ipo = sections.get("nse_ipo") or {}
+    cal = (sections.get("ipo_calendar") or {}).get("issues") or []
+    if not ipo:
+        return
+    today = dt.datetime.now(IST).date()
+    awaiting = ipo.setdefault("awaiting", [])
+    open_now = ipo.setdefault("open_now", [])
+
+    have = [_norm_name(r.get("company"))
+            for b in ("listing_today", "awaiting", "open_now")
+            for r in ipo.get(b) or []]
+    have += [_norm_name(r.get("company")) for r in ipo.get("recent_past") or []]
+    have = [h for h in have if h]
+
+    def known(n):
+        # Same rule as the GMP join: exact, or containment above 8 chars
+        # (ipowatch truncates: "Asset Reconstruction" for the full name).
+        return any(n == h or (len(n) >= 8 and len(h) >= 8
+                              and (n in h or h in n)) for h in have)
+
+    fmt = lambda d: d.strftime("%d-%b-%Y") if d else None
+    added = 0
+    for x in cal:
+        n = x.get("match") or _norm_name(x.get("company"))
+        if not n or known(n):
+            continue
+        o = dt.date.fromisoformat(x["opens"]) if x.get("opens") else None
+        c = dt.date.fromisoformat(x["closes"])
+        exp = expected_listing(c)
+        band = x.get("price_band")
+        row = {"company": x["company"], "symbol": None, "tv": None,
+               "series": "SME" if x.get("board") == "sme" else "EQ",
+               "platform": x.get("platform"),
+               "price": band, "price_range": band,
+               "opens": fmt(o), "closes": fmt(c),
+               "expected_listing": exp.isoformat() if exp else None,
+               "expected_listing_dmy": fmt(exp),
+               "expected_basis": "T+3 trading days from issue close (SEBI)",
+               "from_calendar": True}
+        if c < today:
+            if not exp or exp < today:
+                continue            # listed (or overdue) and unconfirmable
+            row.update(ipo_closed=fmt(c), days_since_close=(today - c).days,
+                       days_to_listing=(exp - today).days,
+                       listing_label=("Lists Today" if exp == today
+                                      else listing_label(exp, today)))
+            awaiting.append(row)
+        else:
+            row["live"] = bool(o and o <= today)
+            row["status"] = "Active" if row["live"] else "Forthcoming"
+            if not row["live"] and o:
+                row["listing_label"] = opens_label(o, today)
+            open_now.append(row)
+        added += 1
+
+    # NSE's own forthcoming rows get the same "Opens ..." wording.
+    for r in open_now:
+        o = _d(r.get("opens"))
+        if not r.get("live") and o and o > today and not r.get("listing_label"):
+            r["listing_label"] = opens_label(o, today)
+
+    sort_pipeline(awaiting, open_now)
+    ipo["current"] = open_now
+    ipo["calendar_added"] = added
+
+    # How far ahead the board actually reaches today.
+    ahead = [(_d(r.get("opens")), r.get("company")) for r in open_now
+             if not r.get("live")]
+    ahead = [a for a in ahead if a[0]]
+    far = max(ahead) if ahead else None
+    ipo["horizon"] = {
+        "min_days": PIPELINE_MIN_HORIZON_DAYS,
+        "furthest_open": far[0].isoformat() if far else None,
+        "furthest_open_dmy": fmt(far[0]) if far else None,
+        "furthest_company": far[1] if far else None,
+        "days_ahead": (far[0] - today).days if far else None,
+        "forthcoming": len(ahead),
+    }
 
 
 @source("ipo_gains")
@@ -2543,6 +2768,9 @@ def main():
     # Cross-source, so it happens here rather than inside either fetcher: the
     # two name the same company differently ("Hero Motors Limited" vs "Hero
     # Motors"), and _norm_name is the single place that reconciles them.
+    # ---- SME and BSE-only issues NSE's feed does not carry.
+    merge_calendar(data["sections"])
+
     # ---- confirmed listing dates from NSE circulars override the T+3 estimate.
     circ = data["sections"].get("ipo_circulars") or {}
     by_circ = {}

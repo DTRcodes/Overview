@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-11T11:28:13+05:30",
-  "generated_at_utc": "2026-09-11T05:58:13+00:00",
+  "generated_at": "2026-09-11T11:37:44+05:30",
+  "generated_at_utc": "2026-09-11T06:07:44+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-11T11:27:43+05:30",
+      "fetched_at": "2026-09-11T11:37:02+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-11T11:27:43+05:30",
+      "fetched_at": "2026-09-11T11:37:03+05:30",
       "stale": false,
       "series_days": 23
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-11T11:27:44+05:30",
+      "fetched_at": "2026-09-11T11:37:04+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-11T11:27:45+05:30",
+      "fetched_at": "2026-09-11T11:37:05+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,48 +182,32 @@
       "spread_10y_2y": 0.8,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-11T11:27:47+05:30",
+      "fetched_at": "2026-09-11T11:37:06+05:30",
       "stale": false
     },
     "us_rates": {
       "rates": {
-        "fed_target_upper": {
-          "value": 3.75,
+        "us_3m": {
+          "value": 3.845,
           "date": "2026-09-10"
-        },
-        "fed_target_lower": {
-          "value": 3.5,
-          "date": "2026-09-10"
-        },
-        "fed_effective": {
-          "value": 3.63,
-          "date": "2026-09-09"
-        },
-        "us_2y": {
-          "value": 4.43,
-          "date": "2026-09-09"
         },
         "us_5y": {
-          "value": 4.61,
-          "date": "2026-09-09"
+          "value": 4.733,
+          "date": "2026-09-10"
         },
         "us_10y": {
-          "value": 4.83,
-          "date": "2026-09-09"
+          "value": 4.944,
+          "date": "2026-09-10"
         },
         "us_30y": {
-          "value": 5.28,
-          "date": "2026-09-09"
-        },
-        "us_10y_2y_spread": {
-          "value": 0.39,
+          "value": 5.361,
           "date": "2026-09-10"
         }
       },
       "unit": "percent",
-      "via": "fred",
-      "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T11:27:49+05:30",
+      "via": "yfinance",
+      "source": "yahoo finance",
+      "fetched_at": "2026-09-11T11:37:08+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +287,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T11:27:59+05:30",
+      "fetched_at": "2026-09-11T11:37:24+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 673,
@@ -321,10 +305,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.695,
+      "usd_inr": 95.72,
       "as_of": "2026-09-11",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-11T11:28:00+05:30",
+      "fetched_at": "2026-09-11T11:37:24+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -337,7 +321,10 @@
           "price_range": "Rs.120 to Rs.127",
           "issue_price": "127",
           "listing_date": "11-SEP-2026",
-          "ipo_closed": "08-SEP-2026"
+          "ipo_closed": "08-SEP-2026",
+          "gmp": 76.0,
+          "gmp_est_gain_pct": 59.84,
+          "gmp_direction": "premium"
         },
         {
           "company": "Dollex Agrotech Limited",
@@ -365,7 +352,11 @@
           "expected_listing_dmy": "15-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "lists_tomorrow_expected": true
+          "listing_label": "Lists Tuesday",
+          "days_to_listing": 4,
+          "gmp": 50.0,
+          "gmp_est_gain_pct": 40.32,
+          "gmp_direction": "premium"
         },
         {
           "company": "Glass Wall Systems (India) Limited",
@@ -381,7 +372,11 @@
           "expected_listing_dmy": "16-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "lists_tomorrow_expected": false
+          "listing_label": "Lists Wednesday",
+          "days_to_listing": 5,
+          "gmp": 45.0,
+          "gmp_est_gain_pct": 24.73,
+          "gmp_direction": "premium"
         },
         {
           "company": "Kanohar Electricals Limited",
@@ -397,7 +392,11 @@
           "expected_listing_dmy": "16-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "lists_tomorrow_expected": false
+          "listing_label": "Lists Wednesday",
+          "days_to_listing": 5,
+          "gmp": 236.0,
+          "gmp_est_gain_pct": 37.34,
+          "gmp_direction": "premium"
         },
         {
           "company": "Prasol Chemicals Limited",
@@ -413,7 +412,11 @@
           "expected_listing_dmy": "16-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "lists_tomorrow_expected": false
+          "listing_label": "Lists Wednesday",
+          "days_to_listing": 5,
+          "gmp": 0.0,
+          "gmp_est_gain_pct": 0.0,
+          "gmp_direction": "flat"
         }
       ],
       "open_now": [
@@ -426,7 +429,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 8.0,
+          "gmp_est_gain_pct": 2.36,
+          "gmp_direction": "premium"
         },
         {
           "company": "Karamtara Engineering Limited",
@@ -437,7 +443,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 69.0,
+          "gmp_est_gain_pct": 27.17,
+          "gmp_direction": "premium"
         },
         {
           "company": "Asset Reconstruction Company (India) Limited",
@@ -448,7 +457,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 14.0,
+          "gmp_est_gain_pct": 10.07,
+          "gmp_direction": "premium"
         },
         {
           "company": "Steamhouse India Limited",
@@ -459,7 +471,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 22.0,
+          "gmp_est_gain_pct": 27.16,
+          "gmp_direction": "premium"
         },
         {
           "company": "Rentomojo Limited",
@@ -470,7 +485,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 138.0,
+          "gmp_est_gain_pct": 34.16,
+          "gmp_direction": "premium"
         },
         {
           "company": "LCC Projects Limited",
@@ -481,7 +499,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 50.0,
+          "gmp_est_gain_pct": 34.25,
+          "gmp_direction": "premium"
         },
         {
           "company": "Veegaland Developers Limited",
@@ -492,7 +513,10 @@
           "closes": "15-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 24.0,
+          "gmp_est_gain_pct": 17.14,
+          "gmp_direction": "premium"
         },
         {
           "company": "Manika Plastech Limited",
@@ -503,7 +527,10 @@
           "closes": "16-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 13.0,
+          "gmp_est_gain_pct": 30.23,
+          "gmp_direction": "premium"
         },
         {
           "company": "Glass Wall Systems (India) Limited",
@@ -514,7 +541,10 @@
           "closes": "10-Sep-2026",
           "series": "EQ",
           "status": "Closed",
-          "live": false
+          "live": false,
+          "gmp": 45.0,
+          "gmp_est_gain_pct": 24.73,
+          "gmp_direction": "premium"
         },
         {
           "company": "Kanohar Electricals Limited",
@@ -525,7 +555,10 @@
           "closes": "10-Sep-2026",
           "series": "EQ",
           "status": "Closed",
-          "live": false
+          "live": false,
+          "gmp": 236.0,
+          "gmp_est_gain_pct": 37.34,
+          "gmp_direction": "premium"
         },
         {
           "company": "Prasol Chemicals Limited",
@@ -536,7 +569,10 @@
           "closes": "10-Sep-2026",
           "series": "EQ",
           "status": "Closed",
-          "live": false
+          "live": false,
+          "gmp": 0.0,
+          "gmp_est_gain_pct": 0.0,
+          "gmp_direction": "flat"
         },
         {
           "company": "Hero Motors Limited",
@@ -547,7 +583,10 @@
           "closes": "18-Sep-2026",
           "series": "EQ",
           "status": "Forthcoming",
-          "live": false
+          "live": false,
+          "gmp": 8.0,
+          "gmp_est_gain_pct": 9.52,
+          "gmp_direction": "premium"
         }
       ],
       "current": [
@@ -560,7 +599,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 8.0,
+          "gmp_est_gain_pct": 2.36,
+          "gmp_direction": "premium"
         },
         {
           "company": "Karamtara Engineering Limited",
@@ -571,7 +613,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 69.0,
+          "gmp_est_gain_pct": 27.17,
+          "gmp_direction": "premium"
         },
         {
           "company": "Asset Reconstruction Company (India) Limited",
@@ -582,7 +627,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 14.0,
+          "gmp_est_gain_pct": 10.07,
+          "gmp_direction": "premium"
         },
         {
           "company": "Steamhouse India Limited",
@@ -593,7 +641,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 22.0,
+          "gmp_est_gain_pct": 27.16,
+          "gmp_direction": "premium"
         },
         {
           "company": "Rentomojo Limited",
@@ -604,7 +655,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 138.0,
+          "gmp_est_gain_pct": 34.16,
+          "gmp_direction": "premium"
         },
         {
           "company": "LCC Projects Limited",
@@ -615,7 +669,10 @@
           "closes": "11-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 50.0,
+          "gmp_est_gain_pct": 34.25,
+          "gmp_direction": "premium"
         },
         {
           "company": "Veegaland Developers Limited",
@@ -626,7 +683,10 @@
           "closes": "15-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 24.0,
+          "gmp_est_gain_pct": 17.14,
+          "gmp_direction": "premium"
         },
         {
           "company": "Manika Plastech Limited",
@@ -637,7 +697,10 @@
           "closes": "16-Sep-2026",
           "series": "EQ",
           "status": "Active",
-          "live": true
+          "live": true,
+          "gmp": 13.0,
+          "gmp_est_gain_pct": 30.23,
+          "gmp_direction": "premium"
         },
         {
           "company": "Glass Wall Systems (India) Limited",
@@ -648,7 +711,10 @@
           "closes": "10-Sep-2026",
           "series": "EQ",
           "status": "Closed",
-          "live": false
+          "live": false,
+          "gmp": 45.0,
+          "gmp_est_gain_pct": 24.73,
+          "gmp_direction": "premium"
         },
         {
           "company": "Kanohar Electricals Limited",
@@ -659,7 +725,10 @@
           "closes": "10-Sep-2026",
           "series": "EQ",
           "status": "Closed",
-          "live": false
+          "live": false,
+          "gmp": 236.0,
+          "gmp_est_gain_pct": 37.34,
+          "gmp_direction": "premium"
         },
         {
           "company": "Prasol Chemicals Limited",
@@ -670,7 +739,10 @@
           "closes": "10-Sep-2026",
           "series": "EQ",
           "status": "Closed",
-          "live": false
+          "live": false,
+          "gmp": 0.0,
+          "gmp_est_gain_pct": 0.0,
+          "gmp_direction": "flat"
         },
         {
           "company": "Hero Motors Limited",
@@ -681,7 +753,10 @@
           "closes": "18-Sep-2026",
           "series": "EQ",
           "status": "Forthcoming",
-          "live": false
+          "live": false,
+          "gmp": 8.0,
+          "gmp_est_gain_pct": 9.52,
+          "gmp_direction": "premium"
         }
       ],
       "recent_past": [
@@ -830,19 +905,19 @@
           "listing_date": "01-SEP-2026"
         },
         {
-          "company": "ABH Healthcare Limited",
-          "symbol": "ABH",
-          "tv": "NSE:ABH",
-          "price_range": "Rs.96 to Rs.102",
-          "issue_price": "102",
-          "listing_date": "01-SEP-2026"
-        },
-        {
           "company": "Madhur Knit Crafts Limited",
           "symbol": "MADHURKNIT",
           "tv": "NSE:MADHURKNIT",
           "price_range": "Rs.95 to Rs.100",
           "issue_price": "100",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "ABH Healthcare Limited",
+          "symbol": "ABH",
+          "tv": "NSE:ABH",
+          "price_range": "Rs.96 to Rs.102",
+          "issue_price": "102",
           "listing_date": "01-SEP-2026"
         },
         {
@@ -1030,7 +1105,781 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-11",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-11T11:28:03+05:30",
+      "fetched_at": "2026-09-11T11:37:27+05:30",
+      "stale": false,
+      "gmp_matched": 29
+    },
+    "ipo_gmp": {
+      "current": [
+        {
+          "company": "Sonaselection India",
+          "board": "mainboard",
+          "gmp": 0.0,
+          "price_band_upper": null,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "17-21 Sept",
+          "status": "Upcoming",
+          "match": "sonaselection"
+        },
+        {
+          "company": "NSE",
+          "board": "mainboard",
+          "gmp": 188.0,
+          "price_band_upper": 1785.0,
+          "est_listing": 1973.0,
+          "est_gain_pct": 10.53,
+          "direction": "premium",
+          "window": "17-21 Sept",
+          "status": "Upcoming",
+          "match": "nse"
+        },
+        {
+          "company": "Hero Motors",
+          "board": "mainboard",
+          "gmp": 8.0,
+          "price_band_upper": 84.0,
+          "est_listing": 92.0,
+          "est_gain_pct": 9.52,
+          "direction": "premium",
+          "window": "16-18 Sept",
+          "status": "Upcoming",
+          "match": "heromotors"
+        },
+        {
+          "company": "SS Retail",
+          "board": "mainboard",
+          "gmp": 30.0,
+          "price_band_upper": 424.0,
+          "est_listing": 454.0,
+          "est_gain_pct": 7.08,
+          "direction": "premium",
+          "window": "16-18 Sept",
+          "status": "Upcoming",
+          "match": "ssretail"
+        },
+        {
+          "company": "Jindal Supreme",
+          "board": "mainboard",
+          "gmp": 13.0,
+          "price_band_upper": 93.0,
+          "est_listing": 106.0,
+          "est_gain_pct": 13.98,
+          "direction": "premium",
+          "window": "16-18 Sept",
+          "status": "Upcoming",
+          "match": "jindalsupreme"
+        },
+        {
+          "company": "Manika Plastech",
+          "board": "mainboard",
+          "gmp": 13.0,
+          "price_band_upper": 43.0,
+          "est_listing": 56.0,
+          "est_gain_pct": 30.23,
+          "direction": "premium",
+          "window": "11-16 Sept",
+          "status": "Open",
+          "match": "manikaplastech"
+        },
+        {
+          "company": "Veegaland Developers",
+          "board": "mainboard",
+          "gmp": 24.0,
+          "price_band_upper": 140.0,
+          "est_listing": 164.0,
+          "est_gain_pct": 17.14,
+          "direction": "premium",
+          "window": "10-15 Sept",
+          "status": "Open",
+          "match": "veegalanddevelopers"
+        },
+        {
+          "company": "Asset Reconstruction",
+          "board": "mainboard",
+          "gmp": 14.0,
+          "price_band_upper": 139.0,
+          "est_listing": 153.0,
+          "est_gain_pct": 10.07,
+          "direction": "premium",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "assetreconstruction"
+        },
+        {
+          "company": "LCC Projects",
+          "board": "mainboard",
+          "gmp": 50.0,
+          "price_band_upper": 146.0,
+          "est_listing": 196.0,
+          "est_gain_pct": 34.25,
+          "direction": "premium",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "lccprojects"
+        },
+        {
+          "company": "Karamtara Engineering",
+          "board": "mainboard",
+          "gmp": 69.0,
+          "price_band_upper": 254.0,
+          "est_listing": 323.0,
+          "est_gain_pct": 27.17,
+          "direction": "premium",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "karamtaraengineering"
+        },
+        {
+          "company": "Manipal Payment",
+          "board": "mainboard",
+          "gmp": 8.0,
+          "price_band_upper": 339.0,
+          "est_listing": 347.0,
+          "est_gain_pct": 2.36,
+          "direction": "premium",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "manipalpayment"
+        },
+        {
+          "company": "Rentomojo",
+          "board": "mainboard",
+          "gmp": 138.0,
+          "price_band_upper": 404.0,
+          "est_listing": 542.0,
+          "est_gain_pct": 34.16,
+          "direction": "premium",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "rentomojo"
+        },
+        {
+          "company": "Steamhouse India",
+          "board": "mainboard",
+          "gmp": 22.0,
+          "price_band_upper": 81.0,
+          "est_listing": 103.0,
+          "est_gain_pct": 27.16,
+          "direction": "premium",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "steamhouse"
+        },
+        {
+          "company": "Prasol Chemicals",
+          "board": "mainboard",
+          "gmp": 0.0,
+          "price_band_upper": 676.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "8-10 Sept",
+          "status": "Closed",
+          "match": "prasolchemicals"
+        },
+        {
+          "company": "Glass Wall Systems",
+          "board": "mainboard",
+          "gmp": 45.0,
+          "price_band_upper": 182.0,
+          "est_listing": 227.0,
+          "est_gain_pct": 24.73,
+          "direction": "premium",
+          "window": "8-10 Sept",
+          "status": "Closed",
+          "match": "glasswallsystems"
+        },
+        {
+          "company": "Kanohar Electricals",
+          "board": "mainboard",
+          "gmp": 236.0,
+          "price_band_upper": 632.0,
+          "est_listing": 868.0,
+          "est_gain_pct": 37.34,
+          "direction": "premium",
+          "window": "8-10 Sept",
+          "status": "Closed",
+          "match": "kanoharelectricals"
+        },
+        {
+          "company": "Pranav Constructions",
+          "board": "mainboard",
+          "gmp": 50.0,
+          "price_band_upper": 124.0,
+          "est_listing": 174.0,
+          "est_gain_pct": 40.32,
+          "direction": "premium",
+          "window": "7-9 Sept",
+          "status": "Closed",
+          "match": "pranavconstructions"
+        },
+        {
+          "company": "Axiom Gas Engineering",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 53.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "18-22 Sept",
+          "status": "Upcoming",
+          "match": "axiomgasengineering"
+        },
+        {
+          "company": "Kheria Autocomp",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 101.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "17-21 Sept",
+          "status": "Upcoming",
+          "match": "kheriaautocomp"
+        },
+        {
+          "company": "Vama Wovenfab",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 341.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "15-17 Sept",
+          "status": "Upcoming",
+          "match": "vamawovenfab"
+        },
+        {
+          "company": "Shakti Polytarp",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 59.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "15-17 Sept",
+          "status": "Upcoming",
+          "match": "shaktipolytarp"
+        },
+        {
+          "company": "Quanto Agroworld",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 67.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "15-17 Sept",
+          "status": "Upcoming",
+          "match": "quantoagroworld"
+        },
+        {
+          "company": "Injecto Polymers",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 100.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "11-16 Sept",
+          "status": "Open",
+          "match": "injectopolymers"
+        },
+        {
+          "company": "Century Business Media",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 74.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "11-16 Sept",
+          "status": "Open",
+          "match": "centurybusinessmedia"
+        },
+        {
+          "company": "Panchatv Bharat",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 140.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "10-15 Sept",
+          "status": "Open",
+          "match": "panchatvbharat"
+        },
+        {
+          "company": "Maharaja &amp; Speedex",
+          "board": "sme",
+          "gmp": 30.0,
+          "price_band_upper": 186.0,
+          "est_listing": 216.0,
+          "est_gain_pct": 16.13,
+          "direction": "premium",
+          "window": "10-15 Sept",
+          "status": "Open",
+          "match": "maharajaampspeedex"
+        },
+        {
+          "company": "Om Galaxy",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 90.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "10-15 Sept",
+          "status": "Open",
+          "match": "omgalaxy"
+        },
+        {
+          "company": "Raksan Transformers",
+          "board": "sme",
+          "gmp": 28.0,
+          "price_band_upper": 273.0,
+          "est_listing": 301.0,
+          "est_gain_pct": 10.26,
+          "direction": "premium",
+          "window": "10-15 Sept",
+          "status": "Open",
+          "match": "raksantransformers"
+        },
+        {
+          "company": "Vinod Texworld",
+          "board": "sme",
+          "gmp": 20.0,
+          "price_band_upper": 94.0,
+          "est_listing": 114.0,
+          "est_gain_pct": 21.28,
+          "direction": "premium",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "vinodtexworld"
+        },
+        {
+          "company": "Infrax Renewable",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 104.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "infraxrenewable"
+        },
+        {
+          "company": "Amtech Esters",
+          "board": "sme",
+          "gmp": 11.0,
+          "price_band_upper": 75.0,
+          "est_listing": 85.0,
+          "est_gain_pct": 13.33,
+          "direction": "premium",
+          "window": "9-11 Sept",
+          "status": "Open",
+          "match": "amtechesters"
+        },
+        {
+          "company": "Apana Logistics",
+          "board": "sme",
+          "gmp": 1.0,
+          "price_band_upper": 60.0,
+          "est_listing": 61.0,
+          "est_gain_pct": 1.67,
+          "direction": "premium",
+          "window": "7-9 Sept",
+          "status": "Closed",
+          "match": "apanalogistics"
+        },
+        {
+          "company": "Qualiance International",
+          "board": "sme",
+          "gmp": 76.0,
+          "price_band_upper": 127.0,
+          "est_listing": 203.0,
+          "est_gain_pct": 59.84,
+          "direction": "premium",
+          "window": "4-8 Sept",
+          "status": "Closed",
+          "match": "qualianceinternational"
+        }
+      ],
+      "history": [
+        {
+          "company": "Augmont Enterprises",
+          "issue": 788.0,
+          "gmp": 290.0,
+          "listed": 961.0,
+          "implied_pct": 36.8,
+          "actual_pct": 21.95,
+          "error_pct": -14.85
+        },
+        {
+          "company": "Tempsens Instruments",
+          "issue": 300.0,
+          "gmp": 330.0,
+          "listed": 634.0,
+          "implied_pct": 110.0,
+          "actual_pct": 111.33,
+          "error_pct": 1.33
+        },
+        {
+          "company": "Gaja Alternative",
+          "issue": 160.0,
+          "gmp": 18.0,
+          "listed": 185.0,
+          "implied_pct": 11.25,
+          "actual_pct": 15.62,
+          "error_pct": 4.38
+        },
+        {
+          "company": "Shankesh Jewellers",
+          "issue": 93.0,
+          "gmp": 2.0,
+          "listed": 103.3,
+          "implied_pct": 2.15,
+          "actual_pct": 11.08,
+          "error_pct": 8.92
+        },
+        {
+          "company": "Sunshine Pictures",
+          "issue": 360.0,
+          "gmp": 50.0,
+          "listed": 395.9,
+          "implied_pct": 13.89,
+          "actual_pct": 9.97,
+          "error_pct": -3.92
+        },
+        {
+          "company": "Lalithaa Jewellery Mart",
+          "issue": 201.0,
+          "gmp": 74.0,
+          "listed": 265.0,
+          "implied_pct": 36.82,
+          "actual_pct": 31.84,
+          "error_pct": -4.98
+        },
+        {
+          "company": "Horizon Industrial Parks",
+          "issue": 60.0,
+          "gmp": 2.0,
+          "listed": 60.25,
+          "implied_pct": 3.33,
+          "actual_pct": 0.42,
+          "error_pct": -2.92
+        },
+        {
+          "company": "Ardee Industries",
+          "issue": 53.0,
+          "gmp": 17.0,
+          "listed": 72.0,
+          "implied_pct": 32.08,
+          "actual_pct": 35.85,
+          "error_pct": 3.77
+        },
+        {
+          "company": "MV Electrosystems",
+          "issue": 425.0,
+          "gmp": 109.0,
+          "listed": 520.0,
+          "implied_pct": 25.65,
+          "actual_pct": 22.35,
+          "error_pct": -3.29
+        },
+        {
+          "company": "Juniper Green Energy",
+          "issue": 225.0,
+          "gmp": 22.0,
+          "listed": 245.0,
+          "implied_pct": 9.78,
+          "actual_pct": 8.89,
+          "error_pct": -0.89
+        },
+        {
+          "company": "Manipal Health",
+          "issue": 590.0,
+          "gmp": 3.0,
+          "listed": 652.0,
+          "implied_pct": 0.51,
+          "actual_pct": 10.51,
+          "error_pct": 10.0
+        },
+        {
+          "company": "Indo-MIM",
+          "issue": 485.0,
+          "gmp": 188.0,
+          "listed": 700.0,
+          "implied_pct": 38.76,
+          "actual_pct": 44.33,
+          "error_pct": 5.57
+        },
+        {
+          "company": "Xtranet Technologies",
+          "issue": 127.0,
+          "gmp": 14.0,
+          "listed": 136.0,
+          "implied_pct": 11.02,
+          "actual_pct": 7.09,
+          "error_pct": -3.94
+        },
+        {
+          "company": "Lohia Corp",
+          "issue": 425.0,
+          "gmp": 17.0,
+          "listed": 461.0,
+          "implied_pct": 4.0,
+          "actual_pct": 8.47,
+          "error_pct": 4.47
+        },
+        {
+          "company": "Cube Highways Trust InvIT",
+          "issue": 152.0,
+          "gmp": 2.0,
+          "listed": 155.0,
+          "implied_pct": 1.32,
+          "actual_pct": 1.97,
+          "error_pct": 0.66
+        },
+        {
+          "company": "Caliber Mining",
+          "issue": 424.0,
+          "gmp": 64.0,
+          "listed": 500.25,
+          "implied_pct": 15.09,
+          "actual_pct": 17.98,
+          "error_pct": 2.89
+        },
+        {
+          "company": "Laser Power &amp; Infra",
+          "issue": 214.0,
+          "gmp": 43.0,
+          "listed": 250.0,
+          "implied_pct": 20.09,
+          "actual_pct": 16.82,
+          "error_pct": -3.27
+        },
+        {
+          "company": "SBI Funds Management",
+          "issue": 574.0,
+          "gmp": 96.0,
+          "listed": 613.3,
+          "implied_pct": 16.72,
+          "actual_pct": 6.85,
+          "error_pct": -9.88
+        },
+        {
+          "company": "Alpine Texworld",
+          "issue": 105.0,
+          "gmp": 0.0,
+          "listed": 105.0,
+          "implied_pct": 0.0,
+          "actual_pct": 0.0,
+          "error_pct": 0.0
+        },
+        {
+          "company": "Kusumgar",
+          "issue": 419.0,
+          "gmp": 161.0,
+          "listed": 569.0,
+          "implied_pct": 38.42,
+          "actual_pct": 35.8,
+          "error_pct": -2.63
+        },
+        {
+          "company": "Knack Packaging",
+          "issue": 170.0,
+          "gmp": 9.0,
+          "listed": 188.0,
+          "implied_pct": 5.29,
+          "actual_pct": 10.59,
+          "error_pct": 5.29
+        },
+        {
+          "company": "Aastha Spintex",
+          "issue": 136.0,
+          "gmp": 5.0,
+          "listed": 130.0,
+          "implied_pct": 3.68,
+          "actual_pct": -4.41,
+          "error_pct": -8.09
+        },
+        {
+          "company": "CSM Technologies",
+          "issue": 113.0,
+          "gmp": 0.0,
+          "listed": 113.0,
+          "implied_pct": 0.0,
+          "actual_pct": 0.0,
+          "error_pct": 0.0
+        },
+        {
+          "company": "Waterways Leisure Tourism",
+          "issue": 808.0,
+          "gmp": 0.0,
+          "listed": 681.0,
+          "implied_pct": 0.0,
+          "actual_pct": -15.72,
+          "error_pct": -15.72
+        },
+        {
+          "company": "Advit Jewels",
+          "issue": 138.0,
+          "gmp": 50.0,
+          "listed": 188.9,
+          "implied_pct": 36.23,
+          "actual_pct": 36.88,
+          "error_pct": 0.65
+        },
+        {
+          "company": "Turtlemint Fintech",
+          "issue": 152.0,
+          "gmp": 0.0,
+          "listed": 134.9,
+          "implied_pct": 0.0,
+          "actual_pct": -11.25,
+          "error_pct": -11.25
+        },
+        {
+          "company": "Hexagon Nutrition",
+          "issue": 45.0,
+          "gmp": 4.0,
+          "listed": 48.25,
+          "implied_pct": 8.89,
+          "actual_pct": 7.22,
+          "error_pct": -1.67
+        },
+        {
+          "company": "CMR Green Technologies",
+          "issue": 192.0,
+          "gmp": 67.0,
+          "listed": 275.4,
+          "implied_pct": 34.9,
+          "actual_pct": 43.44,
+          "error_pct": 8.54
+        },
+        {
+          "company": "Bagmane REIT",
+          "issue": 100.0,
+          "gmp": 4.0,
+          "listed": 103.5,
+          "implied_pct": 4.0,
+          "actual_pct": 3.5,
+          "error_pct": -0.5
+        },
+        {
+          "company": "Kissht",
+          "issue": 171.0,
+          "gmp": 27.0,
+          "listed": 190.0,
+          "implied_pct": 15.79,
+          "actual_pct": 11.11,
+          "error_pct": -4.68
+        },
+        {
+          "company": "Citius Transnet&nbsp;InvIT",
+          "issue": 100.0,
+          "gmp": 3.5,
+          "listed": 104.6,
+          "implied_pct": 3.5,
+          "actual_pct": 4.6,
+          "error_pct": 1.1
+        },
+        {
+          "company": "Propshare Celestia",
+          "issue": 1050000.0,
+          "gmp": 0.0,
+          "listed": 999900.0,
+          "implied_pct": 0.0,
+          "actual_pct": -4.77,
+          "error_pct": -4.77
+        },
+        {
+          "company": "Om Power Transmission",
+          "issue": 175.0,
+          "gmp": 2.0,
+          "listed": 186.0,
+          "implied_pct": 1.14,
+          "actual_pct": 6.29,
+          "error_pct": 5.14
+        },
+        {
+          "company": "Amir Chand",
+          "issue": 212.0,
+          "gmp": 5.0,
+          "listed": 200.0,
+          "implied_pct": 2.36,
+          "actual_pct": -5.66,
+          "error_pct": -8.02
+        },
+        {
+          "company": "Sai Parenteral’s",
+          "issue": 392.0,
+          "gmp": 0.0,
+          "listed": 400.0,
+          "implied_pct": 0.0,
+          "actual_pct": 2.04,
+          "error_pct": 2.04
+        },
+        {
+          "company": "Powerica",
+          "issue": 395.0,
+          "gmp": 10.0,
+          "listed": 366.0,
+          "implied_pct": 2.53,
+          "actual_pct": -7.34,
+          "error_pct": -9.87
+        },
+        {
+          "company": "Central Mine Planning",
+          "issue": 320.0,
+          "gmp": 5.0,
+          "listed": 160.0,
+          "implied_pct": 1.56,
+          "actual_pct": -50.0,
+          "error_pct": -51.56
+        },
+        {
+          "company": "GSP Crop Science",
+          "issue": 320.0,
+          "gmp": 2.0,
+          "listed": 332.3,
+          "implied_pct": 0.62,
+          "actual_pct": 3.84,
+          "error_pct": 3.22
+        },
+        {
+          "company": "Raajmarg Infra InvIT",
+          "issue": 100.0,
+          "gmp": 3.5,
+          "listed": 107.0,
+          "implied_pct": 3.5,
+          "actual_pct": 7.0,
+          "error_pct": 3.5
+        },
+        {
+          "company": "Innovision",
+          "issue": 519.0,
+          "gmp": 0.0,
+          "listed": 467.7,
+          "implied_pct": 0.0,
+          "actual_pct": -9.88,
+          "error_pct": -9.88
+        }
+      ],
+      "track_record": {
+        "sample": 275,
+        "direction_right_pct": 84.4,
+        "median_abs_error_pct": 6.61,
+        "overstated_pct": 58.2
+      },
+      "as_of": "2026-09-11T11:37:28+05:30",
+      "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
+      "source": "ipowatch.in",
+      "fetched_at": "2026-09-11T11:37:28+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -1436,8 +2285,8 @@
           "gain_close_pct": 0.62
         }
       ],
-      "resolved_total": 297,
-      "added_this_run": 17,
+      "resolved_total": 332,
+      "added_this_run": 16,
       "bhavcopy_calls": 12,
       "stats_last_50": {
         "count": 50,
@@ -1448,16 +2297,16 @@
         "worst": "ANNU"
       },
       "stats_all": {
-        "count": 297,
-        "median_open_pct": 5.13,
+        "count": 332,
+        "median_open_pct": 5.0,
         "median_close_pct": 6.23,
-        "positive_open_pct": 65.0,
+        "positive_open_pct": 64.2,
         "best": "TEMPSENS",
         "worst": "ARUNAYA"
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-11T11:28:12+05:30",
+      "fetched_at": "2026-09-11T11:37:42+05:30",
       "stale": false
     },
     "earnings": {
@@ -1571,7 +2420,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-11T11:28:13+05:30",
+      "fetched_at": "2026-09-11T11:37:44+05:30",
       "stale": false
     }
   }

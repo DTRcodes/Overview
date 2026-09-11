@@ -343,6 +343,54 @@ def fetch_fii_derivatives():
     raise RuntimeError("no participant OI file in the last 8 days")
 
 
+def last_trading_day(today=None):
+    """Most recent NSE trading day, today included."""
+    d = today or dt.datetime.now(IST).date()
+    hol = nse_holidays()
+    while d.weekday() >= 5 or d in hol:
+        d -= dt.timedelta(days=1)
+    return d
+
+
+def have_fii_for(day):
+    """Is the cash FII/DII figure for `day` already in history?"""
+    for row in load_history()["rows"]:
+        if row.get("date") == day.isoformat() and row.get("fii_net") is not None:
+            return True
+    return False
+
+
+def last_settled_trading_day():
+    """The most recent trading day whose FII/DII figure should EXIST by now.
+
+    NSE posts the cash number after close. Before ~18:00 IST on a trading day
+    that day's figure is simply not out yet, and treating it as missing would
+    make every pre-close run think it had work to do.
+    """
+    now = dt.datetime.now(IST)
+    day = last_trading_day(now.date())
+    if day == now.date() and now.hour < 18:
+        day = last_trading_day(day - dt.timedelta(days=1))
+    return day
+
+
+def ensure_fii():
+    """Fetch only if the latest trading day's FII/DII cash is still missing.
+
+    NSE publishes the cash figure after close, and the exact minute moves - it
+    is usually there by 19:00 IST but not always. Rather than hammering every
+    source on a fixed retry schedule, this checks first and exits doing nothing
+    when the number has already landed, so an hourly cron is nearly free on the
+    days it is not needed.
+    """
+    day = last_settled_trading_day()
+    if have_fii_for(day):
+        print("FII/DII for %s already present - nothing to do." % day)
+        return 0
+    print("FII/DII for %s missing - fetching." % day)
+    return None          # caller runs the full fetch
+
+
 def audit_history(max_lag=5):
     """Report how current each history series is.
 
@@ -1020,6 +1068,28 @@ def add_business_days(start, n):
     return d
 
 
+def listing_label(expected, today):
+    """How to describe an expected listing date to a human.
+
+    "Lists tomorrow" must mean tomorrow on the CALENDAR. The expected date is
+    the next trading day, which on a Friday is Monday - calling that "tomorrow"
+    is simply wrong. So Friday says "Lists Monday", Sunday says "Lists
+    tomorrow", and Monday says "Lists today", which is how anyone would say it.
+    """
+    if not expected:
+        return "Awaiting listing"
+    delta = (expected - today).days
+    if delta < 0:
+        return "Awaiting listing"          # overdue; NSE has not confirmed
+    if delta == 0:
+        return "Lists today"
+    if delta == 1:
+        return "Lists tomorrow"
+    if delta <= 6:
+        return "Lists " + expected.strftime("%A")
+    return "Awaiting listing"
+
+
 def expected_listing(closed):
     """SEBI's T+3 rule: listing within 3 working days of issue close.
 
@@ -1127,8 +1197,8 @@ def fetch_ipo():
                 exp.strftime("%d-%b-%Y") if exp else None)
             row["expected_basis"] = "T+3 (SEBI rule; 83% exact over 151 past listings)"
             row["lists_today_expected"] = (exp == today)
-            row["lists_tomorrow_expected"] = (
-                exp == add_business_days(today, 1) if exp else False)
+            row["listing_label"] = listing_label(exp, today)
+            row["days_to_listing"] = (exp - today).days if exp else None
             awaiting.append(row)
 
     awaiting.sort(key=lambda r: (r.get("expected_listing") or "9999",
@@ -1348,6 +1418,121 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
     IPO_STORE.write_text(json.dumps(store, indent=1, ensure_ascii=False),
                          encoding="utf-8")
     return added, len(done), calls
+
+
+GMP_URL = "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/"
+
+
+def _strip_tags(s):
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s)).strip()
+
+
+def _rupee(s):
+    """'₹1,973' -> 1973.0, '₹-' -> None."""
+    if not s:
+        return None
+    m = re.search(r"-?[\d,]+(?:\.\d+)?", s.replace("₹", ""))
+    return num(m.group(0)) if m else None
+
+
+def _norm_name(s):
+    """Company names for matching across sources: NSE says 'Hero Motors
+    Limited', ipowatch says 'Hero Motors'."""
+    s = (s or "").lower()
+    s = re.sub(r"\b(limited|ltd|private|pvt|india|the)\b", " ", s)
+    return re.sub(r"[^a-z0-9]", "", s)
+
+
+@source("ipo_gmp")
+def fetch_ipo_gmp():
+    """Grey market premium for open and upcoming IPOs.
+
+    GMP is an UNOFFICIAL, unregulated over-the-counter indication - it is not
+    exchange data, no regulator stands behind it, and it can move or vanish
+    without trace. It is widely watched anyway, so it is carried here with a
+    measured track record rather than presented as a forecast.
+
+    ipowatch.in renders its tables server-side, which is why it is the source:
+    investorgain, ipocentral and Chittorgarh all build theirs in JavaScript and
+    would need a browser.
+
+    Three tables: mainboard live, SME live, and a history of GMP against the
+    actual listing price. The third is what makes the first two honest - it is
+    scored below so the card can say how often this signal has been right.
+    """
+    html = get(GMP_URL).text
+    tables = re.findall(r"<table[^>]*>(.*?)</table>", html, re.S)
+    if len(tables) < 2:
+        raise RuntimeError("ipowatch layout changed - %d tables" % len(tables))
+
+    def rows_of(tbl):
+        out = []
+        for r in re.findall(r"<tr[^>]*>(.*?)</tr>", tbl, re.S):
+            cells = [_strip_tags(c) for c in
+                     re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, re.S)]
+            if cells:
+                out.append(cells)
+        return out
+
+    def live(tbl, board):
+        out = []
+        for c in rows_of(tbl)[1:]:
+            if len(c) < 7 or c[0].lower().startswith("ipo name"):
+                continue
+            gmp = _rupee(c[1])
+            band = _rupee(c[3])
+            est = _rupee(c[4])
+            pct = None
+            m = re.search(r"\(([-\d.]+)%\)", c[4])
+            if m:
+                pct = num(m.group(1))
+            out.append({"company": c[0], "board": board, "gmp": gmp,
+                        "price_band_upper": band, "est_listing": est,
+                        "est_gain_pct": pct,
+                        "direction": ("premium" if (gmp or 0) > 0 else
+                                      "discount" if (gmp or 0) < 0 else "flat"),
+                        "window": c[5], "status": c[6],
+                        "match": _norm_name(c[0])})
+        return out
+
+    current = live(tables[0], "mainboard") + live(tables[1], "sme")
+
+    # ---- track record: GMP vs what the stock actually listed at
+    hist, scored = [], []
+    if len(tables) > 2:
+        for c in rows_of(tables[2])[1:]:
+            if len(c) < 4:
+                continue
+            issue, gmp, listed = _rupee(c[1]), _rupee(c[2]), _rupee(c[3])
+            if not issue or gmp is None or not listed:
+                continue
+            implied = (gmp / issue) * 100
+            actual = ((listed - issue) / issue) * 100
+            hist.append({"company": c[0], "issue": issue, "gmp": gmp,
+                         "listed": listed, "implied_pct": round(implied, 2),
+                         "actual_pct": round(actual, 2),
+                         "error_pct": round(actual - implied, 2)})
+            scored.append((implied, actual))
+
+    track = None
+    if scored:
+        errs = sorted(abs(a - i) for i, a in scored)
+        same_way = sum(1 for i, a in scored
+                       if (i > 0) == (a > 0) or (abs(i) < 1 and abs(a) < 1))
+        over = sum(1 for i, a in scored if i > a)
+        track = {
+            "sample": len(scored),
+            "direction_right_pct": round(100 * same_way / len(scored), 1),
+            "median_abs_error_pct": round(errs[len(errs) // 2], 2),
+            "overstated_pct": round(100 * over / len(scored), 1),
+        }
+
+    return {"current": current, "history": hist[:40], "track_record": track,
+            "as_of": now_iso(),
+            "caveat": ("Grey market premium is unofficial and unregulated. It "
+                       "is an indication of sentiment, not a price you can "
+                       "trade or a forecast anyone stands behind."),
+            "source": "ipowatch.in"}
 
 
 @source("ipo_gains")
@@ -1761,6 +1946,9 @@ def main():
                     help="seed the FBIL India par-yield curve back N days")
     ap.add_argument("--backfill-china", type=int, metavar="N", default=0,
                     help="seed the ChinaBond curve back N calendar days")
+    ap.add_argument("--ensure-fii", action="store_true",
+                    help="fetch only if the last trading day's FII/DII cash "
+                         "is still missing; otherwise exit doing nothing")
     ap.add_argument("--audit", action="store_true",
                     help="report how current each history series is")
     ap.add_argument("--prune-ipo", action="store_true",
@@ -1795,6 +1983,11 @@ def main():
         return 0
     if args.audit:
         return audit_history()
+    if args.ensure_fii:
+        done = ensure_fii()
+        if done is not None:
+            return done
+        # fall through to the normal fetch
     if args.prune_ipo:
         removed, kept = prune_ipo_store()
         print("Pruned %d migration/relisting rows; %d genuine listings kept."
@@ -1817,6 +2010,41 @@ def main():
 
     print("Fetching @ " + now_iso())
     data = run(only=set(args.only) if args.only else None)
+
+    # ---- join GMP onto the IPO pipeline.
+    # Cross-source, so it happens here rather than inside either fetcher: the
+    # two name the same company differently ("Hero Motors Limited" vs "Hero
+    # Motors"), and _norm_name is the single place that reconciles them.
+    gmp_sec = data["sections"].get("ipo_gmp") or {}
+    by_name = {g["match"]: g for g in (gmp_sec.get("current") or [])
+               if g.get("match")}
+
+    def find_gmp(company):
+        """Exact normalised match, else containment. ipowatch truncates names
+        ("Asset Reconstruction" for "Asset Reconstruction Company (India)
+        Limited"), so one normalised name is often a prefix of the other. The
+        8-char floor stops short names colliding."""
+        n = _norm_name(company)
+        if not n:
+            return None
+        if n in by_name:
+            return by_name[n]
+        cands = [g for k, g in by_name.items()
+                 if len(k) >= 8 and len(n) >= 8 and (k in n or n in k)]
+        return cands[0] if len(cands) == 1 else None
+    ipo_sec = data["sections"].get("nse_ipo") or {}
+    matched = 0
+    for bucket in ("listing_today", "awaiting", "open_now", "current"):
+        for row in ipo_sec.get(bucket) or []:
+            g = find_gmp(row.get("company"))
+            if not g:
+                continue
+            row["gmp"] = g.get("gmp")
+            row["gmp_est_gain_pct"] = g.get("est_gain_pct")
+            row["gmp_direction"] = g.get("direction")
+            matched += 1
+    if ipo_sec:
+        ipo_sec["gmp_matched"] = matched
 
     rows = [row_from_sections(data["sections"])]
     # FII/DII now arrives as a rolling window, not a single day - fold every

@@ -26,6 +26,7 @@ are hit exactly once a day by one process; visitors only ever touch a CDN.
 | FII / DII cash flows | `nseindia.com/api/fiidiiTradeReact` | Plain UA header is enough |
 | IPOs | `nseindia.com/api/…issues` | 1,400+ past issues |
 | IPO listing gains | `sec_bhavdata_full` join | Computed: issue price vs listing-day open/close |
+| IPO grey market premium | ipowatch.in | **Unofficial**, scored against 275 past listings |
 | World 5Y & 10Y | US Treasury, Bundesbank, BoE, Japan MOF, ChinaBond, FBIL | All daily, all key-less |
 
 | US rates | FRED (with key) → Yahoo fallback | Works without a key |
@@ -138,8 +139,11 @@ Note that GitHub Pages sites are **public**. Everything here is public market
 data, so that is fine; if you later want it private, put it behind Cloudflare
 Pages + Cloudflare Access instead.
 
-`.github/workflows/update.yml` runs at 13:30 UTC = **19:00 IST**, weekdays, and
-commits the two JSON files if anything changed.
+`update.yml` runs at **08:00 and 19:00 IST**, weekdays. `fii-retry.yml` then
+runs hourly to 23:00 IST, but only fetches when the last settled trading day's
+FII/DII cash is still missing — NSE's posting time moves, and on the days the
+19:00 run already caught it the retry exits without touching a source. Both
+share one concurrency group so they can never commit over each other.
 
 ## Where the fetch runs — settled
 

@@ -599,38 +599,44 @@ function render(){
   const soon  = (ip && ip.awaiting) || [];
   const cur2  = (ip && ip.open_now) || cur;
   const tvAll = (ip && ip.tv_watchlist) || [];
+  // Grey market premium. Unofficial, so it is shown plainly with its implied
+  // percentage and never styled as a forecast.
+  const gmpCell = x => x.gmp == null ? '<span style="color:var(--text-muted)">—</span>'
+    : `${nf(x.gmp,0)}<br><span style="font-size:11px" class="${sign(x.gmp_est_gain_pct)}">${
+        nf(x.gmp_est_gain_pct,1)}%</span>`;
   const tvRow = (id, list) => !list.length ? '' :
     `<div class="tvbox"><code id="${id}">${esc(list.join(','))}</code>
       <button class="btn" data-copy="${id}">Copy</button></div>`;
 
   b.push(card('IPO pipeline', ip && ip.tv_note, ip,
     `<div class="scroll"><table><thead><tr><th>Company</th><th>Ticker</th>
-       <th>State</th><th>Series</th><th>Price</th><th>Window</th>
+       <th>State</th><th title="Grey market premium — unofficial">GMP</th>
+       <th>Series</th><th>Price</th><th>Window</th>
        </tr></thead><tbody>` +
     today.map(x => `<tr class="lists-today"><td>${esc(x.company)}</td>
         <td><b>${esc(x.symbol)}</b></td>
         <td><span class="pill today">Lists today</span></td>
-        <td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
+        <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
         <td>${esc(x.listing_date)}</td></tr>`).join('') +
     soon.map(x => {
       // An expected T+3 date is an estimate, and the row says so. Only a real
       // bhavcopy appearance turns a row green.
-      const st = x.lists_today_expected ? ['soon','Expected today']
-               : x.lists_tomorrow_expected ? ['soon','Lists tomorrow']
-               : ['soon','Awaiting listing'];
+      // Label comes from Python so "tomorrow" means tomorrow on the
+      // calendar and holidays are already accounted for.
+      const st = ['soon', x.listing_label || 'Awaiting listing'];
       const when = x.expected_listing_dmy
         ? `expected <b>${esc(x.expected_listing_dmy)}</b>
            <span style="color:var(--text-muted)">· T+3 est.</span>`
         : `closed ${esc(x.ipo_closed)} (${x.days_since_close}d)`;
       return `<tr class="awaiting"><td>${esc(x.company)}</td>
         <td><b>${esc(x.symbol)}</b></td>
-        <td><span class="pill ${st[0]}">${st[1]}</span></td>
-        <td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
+        <td><span class="pill ${st[0]}">${esc(st[1])}</span></td>
+        <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
         <td>${when}</td></tr>`;
     }).join('') +
     cur2.map(x => `<tr><td>${esc(x.company)}</td><td><b>${esc(x.symbol)}</b></td>
         <td><span class="pill">${x.live ? 'Open now' : esc(x.status || 'Upcoming')}</span></td>
-        <td>${esc(x.series)}</td><td>${esc(x.price)}</td>
+        <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price)}</td>
         <td>${esc(x.opens)} &rarr; ${esc(x.closes)}</td></tr>`).join('') +
     `</tbody></table></div>` +
     ((today.length || soon.length || cur2.length) ? '' :
@@ -645,6 +651,34 @@ function render(){
       listings landed exactly on T+3, ~93% within T+2 to T+6. It is an estimate
       until the stock appears in a bhavcopy, which is what turns a row
       green.</div>`, 'wide'));
+
+  // ---- grey market premium
+  const gm = S.ipo_gmp, gmc = (gm && gm.current) || [], tr = gm && gm.track_record;
+  b.push(card('IPO grey market premium',
+    gm && gm.caveat,
+    gm,
+    (tr ? `<div class="stats" style="margin-bottom:11px">
+       <div class="stat"><div class="t">Direction right</div>
+         <div class="n">${nf(tr.direction_right_pct,1)}%</div>
+         <div class="m">of ${tr.sample} past IPOs</div></div>
+       <div class="stat"><div class="t">Typical miss</div>
+         <div class="n">${nf(tr.median_abs_error_pct,1)} pts</div>
+         <div class="m">overstated ${nf(tr.overstated_pct,0)}% of the time</div></div>
+     </div>` : '') +
+    `<div class="scroll"><table><thead><tr><th>Company</th><th>Board</th>
+      <th>GMP</th><th>Implied</th><th>Est. listing</th><th>Window</th><th>Status</th>
+      </tr></thead><tbody>` +
+    gmc.slice(0,18).map(x => `<tr>
+      <td>${esc(x.company)}</td><td>${esc(x.board)}</td>
+      <td>${x.gmp == null ? '—' : nf(x.gmp,0)}</td>
+      <td class="${sign(x.est_gain_pct)}">${x.est_gain_pct == null ? '—' : nf(x.est_gain_pct,1)+'%'}</td>
+      <td>${x.est_listing == null ? '—' : nf(x.est_listing,0)}</td>
+      <td>${esc(x.window)}</td><td>${esc(x.status)}</td></tr>`).join('') +
+    `</tbody></table></div>
+     <div class="note">Scored against ${tr ? tr.sample : 0} past issues where the
+      grey market call can be compared with the actual listing price. It gets the
+      <b>direction</b> right most of the time and the <b>size</b> wrong more often
+      than not &mdash; treat it as sentiment, not a price target.</div>`, 'wide'));
 
   // ---- IPO listing-day gains
   const ig = S.ipo_gains, gl = (ig && ig.listings) || [], gs = ig && ig.stats_last_50;

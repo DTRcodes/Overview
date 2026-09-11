@@ -1,0 +1,48 @@
+name: FII/DII retry
+
+# NSE posts the cash FII/DII figure after close, and the exact minute moves.
+# The 19:00 run usually catches it; when it does not, this retries hourly to
+# 23:00 IST. It is cheap on the days it is not needed: --ensure-fii checks
+# history first and exits without touching a single source when the number
+# has already landed.
+on:
+  schedule:
+    # 14:30-17:30 UTC = 20:00-23:00 IST, weekdays, after the 19:00 main run.
+    - cron: "30 14-17 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  # Never let a retry and the main run commit over each other.
+  group: markets-data
+  cancel-in-progress: false
+
+jobs:
+  retry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Fetch only if FII/DII is still missing
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python fetch.py --ensure-fii
+      - name: Commit if anything changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data.json docs/history.json docs/ipo_listings.json \
+                  docs/china_yields.json docs/india_curve.json
+          if git diff --staged --quiet; then
+            echo "No change - FII/DII was already present."
+          else
+            git commit -m "data: fii retry $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git pull --rebase --autostash origin main
+            git push
+          fi

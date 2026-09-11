@@ -161,6 +161,8 @@ tr.awaiting td:first-child { box-shadow: inset 3px 0 0 var(--series-1); }
   gap:10px;flex-wrap:wrap;margin-bottom:2px}
 .cardhead h2{margin:0}
 .seg-sm button{padding:2px 7px;font-size:10.5px}
+table.tight th, table.tight td{padding:4px 8px;font-size:11.5px}
+table.tight td:first-child{min-width:150px}
 </style>
 </head>
 <body>
@@ -437,6 +439,81 @@ function badge(sec){
   return sec && sec.stale
     ? `<span class="badge" title="${esc(sec.stale_reason||'')}">stale · ${ago(sec.fetched_at)}</span>`
     : '';
+}
+
+/* Monthly IPO behaviour: how many listed, and what the day did once open.
+   Percentages own the left axis and are the subject; the count is context on
+   the right, drawn behind and faded so it frames the medians without
+   competing with them. Two different measures, so two axes - the exception
+   is deliberate and the weaker series is visibly subordinate. */
+function monthlyBars(el, rows, opts = {}){
+  if(!rows || rows.length < 2){
+    el.innerHTML = `<div class="empty">Not enough listings yet.</div>`;
+    return;
+  }
+  const W = Math.max(el.clientWidth || 320, 280), H = opts.height || 235;
+  const padL = 40, padR = 34, padT = 14, padB = 34;
+  const iw = W - padL - padR, ih = H - padT - padB;
+
+  const pcts = [];
+  rows.forEach(r => ['median_intra_pop_pct','median_intra_close_pct']
+    .forEach(k => { if(r[k] != null) pcts.push(r[k]); }));
+  if(!pcts.length){ el.innerHTML = `<div class="empty">No data.</div>`; return; }
+  let lo = Math.min(0, ...pcts), hi = Math.max(0, ...pcts);
+  const pad = (hi - lo) * 0.15 || 1; lo -= pad; hi += pad;
+  const maxN = Math.max(...rows.map(r => r.count || 0), 1);
+
+  const Y  = v => padT + ih - ((v - lo) / (hi - lo)) * ih;
+  const Yc = v => padT + ih - (v / maxN) * ih;
+  const bw = iw / rows.length;              // one month's slot
+  const cw = Math.min(bw * 0.30, 16);       // width of each median column
+
+  const grid = [], ylab = [];
+  for(let i = 0; i <= 4; i++){
+    const v = lo + (hi - lo) * (i/4), y = Y(v);
+    grid.push(`<line class="gridline" x1="${padL}" y1="${y.toFixed(1)}" x2="${padL+iw}" y2="${y.toFixed(1)}"/>`);
+    ylab.push(`<text class="axis" x="${padL-6}" y="${(y+3.5).toFixed(1)}" text-anchor="end">${nf(v,0)}%</text>`);
+  }
+  const zero = `<line x1="${padL}" y1="${Y(0).toFixed(1)}" x2="${padL+iw}" y2="${Y(0).toFixed(1)}"
+    stroke="${cssv('--text-muted')}" stroke-width="1" opacity=".7"/>`;
+
+  const cPop = cssv('--series-3'), cCls = cssv('--series-2'), cCnt = cssv('--text-secondary');
+  let bars = '', labs = '';
+  rows.forEach((r, i) => {
+    const x0 = padL + i * bw, mid = x0 + bw/2;
+    // count column behind, on its own scale
+    const yc = Yc(r.count || 0);
+    bars += `<rect x="${(x0 + bw*0.12).toFixed(1)}" y="${yc.toFixed(1)}"
+      width="${(bw*0.76).toFixed(1)}" height="${(padT+ih-yc).toFixed(1)}"
+      fill="${cCnt}" opacity=".13"/>`;
+    [[r.median_intra_pop_pct, cPop, -1], [r.median_intra_close_pct, cCls, 1]]
+      .forEach(([v, col, side]) => {
+        if(v == null) return;
+        const y = Y(v), y0 = Y(0);
+        const x = mid + (side < 0 ? -cw - 1 : 1);
+        bars += `<rect x="${x.toFixed(1)}" y="${Math.min(y,y0).toFixed(1)}"
+          width="${cw.toFixed(1)}" height="${Math.max(Math.abs(y-y0),1).toFixed(1)}"
+          fill="${col}" rx="1.5"><title>${esc(r.month)} ${nf(v,1)}%</title></rect>`;
+      });
+    const step = rows.length > 12 ? 2 : 1;
+    if(i % step === 0){
+      const [yy, mm] = r.month.split('-');
+      labs += `<text class="axis" x="${mid.toFixed(1)}" y="${H-14}" text-anchor="middle">${
+        ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mm-1]}</text>`
+        + `<text class="axis" x="${mid.toFixed(1)}" y="${H-3}" text-anchor="middle"
+             opacity=".65">${esc(yy.slice(2))}</text>`;
+    }
+  });
+
+  el.innerHTML =
+    `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="IPO listings per month with median intraday moves">
+       ${grid.join('')}${zero}${bars}${ylab.join('')}${labs}
+     </svg>
+     <div class="legend">
+       <span><i style="background:${cPop}"></i>Open&rarr;high</span>
+       <span><i style="background:${cCls}"></i>Open&rarr;close</span>
+       <span><i style="background:${cCnt};opacity:.3"></i>Listings that month <span style="color:var(--text-muted)">(count)</span></span>
+     </div>`;
 }
 
 function card(title, caption, sec, body, cls, head){
@@ -750,26 +827,51 @@ function render(){
   b.push(card('IPO listing-day gains',
     'Measured against the issue price. Open = the listing pop; close = holding day one out.',
     ig,
-    (gs ? `<div class="stats" style="margin-bottom:11px">
-       <div class="stat"><div class="t">Median pop</div>
-         <div class="n ${sign(gs.median_open_pct)}">${nf(gs.median_open_pct,1)}%</div>
-         <div class="m">last ${gs.count} listings</div></div>
-       <div class="stat"><div class="t">Positive on open</div>
-         <div class="n">${nf(gs.positive_open_pct,0)}%</div>
-         <div class="m">median close ${nf(gs.median_close_pct,1)}%</div></div>
-     </div>` : '') +
+    // Two cohorts, one compact table. Stat tiles were costing four rows of
+    // screen for three numbers; this fits both cohorts in the space of one.
+    ((ig && ig.cohorts && ig.cohorts.length)
+      ? `<div class="scroll"><table class="tight"><thead><tr>
+           <th>Sample</th>
+           <th title="Issue price to the opening print">Median listing</th>
+           <th title="Issue price to the highest the stock traded that day">Median intra pop</th>
+           <th title="Opening print to the close — what the day itself did">Median intra close</th>
+           <th title="Share that opened above the issue price">Positive</th>
+         </tr></thead><tbody>` +
+        ig.cohorts.map(c => `<tr>
+          <td>${esc(c.label)}<br><span style="font-size:10.5px;color:var(--text-muted)">${
+            esc(dmy(c.from))} &ndash; ${esc(dmy(c.to))} &middot; n=${c.count}</span></td>
+          <td class="${sign(c.median_listing_pct)}">${nf(c.median_listing_pct,1)}%</td>
+          <td class="${sign(c.median_intra_pop_pct)}">${
+            c.median_intra_pop_pct == null ? '—' : nf(c.median_intra_pop_pct,1)+'%'}</td>
+          <td class="${sign(c.median_intra_close_pct)}">${
+            c.median_intra_close_pct == null ? '—' : nf(c.median_intra_close_pct,1)+'%'}</td>
+          <td>${nf(c.positive_open_pct,0)}%</td>
+        </tr>`).join('') +
+        `</tbody></table></div>` : '') +
+    ((ig && ig.monthly && ig.monthly.length > 1)
+      ? `<div class="chart" data-c="ipomonth" style="margin-top:10px"></div>
+         <div class="note">Both percentages are measured from the
+          <b>opening print</b>, not the issue price &mdash; they describe what the
+          day offered once trading began. The faint columns are how many listed
+          that month, on their own scale.</div>`
+      : '') +
     `<div class="scroll"><table><thead><tr><th>Company</th>
-      <th>Open %</th><th title="Move from the listing open to the listing close">Open&rarr;Close %</th>
+      <th title="Issue price to the opening print">Listing %</th>
+      <th title="Issue price to the day's high">Intra pop %</th>
+      <th title="Opening print to the close">Intra close %</th>
       <th>Close %</th><th>Listed</th>
-      <th>Issue</th><th>Open</th><th>Close</th>
+      <th>Issue</th><th>Open</th><th>High</th><th>Close</th>
       </tr></thead><tbody>` +
     gl.slice(0,25).map(x => `<tr>
       <td>${esc(x.company || x.symbol)}<br>
         <span style="color:var(--text-muted);font-size:11px">${esc(x.symbol)}</span></td>
-      <td>${pc(x.gain_open_pct)}</td><td>${pc(oc(x))}</td>
+      <td>${pc(x.gain_open_pct)}</td>
+      <td>${x.intra_pop_pct == null ? '—' : pc(x.intra_pop_pct)}</td>
+      <td>${pc(x.intra_close_pct != null ? x.intra_close_pct : oc(x))}</td>
       <td>${pc(x.gain_close_pct)}</td>
       <td>${esc(dmy(x.listing_date))}</td><td>${nf(x.issue_price,0)}</td>
-      <td>${nf(x.open,1)}</td><td>${nf(x.close,1)}</td></tr>`).join('') +
+      <td>${nf(x.open,1)}</td><td>${x.high == null ? '—' : nf(x.high,1)}</td>
+      <td>${nf(x.close,1)}</td></tr>`).join('') +
     `</tbody></table></div>
      <div class="note">${ig ? esc(ig.resolved_total) : 0} listings priced from the
       NSE bhavcopy. ${ig && ig.note ? esc(ig.note) : ''}</div>` +
@@ -815,8 +917,13 @@ function render(){
                   flows:{dp:0, zeroLine:true, height:210},
                   fno:{dp:0, zeroLine:true, height:210},
                   oi:{dp:0, zeroLine:true, height:200}};
-    document.querySelectorAll('.chart').forEach(el =>
-      lineChart(el, map[el.dataset.c] || [], opts[el.dataset.c] || {}));
+    document.querySelectorAll('.chart').forEach(el => {
+      if(el.dataset.c === 'ipomonth'){
+        monthlyBars(el, (S.ipo_gains && S.ipo_gains.monthly) || []);
+        return;
+      }
+      lineChart(el, map[el.dataset.c] || [], opts[el.dataset.c] || {});
+    });
   }
 
   document.getElementById('foot').innerHTML =

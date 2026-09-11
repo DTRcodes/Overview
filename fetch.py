@@ -1462,10 +1462,19 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
                 bad.add(sym)
                 continue
             op, cl = num(row.get("OPEN_PRICE")), num(row.get("CLOSE_PRICE"))
+            hi, lo = num(row.get("HIGH_PRICE")), num(row.get("LOW_PRICE"))
             if not op or not cl:
                 bad.add(sym)
                 continue
             done[sym] = {
+                "high": hi, "low": lo,
+                # Both "intra" measures anchor on the OPEN: they describe what
+                # the day offered after listing, not what the allottee made.
+                "intra_pop_pct": (round((hi - op) / op * 100, 2)
+                                  if hi and op else None),
+                # What the day itself did, once it had opened.
+                "intra_close_pct": (round((cl - op) / op * 100, 2)
+                                    if op else None),
                 "symbol": sym, "company": company,
                 "issue_price": price, "listing_date": day.isoformat(),
                 "ipo_closed": (rec_close.get(sym) or None),
@@ -1782,6 +1791,7 @@ def verify_listings(limit=40):
             pending.append(sym)
             continue
         op, cl = num(row.get("OPEN_PRICE")), num(row.get("CLOSE_PRICE"))
+        hi, lo = num(row.get("HIGH_PRICE")), num(row.get("LOW_PRICE"))
         if op is None or cl is None:
             pending.append(sym)
             continue
@@ -1794,7 +1804,11 @@ def verify_listings(limit=40):
                               "old_close": rec.get("close"), "new_close": cl,
                               "old_source": rec.get("price_source", "bhavcopy")})
         issue = rec.get("issue_price")
-        rec.update({"open": op, "close": cl, "price_source": "bhavcopy"})
+        rec.update({"open": op, "close": cl, "high": hi, "low": lo,
+                    "price_source": "bhavcopy"})
+        rec["intra_close_pct"] = round((cl - op) / op * 100, 2) if op else None
+        rec["intra_pop_pct"] = (round((hi - op) / op * 100, 2)
+                                if hi and op else None)
         rec.pop("provisional", None)
         rec.pop("last", None)
         if issue:
@@ -1913,25 +1927,79 @@ def fetch_ipo_gains():
     if not rows:
         raise RuntimeError("no IPO listings resolved yet")
 
-    def stats(sample):
+    def stats(sample, label):
+        """Medians for one cohort. Medians, not means: a single +800% listing
+        would drag an average somewhere no listing actually went."""
         if not sample:
             return None
-        opens = sorted(r["gain_open_pct"] for r in sample)
-        closes = sorted(r["gain_close_pct"] for r in sample)
-        mid = lambda xs: xs[len(xs) // 2]
-        return {"count": len(sample),
-                "median_open_pct": round(mid(opens), 2),
-                "median_close_pct": round(mid(closes), 2),
-                "positive_open_pct": round(
-                    100 * sum(1 for v in opens if v > 0) / len(opens), 1),
-                "best": max(sample, key=lambda r: r["gain_open_pct"])["symbol"],
-                "worst": min(sample, key=lambda r: r["gain_open_pct"])["symbol"]}
+        def med(key):
+            v = sorted(r[key] for r in sample if r.get(key) is not None)
+            return round(v[len(v) // 2], 2) if v else None
+        opens = [r["gain_open_pct"] for r in sample
+                 if r.get("gain_open_pct") is not None]
+        dates = sorted(r["listing_date"] for r in sample if r.get("listing_date"))
+        return {
+            "label": label,
+            "count": len(sample),
+            "from": dates[0] if dates else None,
+            "to": dates[-1] if dates else None,
+            # issue price -> opening print
+            "median_listing_pct": med("gain_open_pct"),
+            # opening print -> the best it traded that day
+            "median_intra_pop_pct": med("intra_pop_pct"),
+            # opening print -> close, i.e. what the day itself did
+            "median_intra_close_pct": med("intra_close_pct"),
+            "positive_open_pct": (round(100 * sum(1 for v in opens if v > 0)
+                                        / len(opens), 1) if opens else None),
+        }
+
+    def cohort(days, min_n, months_label):
+        """A window of time OR a count of listings - whichever is LARGER.
+
+        A quiet stretch would leave the time window too thin to read, and a
+        busy one would make the count window too short to be representative.
+        Taking the bigger of the two keeps the sample honest either way, and
+        the label says which rule actually applied.
+        """
+        cut = (dt.datetime.now(IST).date() - dt.timedelta(days=days)).isoformat()
+        by_time = [r for r in rows if (r.get("listing_date") or "") >= cut]
+        if len(by_time) >= min_n:
+            return by_time, "last %s" % months_label
+        return rows[:min_n], "last %d listings" % min_n
+
+    def monthly(sample, months=18):
+        """Per-month counts and medians, newest months last for plotting."""
+        buckets = {}
+        for r in sample:
+            d = r.get("listing_date") or ""
+            if len(d) < 7:
+                continue
+            buckets.setdefault(d[:7], []).append(r)
+        out = []
+        for key in sorted(buckets)[-months:]:
+            grp = buckets[key]
+            def med(k):
+                v = sorted(x[k] for x in grp if x.get(k) is not None)
+                return round(v[len(v) // 2], 2) if v else None
+            out.append({"month": key, "count": len(grp),
+                        "median_listing_pct": med("gain_open_pct"),
+                        "median_intra_pop_pct": med("intra_pop_pct"),
+                        "median_intra_close_pct": med("intra_close_pct")})
+        return out
+
+    recent, recent_label = cohort(91, 50, "3 months")
+    wide, wide_label = cohort(182, 100, "6 months")
+
 
     return {"listings": rows[:40], "resolved_total": total,
             "added_this_run": added, "bhavcopy_calls": calls,
             "corrections": corrected, "verified_against_bhavcopy": confirmed,
             "awaiting_bhavcopy": pending,
-            "stats_last_50": stats(rows[:50]), "stats_all": stats(rows),
+            "monthly": monthly(rows),
+            "cohorts": [c for c in (stats(recent, recent_label),
+                                    stats(wide, wide_label)) if c],
+            "stats_last_50": stats(rows[:50], "last 50 listings"),
+            "stats_all": stats(rows, "all listings"),
             "note": ("Gain measured against the issue price. Open = the "
                      "listing pop; close = holding the first day out."),
             "source": "nseindia.com/api + sec_bhavdata_full"}
@@ -2321,6 +2389,9 @@ def main():
                          "is still missing; otherwise exit doing nothing")
     ap.add_argument("--audit", action="store_true",
                     help="report how current each history series is")
+    ap.add_argument("--refresh-ohlc", type=int, metavar="N", default=0,
+                    help="re-read N stored listings from the bhavcopy to fill "
+                         "in high/low (one-off after adding those fields)")
     ap.add_argument("--prune-ipo", action="store_true",
                     help="re-validate the IPO store and drop migrations/relistings")
     ap.add_argument("--backfill-participants", type=int, metavar="N", default=0,
@@ -2358,6 +2429,11 @@ def main():
         if done is not None:
             return done
         # fall through to the normal fetch
+    if args.refresh_ohlc:
+        corrected, confirmed, pending = verify_listings(limit=args.refresh_ohlc)
+        print("Re-read %d listings from the bhavcopy (%d corrected, %d pending)"
+              % (confirmed, len(corrected), len(pending)))
+        return 0
     if args.prune_ipo:
         removed, kept = prune_ipo_store()
         print("Pruned %d migration/relisting rows; %d genuine listings kept."

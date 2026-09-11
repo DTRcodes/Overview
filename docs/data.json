@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-11T14:17:21+05:30",
-  "generated_at_utc": "2026-09-11T08:47:21+00:00",
+  "generated_at": "2026-09-11T14:33:45+05:30",
+  "generated_at_utc": "2026-09-11T09:03:45+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-11T14:16:25+05:30",
+      "fetched_at": "2026-09-11T14:32:50+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-11T14:16:25+05:30",
+      "fetched_at": "2026-09-11T14:32:50+05:30",
       "stale": false,
       "series_days": 23
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-11T14:16:26+05:30",
+      "fetched_at": "2026-09-11T14:32:51+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-11T14:16:27+05:30",
+      "fetched_at": "2026-09-11T14:32:52+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.8,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-11T14:16:28+05:30",
+      "fetched_at": "2026-09-11T14:32:53+05:30",
       "stale": false
     },
     "us_rates": {
@@ -207,7 +207,7 @@
       "unit": "percent",
       "via": "yfinance",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-11T14:16:30+05:30",
+      "fetched_at": "2026-09-11T14:32:56+05:30",
       "stale": false
     },
     "world_yields": {
@@ -287,7 +287,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T14:16:46+05:30",
+      "fetched_at": "2026-09-11T14:33:13+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 673,
@@ -305,10 +305,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.6575,
+      "usd_inr": 95.5875,
       "as_of": "2026-09-11",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-11T14:16:46+05:30",
+      "fetched_at": "2026-09-11T14:33:13+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -870,19 +870,19 @@
           "listing_date": "01-SEP-2026"
         },
         {
-          "company": "ABH Healthcare Limited",
-          "symbol": "ABH",
-          "tv": "NSE:ABH",
-          "price_range": "Rs.96 to Rs.102",
-          "issue_price": "102",
-          "listing_date": "01-SEP-2026"
-        },
-        {
           "company": "Madhur Knit Crafts Limited",
           "symbol": "MADHURKNIT",
           "tv": "NSE:MADHURKNIT",
           "price_range": "Rs.95 to Rs.100",
           "issue_price": "100",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "ABH Healthcare Limited",
+          "symbol": "ABH",
+          "tv": "NSE:ABH",
+          "price_range": "Rs.96 to Rs.102",
+          "issue_price": "102",
           "listing_date": "01-SEP-2026"
         },
         {
@@ -1071,7 +1071,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-11",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-11T14:16:50+05:30",
+      "fetched_at": "2026-09-11T14:33:17+05:30",
       "stale": false,
       "circular_confirmed": 1,
       "gmp_matched": 23
@@ -1164,10 +1164,10 @@
       "confirmed": 5,
       "checked": 7,
       "remembered": 10,
-      "as_of": "2026-09-11T14:16:51+05:30",
+      "as_of": "2026-09-11T14:33:17+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-11T14:16:51+05:30",
+      "fetched_at": "2026-09-11T14:33:17+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1184,7 +1184,7 @@
       ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-11T14:16:54+05:30",
+      "fetched_at": "2026-09-11T14:33:20+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -1404,6 +1404,18 @@
           "window": "18-22 Sept",
           "status": "Upcoming",
           "match": "axiomgasengineering"
+        },
+        {
+          "company": "SpectraA Technology",
+          "board": "sme",
+          "gmp": 0.0,
+          "price_band_upper": 118.0,
+          "est_listing": 0.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "17-21 Sept",
+          "status": "Upcoming",
+          "match": "spectraatechnology"
         },
         {
           "company": "Kheria Autocomp",
@@ -1954,10 +1966,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-11T14:16:54+05:30",
+      "as_of": "2026-09-11T14:33:21+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-11T14:16:54+05:30",
+      "fetched_at": "2026-09-11T14:33:21+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -1971,7 +1983,11 @@
           "close": 194.37,
           "gain_open_pct": 24.86,
           "gain_close_pct": 9.81,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 222.0,
+          "low": 193.0,
+          "intra_close_pct": -12.05,
+          "intra_pop_pct": 0.45
         },
         {
           "symbol": "MOMSBELIEF",
@@ -1982,7 +1998,11 @@
           "close": 228.34,
           "gain_open_pct": 0.0,
           "gain_close_pct": -4.46,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 239.0,
+          "low": 227.32,
+          "intra_close_pct": -4.46,
+          "intra_pop_pct": 0.0
         },
         {
           "symbol": "PERNIASPOP",
@@ -1993,7 +2013,11 @@
           "close": 568.55,
           "gain_open_pct": -6.96,
           "gain_close_pct": -1.12,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 588.9,
+          "low": 515.85,
+          "intra_close_pct": 6.27,
+          "intra_pop_pct": 10.07
         },
         {
           "symbol": "SHANTIINOR",
@@ -2004,7 +2028,11 @@
           "close": 165.55,
           "gain_open_pct": 90.0,
           "gain_close_pct": 99.46,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 165.55,
+          "low": 150.0,
+          "intra_close_pct": 4.98,
+          "intra_pop_pct": 4.98
         },
         {
           "symbol": "ASHUTOSH",
@@ -2015,7 +2043,11 @@
           "close": 147.0,
           "gain_open_pct": 52.17,
           "gain_close_pct": 59.78,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 147.0,
+          "low": 137.0,
+          "intra_close_pct": 5.0,
+          "intra_pop_pct": 5.0
         },
         {
           "symbol": "PRIORITY",
@@ -2026,7 +2058,11 @@
           "close": 241.5,
           "gain_open_pct": 15.0,
           "gain_close_pct": 20.75,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 241.5,
+          "low": 230.0,
+          "intra_close_pct": 5.0,
+          "intra_pop_pct": 5.0
         },
         {
           "symbol": "ESDS",
@@ -2037,7 +2073,11 @@
           "close": 908.4,
           "gain_open_pct": 76.46,
           "gain_close_pct": 111.75,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 908.4,
+          "low": 756.0,
+          "intra_close_pct": 20.0,
+          "intra_pop_pct": 20.0
         },
         {
           "symbol": "LUMINO",
@@ -2048,7 +2088,11 @@
           "close": 110.32,
           "gain_open_pct": 34.15,
           "gain_close_pct": 34.54,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 118.99,
+          "low": 106.54,
+          "intra_close_pct": 0.29,
+          "intra_pop_pct": 8.17
         },
         {
           "symbol": "ANNU",
@@ -2059,7 +2103,11 @@
           "close": 75.6,
           "gain_open_pct": -27.27,
           "gain_close_pct": -23.64,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 75.6,
+          "low": 70.0,
+          "intra_close_pct": 5.0,
+          "intra_pop_pct": 5.0
         },
         {
           "symbol": "SUMAX",
@@ -2070,7 +2118,11 @@
           "close": 110.45,
           "gain_open_pct": 9.9,
           "gain_close_pct": 9.36,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 116.0,
+          "low": 107.0,
+          "intra_close_pct": -0.5,
+          "intra_pop_pct": 4.5
         },
         {
           "symbol": "SYMBIOTEC",
@@ -2081,7 +2133,11 @@
           "close": 1097.7,
           "gain_open_pct": 0.0,
           "gain_close_pct": 11.1,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 1180.0,
+          "low": 934.2,
+          "intra_close_pct": 11.1,
+          "intra_pop_pct": 19.43
         },
         {
           "symbol": "HTEL",
@@ -2092,7 +2148,11 @@
           "close": 78.75,
           "gain_open_pct": 41.51,
           "gain_close_pct": 48.58,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 78.75,
+          "low": 71.25,
+          "intra_close_pct": 5.0,
+          "intra_pop_pct": 5.0
         },
         {
           "symbol": "SKYWAYS",
@@ -2103,7 +2163,11 @@
           "close": 125.56,
           "gain_open_pct": -10.14,
           "gain_close_pct": -9.01,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 136.45,
+          "low": 119.0,
+          "intra_close_pct": 1.26,
+          "intra_pop_pct": 10.04
         },
         {
           "symbol": "ABH",
@@ -2114,7 +2178,11 @@
           "close": 94.05,
           "gain_open_pct": -2.94,
           "gain_close_pct": -7.79,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 99.0,
+          "low": 94.05,
+          "intra_close_pct": -5.0,
+          "intra_pop_pct": 0.0
         },
         {
           "symbol": "MADHURKNIT",
@@ -2125,7 +2193,11 @@
           "close": 95.0,
           "gain_open_pct": 0.0,
           "gain_close_pct": -5.0,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 100.0,
+          "low": 95.0,
+          "intra_close_pct": -5.0,
+          "intra_pop_pct": 0.0
         },
         {
           "symbol": "AUGMONT",
@@ -2136,7 +2208,11 @@
           "close": 908.15,
           "gain_open_pct": 21.95,
           "gain_close_pct": 15.25,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 1019.8,
+          "low": 900.0,
+          "intra_close_pct": -5.5,
+          "intra_pop_pct": 6.12
         },
         {
           "symbol": "TEMPSENS",
@@ -2147,7 +2223,11 @@
           "close": 586.65,
           "gain_open_pct": 111.33,
           "gain_close_pct": 95.55,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 634.85,
+          "low": 551.15,
+          "intra_close_pct": -7.47,
+          "intra_pop_pct": 0.13
         },
         {
           "symbol": "GAJA",
@@ -2158,7 +2238,11 @@
           "close": 168.67,
           "gain_open_pct": 15.62,
           "gain_close_pct": 5.42,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 191.65,
+          "low": 165.4,
+          "intra_close_pct": -8.83,
+          "intra_pop_pct": 3.59
         },
         {
           "symbol": "SUNSHINE",
@@ -2169,7 +2253,11 @@
           "close": 369.2,
           "gain_open_pct": 9.97,
           "gain_close_pct": 2.56,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 395.9,
+          "low": 365.6,
+          "intra_close_pct": -6.74,
+          "intra_pop_pct": 0.0
         },
         {
           "symbol": "SHANKESH",
@@ -2180,7 +2268,11 @@
           "close": 94.82,
           "gain_open_pct": 11.08,
           "gain_close_pct": 1.96,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 111.0,
+          "low": 94.0,
+          "intra_close_pct": -8.21,
+          "intra_pop_pct": 7.45
         },
         {
           "symbol": "LALITHAA",
@@ -2191,7 +2283,11 @@
           "close": 248.44,
           "gain_open_pct": 31.84,
           "gain_close_pct": 23.6,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 274.4,
+          "low": 244.4,
+          "intra_close_pct": -6.25,
+          "intra_pop_pct": 3.55
         },
         {
           "symbol": "HORIZONIND",
@@ -2202,7 +2298,11 @@
           "close": 58.16,
           "gain_open_pct": 0.42,
           "gain_close_pct": -3.07,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 60.25,
+          "low": 56.57,
+          "intra_close_pct": -3.47,
+          "intra_pop_pct": 0.0
         },
         {
           "symbol": "FASCINATE",
@@ -2213,7 +2313,11 @@
           "close": 114.8,
           "gain_open_pct": -20.0,
           "gain_close_pct": -23.97,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 120.8,
+          "low": 114.8,
+          "intra_close_pct": -4.97,
+          "intra_pop_pct": 0.0
         },
         {
           "symbol": "SKYTECH",
@@ -2224,7 +2328,11 @@
           "close": 70.3,
           "gain_open_pct": -3.9,
           "gain_close_pct": -8.7,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 74.0,
+          "low": 70.3,
+          "intra_close_pct": -5.0,
+          "intra_pop_pct": 0.0
         },
         {
           "symbol": "CREDENT",
@@ -2235,7 +2343,11 @@
           "close": 377.05,
           "gain_open_pct": 90.0,
           "gain_close_pct": 99.5,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 377.05,
+          "low": 359.1,
+          "intra_close_pct": 5.0,
+          "intra_pop_pct": 5.0
         },
         {
           "symbol": "SHIPROCKET",
@@ -2246,7 +2358,11 @@
           "close": 143.45,
           "gain_open_pct": 35.05,
           "gain_close_pct": 47.89,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 156.0,
+          "low": 131.0,
+          "intra_close_pct": 9.5,
+          "intra_pop_pct": 19.08
         },
         {
           "symbol": "BLEL",
@@ -2257,7 +2373,11 @@
           "close": 502.2,
           "gain_open_pct": 63.16,
           "gain_close_pct": 76.21,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 537.0,
+          "low": 458.7,
+          "intra_close_pct": 8.0,
+          "intra_pop_pct": 15.48
         },
         {
           "symbol": "PRAMODINI",
@@ -2268,7 +2388,11 @@
           "close": 121.65,
           "gain_open_pct": 1.69,
           "gain_close_pct": 3.09,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 125.55,
+          "low": 114.0,
+          "intra_close_pct": 1.38,
+          "intra_pop_pct": 4.62
         },
         {
           "symbol": "MILKYMIST",
@@ -2279,7 +2403,11 @@
           "close": 181.5,
           "gain_open_pct": 17.86,
           "gain_close_pct": 29.64,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 181.5,
+          "low": 165.0,
+          "intra_close_pct": 10.0,
+          "intra_pop_pct": 10.0
         },
         {
           "symbol": "MOLBIO",
@@ -2290,7 +2418,11 @@
           "close": 1041.7,
           "gain_open_pct": 21.44,
           "gain_close_pct": 29.08,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 1064.75,
+          "low": 926.35,
+          "intra_close_pct": 6.3,
+          "intra_pop_pct": 8.65
         },
         {
           "symbol": "DHOOTTRANS",
@@ -2301,7 +2433,11 @@
           "close": 1187.05,
           "gain_open_pct": 37.77,
           "gain_close_pct": 36.29,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 1205.0,
+          "low": 1131.0,
+          "intra_close_pct": -1.08,
+          "intra_pop_pct": 0.42
         },
         {
           "symbol": "TECHNOCRAF",
@@ -2312,7 +2448,11 @@
           "close": 311.15,
           "gain_open_pct": 33.96,
           "gain_close_pct": 46.77,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 334.4,
+          "low": 284.0,
+          "intra_close_pct": 9.56,
+          "intra_pop_pct": 17.75
         },
         {
           "symbol": "OPTIMYSTIX",
@@ -2323,7 +2463,11 @@
           "close": 189.0,
           "gain_open_pct": 2.86,
           "gain_close_pct": 8.0,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 189.0,
+          "low": 175.0,
+          "intra_close_pct": 5.0,
+          "intra_pop_pct": 5.0
         },
         {
           "symbol": "ARDEE",
@@ -2334,7 +2478,11 @@
           "close": 67.12,
           "gain_open_pct": 35.85,
           "gain_close_pct": 26.64,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 73.19,
+          "low": 65.8,
+          "intra_close_pct": -6.78,
+          "intra_pop_pct": 1.65
         },
         {
           "symbol": "ANAWIL",
@@ -2345,7 +2493,11 @@
           "close": 346.1,
           "gain_open_pct": 22.09,
           "gain_close_pct": 28.19,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 346.1,
+          "low": 313.2,
+          "intra_close_pct": 4.99,
+          "intra_pop_pct": 4.99
         },
         {
           "symbol": "JNPR",
@@ -2356,7 +2508,11 @@
           "close": 259.71,
           "gain_open_pct": 8.89,
           "gain_close_pct": 15.43,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 264.72,
+          "low": 232.11,
+          "intra_close_pct": 6.0,
+          "intra_pop_pct": 8.05
         },
         {
           "symbol": "MVELECTRO",
@@ -2367,7 +2523,11 @@
           "close": 624.0,
           "gain_open_pct": 22.35,
           "gain_close_pct": 46.82,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 624.0,
+          "low": 520.0,
+          "intra_close_pct": 20.0,
+          "intra_pop_pct": 20.0
         },
         {
           "symbol": "MANIPALHOS",
@@ -2378,7 +2538,11 @@
           "close": 666.95,
           "gain_open_pct": 10.51,
           "gain_close_pct": 13.04,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 675.8,
+          "low": 635.0,
+          "intra_close_pct": 2.29,
+          "intra_pop_pct": 3.65
         },
         {
           "symbol": "PROPSHOP",
@@ -2389,7 +2553,11 @@
           "close": 57.15,
           "gain_open_pct": -20.0,
           "gain_close_pct": -17.17,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 57.9,
+          "low": 52.45,
+          "intra_close_pct": 3.53,
+          "intra_pop_pct": 4.89
         },
         {
           "symbol": "CUBEINVIT",
@@ -2400,34 +2568,192 @@
           "close": 156.96,
           "gain_open_pct": -0.64,
           "gain_close_pct": 0.62,
-          "price_source": "bhavcopy"
+          "price_source": "bhavcopy",
+          "high": 158.2,
+          "low": 155.0,
+          "intra_close_pct": 1.26,
+          "intra_pop_pct": 2.06
         }
       ],
-      "resolved_total": 498,
-      "added_this_run": 22,
+      "resolved_total": 533,
+      "added_this_run": 17,
       "bhavcopy_calls": 12,
       "corrections": [],
       "verified_against_bhavcopy": 40,
       "awaiting_bhavcopy": [],
+      "monthly": [
+        {
+          "month": "2025-04",
+          "count": 3,
+          "median_listing_pct": 17.65,
+          "median_intra_pop_pct": 23.53,
+          "median_intra_close_pct": 5.0
+        },
+        {
+          "month": "2025-05",
+          "count": 8,
+          "median_listing_pct": 2.18,
+          "median_intra_pop_pct": 4.85,
+          "median_intra_close_pct": 4.98
+        },
+        {
+          "month": "2025-06",
+          "count": 20,
+          "median_listing_pct": 8.81,
+          "median_intra_pop_pct": 14.22,
+          "median_intra_close_pct": 4.97
+        },
+        {
+          "month": "2025-07",
+          "count": 26,
+          "median_listing_pct": 9.2,
+          "median_intra_pop_pct": 14.66,
+          "median_intra_close_pct": 4.58
+        },
+        {
+          "month": "2025-08",
+          "count": 32,
+          "median_listing_pct": 5.13,
+          "median_intra_pop_pct": 10.38,
+          "median_intra_close_pct": 1.58
+        },
+        {
+          "month": "2025-09",
+          "count": 31,
+          "median_listing_pct": 4.94,
+          "median_intra_pop_pct": 10.19,
+          "median_intra_close_pct": -1.91
+        },
+        {
+          "month": "2025-10",
+          "count": 24,
+          "median_listing_pct": 5.36,
+          "median_intra_pop_pct": 11.74,
+          "median_intra_close_pct": -0.36
+        },
+        {
+          "month": "2025-11",
+          "count": 16,
+          "median_listing_pct": 9.5,
+          "median_intra_pop_pct": 15.55,
+          "median_intra_close_pct": 1.7
+        },
+        {
+          "month": "2025-12",
+          "count": 24,
+          "median_listing_pct": 7.14,
+          "median_intra_pop_pct": 12.4,
+          "median_intra_close_pct": -2.15
+        },
+        {
+          "month": "2026-01",
+          "count": 8,
+          "median_listing_pct": 27.48,
+          "median_intra_pop_pct": 33.85,
+          "median_intra_close_pct": -0.85
+        },
+        {
+          "month": "2026-02",
+          "count": 9,
+          "median_listing_pct": 2.56,
+          "median_intra_pop_pct": 5.0,
+          "median_intra_close_pct": -3.29
+        },
+        {
+          "month": "2026-03",
+          "count": 16,
+          "median_listing_pct": -2.78,
+          "median_intra_pop_pct": 0.08,
+          "median_intra_close_pct": 4.35
+        },
+        {
+          "month": "2026-04",
+          "count": 7,
+          "median_listing_pct": 2.04,
+          "median_intra_pop_pct": 6.89,
+          "median_intra_close_pct": 1.56
+        },
+        {
+          "month": "2026-05",
+          "count": 10,
+          "median_listing_pct": 3.5,
+          "median_intra_pop_pct": 4.5,
+          "median_intra_close_pct": 4.95
+        },
+        {
+          "month": "2026-06",
+          "count": 7,
+          "median_listing_pct": 3.94,
+          "median_intra_pop_pct": 9.14,
+          "median_intra_close_pct": 4.96
+        },
+        {
+          "month": "2026-07",
+          "count": 20,
+          "median_listing_pct": 8.47,
+          "median_intra_pop_pct": 12.94,
+          "median_intra_close_pct": 1.26
+        },
+        {
+          "month": "2026-08",
+          "count": 24,
+          "median_listing_pct": 21.44,
+          "median_intra_pop_pct": 4.99,
+          "median_intra_close_pct": 2.29
+        },
+        {
+          "month": "2026-09",
+          "count": 15,
+          "median_listing_pct": 9.9,
+          "median_intra_pop_pct": 5.0,
+          "median_intra_close_pct": 4.98
+        }
+      ],
+      "cohorts": [
+        {
+          "label": "last 3 months",
+          "count": 65,
+          "from": "2026-06-12",
+          "to": "2026-09-08",
+          "median_listing_pct": 10.51,
+          "median_intra_pop_pct": 5.0,
+          "median_intra_close_pct": 2.29,
+          "positive_open_pct": 70.8
+        },
+        {
+          "label": "last 100 listings",
+          "count": 100,
+          "from": "2026-02-27",
+          "to": "2026-09-08",
+          "median_listing_pct": 5.06,
+          "median_intra_pop_pct": 5.0,
+          "median_intra_close_pct": 2.29,
+          "positive_open_pct": 63.0
+        }
+      ],
       "stats_last_50": {
+        "label": "last 50 listings",
         "count": 50,
-        "median_open_pct": 15.0,
-        "median_close_pct": 15.25,
-        "positive_open_pct": 76.0,
-        "best": "TEMPSENS",
-        "worst": "ANNU"
+        "from": "2026-07-15",
+        "to": "2026-09-08",
+        "median_listing_pct": 15.0,
+        "median_intra_pop_pct": 5.0,
+        "median_intra_close_pct": 2.29,
+        "positive_open_pct": 76.0
       },
       "stats_all": {
-        "count": 498,
-        "median_open_pct": 10.0,
-        "median_close_pct": 11.1,
-        "positive_open_pct": 71.5,
-        "best": "MEDIORG",
-        "worst": "ARUNAYA"
+        "label": "all listings",
+        "count": 533,
+        "from": "2024-04-04",
+        "to": "2026-09-08",
+        "median_listing_pct": 10.68,
+        "median_intra_pop_pct": 10.69,
+        "median_intra_close_pct": 2.57,
+        "positive_open_pct": 72.2
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-11T14:17:19+05:30",
+      "fetched_at": "2026-09-11T14:33:43+05:30",
       "stale": false
     },
     "earnings": {
@@ -2541,7 +2867,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-11T14:17:21+05:30",
+      "fetched_at": "2026-09-11T14:33:45+05:30",
       "stale": false
     }
   }

@@ -29729,7 +29729,12 @@
    "y5_in": 6.39,
    "y10_in": 6.79,
    "fii_net": 258.55,
-   "dii_net": 24.77
+   "dii_net": 24.77,
+   "fii_call_oi_chg": 2357.0,
+   "fii_put_oi_chg": 55352.0,
+   "fii_fut_amt": -646.7,
+   "fii_fut_oi_chg": -3968.0,
+   "fii_fut_oi": -156131.0
   },
   {
    "date": "2026-08-12",
@@ -29757,7 +29762,12 @@
    "y5_in": 6.38,
    "y10_in": 6.79,
    "fii_net": -1002.5,
-   "dii_net": 5841.66
+   "dii_net": 5841.66,
+   "fii_call_oi_chg": -33360.0,
+   "fii_put_oi_chg": 14593.0,
+   "fii_fut_amt": -1383.52,
+   "fii_fut_oi_chg": -9038.0,
+   "fii_fut_oi": -165169.0
   },
   {
    "date": "2026-08-13",
@@ -29785,7 +29795,12 @@
    "y5_in": 6.38,
    "y10_in": 6.76,
    "fii_net": -510.69,
-   "dii_net": 4353.09
+   "dii_net": 4353.09,
+   "fii_call_oi_chg": -57902.0,
+   "fii_put_oi_chg": -25621.0,
+   "fii_fut_amt": -569.5,
+   "fii_fut_oi_chg": -3533.0,
+   "fii_fut_oi": -168702.0
   },
   {
    "date": "2026-08-14",
@@ -29813,7 +29828,12 @@
    "y5_in": 6.39,
    "y10_in": 6.77,
    "fii_net": 508.12,
-   "dii_net": 356.4
+   "dii_net": 356.4,
+   "fii_call_oi_chg": 12196.0,
+   "fii_put_oi_chg": 23060.0,
+   "fii_fut_amt": -1315.4,
+   "fii_fut_oi_chg": -7996.0,
+   "fii_fut_oi": -176698.0
   },
   {
    "date": "2026-08-17",
@@ -29841,7 +29861,12 @@
    "y5_in": 6.47,
    "y10_in": 6.82,
    "fii_net": -2535.1,
-   "dii_net": 5101.46
+   "dii_net": 5101.46,
+   "fii_call_oi_chg": 48120.0,
+   "fii_put_oi_chg": 5279.0,
+   "fii_fut_amt": -785.35,
+   "fii_fut_oi_chg": -4889.0,
+   "fii_fut_oi": -181587.0
   },
   {
    "date": "2026-08-18",
@@ -29869,7 +29894,12 @@
    "y5_in": 6.48,
    "y10_in": 6.84,
    "fii_net": 1651.53,
-   "dii_net": 2579.31
+   "dii_net": 2579.31,
+   "fii_call_oi_chg": -3136.0,
+   "fii_put_oi_chg": 108625.0,
+   "fii_fut_amt": -2029.03,
+   "fii_fut_oi_chg": -12571.0,
+   "fii_fut_oi": -194158.0
   },
   {
    "date": "2026-08-19",
@@ -29897,7 +29927,12 @@
    "y5_in": 6.47,
    "y10_in": 6.84,
    "fii_net": 407.99,
-   "dii_net": 3973.72
+   "dii_net": 3973.72,
+   "fii_call_oi_chg": -81925.0,
+   "fii_put_oi_chg": -39456.0,
+   "fii_fut_amt": -2492.77,
+   "fii_fut_oi_chg": -15649.0,
+   "fii_fut_oi": -209807.0
   },
   {
    "date": "2026-08-20",
@@ -29925,7 +29960,12 @@
    "y5_in": 6.54,
    "y10_in": 6.88,
    "fii_net": -583.36,
-   "dii_net": 3537.71
+   "dii_net": 3537.71,
+   "fii_call_oi_chg": 79793.0,
+   "fii_put_oi_chg": -92708.0,
+   "fii_fut_amt": -362.73,
+   "fii_fut_oi_chg": -2306.0,
+   "fii_fut_oi": -212113.0
   },
   {
    "date": "2026-08-21",
@@ -29953,7 +29993,12 @@
    "y5_in": 6.53,
    "y10_in": 6.89,
    "fii_net": -542.71,
-   "dii_net": 2124.14
+   "dii_net": 2124.14,
+   "fii_call_oi_chg": 15680.0,
+   "fii_put_oi_chg": -10969.0,
+   "fii_fut_amt": 363.54,
+   "fii_fut_oi_chg": 2258.0,
+   "fii_fut_oi": -209855.0
   },
   {
    "date": "2026-08-24",
@@ -29981,7 +30026,12 @@
    "y5_in": 6.51,
    "y10_in": 6.89,
    "fii_net": 1181.66,
-   "dii_net": 2493.41
+   "dii_net": 2493.41,
+   "fii_call_oi_chg": 18433.0,
+   "fii_put_oi_chg": 114011.0,
+   "fii_fut_amt": -1564.83,
+   "fii_fut_oi_chg": -9528.0,
+   "fii_fut_oi": -219383.0
   },
   {
    "date": "2026-08-25",
@@ -30009,7 +30059,12 @@
    "y5_in": 6.49,
    "y10_in": 6.87,
    "fii_net": 1593.53,
-   "dii_net": 230.26
+   "dii_net": 230.26,
+   "fii_call_oi_chg": 1250.0,
+   "fii_put_oi_chg": -32522.0,
+   "fii_fut_amt": -1550.08,
+   "fii_fut_oi_chg": 35156.0,
+   "fii_fut_oi": -184227.0
   },
   {
    "date": "2026-08-26",
@@ -30035,7 +30090,12 @@
    "y5_cn": 1.3984,
    "y10_cn": 1.6887,
    "fii_net": 502.63,
-   "dii_net": 6425.16
+   "dii_net": 6425.16,
+   "fii_call_oi_chg": -37455.0,
+   "fii_put_oi_chg": 6315.0,
+   "fii_fut_amt": -257.94,
+   "fii_fut_oi_chg": -1833.0,
+   "fii_fut_oi": -186060.0
   },
   {
    "date": "2026-08-27",
@@ -30063,7 +30123,12 @@
    "y5_in": 6.5,
    "y10_in": 6.9,
    "fii_net": -298.26,
-   "dii_net": 4977.17
+   "dii_net": 4977.17,
+   "fii_call_oi_chg": -29971.0,
+   "fii_put_oi_chg": 70609.0,
+   "fii_fut_amt": -1871.04,
+   "fii_fut_oi_chg": -11732.0,
+   "fii_fut_oi": -197792.0
   },
   {
    "date": "2026-08-28",
@@ -30091,7 +30156,12 @@
    "y5_in": 6.55,
    "y10_in": 6.92,
    "fii_net": -5039.8,
-   "dii_net": 5183.93
+   "dii_net": 5183.93,
+   "fii_call_oi_chg": 35836.0,
+   "fii_put_oi_chg": -32000.0,
+   "fii_fut_amt": -774.13,
+   "fii_fut_oi_chg": -4841.0,
+   "fii_fut_oi": -202633.0
   },
   {
    "date": "2026-08-31",
@@ -30117,7 +30187,12 @@
    "y5_in": 6.6,
    "y10_in": 6.97,
    "fii_net": -7985.88,
-   "dii_net": 4588.88
+   "dii_net": 4588.88,
+   "fii_call_oi_chg": 4558.0,
+   "fii_put_oi_chg": -42953.0,
+   "fii_fut_amt": -1037.38,
+   "fii_fut_oi_chg": -6682.0,
+   "fii_fut_oi": -209315.0
   },
   {
    "date": "2026-09-01",
@@ -30145,7 +30220,12 @@
    "y5_in": 6.6,
    "y10_in": 6.97,
    "fii_net": 1143.38,
-   "dii_net": 1846.94
+   "dii_net": 1846.94,
+   "fii_call_oi_chg": -22599.0,
+   "fii_put_oi_chg": 81058.0,
+   "fii_fut_amt": -2027.67,
+   "fii_fut_oi_chg": -12717.0,
+   "fii_fut_oi": -222032.0
   },
   {
    "date": "2026-09-02",
@@ -30173,7 +30253,12 @@
    "y5_in": 6.62,
    "y10_in": 6.99,
    "fii_net": 6688.37,
-   "dii_net": 2812.98
+   "dii_net": 2812.98,
+   "fii_call_oi_chg": -51192.0,
+   "fii_put_oi_chg": -39242.0,
+   "fii_fut_amt": -1117.23,
+   "fii_fut_oi_chg": -7131.0,
+   "fii_fut_oi": -229163.0
   },
   {
    "date": "2026-09-03",
@@ -30201,7 +30286,12 @@
    "y5_in": 6.55,
    "y10_in": 6.99,
    "fii_net": -2345.87,
-   "dii_net": 4977.46
+   "dii_net": 4977.46,
+   "fii_call_oi_chg": -12954.0,
+   "fii_put_oi_chg": 56826.0,
+   "fii_fut_amt": -926.15,
+   "fii_fut_oi_chg": -5939.0,
+   "fii_fut_oi": -235102.0
   },
   {
    "date": "2026-09-04",
@@ -30229,7 +30319,12 @@
    "y5_in": 6.55,
    "y10_in": 6.98,
    "fii_net": -3111.94,
-   "dii_net": 8930.12
+   "dii_net": 8930.12,
+   "fii_call_oi_chg": 8753.0,
+   "fii_put_oi_chg": -69138.0,
+   "fii_fut_amt": -122.86,
+   "fii_fut_oi_chg": -736.0,
+   "fii_fut_oi": -235838.0
   },
   {
    "date": "2026-09-07",
@@ -30253,7 +30348,12 @@
    "y5_in": 6.55,
    "y10_in": 6.97,
    "fii_net": 280.13,
-   "dii_net": 566.76
+   "dii_net": 566.76,
+   "fii_call_oi_chg": 5352.0,
+   "fii_put_oi_chg": 50236.0,
+   "fii_fut_amt": -2262.33,
+   "fii_fut_oi_chg": -14255.0,
+   "fii_fut_oi": -250093.0
   },
   {
    "date": "2026-09-08",
@@ -30284,7 +30384,12 @@
    "y5_cn": 1.4072,
    "y10_cn": 1.6815,
    "y5_in": 6.56,
-   "y10_in": 6.96
+   "y10_in": 6.96,
+   "fii_call_oi_chg": -3980.0,
+   "fii_put_oi_chg": 19498.0,
+   "fii_fut_amt": -1822.58,
+   "fii_fut_oi_chg": -11464.0,
+   "fii_fut_oi": -261557.0
   },
   {
    "date": "2026-09-09",
@@ -30315,7 +30420,12 @@
    "y5_cn": 1.4097,
    "y10_cn": 1.6816,
    "y5_in": 6.57,
-   "y10_in": 6.98
+   "y10_in": 6.98,
+   "fii_call_oi_chg": -40561.0,
+   "fii_put_oi_chg": 9607.0,
+   "fii_fut_amt": -2258.08,
+   "fii_fut_oi_chg": -14693.0,
+   "fii_fut_oi": -276250.0
   },
   {
    "date": "2026-09-10",
@@ -30326,7 +30436,7 @@
    "fii_net": -438.24,
    "dii_net": 1025.85,
    "repo": 5.25,
-   "usd_inr": 95.7,
+   "usd_inr": 95.7075,
    "us_10y": 4.944,
    "us_2y": 4.39,
    "us_5y": 4.733,
@@ -30340,7 +30450,12 @@
    "y5_cn": 1.4126,
    "y10_cn": 1.6797,
    "y5_in": 6.59,
-   "y10_in": 7.0
+   "y10_in": 7.0,
+   "fii_call_oi_chg": 23772.0,
+   "fii_put_oi_chg": 2512.0,
+   "fii_fut_amt": -857.42,
+   "fii_fut_oi_chg": -5594.0,
+   "fii_fut_oi": -281844.0
   }
  ]
 }

@@ -220,13 +220,34 @@ def _sensibull_fii_dii():
             row["fii_net"] = round(f_net, 2)
         if d_net is not None:
             row["dii_net"] = round(d_net, 2)
+
+        # ---- F&O. Column names follow Sensibull's own table so the numbers
+        # can be checked against it directly.
+        opt = ((rec.get("option") or {}).get("fii") or {})
+        fut = ((rec.get("future") or {}).get("fii") or {})
+        qty, amt = fut.get("quantity-wise") or {}, fut.get("amount-wise") or {}
+        fo = {
+            "fii_call_oi_chg": (opt.get("call") or {}).get("net_oi_change"),
+            "fii_put_oi_chg": (opt.get("put") or {}).get("net_oi_change"),
+            "fii_fut_amt": amt.get("net_oi"),        # INR crore, net buy/sell
+            "fii_fut_oi_chg": qty.get("net_oi"),     # contracts, day change
+            "fii_fut_oi": qty.get("outstanding_oi"), # contracts, outstanding
+        }
+        for k, v in fo.items():
+            if v is not None:
+                row[k] = round(v, 2)
         rows.append(row)
+
         latest = {
             "date": day,
             "fii": {"buy": fii.get("buy"), "sell": fii.get("sell"),
                     "net": f_net, "view": fii.get("net_view")},
             "dii": {"buy": dii.get("buy"), "sell": dii.get("sell"),
                     "net": d_net, "view": dii.get("net_view")},
+            "fno": dict(fo,
+                        fut_view=qty.get("net_view"),
+                        call_view=(opt.get("call") or {}).get("net_oi_change_view"),
+                        put_view=(opt.get("put") or {}).get("net_oi_change_view")),
         }
     return rows, latest, payload.get("key_list") or []
 
@@ -243,6 +264,7 @@ def fetch_fii_dii():
 
     if latest and rows:
         return {"flows": {"fii": latest["fii"], "dii": latest["dii"]},
+                "fno": latest.get("fno"),
                 "as_of": latest["date"], "series": rows,
                 "window_days": len(rows), "months_advertised": months,
                 "unit": "INR crore", "via": "sensibull (rolling window)",
@@ -1351,6 +1373,8 @@ HISTORY_FIELDS = ["nifty_close", "nifty_pe", "nifty_pb", "nifty_div_yield",
                   "y10_us", "y10_de", "y10_uk", "y10_jp", "y10_in", "y10_cn",
                   "y5_us", "y5_de", "y5_uk", "y5_jp",
                   "fii_idx_fut_net", "dii_idx_fut_net",
+                  "fii_call_oi_chg", "fii_put_oi_chg",
+                  "fii_fut_amt", "fii_fut_oi_chg", "fii_fut_oi",
                   "fii_stk_fut_net", "dii_stk_fut_net",
                   "india_10y", "usd_inr"]
 

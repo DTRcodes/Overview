@@ -493,6 +493,13 @@ function render(){
   const w10 = wy(10), w5 = wy(5);
   const deriv= [{key:'fii_idx_fut_net', label:'FII net idx futures', color:cssv('--series-1')},
                 {key:'dii_idx_fut_net', label:'DII net idx futures', color:cssv('--series-2')}];
+  // Cash and index futures are both INR crore, so they belong on one axis.
+  // Options OI is a contract count and gets its own panel rather than being
+  // forced onto the same scale.
+  const fno  = [{key:'fii_net',     label:'FII cash',          color:cssv('--series-1')},
+                {key:'fii_fut_amt', label:'FII index futures', color:cssv('--series-4')}];
+  const oi   = [{key:'fii_call_oi_chg', label:'Call OI chg', color:cssv('--series-3')},
+                {key:'fii_put_oi_chg',  label:'Put OI chg',  color:cssv('--series-2')}];
   const flows= [{key:'fii_net', label:'FII net', color:cssv('--series-1')},
                 {key:'dii_net', label:'DII net', color:cssv('--series-2')}];
 
@@ -519,6 +526,27 @@ function render(){
   b.push(card('Institutional flows', 'Daily net cash-market activity, ₹ crore.',
     S.nse_fii_dii,
     VIEW==='chart' ? '<div class="chart" data-c="flows"></div>' : histTable(flows), 'wide'));
+
+  // ---- FII F&O positioning
+  const fdx = S.nse_fii_dii, fo = fdx && fdx.fno;
+  const foCr = v => v == null ? '–' : `<span class="${sign(v)}">${nf(v,0)} Cr</span>`;
+  const foQt = v => v == null ? '–' : `<span class="${sign(v)}">${nf(v,0)}</span>`;
+  b.push(card('FII F&O positioning',
+    'Index futures and index options, from the same feed as the cash flows.',
+    fdx,
+    (fo ? `<div class="scroll"><table><tbody>
+      <tr><td>Index futures, net</td><td>${foCr(fo.fii_fut_amt)}</td><td>${esc(fo.fut_view||'')}</td></tr>
+      <tr><td>Index futures, OI change</td><td>${foQt(fo.fii_fut_oi_chg)}</td><td>contracts</td></tr>
+      <tr><td>Index futures, outstanding OI</td><td>${foQt(fo.fii_fut_oi)}</td><td>contracts</td></tr>
+      <tr><td>Call OI change</td><td>${foQt(fo.fii_call_oi_chg)}</td><td>${esc(fo.call_view||'')}</td></tr>
+      <tr><td>Put OI change</td><td>${foQt(fo.fii_put_oi_chg)}</td><td>${esc(fo.put_view||'')}</td></tr>
+    </tbody></table></div>` : '<div class="note">No F&O data in this run.</div>') +
+    (VIEW==='chart' ? '<div class="chart" data-c="fno"></div>' : histTable(fno)) +
+    `<div class="note">Cash and futures share the axis above &mdash; both are
+      INR crore, so they are directly comparable. Options OI is a contract
+      count, not a rupee amount, so it gets its own panel.</div>` +
+    (VIEW==='chart' ? '<div class="chart" data-c="oi"></div>' : histTable(oi)),
+    'wide'));
 
   // ---- index valuation table
   const vi = dig('nse_valuation','indices') || {};
@@ -672,14 +700,16 @@ function render(){
   document.getElementById('board').innerHTML = b.join('');
 
   if(VIEW === 'chart'){
-    const map = {pe, us: usc, fx, flows, deriv, w10, w5};
+    const map = {pe, us: usc, fx, flows, deriv, w10, w5, fno, oi};
     const opts = {pe:{dp:2, height:235, context:{key:'nifty_close',
                     label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
                   w10:{dp:2, minDays:365, height:230},
                   w5:{dp:2, minDays:365, height:230},
-                  flows:{dp:0, zeroLine:true, height:210}};
+                  flows:{dp:0, zeroLine:true, height:210},
+                  fno:{dp:0, zeroLine:true, height:210},
+                  oi:{dp:0, zeroLine:true, height:200}};
     document.querySelectorAll('.chart').forEach(el =>
-      lineChart(el, map[el.dataset.c], opts[el.dataset.c] || {}));
+      lineChart(el, map[el.dataset.c] || [], opts[el.dataset.c] || {}));
   }
 
   document.getElementById('foot').innerHTML =

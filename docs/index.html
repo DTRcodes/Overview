@@ -860,20 +860,19 @@ function render(){
           day offered once trading began. The faint columns are how many listed
           that month, on their own scale.</div>`
       : '') +
-    `<div class="scroll"><table><thead><tr><th>Company</th>
-      <th title="Issue price to the opening print">Listing %</th>
+    `<div class="scroll"><table><thead><tr>
+      <th title="Ticker, then the listing gain: issue price to the opening print">Company &middot; listing %</th>
       <th title="Issue price to the day's high">Intra pop %</th>
       <th title="Opening print to the close">Intra close %</th>
-      <th>Close %</th><th>Listed</th>
+      <th>Listed</th>
       <th>Issue</th><th>Open</th><th>High</th><th>Close</th>
       </tr></thead><tbody>` +
     gl.slice(0,25).map(x => `<tr>
       <td>${esc(x.company || x.symbol)}<br>
-        <span style="color:var(--text-muted);font-size:11px">${esc(x.symbol)}</span></td>
-      <td>${pc(x.gain_open_pct)}</td>
+        <span style="color:var(--text-muted);font-size:11px">${esc(x.symbol)}</span>
+        <span style="font-size:11.5px;margin-left:7px">${pc(x.gain_open_pct)}</span></td>
       <td>${x.intra_pop_pct == null ? '—' : pc(x.intra_pop_pct)}</td>
       <td>${pc(x.intra_close_pct != null ? x.intra_close_pct : oc(x))}</td>
-      <td>${pc(x.gain_close_pct)}</td>
       <td>${esc(dmy(x.listing_date))}</td><td>${nf(x.issue_price,0)}</td>
       <td>${nf(x.open,1)}</td><td>${x.high == null ? '—' : nf(x.high,1)}</td>
       <td>${nf(x.close,1)}</td></tr>`).join('') +

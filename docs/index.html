@@ -787,7 +787,7 @@ function render(){
   // ---- grey market premium
   const gm = S.ipo_gmp, gmc = (gm && gm.current) || [], tr = gm && gm.track_record;
   b.push(card('IPO grey market premium',
-    gm && gm.caveat,
+    'Issue price + GMP = estimated listing price. ' + ((gm && gm.caveat) || ''),
     gm,
     (tr ? `<div class="stats" style="margin-bottom:11px">
        <div class="stat"><div class="t">Direction right</div>
@@ -798,13 +798,18 @@ function render(){
          <div class="m">overstated ${nf(tr.overstated_pct,0)}% of the time</div></div>
      </div>` : '') +
     `<div class="scroll"><table><thead><tr><th>Company</th><th>Board</th>
-      <th>GMP</th><th>Implied</th><th>Est. listing</th><th>Window</th><th>Status</th>
+      <th title="Upper end of the price band">Issue price</th>
+      <th title="Grey market premium in rupees, on top of the issue price">+ GMP</th>
+      <th title="Issue price + GMP">= Est. listing</th>
+      <th title="GMP as a percentage of the issue price">Implied</th>
+      <th>Window</th><th>Status</th>
       </tr></thead><tbody>` +
     gmc.slice(0,18).map(x => `<tr>
       <td>${esc(x.company)}</td><td>${esc(x.board)}</td>
+      <td>${x.price_band_upper == null ? '—' : nf(x.price_band_upper,0)}</td>
       <td>${x.gmp == null ? '—' : nf(x.gmp,0)}</td>
-      <td class="${sign(x.est_gain_pct)}">${x.est_gain_pct == null ? '—' : nf(x.est_gain_pct,1)+'%'}</td>
       <td>${x.est_listing == null ? '—' : nf(x.est_listing,0)}</td>
+      <td class="${sign(x.est_gain_pct)}">${x.est_gain_pct == null ? '—' : nf(x.est_gain_pct,1)+'%'}</td>
       <td>${esc(x.window)}</td><td>${esc(x.status)}</td></tr>`).join('') +
     `</tbody></table></div>
      <div class="note">Scored against ${tr ? tr.sample : 0} past issues where the

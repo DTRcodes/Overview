@@ -1860,11 +1860,20 @@ def fetch_ipo_gmp():
                 continue
             gmp = _rupee(c[1])
             band = _rupee(c[3])
-            est = _rupee(c[4])
+            # The cell reads "Rs.1973 (10.53%)". Split before the bracket first:
+            # parsing the whole string picked the percentage digits out of an
+            # unpriced row and reported an estimated listing price of 0.
+            est_txt = c[4].split("(")[0]
+            est = _rupee(est_txt)
             pct = None
             m = re.search(r"\(([-\d.]+)%\)", c[4])
             if m:
                 pct = num(m.group(1))
+            if band is None:
+                # No price band announced yet, so there is nothing to add a
+                # premium to. Absent, not zero.
+                est, pct = None, None
+                gmp = gmp if gmp else None
             out.append({"company": c[0], "board": board, "gmp": gmp,
                         "price_band_upper": band, "est_listing": est,
                         "est_gain_pct": pct,

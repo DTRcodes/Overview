@@ -64,6 +64,8 @@ python fetch.py --max-age 86400    # replay from cache, hit nothing
 python fetch.py --backfill 180     # rebuild history from NSE archives + Yahoo
 python fetch.py --nifty-history    # weekly Nifty P/E back to 1999
 python fetch.py --backfill-ipo 60  # price N past listing dates (one call each)
+python seed_fii_history.py --check # validate the Mar-Aug FII seed, write nothing
+python seed_fii_history.py         # ...then merge it
 ```
 
 **Use `--max-age 86400` while editing the dashboard.** It replays responses

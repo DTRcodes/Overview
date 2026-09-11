@@ -66,12 +66,30 @@ python fetch.py --nifty-history    # weekly Nifty P/E back to 1999
 python fetch.py --backfill-ipo 60  # price N past listing dates (one call each)
 python seed_fii_history.py --check # validate the Mar-Aug FII seed, write nothing
 python seed_fii_history.py         # ...then merge it
+python fetch.py --audit            # is every history series still advancing?
 ```
 
 **Use `--max-age 86400` while editing the dashboard.** It replays responses
 from `cache/` so repeated runs never re-hit NSE, AMFI or investing.com.
 Hammering those is how you get banned. The nightly cron runs with the default
 `0`, which always fetches fresh.
+
+## Pipeline vs one-off
+
+Everything on the board is a **pipeline** — the scheduled run advances it. The
+only one-off is `seed/fii_dii_mar_aug_2026.txt`, a transcribed top-up for
+March–August 2026 that the API cannot serve; the live feed keeps extending
+forward from it.
+
+`python fetch.py --audit` proves this rather than asserting it: it prints every
+history series with its last date and flags anything lagging or never written.
+
+That check exists because this failure is invisible otherwise. A card reads
+`data.json` and looks current while its chart reads `history.json` and has
+quietly stopped advancing. It has happened twice: `us_5y` when FRED had no
+DGS5 to feed it, and the participant-OI series, which fed the card but was
+never written into history — the positioning chart would have frozen at
+whatever `--backfill-participants` last wrote.
 
 ## How it fails
 

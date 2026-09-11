@@ -343,6 +343,53 @@ def fetch_fii_derivatives():
     raise RuntimeError("no participant OI file in the last 8 days")
 
 
+def audit_history(max_lag=5):
+    """Report how current each history series is.
+
+    A series can go stale silently: the card reads data.json and looks fine
+    while the chart reads history.json and quietly stops advancing. That has
+    happened twice here - once when FRED had no DGS5 to feed us_5y, and once
+    when the participant-OI section fed the card but was never written to
+    history. This makes the failure visible instead of cosmetic.
+    """
+    rows = load_history()["rows"]
+    today = dt.datetime.now(IST).date()
+    report = []
+    for key in HISTORY_FIELDS:
+        pts = [r for r in rows if r.get(key) is not None]
+        if not pts:
+            report.append((key, 0, None, None))
+            continue
+        last = dt.date.fromisoformat(pts[-1]["date"])
+        report.append((key, len(pts), pts[-1]["date"], (today - last).days))
+
+    print("History audit @ " + today.isoformat())
+    print("-" * 58)
+    lagging, empty = [], []
+    for key, n, last, lag in report:
+        if last is None:
+            print("%-22s %6d  never written" % (key, n))
+            empty.append(key)
+            continue
+        flag = ""
+        if lag > max_lag:
+            flag = "  <-- LAGGING"
+            lagging.append(key)
+        print("%-22s %6d  %s  %2dd%s" % (key, n, last, lag, flag))
+    print("-" * 58)
+    if empty:
+        print("NEVER WRITTEN: " + ", ".join(empty))
+        print("  -> in HISTORY_FIELDS but nothing feeds it. Either a source")
+        print("     must write it into a row, or the field should be removed.")
+    if lagging:
+        print("LAGGING (>%dd): %s" % (max_lag, ", ".join(lagging)))
+        print("  -> check whether the source still feeds history, or whether")
+        print("     the publisher itself is behind (BoE runs ~2 days late).")
+    if not empty and not lagging:
+        print("All %d series current." % len(report))
+    return 1 if (empty or lagging) else 0
+
+
 def prune_ipo_store():
     """Drop stored listings whose gap fails LISTING_MAX_GAP_DAYS.
 
@@ -1714,6 +1761,8 @@ def main():
                     help="seed the FBIL India par-yield curve back N days")
     ap.add_argument("--backfill-china", type=int, metavar="N", default=0,
                     help="seed the ChinaBond curve back N calendar days")
+    ap.add_argument("--audit", action="store_true",
+                    help="report how current each history series is")
     ap.add_argument("--prune-ipo", action="store_true",
                     help="re-validate the IPO store and drop migrations/relistings")
     ap.add_argument("--backfill-participants", type=int, metavar="N", default=0,
@@ -1744,6 +1793,8 @@ def main():
         a, m, tot = backfill_china(args.backfill_china)
         print("ChinaBond: +%d days (%d misses), %d stored" % (a, m, tot))
         return 0
+    if args.audit:
+        return audit_history()
     if args.prune_ipo:
         removed, kept = prune_ipo_store()
         print("Pruned %d migration/relisting rows; %d genuine listings kept."
@@ -1772,6 +1823,26 @@ def main():
     # date in so history deepens and past revisions get corrected.
     fd = data["sections"].get("nse_fii_dii") or {}
     rows += list(fd.get("series") or [])
+
+    # Participant-wise OI carries its OWN date - the file for today may not be
+    # published yet, so the source walks back to the last one. Emitting it as a
+    # dated row rather than folding it into today's row keeps that honest.
+    #
+    # This was missing: the section fed the card but never the history, so the
+    # positioning CHART silently froze at whatever --backfill-participants last
+    # wrote while the card above it kept showing fresh numbers.
+    fdv = data["sections"].get("fii_derivatives") or {}
+    part = fdv.get("participants") or {}
+    if fdv.get("date") and part:
+        prow = {"date": fdv["date"]}
+        for who, prefix in (("fii", "fii"), ("dii", "dii")):
+            p = part.get(who) or {}
+            if p.get("index_fut_net") is not None:
+                prow[prefix + "_idx_fut_net"] = p["index_fut_net"]
+            if p.get("stock_fut_net") is not None:
+                prow[prefix + "_stk_fut_net"] = p["stock_fut_net"]
+        if len(prow) > 1:
+            rows.append(prow)
     wy = data["sections"].get("world_yields") or {}
     for key, obs in (wy.get("series") or {}).items():
         rows += [{"date": d, key: v} for d, v in obs if v is not None]

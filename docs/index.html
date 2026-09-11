@@ -507,11 +507,11 @@ function render(){
     VIEW==='chart' ? '<div class="chart" data-c="deriv"></div>' : histTable(deriv)));
   const wyNote = (S.world_yields && S.world_yields.note) || '';
   b.push(card('Major economies — 10Y government bond yields',
-    'Always shows at least 2 years; these move too slowly for a 1M window. ' + wyNote,
+    'Always shows at least 1 year; these move too slowly for a 1M window. ' + wyNote,
     S.world_yields,
     VIEW==='chart' ? '<div class="chart" data-c="w10"></div>' : histTable(w10)));
   b.push(card('Major economies — 5Y government bond yields',
-    'US, Germany, UK and Japan only — no free 5Y series exists for India or China.',
+    'US, Germany, UK, Japan and China — no free 5Y series exists for India.',
     S.world_yields,
     VIEW==='chart' ? '<div class="chart" data-c="w5"></div>' : histTable(w5)));
   b.push(card('USD / INR', 'Traded spot. The RBI reference fixing is in the FX table.', S.fx_spot,
@@ -556,6 +556,12 @@ function render(){
     Object.entries(yy).map(([k,v]) =>
       `<tr><td>India ${esc(k)}</td><td>${nf(v)}%</td></tr>`).join('') +
     `</tbody></table></div>` +
+    (dig('india_yields','spread_10y_2y') != null
+      ? `<div class="note">10s&ndash;2s spread
+         <b>${nf(dig('india_yields','spread_10y_2y'),2)}</b> pts
+         &middot; as of ${esc(dig('india_yields','as_of') || '')}
+         &middot; ${esc(dig('india_yields','tenors_available') || 0)} tenors published</div>`
+      : '') +
     (dig('india_yields','caveat') ? `<div class="note">${esc(dig('india_yields','caveat'))}</div>` : '')));
 
   // ---- IPOs
@@ -669,8 +675,8 @@ function render(){
     const map = {pe, us: usc, fx, flows, deriv, w10, w5};
     const opts = {pe:{dp:2, height:235, context:{key:'nifty_close',
                     label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
-                  w10:{dp:2, minDays:730, height:230},
-                  w5:{dp:2, minDays:730, height:230},
+                  w10:{dp:2, minDays:365, height:230},
+                  w5:{dp:2, minDays:365, height:230},
                   flows:{dp:0, zeroLine:true, height:210}};
     document.querySelectorAll('.chart').forEach(el =>
       lineChart(el, map[el.dataset.c], opts[el.dataset.c] || {}));

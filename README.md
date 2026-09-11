@@ -26,21 +26,33 @@ are hit exactly once a day by one process; visitors only ever touch a CDN.
 | FII / DII cash flows | `nseindia.com/api/fiidiiTradeReact` | Plain UA header is enough |
 | IPOs | `nseindia.com/api/…issues` | 1,400+ past issues |
 | IPO listing gains | `sec_bhavdata_full` join | Computed: issue price vs listing-day open/close |
-| Japan & UK 10Y | FRED OECD series | **Monthly and lagged**, like India |
-| Gilt NAVs | `portal.amfiindia.com/spages/NAVAll.txt` | Note the 302 from the old host |
+| World 5Y & 10Y | US Treasury, Bundesbank, BoE, Japan MOF, ChinaBond, FBIL | All daily, all key-less |
+
 | US rates | FRED (with key) → Yahoo fallback | Works without a key |
 | USD/INR spot | Yahoo `INR=X` | Deliberately separate from the RBI fixing |
 | Earnings | Yahoo `quarterly_income_stmt` | Indian fundamentals are gappy |
-| India G-Sec yields | investing.com → FRED monthly | **The weak one — see below** |
+| India G-Sec yields | FBIL par yield archive | Daily, 200 tenors, authoritative |
 
-### India yields is the weak tile
+### The yield sources, and why not FRED
 
-There is no reliable free live source. CCIL, FBIL and worldgovernmentbonds all
-render their tables in JavaScript; CCIL forbids commercial reuse; Yahoo has no
-India tenor at all. investing.com is scrapeable but sits behind Cloudflare and
-starts returning 403 under any sustained polling — it did exactly that during
-this build. The fallback is FRED's OECD series, which is authoritative but
-**monthly and lagged**. For real coverage, point this at a broker feed.
+FRED's cross-country OECD family is **ten-year only and monthly**, which rules
+it out for a 5Y comparison. Each country's own publisher has a daily, key-less
+feed instead:
+
+| Country | Source | Notes |
+|---|---|---|
+| US | home.treasury.gov | Daily par curve, one CSV per year |
+| Germany | api.statistiken.bundesbank.de | Content-negotiates on Accept-Language — the parser takes both `3,45` and `3.45` |
+| UK | bankofengland.co.uk IADB | `IUDSNPY` = 5Y, `IUDMNPY` = 10Y |
+| Japan | mof.go.jp | The `all` file stops at last month-end; the current month layers on top |
+| China | yield.chinabond.com.cn | Server-rendered HTML, takes a `workTime` date |
+| India | fbil.org.in `/wasdm/gsec/download?date=` | Undocumented; found by watching what FBIL's own page calls |
+
+FBIL is the RBI-recognised benchmark administrator, so it is the authoritative
+Indian curve. Its workbook carries 200 tenors in two conventions; the
+**semi-annual** one is stored, since that is how India's 10Y is quoted (6.98 vs
+7.10 annualised on 04-Sep-2026, against 6.96 on investing.com).
+
 
 ## Running it
 

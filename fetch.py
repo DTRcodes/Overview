@@ -55,9 +55,6 @@ INDEXES = [
     "Nifty Midcap 150", "Nifty Smallcap 250", "Nifty IT", "Nifty Auto",
 ]
 
-INDIA_TENORS = {"10Y": "india-10-year-bond-yield",
-                "5Y": "india-5-year-bond-yield",
-                "2Y": "india-2-year-bond-yield"}
 
 US_YF = {"3M": "^IRX", "5Y": "^FVX", "10Y": "^TNX", "30Y": "^TYX"}
 
@@ -358,52 +355,53 @@ def fetch_index_valuation():
 
 @source("india_yields")
 def fetch_india_yields():
-    """India G-Sec yields - the weakest tile on the board.
+    """India G-Sec curve from FBIL - the RBI-recognised benchmark administrator.
 
-    Every free source is compromised: CCIL and FBIL render their tables in
-    JavaScript, worldgovernmentbonds too, CCIL forbids commercial reuse, and
-    Yahoo has no India tenor at all. investing.com is scrapeable but sits
-    behind Cloudflare and starts 403-ing under any sustained polling.
+    This tile used to be the weakest on the board: investing.com behind
+    Cloudflare, falling back to a FRED series that was monthly, lagged and
+    10Y-only. FBIL publishes the authoritative curve daily as an archive
+    workbook, and `/wasdm/gsec/download?date=` serves any date. 200 tenors from
+    0.25 to 50 years; a useful spread is surfaced here.
 
-    So: try investing.com opportunistically, fall back to FRED's OECD series,
-    which is authoritative but MONTHLY and lagged. Either way we report which
-    one answered and how old the number is, so the dashboard can say
-    "as of Jun 2026, monthly" instead of implying it is live.
+    Semi-annual YTM, which is how India's 10Y is quoted (6.98 vs 7.10
+    annualised on 04-Sep-2026, against 6.96 on investing.com).
     """
-    out, via, as_of = {}, None, None
+    import io
+    import openpyxl
 
-    for tenor, slug in INDIA_TENORS.items():
+    today = dt.datetime.now(IST).date()
+    for back in range(0, 10):
+        day = today - dt.timedelta(days=back)
+        if day.weekday() >= 5:
+            continue
         try:
-            html = get("https://in.investing.com/rates-bonds/" + slug).text
-            m = re.search(r'"last"\s*:\s*"?([0-9]+\.[0-9]+)', html)
-            if m:
-                out[tenor] = num(m.group(1))
-                via = "investing.com (live)"
+            r = get("https://www.fbil.org.in/wasdm/gsec/download?date="
+                    + day.isoformat(),
+                    headers=dict(HEADERS, Referer="https://www.fbil.org.in/"))
         except Exception:
             continue
-
-    if not out:
-        key = os.environ.get("FRED_API_KEY", "").strip()
-        if not key:
-            raise RuntimeError(
-                "investing.com blocked (Cloudflare) and no FRED_API_KEY set "
-                "for the monthly fallback")
-        r = get("https://api.stlouisfed.org/fred/series/observations",
-                params={"series_id": "INDIRLTLT01STM", "api_key": key,
-                        "file_type": "json", "sort_order": "desc", "limit": 5})
-        obs = [o for o in r.json().get("observations", [])
-               if o.get("value") not in (".", "", None)]
-        if not obs:
-            raise RuntimeError("no India tenors from investing.com or FRED")
-        out["10Y"] = num(obs[0]["value"])
-        as_of = obs[0]["date"]
-        via = "FRED INDIRLTLT01STM (monthly, lagged)"
-
-    return {"yields": out, "unit": "percent", "via": via, "as_of": as_of,
-            "fragile": True,
-            "caveat": ("India yields have no reliable free live source. "
-                       "Point this at a broker feed for real coverage."),
-            "source": via}
+        if r.content[:2] != b"PK":
+            continue
+        ws = openpyxl.load_workbook(io.BytesIO(r.content),
+                                    data_only=True)["Par Yield"]
+        ten = {}
+        for row in ws.iter_rows(values_only=True):
+            try:
+                ten[float(row[0])] = num(row[1])
+            except (TypeError, ValueError, IndexError):
+                continue
+        if not ten.get(10.0):
+            continue
+        want = [("1Y", 1), ("2Y", 2), ("3Y", 3), ("5Y", 5),
+                ("7Y", 7), ("10Y", 10), ("30Y", 30)]
+        out = {lbl: ten[t] for lbl, t in want if ten.get(float(t)) is not None}
+        spread = (None if not (ten.get(10.0) and ten.get(2.0))
+                  else round(ten[10.0] - ten[2.0], 3))
+        return {"yields": out, "unit": "percent",
+                "via": "FBIL par yield (semi-annual)", "as_of": day.isoformat(),
+                "spread_10y_2y": spread, "tenors_available": len(ten),
+                "source": "fbil.org.in/wasdm/gsec"}
+    raise RuntimeError("no FBIL G-Sec archive file in the last 10 days")
 
 
 @source("us_rates")
@@ -463,8 +461,9 @@ def fetch_us_rates():
 # They appear on the 10Y chart and are absent from the 5Y one rather than
 # being faked from a nearby tenor.
 WORLD_FRED_10Y = {
+    # India only. China moved to ChinaBond, which is daily and has a real 5Y -
+    # FRED's OECD series for China was monthly and 10Y-only.
     "India": ["INDIRLTLT01STM", "IRLTLT01INM156N"],
-    "China": ["IRLTLT01CNM156N", "CHNIRLTLT01STM"],
 }
 YKEY = {"US": "us", "Japan": "jp", "UK": "uk", "Germany": "de",
         "India": "in", "China": "cn"}
@@ -581,6 +580,178 @@ def _de_curve():
     return out
 
 
+INDIA_STORE = ROOT / "docs" / "india_curve.json"
+CHINA_STORE = ROOT / "docs" / "china_yields.json"
+
+
+def _in_day(day):
+    """India par yield curve for one date, from FBIL's own archive file.
+
+    FBIL is the RBI-recognised benchmark administrator, so this is the
+    authoritative Indian curve - far better than the monthly OECD series FRED
+    carries, and it has a real 5Y. The endpoint is undocumented; it was found
+    by watching what fbil.org.in itself calls. `/wasdm/gsec/fetch` lists only
+    recent archive dates, but `/wasdm/gsec/download?date=` serves any date.
+
+    The workbook's "Par Yield" sheet holds 200 tenors from 0.25 to 50 years in
+    two conventions. Semi-annual is the one India's 10Y is quoted in (6.98 vs
+    7.10 annualised on 04-Sep-2026, against 6.96 on investing.com), so that is
+    what is stored - the other would read as a different market.
+    """
+    import io
+    import openpyxl
+
+    url = ("https://www.fbil.org.in/wasdm/gsec/download?date=" + day.isoformat())
+    r = get(url, headers=dict(HEADERS, Referer="https://www.fbil.org.in/"))
+    if not r.content[:2] == b"PK":
+        return None
+    ws = openpyxl.load_workbook(io.BytesIO(r.content), data_only=True)["Par Yield"]
+    ten = {}
+    for row in ws.iter_rows(values_only=True):
+        try:
+            ten[float(row[0])] = num(row[1])        # semi-annual YTM
+        except (TypeError, ValueError, IndexError):
+            continue
+    out = {"5": ten.get(5.0), "10": ten.get(10.0)}
+    return out if out["10"] is not None else None
+
+
+def _load_curve(path):
+    if path.exists():
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
+
+
+def _save_curve(path, store):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(store, indent=0, sort_keys=True), encoding="utf-8")
+
+
+def _in_curve():
+    """India curve: cached history plus the newest published date."""
+    store = _load_curve(INDIA_STORE)
+    today = dt.datetime.now(IST).date()
+    for back in range(0, 8):
+        day = today - dt.timedelta(days=back)
+        if day.weekday() >= 5 or day.isoformat() in store:
+            continue
+        try:
+            v = _in_day(day)
+        except Exception:
+            continue
+        if v:
+            store[day.isoformat()] = v
+            break
+    if store:
+        _save_curve(INDIA_STORE, store)
+    return store
+
+
+def backfill_india(days=400, pause=0.4):
+    """One-off: walk FBIL's archive back N calendar days."""
+    store = _load_curve(INDIA_STORE)
+    today, added, miss = dt.datetime.now(IST).date(), 0, 0
+    for back in range(0, days + 1):
+        day = today - dt.timedelta(days=back)
+        if day.weekday() >= 5 or day.isoformat() in store:
+            continue
+        try:
+            v = _in_day(day)
+        except Exception:
+            miss += 1
+            continue
+        if v:
+            store[day.isoformat()] = v
+            added += 1
+        else:
+            miss += 1          # market holiday: no file published
+        time.sleep(pause)
+    _save_curve(INDIA_STORE, store)
+    return added, miss, len(store)
+
+
+def _cn_day(day):
+    """ChinaBond official government yield curve for one date.
+
+    Server-rendered HTML (no JS, no key) and it accepts a workTime parameter,
+    so unlike FRED's monthly OECD series this gives a real daily 5Y and 10Y
+    and can be backfilled. Columns are [O/N, 3M, 6M, 1Y, 3Y, 5Y, 7Y, 10Y, 30Y].
+    """
+    url = ("https://yield.chinabond.com.cn/cbweb-cbrc-web/cbrc/queryGjqxInfo"
+           "?workTime=" + day.isoformat() + "&locale=en_US")
+    html = get(url).text
+    ths = [re.sub(r"<!--.*?-->", "", t, flags=re.S).strip()
+           for t in re.findall(r"<th[^>]*>(.*?)</th>", html, re.S)]
+    for row in re.findall(r"<tr[^>]*>(.*?)</tr>", html, re.S):
+        tds = [re.sub(r"<[^>]+>", "", x).strip()
+               for x in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)]
+        if not tds or "Government Bond Yield Curve" not in tds[0]:
+            continue
+        # tds[0] is the row label, so values line up with ths[1:]
+        vals = dict(zip(ths[1:], tds[1:]))
+        out = {t: num(vals.get(lbl)) for t, lbl in (("5", "5Y"), ("10", "10Y"))}
+        if out.get("10") is not None:
+            return out
+    return None
+
+
+def _cn_curve():
+    """China curve: cached history on disk plus today's print."""
+    store = {}
+    if CHINA_STORE.exists():
+        try:
+            store = json.loads(CHINA_STORE.read_text(encoding="utf-8"))
+        except Exception:
+            store = {}
+    today = dt.datetime.now(IST).date()
+    for back in range(0, 6):
+        day = today - dt.timedelta(days=back)
+        if day.weekday() >= 5 or day.isoformat() in store:
+            continue
+        try:
+            v = _cn_day(day)
+        except Exception:
+            continue
+        if v:
+            store[day.isoformat()] = v
+            break
+    if store:
+        CHINA_STORE.parent.mkdir(parents=True, exist_ok=True)
+        CHINA_STORE.write_text(json.dumps(store, indent=0, sort_keys=True),
+                               encoding="utf-8")
+    return store
+
+
+def backfill_china(days=400, pause=0.4):
+    """One-off: walk ChinaBond back N calendar days to seed the curve."""
+    store = {}
+    if CHINA_STORE.exists():
+        store = json.loads(CHINA_STORE.read_text(encoding="utf-8"))
+    today, added, miss = dt.datetime.now(IST).date(), 0, 0
+    for back in range(0, days + 1):
+        day = today - dt.timedelta(days=back)
+        if day.weekday() >= 5 or day.isoformat() in store:
+            continue
+        try:
+            v = _cn_day(day)
+        except Exception:
+            miss += 1
+            continue
+        if v:
+            store[day.isoformat()] = v
+            added += 1
+        else:
+            miss += 1
+        time.sleep(pause)
+    CHINA_STORE.parent.mkdir(parents=True, exist_ok=True)
+    CHINA_STORE.write_text(json.dumps(store, indent=0, sort_keys=True),
+                           encoding="utf-8")
+    return added, miss, len(store)
+
+
 @source("world_yields")
 def fetch_world_yields():
     """5Y and 10Y government bond yields for the major economies.
@@ -591,7 +762,8 @@ def fetch_world_yields():
     """
     curves, errors = {}, {}
     for country, fn in (("US", _us_curve), ("Japan", _jp_curve),
-                        ("UK", _uk_curve), ("Germany", _de_curve)):
+                        ("UK", _uk_curve), ("Germany", _de_curve),
+                        ("China", _cn_curve), ("India", _in_curve)):
         try:
             c = fn()
             if c:
@@ -604,7 +776,9 @@ def fetch_world_yields():
     # India / China: FRED monthly, 10Y only.
     key = os.environ.get("FRED_API_KEY", "").strip()
     series_ids = {}
-    if key:
+    if "India" in curves:
+        pass                       # FBIL answered; no need for the monthly proxy
+    elif key:
         for country, cands in WORLD_FRED_10Y.items():
             for sid in cands:
                 try:
@@ -624,7 +798,7 @@ def fetch_world_yields():
             else:
                 errors[country] = "no FRED series resolved"
     else:
-        errors["India"] = errors["China"] = "FRED_API_KEY not set"
+        errors["India"] = "FRED_API_KEY not set"
 
     if not curves:
         raise RuntimeError("no yield curve resolved: " + json.dumps(errors))
@@ -641,11 +815,12 @@ def fetch_world_yields():
 
     return {"latest": latest, "series": series, "fred_series_ids": series_ids,
             "order": WORLD_ORDER, "errors": errors, "unit": "percent",
-            "daily": ["US", "Germany", "UK", "Japan"],
-            "monthly": [c for c in ("India", "China") if c in curves],
-            "note": ("US/DE/UK/JP are daily national sources. India and China "
-                     "are monthly via FRED and have no free 5Y, so they appear "
-                     "on the 10Y chart only."),
+            "daily": [c for c in WORLD_ORDER if c in curves],
+            "monthly": [],
+            "note": ("All six from daily national sources: US Treasury, "
+                     "Bundesbank, Bank of England, Japan MOF, ChinaBond and "
+                     "FBIL. India is FBIL's semi-annual par yield, the "
+                     "convention its 10Y is quoted in."),
             "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, "
                       "bundesbank.de, fred.stlouisfed.org"}
 
@@ -1439,6 +1614,10 @@ def main():
                     help="connectivity check only, writes nothing")
     ap.add_argument("--backfill", type=int, metavar="DAYS",
                     help="rebuild history from NSE archives + Yahoo, then exit")
+    ap.add_argument("--backfill-india", type=int, metavar="N", default=0,
+                    help="seed the FBIL India par-yield curve back N days")
+    ap.add_argument("--backfill-china", type=int, metavar="N", default=0,
+                    help="seed the ChinaBond curve back N calendar days")
     ap.add_argument("--prune-ipo", action="store_true",
                     help="re-validate the IPO store and drop migrations/relistings")
     ap.add_argument("--backfill-participants", type=int, metavar="N", default=0,
@@ -1461,6 +1640,14 @@ def main():
 
     if args.probe:
         return probe()
+    if args.backfill_india:
+        a, m, tot = backfill_india(args.backfill_india)
+        print("FBIL India: +%d days (%d holidays/misses), %d stored" % (a, m, tot))
+        return 0
+    if args.backfill_china:
+        a, m, tot = backfill_china(args.backfill_china)
+        print("ChinaBond: +%d days (%d misses), %d stored" % (a, m, tot))
+        return 0
     if args.prune_ipo:
         removed, kept = prune_ipo_store()
         print("Pruned %d migration/relisting rows; %d genuine listings kept."

@@ -176,9 +176,79 @@ def fetch_rbi():
             "unit": "percent", "source": "rbi.org.in"}
 
 
+SENSIBULL_ID = ("https://oxide.sensibull.com/v1/pluto/auth/web/session/a/"
+                "platform/identify")
+SENSIBULL_FII = "https://oxide.sensibull.com/v1/compute/cache/fii_dii_daily"
+
+
+def _sensibull_fii_dii():
+    """Rolling window of daily FII/DII cash flows from Sensibull.
+
+    NSE's own endpoint returns ONE day and ignores every date parameter, and
+    no dated cash file exists under nsearchives - so cash flow was the one
+    series here that could not be backfilled. This fixes that.
+
+    Two steps: hit the anonymous session endpoint first (no login, no
+    credentials), then the cache. Calling the cache cold returns 403.
+
+    Cross-checked against NSE on overlapping dates: 07-Sep FII +280.13 /
+    DII +566.76 and 08-Sep FII -123 / DII +1350 agree exactly.
+
+    Returns roughly a month per call. Run daily, that overlap means a missed
+    run costs nothing and any revision gets corrected on the next pass. The
+    payload advertises seven months in `key_list`, but the month-paging
+    parameter is built at runtime and 403s on every shape tried, so only the
+    current window is taken.
+    """
+    sess = requests.Session()
+    hdr = dict(HEADERS, Referer="https://web.sensibull.com/",
+               Origin="https://web.sensibull.com")
+    sess.get(SENSIBULL_ID, headers=hdr, timeout=TIMEOUT)
+    r = sess.get(SENSIBULL_FII, headers=hdr, timeout=TIMEOUT)
+    r.raise_for_status()
+    payload = r.json()
+
+    rows, latest = [], None
+    for day, rec in sorted((payload.get("data") or {}).items()):
+        cash = (rec or {}).get("cash") or {}
+        fii, dii = cash.get("fii") or {}, cash.get("dii") or {}
+        f_net, d_net = fii.get("buy_sell_difference"), dii.get("buy_sell_difference")
+        if f_net is None and d_net is None:
+            continue
+        row = {"date": day}
+        if f_net is not None:
+            row["fii_net"] = round(f_net, 2)
+        if d_net is not None:
+            row["dii_net"] = round(d_net, 2)
+        rows.append(row)
+        latest = {
+            "date": day,
+            "fii": {"buy": fii.get("buy"), "sell": fii.get("sell"),
+                    "net": f_net, "view": fii.get("net_view")},
+            "dii": {"buy": dii.get("buy"), "sell": dii.get("sell"),
+                    "net": d_net, "view": dii.get("net_view")},
+        }
+    return rows, latest, payload.get("key_list") or []
+
+
 @source("nse_fii_dii")
 def fetch_fii_dii():
-    """Daily FII/DII cash-market activity. Cloud IPs may get blocked here."""
+    """Daily FII/DII cash-market activity, with history where it exists."""
+    try:
+        rows, latest, months = _sensibull_fii_dii()
+    except Exception as e:
+        rows, latest, months, err = [], None, [], repr(e)
+    else:
+        err = None
+
+    if latest and rows:
+        return {"flows": {"fii": latest["fii"], "dii": latest["dii"]},
+                "as_of": latest["date"], "series": rows,
+                "window_days": len(rows), "months_advertised": months,
+                "unit": "INR crore", "via": "sensibull (rolling window)",
+                "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily"}
+
+    # Fall back to NSE's single-day figure.
     data = get("https://www.nseindia.com/api/fiidiiTradeReact").json()
     out = {}
     for row in data:
@@ -189,7 +259,9 @@ def fetch_fii_dii():
                     "net": num(row.get("netValue"))}
     if not out:
         raise RuntimeError("empty FII/DII payload")
-    return {"flows": out, "unit": "INR crore", "source": "nseindia.com/api"}
+    return {"flows": out, "unit": "INR crore",
+            "via": "nseindia (single day; sensibull failed: %s)" % err,
+            "source": "nseindia.com/api"}
 
 
 def participant_oi(day):
@@ -1672,6 +1744,10 @@ def main():
     data = run(only=set(args.only) if args.only else None)
 
     rows = [row_from_sections(data["sections"])]
+    # FII/DII now arrives as a rolling window, not a single day - fold every
+    # date in so history deepens and past revisions get corrected.
+    fd = data["sections"].get("nse_fii_dii") or {}
+    rows += list(fd.get("series") or [])
     wy = data["sections"].get("world_yields") or {}
     for key, obs in (wy.get("series") or {}).items():
         rows += [{"date": d, key: v} for d, v in obs if v is not None]
@@ -1681,6 +1757,9 @@ def main():
     # Those series are bulk history and are now in history.json. Leaving them
     # in data.json as well made it 798 KB - every visitor downloading a decade
     # of yields twice, on a page whose whole point is loading fast on mobile.
+    if isinstance(fd, dict) and "series" in fd:
+        fd["series_days"] = len(fd["series"])
+        del fd["series"]
     if isinstance(wy, dict) and "series" in wy:
         wy["series_points"] = {k: len(v) for k, v in wy["series"].items()}
         del wy["series"]

@@ -1231,7 +1231,11 @@ def fetch_ipo():
     return {"listing_today": listing_today, "awaiting": awaiting[:15],
             "open_now": open_now[:15],
             "current": open_now[:15],          # kept: older card reads this
-            "recent_past": [clean_past(r) for r in past][:40],
+            # Migrations are hidden everywhere, not just from the buckets
+            # above: a 2022 SME issue carrying a 2026 listing date is not a
+            # recent IPO and does not belong in a list of them.
+            "recent_past": [clean_past(r) for r in past
+                            if is_fresh_listing(r, _d(r.get("listingDate")))][:40],
             "past_total": len(past),
             "tv_watchlist": watchlist,
             "tv_note": ("NSE assigns the symbol at issue open, so these "

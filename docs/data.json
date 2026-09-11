@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-11T11:52:32+05:30",
-  "generated_at_utc": "2026-09-11T06:22:32+00:00",
+  "generated_at": "2026-09-11T13:09:35+05:30",
+  "generated_at_utc": "2026-09-11T07:39:35+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -1094,7 +1094,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-11",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-11T11:52:00+05:30",
+      "fetched_at": "2026-09-11T13:09:35+05:30",
       "stale": false,
       "gmp_matched": 29
     },

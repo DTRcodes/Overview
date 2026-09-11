@@ -157,6 +157,10 @@ tr.awaiting td:first-child { box-shadow: inset 3px 0 0 var(--series-1); }
   color:var(--text-primary);border-radius:6px;padding:6px 11px;font-size:11.5px;
   font-weight:600;font-family:inherit}
 .btn:hover{border-color:var(--text-muted)}
+.cardhead{display:flex;justify-content:space-between;align-items:baseline;
+  gap:10px;flex-wrap:wrap;margin-bottom:2px}
+.cardhead h2{margin:0}
+.seg-sm button{padding:2px 7px;font-size:10.5px}
 </style>
 </head>
 <body>
@@ -243,10 +247,14 @@ function smoothPath(pts){
 }
 
 /* --------------------------------------------------------------- charting */
-function rangedRows(minDays){
+function rangedRows(minDays, override){
   const rows = HIST.filter(r => r.date);
-  if(!RANGE) return rows;              // "All" always wins
-  const span = Math.max(RANGE, minDays || 0);
+  // An explicit per-card choice is taken literally: if the reader asks for 1M
+  // they get 1M, with no minDays floor second-guessing them.
+  const days = (override === undefined || override === null) ? RANGE : override;
+  if(!days) return rows;               // 0 = All
+  const span = (override === undefined || override === null)
+    ? Math.max(days, minDays || 0) : days;
   const cut = Date.now() - span * 86400000;
   return rows.filter(r => new Date(r.date + 'T00:00:00') >= cut);
 }
@@ -254,7 +262,9 @@ function rangedRows(minDays){
 /* series: [{key, label, color, fmt}] — one axis only, always. Two measures of
    different scale get two charts, never a second y-axis. */
 function lineChart(el, series, opts = {}){
-  const rows = rangedRows(opts.minDays).filter(r => series.some(s => r[s.key] != null));
+  const rows = rangedRows(opts.minDays,
+      opts.rangeKey ? CARD_RANGE[opts.rangeKey] : null)
+    .filter(r => series.some(s => r[s.key] != null));
   if(rows.length < 2){
     el.innerHTML = `<div class="empty">Not enough history yet — the nightly run
       appends one row a day.</div>`;
@@ -429,12 +439,27 @@ function badge(sec){
     : '';
 }
 
-function card(title, caption, sec, body, cls){
+function card(title, caption, sec, body, cls, head){
   if(sec && sec.stale && !sec.fetched_at){
     body = `<div class="err">No data yet — ${esc(sec.stale_reason||'not fetched')}</div>`;
   }
-  return `<section class="card ${cls||''}"><h2>${esc(title)}${badge(sec)}</h2>
+  // `head` sits on the title row, right-aligned — used for per-card controls
+  // that should not disturb the global range selector.
+  return `<section class="card ${cls||''}">
+    <div class="cardhead"><h2>${esc(title)}${badge(sec)}</h2>${head||''}</div>
     ${caption?`<p class="cap">${esc(caption)}</p>`:''}${body}</section>`;
+}
+
+// Per-card time range, independent of the global selector. Keyed by chart id.
+const CARD_RANGE = {w10: 365, w5: 365};
+const CARD_RANGE_OPTS = [[30,'1M'],[90,'3M'],[180,'6M'],[365,'1Y'],[0,'All']];
+
+function rangeSeg(key){
+  return `<div class="seg seg-sm" role="group" aria-label="Time range">` +
+    CARD_RANGE_OPTS.map(([d,lbl]) =>
+      `<button data-cardrange="${key}" data-d="${d}"${
+        CARD_RANGE[key] === d ? ' aria-pressed="true"' : ''}>${lbl}</button>`
+    ).join('') + `</div>`;
 }
 
 function histTable(series){
@@ -516,11 +541,13 @@ function render(){
   b.push(card('Major economies — 10Y government bond yields',
     'Always shows at least 1 year; these move too slowly for a 1M window. ' + wyNote,
     S.world_yields,
-    VIEW==='chart' ? '<div class="chart" data-c="w10"></div>' : histTable(w10)));
+    VIEW==='chart' ? '<div class="chart" data-c="w10"></div>' : histTable(w10),
+    '', rangeSeg('w10')));
   b.push(card('Major economies — 5Y government bond yields',
     'US, Germany, UK, Japan and China — no free 5Y series exists for India.',
     S.world_yields,
-    VIEW==='chart' ? '<div class="chart" data-c="w5"></div>' : histTable(w5)));
+    VIEW==='chart' ? '<div class="chart" data-c="w5"></div>' : histTable(w5),
+    '', rangeSeg('w5')));
   b.push(card('USD / INR', 'Traded spot. The RBI reference fixing is in the FX table.', S.fx_spot,
     VIEW==='chart' ? '<div class="chart" data-c="fx"></div>' : histTable(fx)));
   b.push(card('Institutional flows', 'Daily net cash-market activity, ₹ crore.',
@@ -755,8 +782,8 @@ function render(){
     const map = {pe, us: usc, fx, flows, deriv, w10, w5, fno, oi};
     const opts = {pe:{dp:2, height:235, context:{key:'nifty_close',
                     label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
-                  w10:{dp:2, minDays:365, height:230},
-                  w5:{dp:2, minDays:365, height:230},
+                  w10:{dp:2, rangeKey:'w10', height:230},
+                  w5:{dp:2, rangeKey:'w5',  height:230},
                   flows:{dp:0, zeroLine:true, height:210},
                   fno:{dp:0, zeroLine:true, height:210},
                   oi:{dp:0, zeroLine:true, height:200}};
@@ -786,6 +813,13 @@ async function load(){
       `<section class="card wide"><div class="err">Could not load — ${esc(err.message)}</div></section>`;
   }
 }
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('[data-cardrange]');
+  if(!btn) return;
+  CARD_RANGE[btn.dataset.cardrange] = +btn.dataset.d;
+  if(DATA) render();
+});
 
 document.getElementById('range').addEventListener('click', e => {
   const btn = e.target.closest('button'); if(!btn) return;

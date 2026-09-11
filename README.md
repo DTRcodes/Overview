@@ -34,6 +34,19 @@ are hit exactly once a day by one process; visitors only ever touch a CDN.
 | Earnings | Yahoo `quarterly_income_stmt` | Indian fundamentals are gappy |
 | India G-Sec yields | FBIL par yield archive | Daily, 200 tenors, authoritative |
 
+### SME-to-mainboard migrations are excluded
+
+NSE records a migration against the ORIGINAL SME issue row, so a 2022 IPO can
+carry a 2026 listing date. `is_fresh_listing()` rejects them from every IPO
+surface: the gains table, the intraday capture, the "lists today" bucket and
+the recent-past list.
+
+They were measured before being hidden. Across 124 migrations the apparent
+edge — +8.8% median excess over Nifty Smallcap 250 at three months — did not
+survive restricting to the same period as the IPO sample, where it fell to
+-1.3% on 15 cases. Four in ten had a day-0 open and close that were identical,
+meaning no second print. Not enough there to justify a card.
+
 ### The yield sources, and why not FRED
 
 FRED's cross-country OECD family is **ten-year only and monthly**, which rules

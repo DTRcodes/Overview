@@ -1206,17 +1206,51 @@ def fetch_ipo():
     awaiting.sort(key=lambda r: (r.get("expected_listing") or "9999",
                                  r["days_since_close"]))
 
-    open_now = []
+    # Both NSE endpoints describe the same issue in the window between close
+    # and listing: public-past-issues has it with a blank listingDate, and
+    # all-upcoming-issues still lists it as "Closed". Shown raw, GLASSWALL,
+    # KANOHAR and PRASOLCHEM each appeared twice - once with an expected date
+    # and again below as "Closed". The awaiting row is the better one (it
+    # carries the estimate), so it wins and the duplicate is dropped.
+    already = {r["symbol"] for r in listing_today} | {r["symbol"] for r in awaiting}
+
+    open_now, dropped = [], []
     for r in current:
         sym = (r.get("symbol") or "").strip()
+        if sym in already:
+            dropped.append(sym)
+            continue
         o, c = _d(r.get("issueStartDate")), _d(r.get("issueEndDate"))
-        open_now.append({"company": r.get("companyName"), "symbol": sym,
-                         "tv": tv(sym), "price": r.get("issuePrice"),
-                         "opens": r.get("issueStartDate"),
-                         "closes": r.get("issueEndDate"),
-                         "series": r.get("series"), "status": r.get("status"),
-                         "live": bool(o and c and o <= today <= c)})
+        row = {"company": r.get("companyName"), "symbol": sym,
+               "tv": tv(sym), "price": r.get("issuePrice"),
+               "opens": r.get("issueStartDate"),
+               "closes": r.get("issueEndDate"),
+               "series": r.get("series"), "status": r.get("status"),
+               "live": bool(o and c and o <= today <= c)}
+
+        # The T+3 clock starts at the issue close, so the estimate exists as
+        # soon as that date is known - which is before the book even opens.
+        # Worth showing while an issue is still live: anyone deciding whether
+        # to apply wants to know roughly when it would list.
+        if c:
+            exp_any = expected_listing(c)
+            if exp_any:
+                row["expected_listing"] = exp_any.isoformat()
+                row["expected_listing_dmy"] = exp_any.strftime("%d-%b-%Y")
+                row["expected_basis"] = "T+3 trading days from issue close (SEBI)"
+        # Only once the book has SHUT does the estimate become the row's
+        # headline state; while open, the subscription window still leads.
+        if c and c < today:
+            row["listing_label"] = listing_label(exp_any, today)
+            row["book_closed"] = True
+        open_now.append(row)
+
+    # Order: live issues by how soon they shut, then the rest by close date.
     open_now.sort(key=lambda r: (not r["live"], r["closes"] or ""))
+    if dropped:
+        ipo_dupes = sorted(set(dropped))
+    else:
+        ipo_dupes = []
 
     def clean_past(r):
         return {"company": r.get("company"), "symbol": r.get("symbol"),
@@ -1238,6 +1272,7 @@ def fetch_ipo():
                             if is_fresh_listing(r, _d(r.get("listingDate")))][:40],
             "past_total": len(past),
             "tv_watchlist": watchlist,
+            "deduped_from_open": ipo_dupes,
             "tv_note": ("NSE assigns the symbol at issue open, so these "
                         "resolve on TradingView before the stock lists."),
             "as_of": today.isoformat(), "source": "nseindia.com/api"}

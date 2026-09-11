@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-11T13:09:35+05:30",
-  "generated_at_utc": "2026-09-11T07:39:35+00:00",
+  "generated_at": "2026-09-11T13:15:44+05:30",
+  "generated_at_utc": "2026-09-11T07:45:44+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -420,6 +420,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 8.0,
           "gmp_est_gain_pct": 2.36,
           "gmp_direction": "premium"
@@ -434,6 +437,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 69.0,
           "gmp_est_gain_pct": 27.17,
           "gmp_direction": "premium"
@@ -448,6 +454,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 14.0,
           "gmp_est_gain_pct": 10.07,
           "gmp_direction": "premium"
@@ -462,6 +471,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 22.0,
           "gmp_est_gain_pct": 27.16,
           "gmp_direction": "premium"
@@ -476,6 +488,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 138.0,
           "gmp_est_gain_pct": 34.16,
           "gmp_direction": "premium"
@@ -490,6 +505,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 50.0,
           "gmp_est_gain_pct": 34.25,
           "gmp_direction": "premium"
@@ -504,6 +522,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-18",
+          "expected_listing_dmy": "18-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 24.0,
           "gmp_est_gain_pct": 17.14,
           "gmp_direction": "premium"
@@ -518,51 +539,12 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-21",
+          "expected_listing_dmy": "21-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 13.0,
           "gmp_est_gain_pct": 30.23,
           "gmp_direction": "premium"
-        },
-        {
-          "company": "Glass Wall Systems (India) Limited",
-          "symbol": "GLASSWALL",
-          "tv": "NSE:GLASSWALL",
-          "price": "Rs.172 to Rs.182",
-          "opens": "08-Sep-2026",
-          "closes": "10-Sep-2026",
-          "series": "EQ",
-          "status": "Closed",
-          "live": false,
-          "gmp": 45.0,
-          "gmp_est_gain_pct": 24.73,
-          "gmp_direction": "premium"
-        },
-        {
-          "company": "Kanohar Electricals Limited",
-          "symbol": "KANOHAR",
-          "tv": "NSE:KANOHAR",
-          "price": "Rs.601 to Rs.632",
-          "opens": "08-Sep-2026",
-          "closes": "10-Sep-2026",
-          "series": "EQ",
-          "status": "Closed",
-          "live": false,
-          "gmp": 236.0,
-          "gmp_est_gain_pct": 37.34,
-          "gmp_direction": "premium"
-        },
-        {
-          "company": "Prasol Chemicals Limited",
-          "symbol": "PRASOLCHEM",
-          "tv": "NSE:PRASOLCHEM",
-          "price": "Rs.643 to Rs.676",
-          "opens": "08-Sep-2026",
-          "closes": "10-Sep-2026",
-          "series": "EQ",
-          "status": "Closed",
-          "live": false,
-          "gmp": 0.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
         },
         {
           "company": "Hero Motors Limited",
@@ -574,6 +556,9 @@
           "series": "EQ",
           "status": "Forthcoming",
           "live": false,
+          "expected_listing": "2026-09-23",
+          "expected_listing_dmy": "23-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 8.0,
           "gmp_est_gain_pct": 9.52,
           "gmp_direction": "premium"
@@ -590,6 +575,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 8.0,
           "gmp_est_gain_pct": 2.36,
           "gmp_direction": "premium"
@@ -604,6 +592,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 69.0,
           "gmp_est_gain_pct": 27.17,
           "gmp_direction": "premium"
@@ -618,6 +609,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 14.0,
           "gmp_est_gain_pct": 10.07,
           "gmp_direction": "premium"
@@ -632,6 +626,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 22.0,
           "gmp_est_gain_pct": 27.16,
           "gmp_direction": "premium"
@@ -646,6 +643,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 138.0,
           "gmp_est_gain_pct": 34.16,
           "gmp_direction": "premium"
@@ -660,6 +660,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-17",
+          "expected_listing_dmy": "17-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 50.0,
           "gmp_est_gain_pct": 34.25,
           "gmp_direction": "premium"
@@ -674,6 +677,9 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-18",
+          "expected_listing_dmy": "18-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 24.0,
           "gmp_est_gain_pct": 17.14,
           "gmp_direction": "premium"
@@ -688,51 +694,12 @@
           "series": "EQ",
           "status": "Active",
           "live": true,
+          "expected_listing": "2026-09-21",
+          "expected_listing_dmy": "21-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 13.0,
           "gmp_est_gain_pct": 30.23,
           "gmp_direction": "premium"
-        },
-        {
-          "company": "Glass Wall Systems (India) Limited",
-          "symbol": "GLASSWALL",
-          "tv": "NSE:GLASSWALL",
-          "price": "Rs.172 to Rs.182",
-          "opens": "08-Sep-2026",
-          "closes": "10-Sep-2026",
-          "series": "EQ",
-          "status": "Closed",
-          "live": false,
-          "gmp": 45.0,
-          "gmp_est_gain_pct": 24.73,
-          "gmp_direction": "premium"
-        },
-        {
-          "company": "Kanohar Electricals Limited",
-          "symbol": "KANOHAR",
-          "tv": "NSE:KANOHAR",
-          "price": "Rs.601 to Rs.632",
-          "opens": "08-Sep-2026",
-          "closes": "10-Sep-2026",
-          "series": "EQ",
-          "status": "Closed",
-          "live": false,
-          "gmp": 236.0,
-          "gmp_est_gain_pct": 37.34,
-          "gmp_direction": "premium"
-        },
-        {
-          "company": "Prasol Chemicals Limited",
-          "symbol": "PRASOLCHEM",
-          "tv": "NSE:PRASOLCHEM",
-          "price": "Rs.643 to Rs.676",
-          "opens": "08-Sep-2026",
-          "closes": "10-Sep-2026",
-          "series": "EQ",
-          "status": "Closed",
-          "live": false,
-          "gmp": 0.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
         },
         {
           "company": "Hero Motors Limited",
@@ -744,6 +711,9 @@
           "series": "EQ",
           "status": "Forthcoming",
           "live": false,
+          "expected_listing": "2026-09-23",
+          "expected_listing_dmy": "23-Sep-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 8.0,
           "gmp_est_gain_pct": 9.52,
           "gmp_direction": "premium"
@@ -895,19 +865,19 @@
           "listing_date": "01-SEP-2026"
         },
         {
-          "company": "Madhur Knit Crafts Limited",
-          "symbol": "MADHURKNIT",
-          "tv": "NSE:MADHURKNIT",
-          "price_range": "Rs.95 to Rs.100",
-          "issue_price": "100",
-          "listing_date": "01-SEP-2026"
-        },
-        {
           "company": "ABH Healthcare Limited",
           "symbol": "ABH",
           "tv": "NSE:ABH",
           "price_range": "Rs.96 to Rs.102",
           "issue_price": "102",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "Madhur Knit Crafts Limited",
+          "symbol": "MADHURKNIT",
+          "tv": "NSE:MADHURKNIT",
+          "price_range": "Rs.95 to Rs.100",
+          "issue_price": "100",
           "listing_date": "01-SEP-2026"
         },
         {
@@ -1086,17 +1056,19 @@
         "NSE:LCCPROJECT",
         "NSE:VEEGALAND",
         "NSE:MANIKA",
-        "NSE:GLASSWALL",
-        "NSE:KANOHAR",
-        "NSE:PRASOLCHEM",
         "NSE:HEROMOTORS"
+      ],
+      "deduped_from_open": [
+        "GLASSWALL",
+        "KANOHAR",
+        "PRASOLCHEM"
       ],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-11",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-11T13:09:35+05:30",
+      "fetched_at": "2026-09-11T13:15:44+05:30",
       "stale": false,
-      "gmp_matched": 29
+      "gmp_matched": 23
     },
     "ipo_listing_live": {
       "date": "2026-09-11",
@@ -1882,10 +1854,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-11T11:52:03+05:30",
+      "as_of": "2026-09-11T13:14:44+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-11T11:52:03+05:30",
+      "fetched_at": "2026-09-11T13:14:44+05:30",
       "stale": false
     },
     "ipo_gains": {

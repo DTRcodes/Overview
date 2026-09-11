@@ -661,10 +661,26 @@ function render(){
         <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
         <td>${when}</td></tr>`;
     }).join('') +
-    cur2.map(x => `<tr><td>${esc(x.company)}</td><td><b>${esc(x.symbol)}</b></td>
-        <td><span class="pill">${x.live ? 'Open now' : esc(x.status || 'Upcoming')}</span></td>
+    cur2.map(x => {
+      // A closed book already has a T+3 estimate, so show that rather than a
+      // bare "Closed" - the subscription window stops being the useful fact
+      // the moment it shuts.
+      const label = x.listing_label || (x.live ? 'Open now' : (x.status || 'Upcoming'));
+      // While the book is open the window leads and the estimate trails it;
+      // once shut, the estimate is all that still matters.
+      const est = x.expected_listing_dmy
+        ? `<span style="color:var(--text-muted)">&middot; lists ~${esc(x.expected_listing_dmy)}</span>`
+        : '';
+      const when = x.book_closed
+        ? `expected <b>${esc(x.expected_listing_dmy)}</b>
+           <span style="color:var(--text-muted)">&middot; T+3 est.</span>`
+        : `${esc(x.opens)} &rarr; ${esc(x.closes)} ${est}`;
+      return `<tr${x.book_closed ? ' class="awaiting"' : ''}>
+        <td>${esc(x.company)}</td><td><b>${esc(x.symbol)}</b></td>
+        <td><span class="pill${x.book_closed ? ' soon' : ''}">${esc(label)}</span></td>
         <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price)}</td>
-        <td>${esc(x.opens)} &rarr; ${esc(x.closes)}</td></tr>`).join('') +
+        <td>${when}</td></tr>`;
+    }).join('') +
     `</tbody></table></div>` +
     ((today.length || soon.length || cur2.length) ? '' :
       `<div class="note">Nothing in the pipeline right now.</div>`) +
@@ -674,7 +690,8 @@ function render(){
         tvRow('tv-today', today.map(x => x.tv)) : '') +
     `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.
       Neither NSE nor Chittorgarh publishes a forward listing date, so the
-      expected date is computed from SEBI's T+3 rule &mdash; 83% of 151 past
+      expected date is computed from SEBI's T+3 rule &mdash; three trading days
+      from the <b>issue close</b>, skipping NSE holidays &mdash; 83% of 151 past
       listings landed exactly on T+3, ~93% within T+2 to T+6. It is an estimate
       until the stock appears in a bhavcopy, which is what turns a row
       green.</div>`, 'wide'));

@@ -1068,13 +1068,25 @@ def add_business_days(start, n):
     return d
 
 
+LISTING_BELL_HOUR = 10          # IPOs start trading at 10:00 IST
+
+
+def _past_listing_bell(now=None):
+    now = now or dt.datetime.now(IST)
+    return now.hour >= LISTING_BELL_HOUR
+
+
 def listing_label(expected, today):
     """How to describe an expected listing date to a human.
 
     "Lists tomorrow" must mean tomorrow on the CALENDAR. The expected date is
     the next trading day, which on a Friday is Monday - calling that "tomorrow"
     is simply wrong. So Friday says "Lists Monday", Sunday says "Lists
-    tomorrow", and Monday says "Lists today", which is how anyone would say it.
+    tomorrow", and Monday says "Lists Today", which is how anyone would say it.
+
+    Tense follows the clock too: listings begin at 10:00 IST, so before the
+    bell it "Lists Today" and afterwards it "Listed Today". Saying a stock
+    will list when it has been trading for hours reads as stale.
     """
     if not expected:
         return "Awaiting listing"
@@ -1082,7 +1094,7 @@ def listing_label(expected, today):
     if delta < 0:
         return "Awaiting listing"          # overdue; NSE has not confirmed
     if delta == 0:
-        return "Lists today"
+        return "Listed Today" if _past_listing_bell() else "Lists Today"
     if delta == 1:
         return "Lists tomorrow"
     if delta <= 6:
@@ -1190,6 +1202,8 @@ def fetch_ipo():
         if ld == today:
             if not is_fresh_listing(r, ld):
                 continue                  # migration, not a new listing
+            row["listing_label"] = ("Listed Today" if _past_listing_bell()
+                                    else "Lists Today")
             listing_today.append(row)
         elif ld is None and sym not in trading and closed:
             row["days_since_close"] = (today - closed).days
@@ -1874,6 +1888,14 @@ def fetch_ipo_gmp():
                 # premium to. Absent, not zero.
                 est, pct = None, None
                 gmp = gmp if gmp else None
+            else:
+                # A zero premium still implies a price: the issue price itself.
+                # ipowatch leaves that cell blank, so derive it rather than
+                # showing a dash next to a perfectly real 0.0%.
+                if est is None and gmp is not None:
+                    est = band + gmp
+                if pct is None and gmp is not None:
+                    pct = round(gmp / band * 100, 2)
             out.append({"company": c[0], "board": board, "gmp": gmp,
                         "price_band_upper": band, "est_listing": est,
                         "est_gain_pct": pct,
@@ -2523,6 +2545,7 @@ def main():
             if not g:
                 continue
             row["gmp"] = g.get("gmp")
+            row["gmp_est_listing"] = g.get("est_listing")
             row["gmp_est_gain_pct"] = g.get("est_gain_pct")
             row["gmp_direction"] = g.get("direction")
             matched += 1

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-11T14:46:20+05:30",
-  "generated_at_utc": "2026-09-11T09:16:20+00:00",
+  "generated_at": "2026-09-11T15:29:01+05:30",
+  "generated_at_utc": "2026-09-11T09:59:01+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-11T14:32:50+05:30",
+      "fetched_at": "2026-09-11T15:28:01+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-11T14:32:50+05:30",
+      "fetched_at": "2026-09-11T15:28:01+05:30",
       "stale": false,
       "series_days": 23
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-11T14:32:51+05:30",
+      "fetched_at": "2026-09-11T15:28:03+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-11T14:32:52+05:30",
+      "fetched_at": "2026-09-11T15:28:04+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.8,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-11T14:32:53+05:30",
+      "fetched_at": "2026-09-11T15:28:05+05:30",
       "stale": false
     },
     "us_rates": {
@@ -207,7 +207,7 @@
       "unit": "percent",
       "via": "yfinance",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-11T14:32:56+05:30",
+      "fetched_at": "2026-09-11T15:28:07+05:30",
       "stale": false
     },
     "world_yields": {
@@ -230,8 +230,8 @@
             "date": "2026-09-10"
           },
           "China": {
-            "value": 1.4126,
-            "date": "2026-09-10"
+            "value": 1.4226,
+            "date": "2026-09-11"
           },
           "India": {
             "value": 6.59,
@@ -256,8 +256,8 @@
             "date": "2026-09-10"
           },
           "China": {
-            "value": 1.6797,
-            "date": "2026-09-10"
+            "value": 1.6899,
+            "date": "2026-09-11"
           },
           "India": {
             "value": 7.0,
@@ -287,7 +287,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-11T14:33:13+05:30",
+      "fetched_at": "2026-09-11T15:28:25+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 673,
@@ -298,17 +298,17 @@
         "y10_uk": 1500,
         "y5_de": 1500,
         "y10_de": 1500,
-        "y5_cn": 267,
-        "y10_cn": 267,
+        "y5_cn": 268,
+        "y10_cn": 268,
         "y5_in": 263,
         "y10_in": 263
       }
     },
     "fx_spot": {
-      "usd_inr": 95.5875,
+      "usd_inr": 95.53,
       "as_of": "2026-09-11",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-11T14:33:13+05:30",
+      "fetched_at": "2026-09-11T15:28:25+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -322,12 +322,13 @@
           "issue_price": "127",
           "listing_date": "11-SEP-2026",
           "ipo_closed": "08-SEP-2026",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-11",
           "confirmed_listing_dmy": "11-Sep-2026",
           "confirmed_by": "NSE circular September 10, 2026",
           "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76294.zip",
-          "listing_label": "Lists today",
           "gmp": 76.0,
+          "gmp_est_listing": 203.0,
           "gmp_est_gain_pct": 59.84,
           "gmp_direction": "premium"
         }
@@ -350,6 +351,7 @@
           "listing_label": "Lists Tuesday",
           "days_to_listing": 4,
           "gmp": 50.0,
+          "gmp_est_listing": 174.0,
           "gmp_est_gain_pct": 40.32,
           "gmp_direction": "premium"
         },
@@ -370,6 +372,7 @@
           "listing_label": "Lists Wednesday",
           "days_to_listing": 5,
           "gmp": 45.0,
+          "gmp_est_listing": 227.0,
           "gmp_est_gain_pct": 24.73,
           "gmp_direction": "premium"
         },
@@ -390,6 +393,7 @@
           "listing_label": "Lists Wednesday",
           "days_to_listing": 5,
           "gmp": 236.0,
+          "gmp_est_listing": 868.0,
           "gmp_est_gain_pct": 37.34,
           "gmp_direction": "premium"
         },
@@ -410,6 +414,7 @@
           "listing_label": "Lists Wednesday",
           "days_to_listing": 5,
           "gmp": 0.0,
+          "gmp_est_listing": 676.0,
           "gmp_est_gain_pct": 0.0,
           "gmp_direction": "flat"
         }
@@ -429,6 +434,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 8.0,
+          "gmp_est_listing": 347.0,
           "gmp_est_gain_pct": 2.36,
           "gmp_direction": "premium"
         },
@@ -446,6 +452,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 69.0,
+          "gmp_est_listing": 323.0,
           "gmp_est_gain_pct": 27.17,
           "gmp_direction": "premium"
         },
@@ -463,6 +470,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 14.0,
+          "gmp_est_listing": 153.0,
           "gmp_est_gain_pct": 10.07,
           "gmp_direction": "premium"
         },
@@ -480,6 +488,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 22.0,
+          "gmp_est_listing": 103.0,
           "gmp_est_gain_pct": 27.16,
           "gmp_direction": "premium"
         },
@@ -497,6 +506,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 138.0,
+          "gmp_est_listing": 542.0,
           "gmp_est_gain_pct": 34.16,
           "gmp_direction": "premium"
         },
@@ -514,6 +524,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 50.0,
+          "gmp_est_listing": 196.0,
           "gmp_est_gain_pct": 34.25,
           "gmp_direction": "premium"
         },
@@ -531,6 +542,7 @@
           "expected_listing_dmy": "18-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 24.0,
+          "gmp_est_listing": 164.0,
           "gmp_est_gain_pct": 17.14,
           "gmp_direction": "premium"
         },
@@ -548,6 +560,7 @@
           "expected_listing_dmy": "21-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 13.0,
+          "gmp_est_listing": 56.0,
           "gmp_est_gain_pct": 30.23,
           "gmp_direction": "premium"
         },
@@ -565,6 +578,7 @@
           "expected_listing_dmy": "23-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 8.0,
+          "gmp_est_listing": 92.0,
           "gmp_est_gain_pct": 9.52,
           "gmp_direction": "premium"
         }
@@ -584,6 +598,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 8.0,
+          "gmp_est_listing": 347.0,
           "gmp_est_gain_pct": 2.36,
           "gmp_direction": "premium"
         },
@@ -601,6 +616,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 69.0,
+          "gmp_est_listing": 323.0,
           "gmp_est_gain_pct": 27.17,
           "gmp_direction": "premium"
         },
@@ -618,6 +634,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 14.0,
+          "gmp_est_listing": 153.0,
           "gmp_est_gain_pct": 10.07,
           "gmp_direction": "premium"
         },
@@ -635,6 +652,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 22.0,
+          "gmp_est_listing": 103.0,
           "gmp_est_gain_pct": 27.16,
           "gmp_direction": "premium"
         },
@@ -652,6 +670,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 138.0,
+          "gmp_est_listing": 542.0,
           "gmp_est_gain_pct": 34.16,
           "gmp_direction": "premium"
         },
@@ -669,6 +688,7 @@
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 50.0,
+          "gmp_est_listing": 196.0,
           "gmp_est_gain_pct": 34.25,
           "gmp_direction": "premium"
         },
@@ -686,6 +706,7 @@
           "expected_listing_dmy": "18-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 24.0,
+          "gmp_est_listing": 164.0,
           "gmp_est_gain_pct": 17.14,
           "gmp_direction": "premium"
         },
@@ -703,6 +724,7 @@
           "expected_listing_dmy": "21-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 13.0,
+          "gmp_est_listing": 56.0,
           "gmp_est_gain_pct": 30.23,
           "gmp_direction": "premium"
         },
@@ -720,6 +742,7 @@
           "expected_listing_dmy": "23-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "gmp": 8.0,
+          "gmp_est_listing": 92.0,
           "gmp_est_gain_pct": 9.52,
           "gmp_direction": "premium"
         }
@@ -870,19 +893,19 @@
           "listing_date": "01-SEP-2026"
         },
         {
-          "company": "ABH Healthcare Limited",
-          "symbol": "ABH",
-          "tv": "NSE:ABH",
-          "price_range": "Rs.96 to Rs.102",
-          "issue_price": "102",
-          "listing_date": "01-SEP-2026"
-        },
-        {
           "company": "Madhur Knit Crafts Limited",
           "symbol": "MADHURKNIT",
           "tv": "NSE:MADHURKNIT",
           "price_range": "Rs.95 to Rs.100",
           "issue_price": "100",
+          "listing_date": "01-SEP-2026"
+        },
+        {
+          "company": "ABH Healthcare Limited",
+          "symbol": "ABH",
+          "tv": "NSE:ABH",
+          "price_range": "Rs.96 to Rs.102",
+          "issue_price": "102",
           "listing_date": "01-SEP-2026"
         },
         {
@@ -1071,7 +1094,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-11",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-11T14:46:20+05:30",
+      "fetched_at": "2026-09-11T15:28:29+05:30",
       "stale": false,
       "circular_confirmed": 1,
       "gmp_matched": 23
@@ -1164,10 +1187,10 @@
       "confirmed": 5,
       "checked": 7,
       "remembered": 10,
-      "as_of": "2026-09-11T14:33:17+05:30",
+      "as_of": "2026-09-11T15:28:30+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-11T14:33:17+05:30",
+      "fetched_at": "2026-09-11T15:28:30+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1184,7 +1207,7 @@
       ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-11T14:33:20+05:30",
+      "fetched_at": "2026-09-11T15:28:33+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -1350,7 +1373,7 @@
           "board": "mainboard",
           "gmp": 0.0,
           "price_band_upper": 676.0,
-          "est_listing": null,
+          "est_listing": 676.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "8-10 Sept",
@@ -1398,7 +1421,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 53.0,
-          "est_listing": null,
+          "est_listing": 53.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "18-22 Sept",
@@ -1410,7 +1433,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 118.0,
-          "est_listing": null,
+          "est_listing": 118.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "17-21 Sept",
@@ -1422,7 +1445,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 101.0,
-          "est_listing": null,
+          "est_listing": 101.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "17-21 Sept",
@@ -1434,7 +1457,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 341.0,
-          "est_listing": null,
+          "est_listing": 341.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "15-17 Sept",
@@ -1446,7 +1469,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 59.0,
-          "est_listing": null,
+          "est_listing": 59.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "15-17 Sept",
@@ -1458,7 +1481,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 67.0,
-          "est_listing": null,
+          "est_listing": 67.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "15-17 Sept",
@@ -1470,7 +1493,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 100.0,
-          "est_listing": null,
+          "est_listing": 100.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "11-16 Sept",
@@ -1482,7 +1505,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 74.0,
-          "est_listing": null,
+          "est_listing": 74.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "11-16 Sept",
@@ -1494,7 +1517,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 140.0,
-          "est_listing": null,
+          "est_listing": 140.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "10-15 Sept",
@@ -1518,7 +1541,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 90.0,
-          "est_listing": null,
+          "est_listing": 90.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "10-15 Sept",
@@ -1554,7 +1577,7 @@
           "board": "sme",
           "gmp": 0.0,
           "price_band_upper": 104.0,
-          "est_listing": null,
+          "est_listing": 104.0,
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "9-11 Sept",
@@ -1966,10 +1989,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-11T14:46:20+05:30",
+      "as_of": "2026-09-11T15:28:33+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-11T14:46:20+05:30",
+      "fetched_at": "2026-09-11T15:28:33+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -2575,8 +2598,8 @@
           "intra_pop_pct": 2.06
         }
       ],
-      "resolved_total": 533,
-      "added_this_run": 17,
+      "resolved_total": 553,
+      "added_this_run": 20,
       "bhavcopy_calls": 12,
       "corrections": [],
       "verified_against_bhavcopy": 40,
@@ -2743,17 +2766,17 @@
       },
       "stats_all": {
         "label": "all listings",
-        "count": 533,
-        "from": "2024-04-04",
+        "count": 553,
+        "from": "2024-03-07",
         "to": "2026-09-08",
-        "median_listing_pct": 10.68,
-        "median_intra_pop_pct": 10.69,
-        "median_intra_close_pct": 2.57,
-        "positive_open_pct": 72.2
+        "median_listing_pct": 10.54,
+        "median_intra_pop_pct": 10.07,
+        "median_intra_close_pct": 2.68,
+        "positive_open_pct": 72.0
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-11T14:33:43+05:30",
+      "fetched_at": "2026-09-11T15:28:59+05:30",
       "stale": false
     },
     "earnings": {
@@ -2867,7 +2890,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-11T14:33:45+05:30",
+      "fetched_at": "2026-09-11T15:29:01+05:30",
       "stale": false
     }
   }

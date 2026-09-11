@@ -698,7 +698,7 @@ function render(){
 
   // ---- IPOs
   const ip = S.nse_ipo, cur = (ip && ip.current) || [];
-  // ---- IPO pipeline: listing today (green), awaiting listing (blue), open now
+  // ---- IPO pipeline: listed today (green), awaiting listing (blue), open now
   const today = (ip && ip.listing_today) || [];
   const soon  = (ip && ip.awaiting) || [];
   const cur2  = (ip && ip.open_now) || cur;
@@ -714,21 +714,26 @@ function render(){
         ? `expected <b>${esc(x.expected_listing_dmy)}</b>
            <span style="color:var(--text-muted)">&middot; T+3 est.</span>`
         : '');
-  const gmpCell = x => x.gmp == null ? '<span style="color:var(--text-muted)">—</span>'
-    : `${nf(x.gmp,0)}<br><span style="font-size:11px" class="${sign(x.gmp_est_gain_pct)}">${
-        nf(x.gmp_est_gain_pct,1)}%</span>`;
+  // What the grey market implies the stock lists at, with the premium or
+  // discount that implies underneath. The rupee premium alone meant nothing
+  // without the issue price beside it; the resulting price does.
+  const gmpCell = x => (x.gmp_est_listing == null && x.gmp_est_gain_pct == null)
+    ? '<span style="color:var(--text-muted)">—</span>'
+    : `${x.gmp_est_listing == null ? '—' : nf(x.gmp_est_listing,0)}<br>
+       <span style="font-size:11px" class="${sign(x.gmp_est_gain_pct)}">${
+        x.gmp_est_gain_pct == null ? '' : nf(x.gmp_est_gain_pct,1)+'%'}</span>`;
   const tvRow = (id, list) => !list.length ? '' :
     `<div class="tvbox"><code id="${id}">${esc(list.join(','))}</code>
       <button class="btn" data-copy="${id}">Copy</button></div>`;
 
   b.push(card('IPO pipeline', ip && ip.tv_note, ip,
     `<div class="scroll"><table><thead><tr><th>Company</th><th>Ticker</th>
-       <th>State</th><th title="Grey market premium — unofficial">GMP</th>
+       <th>State</th><th title="Grey market estimate of the listing price, and the premium or discount that implies. Unofficial.">Est. listing</th>
        <th>Series</th><th>Price</th><th>Window</th>
        </tr></thead><tbody>` +
     today.map(x => `<tr class="lists-today"><td>${esc(x.company)}</td>
         <td><b>${esc(x.symbol)}</b></td>
-        <td><span class="pill today">Lists today</span></td>
+        <td><span class="pill today">${esc(x.listing_label || 'Lists Today')}</span></td>
         <td>${gmpCell(x)}</td><td>${esc(x.series)}</td><td>${esc(x.price_range || x.issue_price)}</td>
         <td>${esc(x.listing_date)}</td></tr>`).join('') +
     soon.map(x => {
@@ -771,7 +776,7 @@ function render(){
       `<div class="note">Nothing in the pipeline right now.</div>`) +
     `<div class="note" style="margin-top:10px"><b>TradingView</b> — all tickers in the pipeline:</div>` +
     tvRow('tv-all', tvAll) +
-    (today.length ? `<div class="note" style="margin-top:6px">Listing today only:</div>` +
+    (today.length ? `<div class="note" style="margin-top:6px">Listed today only:</div>` +
         tvRow('tv-today', today.map(x => x.tv)) : '') +
     `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.
       Neither NSE nor Chittorgarh publishes a forward listing date, so the
@@ -783,39 +788,6 @@ function render(){
       listings landed exactly on T+3, ~93% within T+2 to T+6. It is an estimate
       until the stock appears in a bhavcopy, which is what turns a row
       green.</div>`, 'wide'));
-
-  // ---- grey market premium
-  const gm = S.ipo_gmp, gmc = (gm && gm.current) || [], tr = gm && gm.track_record;
-  b.push(card('IPO grey market premium',
-    'Issue price + GMP = estimated listing price. ' + ((gm && gm.caveat) || ''),
-    gm,
-    (tr ? `<div class="stats" style="margin-bottom:11px">
-       <div class="stat"><div class="t">Direction right</div>
-         <div class="n">${nf(tr.direction_right_pct,1)}%</div>
-         <div class="m">of ${tr.sample} past IPOs</div></div>
-       <div class="stat"><div class="t">Typical miss</div>
-         <div class="n">${nf(tr.median_abs_error_pct,1)} pts</div>
-         <div class="m">overstated ${nf(tr.overstated_pct,0)}% of the time</div></div>
-     </div>` : '') +
-    `<div class="scroll"><table><thead><tr><th>Company</th><th>Board</th>
-      <th title="Upper end of the price band">Issue price</th>
-      <th title="Grey market premium in rupees, on top of the issue price">+ GMP</th>
-      <th title="Issue price + GMP">= Est. listing</th>
-      <th title="GMP as a percentage of the issue price">Implied</th>
-      <th>Window</th><th>Status</th>
-      </tr></thead><tbody>` +
-    gmc.slice(0,18).map(x => `<tr>
-      <td>${esc(x.company)}</td><td>${esc(x.board)}</td>
-      <td>${x.price_band_upper == null ? '—' : nf(x.price_band_upper,0)}</td>
-      <td>${x.gmp == null ? '—' : nf(x.gmp,0)}</td>
-      <td>${x.est_listing == null ? '—' : nf(x.est_listing,0)}</td>
-      <td class="${sign(x.est_gain_pct)}">${x.est_gain_pct == null ? '—' : nf(x.est_gain_pct,1)+'%'}</td>
-      <td>${esc(x.window)}</td><td>${esc(x.status)}</td></tr>`).join('') +
-    `</tbody></table></div>
-     <div class="note">Scored against ${tr ? tr.sample : 0} past issues where the
-      grey market call can be compared with the actual listing price. It gets the
-      <b>direction</b> right most of the time and the <b>size</b> wrong more often
-      than not &mdash; treat it as sentiment, not a price target.</div>`, 'wide'));
 
   // ---- IPO listing-day gains
   const lv = S.ipo_listing_live;

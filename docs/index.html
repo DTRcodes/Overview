@@ -681,6 +681,7 @@ function render(){
       than not &mdash; treat it as sentiment, not a price target.</div>`, 'wide'));
 
   // ---- IPO listing-day gains
+  const lv = S.ipo_listing_live;
   const ig = S.ipo_gains, gl = (ig && ig.listings) || [], gs = ig && ig.stats_last_50;
   const pc = v => v == null ? '–' :
     `<span class="${sign(v)}">${arrow(v)} ${nf(v,1)}%</span>`;
@@ -716,7 +717,24 @@ function render(){
       <td>${nf(x.open,1)}</td><td>${nf(x.close,1)}</td></tr>`).join('') +
     `</tbody></table></div>
      <div class="note">${ig ? esc(ig.resolved_total) : 0} listings priced from the
-      NSE bhavcopy. ${ig && ig.note ? esc(ig.note) : ''}</div>`, 'wide'));
+      NSE bhavcopy. ${ig && ig.note ? esc(ig.note) : ''}</div>` +
+    ((ig && ig.corrections && ig.corrections.length)
+      ? `<div class="note">Corrected against the bhavcopy this run: ` +
+        ig.corrections.map(c => `<b>${esc(c.symbol)}</b> open ${nf(c.old_open,1)}
+          &rarr; ${nf(c.new_open,1)}`).join(', ') + `.</div>`
+      : '') +
+    ((lv && lv.live && lv.live.length)
+      ? `<div class="note"><b>Listed today, provisional</b> (Yahoo intraday;
+          the bhavcopy overwrites these after close): ` +
+        lv.live.map(x => `${esc(x.symbol)} listed ${nf(x.open,1)},
+          now ${nf(x.last,1)} <span class="${sign(x.from_open_pct)}">${
+          nf(x.from_open_pct,1)}% from open</span>`).join(' &middot; ') + `</div>`
+      : '') +
+    ((lv && lv.no_quote_yet && lv.no_quote_yet.length)
+      ? `<div class="note">Listed today but no quote available yet:
+         ${lv.no_quote_yet.map(esc).join(', ')} &mdash; fresh SME symbols can take
+         a day to appear. The bhavcopy will price them tonight.</div>`
+      : ''), 'wide'));
 
   // ---- earnings
   const e = S.earnings, ec = (e && e.companies) || {};

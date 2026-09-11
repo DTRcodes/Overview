@@ -1188,6 +1188,8 @@ def fetch_ipo():
             row["listing_date_source"] = "bhavcopy (NSE field blank)"
 
         if ld == today:
+            if not is_fresh_listing(r, ld):
+                continue                  # migration, not a new listing
             listing_today.append(row)
         elif ld is None and sym not in trading and closed:
             row["days_since_close"] = (today - closed).days
@@ -1281,6 +1283,25 @@ def first_traded_day(symbol, closed, window=25):
     return None
 
 
+def is_fresh_listing(rec, listing_date):
+    """Is this a genuine IPO listing, or a migration wearing one's clothes?
+
+    NSE records SME-to-mainboard migrations against the ORIGINAL issue row, so
+    a 2022 IPO can carry a 2026 listing date. Dollex Agrotech is the case in
+    point: IPO 15-20 Dec 2022, listingDate 11-Sep-2026, and it was already
+    trading in the 10-Sep bhavcopy at 39.05. Treating that as a fresh listing
+    produced a "-7.89% listing gain" against a four-year-old issue price.
+
+    The gains resolver already rejected these. The intraday capture did not,
+    which is why the test lives here now and both call it.
+    """
+    closed = _d(rec.get("ipoEndDate"))
+    if not (closed and listing_date):
+        return True                       # nothing to contradict it
+    gap = (listing_date - closed).days
+    return 0 <= gap <= LISTING_MAX_GAP_DAYS
+
+
 def _bhavcopy(day):
     """All symbols' OHLC for one trading day, keyed by symbol.
 
@@ -1337,7 +1358,10 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
     for rec in past:
         sym = (rec.get("symbol") or "").strip()
         ld = (rec.get("listingDate") or "").strip()
-        if not sym or sym in done or sym in bad:
+        # A provisional row (captured intraday) must stay eligible so the
+        # bhavcopy can supersede it; a confirmed one is skipped.
+        existing = done.get(sym)
+        if not sym or sym in bad or (existing and not existing.get("provisional")):
             continue
         price = _price_from(rec)
         if not price:
@@ -1443,6 +1467,137 @@ def _norm_name(s):
     return re.sub(r"[^a-z0-9]", "", s)
 
 
+@source("ipo_listing_live")
+def fetch_listing_live():
+    """Intraday prices for IPOs that listed this morning.
+
+    Listings open at 10:00 IST and the bhavcopy is not published until after
+    close, so for most of the day the board would otherwise show nothing at
+    all for a stock that has been trading for hours.
+
+    NSE's quote API is behind the bot wall (403 even with a homepage cookie),
+    so this uses Yahoo. Coverage is partial and honestly so: Yahoo carries
+    DOLLEX within the hour but had no data for QUALIANCE on its listing day -
+    fresh SME symbols can take a day to appear.
+
+    Anything captured here is written PROVISIONAL. The bhavcopy is the
+    authority, and verify_listings() overwrites these values once it exists.
+    """
+    import warnings
+    warnings.filterwarnings("ignore")
+    import yfinance as yf
+
+    today = dt.datetime.now(IST).date()
+    past = get("https://www.nseindia.com/api/public-past-issues").json()
+    EQUITY = {"EQ", "SME", "BE"}
+
+    todays, migrations = [], []
+    for r in past:
+        sym = (r.get("symbol") or "").strip()
+        if not sym or (r.get("securityType") or "").strip().upper() not in EQUITY:
+            continue
+        if _d(r.get("listingDate")) != today:
+            continue
+        if not is_fresh_listing(r, today):
+            migrations.append(sym)        # migration, not an IPO
+            continue
+        todays.append((sym, r.get("company"), _price_from(r)))
+
+    store = _load_ipo_store()
+    found, missing = [], []
+    for sym, company, issue in todays:
+        try:
+            hist = yf.Ticker(sym + ".NS").history(period="1d", interval="5m")
+        except Exception:
+            hist = None
+        if hist is None or not len(hist):
+            missing.append(sym)
+            continue
+        op = float(hist["Open"].iloc[0])
+        last = float(hist["Close"].iloc[-1])
+        rec = {
+            "symbol": sym, "company": company, "issue_price": issue,
+            "listing_date": today.isoformat(), "open": round(op, 2),
+            "last": round(last, 2), "close": round(last, 2),
+            "provisional": True, "price_source": "yahoo intraday",
+            "gain_open_pct": round((op - issue) / issue * 100, 2) if issue else None,
+            "gain_close_pct": round((last - issue) / issue * 100, 2) if issue else None,
+            "from_open_pct": round((last - op) / op * 100, 2) if op else None,
+        }
+        found.append(rec)
+        # Provisional rows go into the store so the gains table is populated the
+        # same day; verify_listings() replaces them from the bhavcopy tonight.
+        store["listings"][sym] = rec
+
+    if found:
+        IPO_STORE.write_text(json.dumps(store, indent=1, ensure_ascii=False),
+                             encoding="utf-8")
+
+    return {"date": today.isoformat(), "listed_today": [s for s, _, _ in todays],
+            "live": found, "no_quote_yet": missing,
+            "excluded_migrations": migrations,
+            "note": ("Provisional. Yahoo intraday, because NSE's quote API is "
+                     "bot-walled; the bhavcopy overwrites these after close."),
+            "source": "yfinance"}
+
+
+def verify_listings(limit=40):
+    """Re-check recent stored listings against the bhavcopy and correct them.
+
+    Two things get fixed here. Provisional rows captured intraday from Yahoo
+    are replaced with the official open and close. And any row whose stored
+    price disagrees with the bhavcopy - whatever wrote it - is corrected, with
+    the old value kept so the change is auditable rather than silent.
+    """
+    store = _load_ipo_store()
+    rows = sorted(store["listings"].values(),
+                  key=lambda r: r.get("listing_date") or "", reverse=True)[:limit]
+    corrected, confirmed, pending = [], 0, []
+
+    for rec in rows:
+        sym, day_s = rec.get("symbol"), rec.get("listing_date")
+        if not sym or not day_s:
+            continue
+        try:
+            day = dt.date.fromisoformat(day_s)
+        except ValueError:
+            continue
+        try:
+            bhav = _bhavcopy(day)
+        except Exception:
+            pending.append(sym)          # file not out yet
+            continue
+        row = bhav.get(sym)
+        if not row:
+            pending.append(sym)
+            continue
+        op, cl = num(row.get("OPEN_PRICE")), num(row.get("CLOSE_PRICE"))
+        if op is None or cl is None:
+            pending.append(sym)
+            continue
+
+        was_prov = rec.get("provisional")
+        changed = (rec.get("open") != op) or (rec.get("close") != cl)
+        if changed:
+            corrected.append({"symbol": sym, "was_provisional": bool(was_prov),
+                              "old_open": rec.get("open"), "new_open": op,
+                              "old_close": rec.get("close"), "new_close": cl,
+                              "old_source": rec.get("price_source", "bhavcopy")})
+        issue = rec.get("issue_price")
+        rec.update({"open": op, "close": cl, "price_source": "bhavcopy"})
+        rec.pop("provisional", None)
+        rec.pop("last", None)
+        if issue:
+            rec["gain_open_pct"] = round((op - issue) / issue * 100, 2)
+            rec["gain_close_pct"] = round((cl - issue) / issue * 100, 2)
+        store["listings"][sym] = rec
+        confirmed += 1
+
+    IPO_STORE.write_text(json.dumps(store, indent=1, ensure_ascii=False),
+                         encoding="utf-8")
+    return corrected, confirmed, pending
+
+
 @source("ipo_gmp")
 def fetch_ipo_gmp():
     """Grey market premium for open and upcoming IPOs.
@@ -1538,6 +1693,9 @@ def fetch_ipo_gmp():
 @source("ipo_gains")
 def fetch_ipo_gains():
     """Listing-day performance, newest first, plus hit-rate stats."""
+    # Correct before adding: replaces intraday-provisional prices with the
+    # official bhavcopy figures and repairs anything that disagrees with it.
+    corrected, confirmed, pending = verify_listings()
     added, total, calls = resolve_ipo_gains()
     store = _load_ipo_store()
     rows = sorted(store["listings"].values(),
@@ -1561,6 +1719,8 @@ def fetch_ipo_gains():
 
     return {"listings": rows[:40], "resolved_total": total,
             "added_this_run": added, "bhavcopy_calls": calls,
+            "corrections": corrected, "verified_against_bhavcopy": confirmed,
+            "awaiting_bhavcopy": pending,
             "stats_last_50": stats(rows[:50]), "stats_all": stats(rows),
             "note": ("Gain measured against the issue price. Open = the "
                      "listing pop; close = holding the first day out."),

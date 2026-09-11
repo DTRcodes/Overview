@@ -9,6 +9,11 @@ on:
     # 02:30 UTC = 08:00 IST - the pre-market read: IPO pipeline with expected
     # listing dates, plus yesterday's FII/DII and closing valuations.
     - cron: "30 2 * * 1-5"
+    # 04:31 UTC = 10:01 IST - IPOs start trading at 10:00, and the bhavcopy is
+    # not out until after close, so without this a stock that has been trading
+    # all morning shows nothing. Prices captured here are PROVISIONAL and the
+    # 19:00 run overwrites them from the bhavcopy.
+    - cron: "31 4 * * 1-5"
     # 13:30 UTC = 19:00 IST - after close, once the day's own data has landed.
     - cron: "30 13 * * 1-5"
   workflow_dispatch: {}          # lets you trigger a run by hand

@@ -139,7 +139,10 @@ Note that GitHub Pages sites are **public**. Everything here is public market
 data, so that is fine; if you later want it private, put it behind Cloudflare
 Pages + Cloudflare Access instead.
 
-`update.yml` runs at **08:00 and 19:00 IST**, weekdays. `fii-retry.yml` then
+`update.yml` runs at **08:00, 10:01 and 19:00 IST**, weekdays. The 10:01 slot
+exists because IPOs start trading at 10:00 while the bhavcopy is not published
+until after close; prices captured then are provisional and the 19:00 run
+overwrites them. `fii-retry.yml` then
 runs hourly to 23:00 IST, but only fetches when the last settled trading day's
 FII/DII cash is still missing — NSE's posting time moves, and on the days the
 19:00 run already caught it the retry exits without touching a source. Both

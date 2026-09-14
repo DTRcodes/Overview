@@ -31229,9 +31229,9 @@
    "nifty_div_yield": 1.21,
    "repo": 5.25,
    "usd_inr": 95.54,
-   "us_10y": 4.934,
-   "us_2y": 4.43,
-   "us_5y": 4.751,
+   "us_10y": 4.95,
+   "us_2y": 4.56,
+   "us_5y": 4.75,
    "india_10y": 7.05,
    "fii_idx_fut_net": -284882.0,
    "fii_stk_fut_net": 519602.0,
@@ -31247,7 +31247,11 @@
    "fii_put_oi_chg": 6947.0,
    "fii_fut_amt": -450.06,
    "fii_fut_oi_chg": -3038.0,
-   "fii_fut_oi": -284882.0
+   "fii_fut_oi": -284882.0,
+   "y5_us": 4.78,
+   "y10_us": 4.96,
+   "y5_jp": 2.296,
+   "y10_jp": 2.987
   }
  ]
 }

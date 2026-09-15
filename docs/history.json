@@ -31289,7 +31289,14 @@
    "y5_cn": 1.4165,
    "y10_cn": 1.6865,
    "y5_in": 6.8,
-   "y10_in": 7.1
+   "y10_in": 7.1,
+   "fii_net": -2977.86,
+   "dii_net": 2686.05,
+   "fii_call_oi_chg": -25943.0,
+   "fii_put_oi_chg": 8809.0,
+   "fii_fut_amt": -956.41,
+   "fii_fut_oi_chg": -6170.0,
+   "fii_fut_oi": -291052.0
   }
  ]
 }

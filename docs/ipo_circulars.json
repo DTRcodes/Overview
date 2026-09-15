@@ -124,5 +124,72 @@
 "match": "pranavconstructions",
 "subject": "Listing of Equity Shares of Pranav Constructions Limited (IPO)",
 "symbol": "PRANAV"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76317.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76317.pdf",
+"circular_date": "September 15, 2026",
+"company": "Prasol Chemicals Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "prasolchemicals",
+"subject": "Listing of Equity Shares of Prasol Chemicals Limited (IPO)",
+"symbol": "PRASOLCHEM"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76329.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76329.pdf",
+"circular_date": "September 15, 2026",
+"company": "Kanohar Electricals Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "kanoharelectricals",
+"subject": "Listing of Equity Shares of Kanohar Electricals Limited (IPO)",
+"symbol": "KANOHAR"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76331.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76331.pdf",
+"circular_date": "September 15, 2026",
+"company": "Glass Wall Systems (India) Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "glasswallsystems",
+"subject": "Listing of Equity Shares of Glass Wall Systems (India) Limited (IPO)",
+"symbol": "GLASSWALL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76336.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76336.zip",
+"circular_date": "September 15, 2026",
+"company": "Prasol Chemicals Limited",
+"confirmed_listing": "2026-09-16",
+"confirmed_listing_dmy": "16-Sep-2026",
+"date_pending": false,
+"match": "prasolchemicals",
+"subject": "Listing of Equity Shares of Prasol Chemicals Limited (IPO)",
+"symbol": "PRASOLCHEM"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76337.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76337.zip",
+"circular_date": "September 15, 2026",
+"company": "Glass Wall Systems (India) Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "glasswallsystems",
+"subject": "Listing of Equity Shares of Glass Wall Systems (India) Limited (IPO)",
+"symbol": "GLASSWALL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76340.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76340.zip",
+"circular_date": "September 15, 2026",
+"company": "Kanohar Electricals Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "kanoharelectricals",
+"subject": "Listing of Equity Shares of Kanohar Electricals Limited (IPO)",
+"symbol": "KANOHAR"
 }
 }

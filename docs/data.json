@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-15T21:12:38+05:30",
-  "generated_at_utc": "2026-09-15T15:42:38+00:00",
+  "generated_at": "2026-09-16T08:12:51+05:30",
+  "generated_at_utc": "2026-09-16T02:42:51+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-15T21:11:56+05:30",
+      "fetched_at": "2026-09-16T08:11:41+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-15T21:11:57+05:30",
+      "fetched_at": "2026-09-16T08:11:42+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-15T21:11:57+05:30",
+      "fetched_at": "2026-09-16T08:11:43+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-15T21:11:58+05:30",
+      "fetched_at": "2026-09-16T08:11:44+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.93,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-15T21:11:59+05:30",
+      "fetched_at": "2026-09-16T08:11:46+05:30",
       "stale": false
     },
     "us_rates": {
@@ -200,42 +200,42 @@
           "date": "2026-09-14"
         },
         "us_2y": {
-          "value": 4.63,
-          "date": "2026-09-11"
+          "value": 4.65,
+          "date": "2026-09-14"
         },
         "us_5y": {
-          "value": 4.78,
-          "date": "2026-09-11"
+          "value": 4.8,
+          "date": "2026-09-14"
         },
         "us_10y": {
-          "value": 4.96,
-          "date": "2026-09-11"
+          "value": 4.97,
+          "date": "2026-09-14"
         },
         "us_30y": {
-          "value": 5.35,
-          "date": "2026-09-11"
+          "value": 5.34,
+          "date": "2026-09-14"
         },
         "us_10y_2y_spread": {
-          "value": 0.32,
-          "date": "2026-09-14"
+          "value": 0.33,
+          "date": "2026-09-15"
         }
       },
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-15T21:12:03+05:30",
+      "fetched_at": "2026-09-16T08:11:48+05:30",
       "stale": false
     },
     "world_yields": {
       "latest": {
         "5": {
           "US": {
-            "value": 4.8,
-            "date": "2026-09-14"
+            "value": 4.83,
+            "date": "2026-09-15"
           },
           "Japan": {
-            "value": 2.302,
-            "date": "2026-09-14"
+            "value": 2.338,
+            "date": "2026-09-15"
           },
           "UK": {
             "value": 4.8643,
@@ -256,12 +256,12 @@
         },
         "10": {
           "US": {
-            "value": 4.97,
-            "date": "2026-09-14"
+            "value": 5.0,
+            "date": "2026-09-15"
           },
           "Japan": {
-            "value": 2.988,
-            "date": "2026-09-14"
+            "value": 3.028,
+            "date": "2026-09-15"
           },
           "UK": {
             "value": 5.304,
@@ -303,11 +303,11 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-15T21:12:13+05:30",
+      "fetched_at": "2026-09-16T08:12:03+05:30",
       "stale": false,
       "series_points": {
-        "y5_us": 675,
-        "y10_us": 675,
+        "y5_us": 676,
+        "y10_us": 676,
         "y5_jp": 1500,
         "y10_jp": 1500,
         "y5_uk": 1500,
@@ -321,74 +321,28 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.945,
-      "as_of": "2026-09-15",
+      "usd_inr": 95.94,
+      "as_of": "2026-09-16",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-15T21:12:16+05:30",
+      "fetched_at": "2026-09-16T08:12:04+05:30",
       "stale": false
     },
     "nse_ipo": {
       "listing_today": [
-        {
-          "company": "Pranav Constructions Limited",
-          "symbol": "PRANAV",
-          "tv": "NSE:PRANAV",
-          "series": "EQ",
-          "price_range": "Rs.118 to Rs.124",
-          "issue_price": "   124",
-          "listing_date": "15-SEP-2026",
-          "ipo_closed": "09-SEP-2026",
-          "traded_today": true,
-          "listing_label": "Listed Today",
-          "gmp": 50.0,
-          "gmp_est_listing": 174.0,
-          "gmp_est_gain_pct": 40.32,
-          "gmp_direction": "premium"
-        }
-      ],
-      "awaiting": [
-        {
-          "company": "Apana Logistics",
-          "symbol": null,
-          "tv": null,
-          "series": "SME",
-          "platform": "BSE SME",
-          "price": "Rs.60",
-          "price_range": "Rs.60",
-          "opens": "07-Sep-2026",
-          "closes": "09-Sep-2026",
-          "expected_listing": "2026-09-15",
-          "expected_listing_dmy": "15-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "from_calendar": true,
-          "ipo_closed": "09-Sep-2026",
-          "days_since_close": 6,
-          "days_to_listing": 0,
-          "listing_label": "Lists Today",
-          "gmp": 0.0,
-          "gmp_est_listing": 60.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
-        },
         {
           "company": "Glass Wall Systems (India) Limited",
           "symbol": "GLASSWALL",
           "tv": "NSE:GLASSWALL",
           "series": "EQ",
           "price_range": "Rs.172 to Rs.182",
-          "issue_price": "-",
-          "listing_date": "-",
+          "issue_price": "   182",
+          "listing_date": "16-SEP-2026",
           "ipo_closed": "10-SEP-2026",
-          "days_since_close": 5,
-          "expected_listing": "2026-09-16",
-          "expected_listing_dmy": "16-Sep-2026",
-          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
-          "lists_today_expected": false,
-          "listing_label": "Lists tomorrow",
-          "days_to_listing": 1,
-          "gmp": 52.0,
-          "gmp_est_listing": 234.0,
-          "gmp_est_gain_pct": 28.57,
+          "traded_today": false,
+          "listing_label": "Lists Today",
+          "gmp": 41.0,
+          "gmp_est_listing": 223.0,
+          "gmp_est_gain_pct": 22.53,
           "gmp_direction": "premium"
         },
         {
@@ -397,19 +351,14 @@
           "tv": "NSE:KANOHAR",
           "series": "EQ",
           "price_range": "Rs.601 to Rs.632",
-          "issue_price": "-",
-          "listing_date": "-",
+          "issue_price": "   632",
+          "listing_date": "16-SEP-2026",
           "ipo_closed": "10-SEP-2026",
-          "days_since_close": 5,
-          "expected_listing": "2026-09-16",
-          "expected_listing_dmy": "16-Sep-2026",
-          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
-          "lists_today_expected": false,
-          "listing_label": "Lists tomorrow",
-          "days_to_listing": 1,
-          "gmp": 241.0,
-          "gmp_est_listing": 873.0,
-          "gmp_est_gain_pct": 38.13,
+          "traded_today": false,
+          "listing_label": "Lists Today",
+          "gmp": 192.0,
+          "gmp_est_listing": 824.0,
+          "gmp_est_gain_pct": 30.38,
           "gmp_direction": "premium"
         },
         {
@@ -418,16 +367,11 @@
           "tv": "NSE:PRASOLCHEM",
           "series": "EQ",
           "price_range": "Rs.643 to Rs.676",
-          "issue_price": "-",
-          "listing_date": "-",
+          "issue_price": "   676",
+          "listing_date": "16-SEP-2026",
           "ipo_closed": "10-SEP-2026",
-          "days_since_close": 5,
-          "expected_listing": "2026-09-16",
-          "expected_listing_dmy": "16-Sep-2026",
-          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
-          "lists_today_expected": false,
-          "listing_label": "Lists tomorrow",
-          "days_to_listing": 1,
+          "traded_today": false,
+          "listing_label": "Lists Today",
           "confirmed_listing": "2026-09-16",
           "confirmed_listing_dmy": "16-Sep-2026",
           "confirmed_by": "NSE circular September 15, 2026",
@@ -436,7 +380,9 @@
           "gmp_est_listing": 676.0,
           "gmp_est_gain_pct": 0.0,
           "gmp_direction": "flat"
-        },
+        }
+      ],
+      "awaiting": [
         {
           "company": "Amtech Esters",
           "symbol": null,
@@ -452,12 +398,12 @@
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "from_calendar": true,
           "ipo_closed": "11-Sep-2026",
-          "days_since_close": 4,
-          "days_to_listing": 2,
-          "listing_label": "Lists Thursday",
-          "gmp": 7.0,
-          "gmp_est_listing": 82.0,
-          "gmp_est_gain_pct": 9.33,
+          "days_since_close": 5,
+          "days_to_listing": 1,
+          "listing_label": "Lists tomorrow",
+          "gmp": 13.0,
+          "gmp_est_listing": 88.0,
+          "gmp_est_gain_pct": 17.33,
           "gmp_direction": "premium"
         },
         {
@@ -469,16 +415,16 @@
           "issue_price": "-",
           "listing_date": "-",
           "ipo_closed": "11-SEP-2026",
-          "days_since_close": 4,
+          "days_since_close": 5,
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "listing_label": "Lists Thursday",
-          "days_to_listing": 2,
-          "gmp": 17.0,
-          "gmp_est_listing": 156.0,
-          "gmp_est_gain_pct": 12.23,
+          "listing_label": "Lists tomorrow",
+          "days_to_listing": 1,
+          "gmp": 15.0,
+          "gmp_est_listing": 154.0,
+          "gmp_est_gain_pct": 10.79,
           "gmp_direction": "premium"
         },
         {
@@ -496,9 +442,9 @@
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "from_calendar": true,
           "ipo_closed": "11-Sep-2026",
-          "days_since_close": 4,
-          "days_to_listing": 2,
-          "listing_label": "Lists Thursday",
+          "days_since_close": 5,
+          "days_to_listing": 1,
+          "listing_label": "Lists tomorrow",
           "gmp": 0.0,
           "gmp_est_listing": 104.0,
           "gmp_est_gain_pct": 0.0,
@@ -513,16 +459,16 @@
           "issue_price": "-",
           "listing_date": "-",
           "ipo_closed": "11-SEP-2026",
-          "days_since_close": 4,
+          "days_since_close": 5,
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "listing_label": "Lists Thursday",
-          "days_to_listing": 2,
-          "gmp": 71.0,
-          "gmp_est_listing": 325.0,
-          "gmp_est_gain_pct": 27.95,
+          "listing_label": "Lists tomorrow",
+          "days_to_listing": 1,
+          "gmp": 60.0,
+          "gmp_est_listing": 314.0,
+          "gmp_est_gain_pct": 23.62,
           "gmp_direction": "premium"
         },
         {
@@ -534,16 +480,16 @@
           "issue_price": "-",
           "listing_date": "-",
           "ipo_closed": "11-SEP-2026",
-          "days_since_close": 4,
+          "days_since_close": 5,
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "listing_label": "Lists Thursday",
-          "days_to_listing": 2,
-          "gmp": 64.0,
-          "gmp_est_listing": 210.0,
-          "gmp_est_gain_pct": 43.84,
+          "listing_label": "Lists tomorrow",
+          "days_to_listing": 1,
+          "gmp": 54.0,
+          "gmp_est_listing": 200.0,
+          "gmp_est_gain_pct": 36.99,
           "gmp_direction": "premium"
         },
         {
@@ -555,17 +501,17 @@
           "issue_price": "-",
           "listing_date": "-",
           "ipo_closed": "11-SEP-2026",
-          "days_since_close": 4,
+          "days_since_close": 5,
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "listing_label": "Lists Thursday",
-          "days_to_listing": 2,
-          "gmp": 1.0,
-          "gmp_est_listing": 340.0,
-          "gmp_est_gain_pct": 0.29,
-          "gmp_direction": "premium"
+          "listing_label": "Lists tomorrow",
+          "days_to_listing": 1,
+          "gmp": 0.0,
+          "gmp_est_listing": 339.0,
+          "gmp_est_gain_pct": 0.0,
+          "gmp_direction": "flat"
         },
         {
           "company": "Rentomojo Limited",
@@ -576,16 +522,16 @@
           "issue_price": "-",
           "listing_date": "-",
           "ipo_closed": "11-SEP-2026",
-          "days_since_close": 4,
+          "days_since_close": 5,
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "listing_label": "Lists Thursday",
-          "days_to_listing": 2,
-          "gmp": 160.0,
-          "gmp_est_listing": 564.0,
-          "gmp_est_gain_pct": 39.6,
+          "listing_label": "Lists tomorrow",
+          "days_to_listing": 1,
+          "gmp": 135.0,
+          "gmp_est_listing": 539.0,
+          "gmp_est_gain_pct": 33.42,
           "gmp_direction": "premium"
         },
         {
@@ -597,16 +543,16 @@
           "issue_price": "-",
           "listing_date": "-",
           "ipo_closed": "11-SEP-2026",
-          "days_since_close": 4,
+          "days_since_close": 5,
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "listing_label": "Lists Thursday",
-          "days_to_listing": 2,
-          "gmp": 24.0,
-          "gmp_est_listing": 105.0,
-          "gmp_est_gain_pct": 29.63,
+          "listing_label": "Lists tomorrow",
+          "days_to_listing": 1,
+          "gmp": 20.0,
+          "gmp_est_listing": 101.0,
+          "gmp_est_gain_pct": 24.69,
           "gmp_direction": "premium"
         },
         {
@@ -618,20 +564,18 @@
           "issue_price": "-",
           "listing_date": "-",
           "ipo_closed": "11-SEP-2026",
-          "days_since_close": 4,
+          "days_since_close": 5,
           "expected_listing": "2026-09-17",
           "expected_listing_dmy": "17-Sep-2026",
           "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
           "lists_today_expected": false,
-          "listing_label": "Lists Thursday",
-          "days_to_listing": 2,
+          "listing_label": "Lists tomorrow",
+          "days_to_listing": 1,
           "gmp": 1.0,
           "gmp_est_listing": 95.0,
           "gmp_est_gain_pct": 1.06,
           "gmp_direction": "premium"
-        }
-      ],
-      "open_now": [
+        },
         {
           "company": "Maharaja & Speedex India",
           "symbol": null,
@@ -646,11 +590,13 @@
           "expected_listing_dmy": "18-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "from_calendar": true,
-          "live": true,
-          "status": "Active",
-          "gmp": 45.0,
-          "gmp_est_listing": 231.0,
-          "gmp_est_gain_pct": 24.19,
+          "ipo_closed": "15-Sep-2026",
+          "days_since_close": 1,
+          "days_to_listing": 2,
+          "listing_label": "Lists Friday",
+          "gmp": 28.0,
+          "gmp_est_listing": 214.0,
+          "gmp_est_gain_pct": 15.05,
           "gmp_direction": "premium"
         },
         {
@@ -667,8 +613,10 @@
           "expected_listing_dmy": "18-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "from_calendar": true,
-          "live": true,
-          "status": "Active",
+          "ipo_closed": "15-Sep-2026",
+          "days_since_close": 1,
+          "days_to_listing": 2,
+          "listing_label": "Lists Friday",
           "gmp": 0.0,
           "gmp_est_listing": 90.0,
           "gmp_est_gain_pct": 0.0,
@@ -688,11 +636,13 @@
           "expected_listing_dmy": "18-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "from_calendar": true,
-          "live": true,
-          "status": "Active",
-          "gmp": 21.0,
-          "gmp_est_listing": 161.0,
-          "gmp_est_gain_pct": 15.0,
+          "ipo_closed": "15-Sep-2026",
+          "days_since_close": 1,
+          "days_to_listing": 2,
+          "listing_label": "Lists Friday",
+          "gmp": 3.0,
+          "gmp_est_listing": 143.0,
+          "gmp_est_gain_pct": 2.14,
           "gmp_direction": "premium"
         },
         {
@@ -709,31 +659,38 @@
           "expected_listing_dmy": "18-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "from_calendar": true,
-          "live": true,
-          "status": "Active",
-          "gmp": 61.0,
-          "gmp_est_listing": 334.0,
-          "gmp_est_gain_pct": 22.34,
+          "ipo_closed": "15-Sep-2026",
+          "days_since_close": 1,
+          "days_to_listing": 2,
+          "listing_label": "Lists Friday",
+          "gmp": 50.0,
+          "gmp_est_listing": 323.0,
+          "gmp_est_gain_pct": 18.32,
           "gmp_direction": "premium"
         },
         {
           "company": "Veegaland Developers Limited",
           "symbol": "VEEGALAND",
           "tv": "NSE:VEEGALAND",
-          "price": "Rs.130 to Rs.140",
-          "opens": "10-Sep-2026",
-          "closes": "15-Sep-2026",
           "series": "EQ",
-          "status": "Active",
-          "live": true,
+          "price_range": "Rs.130 to Rs.140",
+          "issue_price": "-",
+          "listing_date": "-",
+          "ipo_closed": "15-SEP-2026",
+          "days_since_close": 1,
           "expected_listing": "2026-09-18",
           "expected_listing_dmy": "18-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 20.0,
-          "gmp_est_listing": 160.0,
-          "gmp_est_gain_pct": 14.29,
+          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
+          "lists_today_expected": false,
+          "listing_label": "Lists Friday",
+          "days_to_listing": 2,
+          "gmp": 10.0,
+          "gmp_est_listing": 150.0,
+          "gmp_est_gain_pct": 7.14,
           "gmp_direction": "premium"
-        },
+        }
+      ],
+      "open_now": [
         {
           "company": "Century Business Media",
           "symbol": null,
@@ -789,9 +746,9 @@
           "expected_listing": "2026-09-21",
           "expected_listing_dmy": "21-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 11.0,
-          "gmp_est_listing": 54.0,
-          "gmp_est_gain_pct": 25.58,
+          "gmp": 3.0,
+          "gmp_est_listing": 46.0,
+          "gmp_est_gain_pct": 6.98,
           "gmp_direction": "premium"
         },
         {
@@ -852,9 +809,9 @@
           "from_calendar": true,
           "live": true,
           "status": "Active",
-          "gmp": 10.0,
-          "gmp_est_listing": 351.0,
-          "gmp_est_gain_pct": 2.93,
+          "gmp": 30.0,
+          "gmp_est_listing": 371.0,
+          "gmp_est_gain_pct": 8.8,
           "gmp_direction": "premium"
         },
         {
@@ -865,15 +822,14 @@
           "opens": "16-Sep-2026",
           "closes": "18-Sep-2026",
           "series": "EQ",
-          "status": "Forthcoming",
-          "live": false,
+          "status": "Active",
+          "live": true,
           "expected_listing": "2026-09-23",
           "expected_listing_dmy": "23-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens tomorrow",
-          "gmp": 24.0,
-          "gmp_est_listing": 108.0,
-          "gmp_est_gain_pct": 28.57,
+          "gmp": 19.0,
+          "gmp_est_listing": 103.0,
+          "gmp_est_gain_pct": 22.62,
           "gmp_direction": "premium"
         },
         {
@@ -884,12 +840,11 @@
           "opens": "16-Sep-2026",
           "closes": "18-Sep-2026",
           "series": "EQ",
-          "status": "Forthcoming",
-          "live": false,
+          "status": "Active",
+          "live": true,
           "expected_listing": "2026-09-23",
           "expected_listing_dmy": "23-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens tomorrow",
           "gmp": 27.0,
           "gmp_est_listing": 120.0,
           "gmp_est_gain_pct": 29.03,
@@ -903,15 +858,14 @@
           "opens": "16-Sep-2026",
           "closes": "18-Sep-2026",
           "series": "EQ",
-          "status": "Forthcoming",
-          "live": false,
+          "status": "Active",
+          "live": true,
           "expected_listing": "2026-09-23",
           "expected_listing_dmy": "23-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens tomorrow",
-          "gmp": 140.0,
-          "gmp_est_listing": 564.0,
-          "gmp_est_gain_pct": 33.02,
+          "gmp": 128.0,
+          "gmp_est_listing": 552.0,
+          "gmp_est_gain_pct": 30.19,
           "gmp_direction": "premium"
         },
         {
@@ -927,11 +881,11 @@
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens Thursday",
-          "gmp": 0.0,
-          "gmp_est_listing": 101.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
+          "listing_label": "Opens tomorrow",
+          "gmp": 10.0,
+          "gmp_est_listing": 111.0,
+          "gmp_est_gain_pct": 9.9,
+          "gmp_direction": "premium"
         },
         {
           "company": "NSE",
@@ -949,10 +903,10 @@
           "from_calendar": true,
           "live": false,
           "status": "Forthcoming",
-          "listing_label": "Opens Thursday",
-          "gmp": 208.0,
-          "gmp_est_listing": 1993.0,
-          "gmp_est_gain_pct": 11.65,
+          "listing_label": "Opens tomorrow",
+          "gmp": 160.0,
+          "gmp_est_listing": 1945.0,
+          "gmp_est_gain_pct": 8.96,
           "gmp_direction": "premium"
         },
         {
@@ -968,7 +922,7 @@
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens Thursday"
+          "listing_label": "Opens tomorrow"
         },
         {
           "company": "Sonaselection India Limited",
@@ -983,11 +937,11 @@
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens Thursday",
-          "gmp": 0.0,
-          "gmp_est_listing": 99.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
+          "listing_label": "Opens tomorrow",
+          "gmp": 8.0,
+          "gmp_est_listing": 107.0,
+          "gmp_est_gain_pct": 8.08,
+          "gmp_direction": "premium"
         },
         {
           "company": "SpectraA Technology Solutions Limited",
@@ -1002,10 +956,10 @@
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens Thursday",
-          "gmp": 44.0,
-          "gmp_est_listing": 162.0,
-          "gmp_est_gain_pct": 37.29,
+          "listing_label": "Opens tomorrow",
+          "gmp": 50.0,
+          "gmp_est_listing": 168.0,
+          "gmp_est_gain_pct": 42.37,
           "gmp_direction": "premium"
         },
         {
@@ -1121,108 +1075,6 @@
       ],
       "current": [
         {
-          "company": "Maharaja & Speedex India",
-          "symbol": null,
-          "tv": null,
-          "series": "SME",
-          "platform": "BSE SME",
-          "price": "Rs.177 to Rs.186",
-          "price_range": "Rs.177 to Rs.186",
-          "opens": "10-Sep-2026",
-          "closes": "15-Sep-2026",
-          "expected_listing": "2026-09-18",
-          "expected_listing_dmy": "18-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "from_calendar": true,
-          "live": true,
-          "status": "Active",
-          "gmp": 45.0,
-          "gmp_est_listing": 231.0,
-          "gmp_est_gain_pct": 24.19,
-          "gmp_direction": "premium"
-        },
-        {
-          "company": "Om Galaxy",
-          "symbol": null,
-          "tv": null,
-          "series": "SME",
-          "platform": "BSE SME",
-          "price": "Rs.85 to Rs.90",
-          "price_range": "Rs.85 to Rs.90",
-          "opens": "10-Sep-2026",
-          "closes": "15-Sep-2026",
-          "expected_listing": "2026-09-18",
-          "expected_listing_dmy": "18-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "from_calendar": true,
-          "live": true,
-          "status": "Active",
-          "gmp": 0.0,
-          "gmp_est_listing": 90.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
-        },
-        {
-          "company": "Panchatv Bharat",
-          "symbol": null,
-          "tv": null,
-          "series": "SME",
-          "platform": "BSE SME",
-          "price": "Rs.140",
-          "price_range": "Rs.140",
-          "opens": "10-Sep-2026",
-          "closes": "15-Sep-2026",
-          "expected_listing": "2026-09-18",
-          "expected_listing_dmy": "18-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "from_calendar": true,
-          "live": true,
-          "status": "Active",
-          "gmp": 21.0,
-          "gmp_est_listing": 161.0,
-          "gmp_est_gain_pct": 15.0,
-          "gmp_direction": "premium"
-        },
-        {
-          "company": "Raksan Transformers",
-          "symbol": null,
-          "tv": null,
-          "series": "SME",
-          "platform": "BSE SME",
-          "price": "Rs.258 to Rs.273",
-          "price_range": "Rs.258 to Rs.273",
-          "opens": "10-Sep-2026",
-          "closes": "15-Sep-2026",
-          "expected_listing": "2026-09-18",
-          "expected_listing_dmy": "18-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "from_calendar": true,
-          "live": true,
-          "status": "Active",
-          "gmp": 61.0,
-          "gmp_est_listing": 334.0,
-          "gmp_est_gain_pct": 22.34,
-          "gmp_direction": "premium"
-        },
-        {
-          "company": "Veegaland Developers Limited",
-          "symbol": "VEEGALAND",
-          "tv": "NSE:VEEGALAND",
-          "price": "Rs.130 to Rs.140",
-          "opens": "10-Sep-2026",
-          "closes": "15-Sep-2026",
-          "series": "EQ",
-          "status": "Active",
-          "live": true,
-          "expected_listing": "2026-09-18",
-          "expected_listing_dmy": "18-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 20.0,
-          "gmp_est_listing": 160.0,
-          "gmp_est_gain_pct": 14.29,
-          "gmp_direction": "premium"
-        },
-        {
           "company": "Century Business Media",
           "symbol": null,
           "tv": null,
@@ -1277,9 +1129,9 @@
           "expected_listing": "2026-09-21",
           "expected_listing_dmy": "21-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 11.0,
-          "gmp_est_listing": 54.0,
-          "gmp_est_gain_pct": 25.58,
+          "gmp": 3.0,
+          "gmp_est_listing": 46.0,
+          "gmp_est_gain_pct": 6.98,
           "gmp_direction": "premium"
         },
         {
@@ -1340,9 +1192,9 @@
           "from_calendar": true,
           "live": true,
           "status": "Active",
-          "gmp": 10.0,
-          "gmp_est_listing": 351.0,
-          "gmp_est_gain_pct": 2.93,
+          "gmp": 30.0,
+          "gmp_est_listing": 371.0,
+          "gmp_est_gain_pct": 8.8,
           "gmp_direction": "premium"
         },
         {
@@ -1353,15 +1205,14 @@
           "opens": "16-Sep-2026",
           "closes": "18-Sep-2026",
           "series": "EQ",
-          "status": "Forthcoming",
-          "live": false,
+          "status": "Active",
+          "live": true,
           "expected_listing": "2026-09-23",
           "expected_listing_dmy": "23-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens tomorrow",
-          "gmp": 24.0,
-          "gmp_est_listing": 108.0,
-          "gmp_est_gain_pct": 28.57,
+          "gmp": 19.0,
+          "gmp_est_listing": 103.0,
+          "gmp_est_gain_pct": 22.62,
           "gmp_direction": "premium"
         },
         {
@@ -1372,12 +1223,11 @@
           "opens": "16-Sep-2026",
           "closes": "18-Sep-2026",
           "series": "EQ",
-          "status": "Forthcoming",
-          "live": false,
+          "status": "Active",
+          "live": true,
           "expected_listing": "2026-09-23",
           "expected_listing_dmy": "23-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens tomorrow",
           "gmp": 27.0,
           "gmp_est_listing": 120.0,
           "gmp_est_gain_pct": 29.03,
@@ -1391,15 +1241,14 @@
           "opens": "16-Sep-2026",
           "closes": "18-Sep-2026",
           "series": "EQ",
-          "status": "Forthcoming",
-          "live": false,
+          "status": "Active",
+          "live": true,
           "expected_listing": "2026-09-23",
           "expected_listing_dmy": "23-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens tomorrow",
-          "gmp": 140.0,
-          "gmp_est_listing": 564.0,
-          "gmp_est_gain_pct": 33.02,
+          "gmp": 128.0,
+          "gmp_est_listing": 552.0,
+          "gmp_est_gain_pct": 30.19,
           "gmp_direction": "premium"
         },
         {
@@ -1415,11 +1264,11 @@
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens Thursday",
-          "gmp": 0.0,
-          "gmp_est_listing": 101.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
+          "listing_label": "Opens tomorrow",
+          "gmp": 10.0,
+          "gmp_est_listing": 111.0,
+          "gmp_est_gain_pct": 9.9,
+          "gmp_direction": "premium"
         },
         {
           "company": "NSE",
@@ -1437,10 +1286,10 @@
           "from_calendar": true,
           "live": false,
           "status": "Forthcoming",
-          "listing_label": "Opens Thursday",
-          "gmp": 208.0,
-          "gmp_est_listing": 1993.0,
-          "gmp_est_gain_pct": 11.65,
+          "listing_label": "Opens tomorrow",
+          "gmp": 160.0,
+          "gmp_est_listing": 1945.0,
+          "gmp_est_gain_pct": 8.96,
           "gmp_direction": "premium"
         },
         {
@@ -1456,7 +1305,7 @@
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens Thursday"
+          "listing_label": "Opens tomorrow"
         },
         {
           "company": "Sonaselection India Limited",
@@ -1471,11 +1320,11 @@
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens Thursday",
-          "gmp": 0.0,
-          "gmp_est_listing": 99.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
+          "listing_label": "Opens tomorrow",
+          "gmp": 8.0,
+          "gmp_est_listing": 107.0,
+          "gmp_est_gain_pct": 8.08,
+          "gmp_direction": "premium"
         },
         {
           "company": "SpectraA Technology Solutions Limited",
@@ -1490,10 +1339,10 @@
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens Thursday",
-          "gmp": 44.0,
-          "gmp_est_listing": 162.0,
-          "gmp_est_gain_pct": 37.29,
+          "listing_label": "Opens tomorrow",
+          "gmp": 50.0,
+          "gmp_est_listing": 168.0,
+          "gmp_est_gain_pct": 42.37,
           "gmp_direction": "premium"
         },
         {
@@ -1609,6 +1458,14 @@
       ],
       "recent_past": [
         {
+          "company": "Veegaland Developers Limited",
+          "symbol": "VEEGALAND",
+          "tv": "NSE:VEEGALAND",
+          "price_range": "Rs.130 to Rs.140",
+          "issue_price": "-",
+          "listing_date": "-"
+        },
+        {
           "company": "Manipal Payment and Identity Solutions Limited",
           "symbol": "MPIMANIPAL",
           "tv": "NSE:MPIMANIPAL",
@@ -1669,24 +1526,24 @@
           "symbol": "GLASSWALL",
           "tv": "NSE:GLASSWALL",
           "price_range": "Rs.172 to Rs.182",
-          "issue_price": "-",
-          "listing_date": "-"
+          "issue_price": "   182",
+          "listing_date": "16-SEP-2026"
         },
         {
           "company": "Kanohar Electricals Limited",
           "symbol": "KANOHAR",
           "tv": "NSE:KANOHAR",
           "price_range": "Rs.601 to Rs.632",
-          "issue_price": "-",
-          "listing_date": "-"
+          "issue_price": "   632",
+          "listing_date": "16-SEP-2026"
         },
         {
           "company": "Prasol Chemicals Limited",
           "symbol": "PRASOLCHEM",
           "tv": "NSE:PRASOLCHEM",
           "price_range": "Rs.643 to Rs.676",
-          "issue_price": "-",
-          "listing_date": "-"
+          "issue_price": "   676",
+          "listing_date": "16-SEP-2026"
         },
         {
           "company": "Pranav Constructions Limited",
@@ -1919,19 +1776,10 @@
           "price_range": "Rs.110 to Rs.118",
           "issue_price": "118",
           "listing_date": "19-AUG-2026"
-        },
-        {
-          "company": "Milky Mist Dairy Food Limited",
-          "symbol": "MILKYMIST",
-          "tv": "NSE:MILKYMIST",
-          "price_range": "Rs.133 to Rs.140",
-          "issue_price": "   140",
-          "listing_date": "18-AUG-2026"
         }
       ],
-      "past_total": 1441,
+      "past_total": 1442,
       "tv_watchlist": [
-        "NSE:PRANAV",
         "NSE:GLASSWALL",
         "NSE:KANOHAR",
         "NSE:PRASOLCHEM",
@@ -1952,23 +1800,25 @@
         "NSE:SONA",
         "NSE:SPECTRAA"
       ],
-      "deduped_from_open": [],
+      "deduped_from_open": [
+        "VEEGALAND"
+      ],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
-      "as_of": "2026-09-15",
+      "as_of": "2026-09-16",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-15T21:12:18+05:30",
+      "fetched_at": "2026-09-16T08:12:08+05:30",
       "stale": false,
-      "calendar_added": 18,
+      "calendar_added": 17,
       "horizon": {
         "min_days": 20,
         "furthest_open": "2026-09-24",
         "furthest_open_dmy": "24-Sep-2026",
         "furthest_company": "A-One Steels",
-        "days_ahead": 9,
-        "forthcoming": 13
+        "days_ahead": 8,
+        "forthcoming": 10
       },
       "circular_confirmed": 1,
-      "gmp_matched": 60
+      "gmp_matched": 53
     },
     "ipo_circulars": {
       "circulars": [
@@ -2092,38 +1942,31 @@
       "confirmed": 6,
       "checked": 10,
       "remembered": 17,
-      "as_of": "2026-09-15T21:12:19+05:30",
+      "as_of": "2026-09-16T08:12:09+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-15T21:12:19+05:30",
+      "fetched_at": "2026-09-16T08:12:09+05:30",
       "stale": false
     },
     "ipo_listing_live": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "listed_today": [
-        "PRANAV"
+        "GLASSWALL",
+        "KANOHAR",
+        "PRASOLCHEM"
       ],
-      "live": [
-        {
-          "symbol": "PRANAV",
-          "company": "Pranav Constructions Limited",
-          "issue_price": 124.0,
-          "listing_date": "2026-09-15",
-          "open": 124.0,
-          "last": 132.0,
-          "close": 132.0,
-          "provisional": true,
-          "price_source": "yahoo intraday",
-          "gain_open_pct": 0.0,
-          "gain_close_pct": 6.45,
-          "from_open_pct": 6.45
-        }
+      "live": [],
+      "no_quote_yet": [
+        "GLASSWALL",
+        "KANOHAR",
+        "PRASOLCHEM"
       ],
-      "no_quote_yet": [],
-      "excluded_migrations": [],
+      "excluded_migrations": [
+        "13DCCL28"
+      ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-15T21:12:19+05:30",
+      "fetched_at": "2026-09-16T08:12:10+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2143,11 +1986,11 @@
         {
           "company": "Sonaselection India",
           "board": "mainboard",
-          "gmp": 0.0,
+          "gmp": 8.0,
           "price_band_upper": 99.0,
-          "est_listing": 99.0,
-          "est_gain_pct": 0.0,
-          "direction": "flat",
+          "est_listing": 107.0,
+          "est_gain_pct": 8.08,
+          "direction": "premium",
           "window": "17-21 Sept",
           "status": "Upcoming",
           "match": "sonaselection"
@@ -2155,10 +1998,10 @@
         {
           "company": "NSE",
           "board": "mainboard",
-          "gmp": 208.0,
+          "gmp": 160.0,
           "price_band_upper": 1785.0,
-          "est_listing": 1993.0,
-          "est_gain_pct": 11.65,
+          "est_listing": 1945.0,
+          "est_gain_pct": 8.96,
           "direction": "premium",
           "window": "17-21 Sept",
           "status": "Upcoming",
@@ -2167,25 +2010,25 @@
         {
           "company": "Hero Motors",
           "board": "mainboard",
-          "gmp": 24.0,
+          "gmp": 19.0,
           "price_band_upper": 84.0,
-          "est_listing": 108.0,
-          "est_gain_pct": 28.57,
+          "est_listing": 103.0,
+          "est_gain_pct": 22.62,
           "direction": "premium",
           "window": "16-18 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "heromotors"
         },
         {
           "company": "SS Retail",
           "board": "mainboard",
-          "gmp": 140.0,
+          "gmp": 128.0,
           "price_band_upper": 424.0,
-          "est_listing": 564.0,
-          "est_gain_pct": 33.02,
+          "est_listing": 552.0,
+          "est_gain_pct": 30.19,
           "direction": "premium",
           "window": "16-18 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "ssretail"
         },
         {
@@ -2197,16 +2040,16 @@
           "est_gain_pct": 29.03,
           "direction": "premium",
           "window": "16-18 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "jindalsupreme"
         },
         {
           "company": "Manika Plastech",
           "board": "mainboard",
-          "gmp": 11.0,
+          "gmp": 3.0,
           "price_band_upper": 43.0,
-          "est_listing": 54.0,
-          "est_gain_pct": 25.58,
+          "est_listing": 46.0,
+          "est_gain_pct": 6.98,
           "direction": "premium",
           "window": "11-16 Sept",
           "status": "Open",
@@ -2215,22 +2058,22 @@
         {
           "company": "Veegaland Developers",
           "board": "mainboard",
-          "gmp": 20.0,
+          "gmp": 10.0,
           "price_band_upper": 140.0,
-          "est_listing": 160.0,
-          "est_gain_pct": 14.29,
+          "est_listing": 150.0,
+          "est_gain_pct": 7.14,
           "direction": "premium",
           "window": "10-15 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "veegalanddevelopers"
         },
         {
           "company": "Asset Reconstruction",
           "board": "mainboard",
-          "gmp": 17.0,
+          "gmp": 15.0,
           "price_band_upper": 139.0,
-          "est_listing": 156.0,
-          "est_gain_pct": 12.23,
+          "est_listing": 154.0,
+          "est_gain_pct": 10.79,
           "direction": "premium",
           "window": "9-11 Sept",
           "status": "Closed",
@@ -2239,10 +2082,10 @@
         {
           "company": "LCC Projects",
           "board": "mainboard",
-          "gmp": 64.0,
+          "gmp": 54.0,
           "price_band_upper": 146.0,
-          "est_listing": 210.0,
-          "est_gain_pct": 43.84,
+          "est_listing": 200.0,
+          "est_gain_pct": 36.99,
           "direction": "premium",
           "window": "9-11 Sept",
           "status": "Closed",
@@ -2251,10 +2094,10 @@
         {
           "company": "Karamtara Engineering",
           "board": "mainboard",
-          "gmp": 71.0,
+          "gmp": 60.0,
           "price_band_upper": 254.0,
-          "est_listing": 325.0,
-          "est_gain_pct": 27.95,
+          "est_listing": 314.0,
+          "est_gain_pct": 23.62,
           "direction": "premium",
           "window": "9-11 Sept",
           "status": "Closed",
@@ -2263,11 +2106,11 @@
         {
           "company": "Manipal Payment",
           "board": "mainboard",
-          "gmp": 1.0,
+          "gmp": 0.0,
           "price_band_upper": 339.0,
-          "est_listing": 340.0,
-          "est_gain_pct": 0.29,
-          "direction": "premium",
+          "est_listing": 339.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
           "window": "9-11 Sept",
           "status": "Closed",
           "match": "manipalpayment"
@@ -2275,10 +2118,10 @@
         {
           "company": "Rentomojo",
           "board": "mainboard",
-          "gmp": 160.0,
+          "gmp": 135.0,
           "price_band_upper": 404.0,
-          "est_listing": 564.0,
-          "est_gain_pct": 39.6,
+          "est_listing": 539.0,
+          "est_gain_pct": 33.42,
           "direction": "premium",
           "window": "9-11 Sept",
           "status": "Closed",
@@ -2287,10 +2130,10 @@
         {
           "company": "Steamhouse India",
           "board": "mainboard",
-          "gmp": 24.0,
+          "gmp": 20.0,
           "price_band_upper": 81.0,
-          "est_listing": 105.0,
-          "est_gain_pct": 29.63,
+          "est_listing": 101.0,
+          "est_gain_pct": 24.69,
           "direction": "premium",
           "window": "9-11 Sept",
           "status": "Closed",
@@ -2311,10 +2154,10 @@
         {
           "company": "Glass Wall Systems",
           "board": "mainboard",
-          "gmp": 52.0,
+          "gmp": 41.0,
           "price_band_upper": 182.0,
-          "est_listing": 234.0,
-          "est_gain_pct": 28.57,
+          "est_listing": 223.0,
+          "est_gain_pct": 22.53,
           "direction": "premium",
           "window": "8-10 Sept",
           "status": "Closed",
@@ -2323,10 +2166,10 @@
         {
           "company": "Kanohar Electricals",
           "board": "mainboard",
-          "gmp": 241.0,
+          "gmp": 192.0,
           "price_band_upper": 632.0,
-          "est_listing": 873.0,
-          "est_gain_pct": 38.13,
+          "est_listing": 824.0,
+          "est_gain_pct": 30.38,
           "direction": "premium",
           "window": "8-10 Sept",
           "status": "Closed",
@@ -2395,10 +2238,10 @@
         {
           "company": "SpectraA Technology",
           "board": "sme",
-          "gmp": 44.0,
+          "gmp": 50.0,
           "price_band_upper": 118.0,
-          "est_listing": 162.0,
-          "est_gain_pct": 37.29,
+          "est_listing": 168.0,
+          "est_gain_pct": 42.37,
           "direction": "premium",
           "window": "17-21 Sept",
           "status": "Upcoming",
@@ -2407,11 +2250,11 @@
         {
           "company": "Kheria Autocomp",
           "board": "sme",
-          "gmp": 0.0,
+          "gmp": 10.0,
           "price_band_upper": 101.0,
-          "est_listing": 101.0,
-          "est_gain_pct": 0.0,
-          "direction": "flat",
+          "est_listing": 111.0,
+          "est_gain_pct": 9.9,
+          "direction": "premium",
           "window": "17-21 Sept",
           "status": "Upcoming",
           "match": "kheriaautocomp"
@@ -2419,13 +2262,13 @@
         {
           "company": "Vama Wovenfab",
           "board": "sme",
-          "gmp": 10.0,
+          "gmp": 30.0,
           "price_band_upper": 341.0,
-          "est_listing": 351.0,
-          "est_gain_pct": 2.93,
+          "est_listing": 371.0,
+          "est_gain_pct": 8.8,
           "direction": "premium",
           "window": "15-17 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "vamawovenfab"
         },
         {
@@ -2437,7 +2280,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "15-17 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "shaktipolytarp"
         },
         {
@@ -2449,7 +2292,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "15-17 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "quantoagroworld"
         },
         {
@@ -2479,25 +2322,25 @@
         {
           "company": "Panchatv Bharat",
           "board": "sme",
-          "gmp": 21.0,
+          "gmp": 3.0,
           "price_band_upper": 140.0,
-          "est_listing": 161.0,
-          "est_gain_pct": 15.0,
+          "est_listing": 143.0,
+          "est_gain_pct": 2.14,
           "direction": "premium",
           "window": "10-15 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "panchatvbharat"
         },
         {
           "company": "Maharaja & Speedex",
           "board": "sme",
-          "gmp": 45.0,
+          "gmp": 28.0,
           "price_band_upper": 186.0,
-          "est_listing": 231.0,
-          "est_gain_pct": 24.19,
+          "est_listing": 214.0,
+          "est_gain_pct": 15.05,
           "direction": "premium",
           "window": "10-15 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "maharajaspeedex"
         },
         {
@@ -2509,19 +2352,19 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "10-15 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "omgalaxy"
         },
         {
           "company": "Raksan Transformers",
           "board": "sme",
-          "gmp": 61.0,
+          "gmp": 50.0,
           "price_band_upper": 273.0,
-          "est_listing": 334.0,
-          "est_gain_pct": 22.34,
+          "est_listing": 323.0,
+          "est_gain_pct": 18.32,
           "direction": "premium",
           "window": "10-15 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "raksantransformers"
         },
         {
@@ -2551,26 +2394,14 @@
         {
           "company": "Amtech Esters",
           "board": "sme",
-          "gmp": 7.0,
+          "gmp": 13.0,
           "price_band_upper": 75.0,
-          "est_listing": 82.0,
-          "est_gain_pct": 9.33,
+          "est_listing": 88.0,
+          "est_gain_pct": 17.33,
           "direction": "premium",
           "window": "9-11 Sept",
           "status": "Closed",
           "match": "amtechesters"
-        },
-        {
-          "company": "Apana Logistics",
-          "board": "sme",
-          "gmp": 0.0,
-          "price_band_upper": 60.0,
-          "est_listing": 60.0,
-          "est_gain_pct": 0.0,
-          "direction": "flat",
-          "window": "7-9 Sept",
-          "status": "Closed",
-          "match": "apanalogistics"
         }
       ],
       "history": [
@@ -2941,10 +2772,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-15T21:12:21+05:30",
+      "as_of": "2026-09-16T08:12:11+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-15T21:12:21+05:30",
+      "fetched_at": "2026-09-16T08:12:11+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3540,9 +3371,9 @@
           "match": "abhhealthcare"
         }
       ],
-      "as_of": "2026-09-15T21:12:23+05:30",
+      "as_of": "2026-09-16T08:12:13+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-15T21:12:23+05:30",
+      "fetched_at": "2026-09-16T08:12:13+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -4150,20 +3981,10 @@
           "intra_pop_pct": 3.65
         }
       ],
-      "resolved_total": 754,
+      "resolved_total": 767,
       "added_this_run": 13,
       "bhavcopy_calls": 12,
-      "corrections": [
-        {
-          "symbol": "PRANAV",
-          "was_provisional": true,
-          "old_open": 124.0,
-          "new_open": 165.0,
-          "old_close": 132.0,
-          "new_close": 132.0,
-          "old_source": "yahoo intraday"
-        }
-      ],
+      "corrections": [],
       "verified_against_bhavcopy": 40,
       "awaiting_bhavcopy": [],
       "monthly": [
@@ -4328,17 +4149,17 @@
       },
       "stats_all": {
         "label": "all listings",
-        "count": 754,
-        "from": "2023-03-23",
+        "count": 767,
+        "from": "2023-01-19",
         "to": "2026-09-15",
-        "median_listing_pct": 12.99,
+        "median_listing_pct": 12.73,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 2.89,
-        "positive_open_pct": 75.1
+        "median_intra_close_pct": 3.0,
+        "positive_open_pct": 75.4
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-15T21:12:38+05:30",
+      "fetched_at": "2026-09-16T08:12:50+05:30",
       "stale": false
     },
     "earnings": {
@@ -4452,7 +4273,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-15T21:12:38+05:30",
+      "fetched_at": "2026-09-16T08:12:51+05:30",
       "stale": false
     }
   }

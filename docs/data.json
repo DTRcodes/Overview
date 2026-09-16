@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-16T08:12:51+05:30",
-  "generated_at_utc": "2026-09-16T02:42:51+00:00",
+  "generated_at": "2026-09-16T10:12:20+05:30",
+  "generated_at_utc": "2026-09-16T04:42:20+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-16T08:11:41+05:30",
+      "fetched_at": "2026-09-16T10:11:39+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-16T08:11:42+05:30",
+      "fetched_at": "2026-09-16T10:11:40+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-16T08:11:43+05:30",
+      "fetched_at": "2026-09-16T10:11:40+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-16T08:11:44+05:30",
+      "fetched_at": "2026-09-16T10:11:41+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.93,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-16T08:11:46+05:30",
+      "fetched_at": "2026-09-16T10:11:44+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-16T08:11:48+05:30",
+      "fetched_at": "2026-09-16T10:11:46+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-16T08:12:03+05:30",
+      "fetched_at": "2026-09-16T10:11:57+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 676,
@@ -321,10 +321,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.94,
+      "usd_inr": 95.915,
       "as_of": "2026-09-16",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-16T08:12:04+05:30",
+      "fetched_at": "2026-09-16T10:11:58+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -371,7 +371,7 @@
           "listing_date": "16-SEP-2026",
           "ipo_closed": "10-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-16",
           "confirmed_listing_dmy": "16-Sep-2026",
           "confirmed_by": "NSE circular September 15, 2026",
@@ -1806,7 +1806,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-16",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-16T08:12:08+05:30",
+      "fetched_at": "2026-09-16T10:12:01+05:30",
       "stale": false,
       "calendar_added": 17,
       "horizon": {
@@ -1942,10 +1942,10 @@
       "confirmed": 6,
       "checked": 10,
       "remembered": 17,
-      "as_of": "2026-09-16T08:12:09+05:30",
+      "as_of": "2026-09-16T10:12:01+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-16T08:12:09+05:30",
+      "fetched_at": "2026-09-16T10:12:01+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1955,18 +1955,57 @@
         "KANOHAR",
         "PRASOLCHEM"
       ],
-      "live": [],
-      "no_quote_yet": [
-        "GLASSWALL",
-        "KANOHAR",
-        "PRASOLCHEM"
+      "live": [
+        {
+          "symbol": "GLASSWALL",
+          "company": "Glass Wall Systems (India) Limited",
+          "issue_price": 182.0,
+          "listing_date": "2026-09-16",
+          "open": 182.0,
+          "last": 203.3,
+          "close": 203.3,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 11.7,
+          "from_open_pct": 11.7
+        },
+        {
+          "symbol": "KANOHAR",
+          "company": "Kanohar Electricals Limited",
+          "issue_price": 632.0,
+          "listing_date": "2026-09-16",
+          "open": 632.0,
+          "last": 751.05,
+          "close": 751.05,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 18.84,
+          "from_open_pct": 18.84
+        },
+        {
+          "symbol": "PRASOLCHEM",
+          "company": "Prasol Chemicals Limited",
+          "issue_price": 676.0,
+          "listing_date": "2026-09-16",
+          "open": 676.0,
+          "last": 631.5,
+          "close": 631.5,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": -6.58,
+          "from_open_pct": -6.58
+        }
       ],
+      "no_quote_yet": [],
       "excluded_migrations": [
         "13DCCL28"
       ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-16T08:12:10+05:30",
+      "fetched_at": "2026-09-16T10:12:02+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2772,10 +2811,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-16T08:12:11+05:30",
+      "as_of": "2026-09-16T10:12:04+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-16T08:12:11+05:30",
+      "fetched_at": "2026-09-16T10:12:04+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3371,13 +3410,55 @@
           "match": "abhhealthcare"
         }
       ],
-      "as_of": "2026-09-16T08:12:13+05:30",
+      "as_of": "2026-09-16T10:12:05+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-16T08:12:13+05:30",
+      "fetched_at": "2026-09-16T10:12:05+05:30",
       "stale": false
     },
     "ipo_gains": {
       "listings": [
+        {
+          "symbol": "GLASSWALL",
+          "company": "Glass Wall Systems (India) Limited",
+          "issue_price": 182.0,
+          "listing_date": "2026-09-16",
+          "open": 182.0,
+          "last": 203.3,
+          "close": 203.3,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 11.7,
+          "from_open_pct": 11.7
+        },
+        {
+          "symbol": "KANOHAR",
+          "company": "Kanohar Electricals Limited",
+          "issue_price": 632.0,
+          "listing_date": "2026-09-16",
+          "open": 632.0,
+          "last": 751.05,
+          "close": 751.05,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 18.84,
+          "from_open_pct": 18.84
+        },
+        {
+          "symbol": "PRASOLCHEM",
+          "company": "Prasol Chemicals Limited",
+          "issue_price": 676.0,
+          "listing_date": "2026-09-16",
+          "open": 676.0,
+          "last": 631.5,
+          "close": 631.5,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": -6.58,
+          "from_open_pct": -6.58
+        },
         {
           "symbol": "PRANAV",
           "company": "Pranav Constructions Limited",
@@ -3934,59 +4015,18 @@
           "low": 313.2,
           "intra_close_pct": 4.99,
           "intra_pop_pct": 4.99
-        },
-        {
-          "symbol": "JNPR",
-          "company": "Juniper Green Energy Limited",
-          "issue_price": 225.0,
-          "listing_date": "2026-08-06",
-          "open": 245.0,
-          "close": 259.71,
-          "gain_open_pct": 8.89,
-          "gain_close_pct": 15.43,
-          "price_source": "bhavcopy",
-          "high": 264.72,
-          "low": 232.11,
-          "intra_close_pct": 6.0,
-          "intra_pop_pct": 8.05
-        },
-        {
-          "symbol": "MVELECTRO",
-          "company": "MV Electrosystems Limited",
-          "issue_price": 425.0,
-          "listing_date": "2026-08-06",
-          "open": 520.0,
-          "close": 624.0,
-          "gain_open_pct": 22.35,
-          "gain_close_pct": 46.82,
-          "price_source": "bhavcopy",
-          "high": 624.0,
-          "low": 520.0,
-          "intra_close_pct": 20.0,
-          "intra_pop_pct": 20.0
-        },
-        {
-          "symbol": "MANIPALHOS",
-          "company": "Manipal Health Enterprises Limited",
-          "issue_price": 590.0,
-          "listing_date": "2026-08-05",
-          "open": 652.0,
-          "close": 666.95,
-          "gain_open_pct": 10.51,
-          "gain_close_pct": 13.04,
-          "price_source": "bhavcopy",
-          "high": 675.8,
-          "low": 635.0,
-          "intra_close_pct": 2.29,
-          "intra_pop_pct": 3.65
         }
       ],
-      "resolved_total": 767,
-      "added_this_run": 13,
+      "resolved_total": 786,
+      "added_this_run": 16,
       "bhavcopy_calls": 12,
       "corrections": [],
-      "verified_against_bhavcopy": 40,
-      "awaiting_bhavcopy": [],
+      "verified_against_bhavcopy": 37,
+      "awaiting_bhavcopy": [
+        "GLASSWALL",
+        "KANOHAR",
+        "PRASOLCHEM"
+      ],
       "monthly": [
         {
           "month": "2025-04",
@@ -4109,8 +4149,8 @@
         },
         {
           "month": "2026-09",
-          "count": 17,
-          "median_listing_pct": 15.0,
+          "count": 20,
+          "median_listing_pct": 9.9,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 4.98
         }
@@ -4118,48 +4158,48 @@
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 65,
+          "count": 68,
           "from": "2026-06-17",
-          "to": "2026-09-15",
-          "median_listing_pct": 11.08,
+          "to": "2026-09-16",
+          "median_listing_pct": 10.59,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 1.38,
-          "positive_open_pct": 72.3
+          "positive_open_pct": 69.1
         },
         {
           "label": "last 100 listings",
           "count": 100,
-          "from": "2026-03-02",
-          "to": "2026-09-15",
+          "from": "2026-03-05",
+          "to": "2026-09-16",
           "median_listing_pct": 6.85,
           "median_intra_pop_pct": 5.0,
-          "median_intra_close_pct": 2.29,
+          "median_intra_close_pct": 1.56,
           "positive_open_pct": 64.0
         }
       ],
       "stats_last_50": {
         "label": "last 50 listings",
         "count": 50,
-        "from": "2026-07-16",
-        "to": "2026-09-15",
-        "median_listing_pct": 15.62,
+        "from": "2026-07-24",
+        "to": "2026-09-16",
+        "median_listing_pct": 15.0,
         "median_intra_pop_pct": 5.0,
         "median_intra_close_pct": 2.29,
-        "positive_open_pct": 76.0
+        "positive_open_pct": 72.0
       },
       "stats_all": {
         "label": "all listings",
-        "count": 767,
-        "from": "2023-01-19",
-        "to": "2026-09-15",
-        "median_listing_pct": 12.73,
+        "count": 786,
+        "from": "2022-12-12",
+        "to": "2026-09-16",
+        "median_listing_pct": 12.61,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 3.0,
-        "positive_open_pct": 75.4
+        "median_intra_close_pct": 2.89,
+        "positive_open_pct": 75.1
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-16T08:12:50+05:30",
+      "fetched_at": "2026-09-16T10:12:20+05:30",
       "stale": false
     },
     "earnings": {
@@ -4273,7 +4313,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-16T08:12:51+05:30",
+      "fetched_at": "2026-09-16T10:12:20+05:30",
       "stale": false
     }
   }

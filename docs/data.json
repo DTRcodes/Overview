@@ -1,12 +1,7 @@
 {
-  "generated_at": "2026-09-16T19:13:07+05:30",
-  "generated_at_utc": "2026-09-16T13:43:07+00:00",
-  "failures": [
-    {
-      "source": "india_yields",
-      "error": "RuntimeError: no FBIL G-Sec archive file in the last 10 days"
-    }
-  ],
+  "generated_at": "2026-09-16T20:12:43+05:30",
+  "generated_at_utc": "2026-09-16T14:42:43+00:00",
+  "failures": [],
   "sections": {
     "rbi": {
       "rates": {
@@ -26,35 +21,35 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-16T19:07:16+05:30",
+      "fetched_at": "2026-09-16T20:11:54+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "buy": 13194.759765625,
-          "sell": 16172.6201171875,
-          "net": -2977.8603515625,
+          "buy": 12959.0400390625,
+          "sell": 14991.650390625,
+          "net": -2032.6103515625,
           "view": "BEARISH"
         },
         "dii": {
-          "buy": 15221.98046875,
-          "sell": 12535.9296875,
-          "net": 2686.05078125,
+          "buy": 15279.58984375,
+          "sell": 11371.3603515625,
+          "net": 3908.2294921875,
           "view": "BULLISH"
         }
       },
       "fno": {
-        "fii_call_oi_chg": -25943.0,
-        "fii_put_oi_chg": 8809.0,
-        "fii_fut_amt": -956.409912109375,
-        "fii_fut_oi_chg": -6170.0,
-        "fii_fut_oi": -291052.0,
-        "fut_view": "BEARISH",
-        "call_view": "BEARISH",
-        "put_view": "BEARISH"
+        "fii_call_oi_chg": 24835.0,
+        "fii_put_oi_chg": -98358.0,
+        "fii_fut_amt": 473.5,
+        "fii_fut_oi_chg": 2949.0,
+        "fii_fut_oi": -288103.0,
+        "fut_view": "BULLISH",
+        "call_view": "BULLISH",
+        "put_view": "BULLISH"
       },
-      "as_of": "2026-09-15",
+      "as_of": "2026-09-16",
       "window_days": 22,
       "months_advertised": [
         "2026-March",
@@ -68,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-16T19:07:17+05:30",
+      "fetched_at": "2026-09-16T20:11:55+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -103,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-16T19:07:17+05:30",
+      "fetched_at": "2026-09-16T20:11:55+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -168,28 +163,27 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-16T19:07:17+05:30",
+      "fetched_at": "2026-09-16T20:11:56+05:30",
       "stale": false
     },
     "india_yields": {
       "yields": {
-        "1Y": 5.91,
-        "2Y": 6.17,
+        "1Y": 6.02,
+        "2Y": 6.22,
         "3Y": 6.5,
-        "5Y": 6.8,
-        "7Y": 6.97,
-        "10Y": 7.1,
-        "30Y": 7.67
+        "5Y": 6.79,
+        "7Y": 6.95,
+        "10Y": 7.07,
+        "30Y": 7.64
       },
       "unit": "percent",
       "via": "FBIL par yield (semi-annual)",
-      "as_of": "2026-09-15",
-      "spread_10y_2y": 0.93,
+      "as_of": "2026-09-16",
+      "spread_10y_2y": 0.85,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-16T10:11:44+05:30",
-      "stale": true,
-      "stale_reason": "RuntimeError: no FBIL G-Sec archive file in the last 10 days"
+      "fetched_at": "2026-09-16T20:11:57+05:30",
+      "stale": false
     },
     "us_rates": {
       "rates": {
@@ -229,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-16T19:11:23+05:30",
+      "fetched_at": "2026-09-16T20:11:59+05:30",
       "stale": false
     },
     "world_yields": {
@@ -256,8 +250,8 @@
             "date": "2026-09-16"
           },
           "India": {
-            "value": 6.8,
-            "date": "2026-09-15"
+            "value": 6.79,
+            "date": "2026-09-16"
           }
         },
         "10": {
@@ -282,8 +276,8 @@
             "date": "2026-09-16"
           },
           "India": {
-            "value": 7.1,
-            "date": "2026-09-15"
+            "value": 7.07,
+            "date": "2026-09-16"
           }
         }
       },
@@ -309,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-16T19:12:35+05:30",
+      "fetched_at": "2026-09-16T20:12:08+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 676,
@@ -322,15 +316,15 @@
         "y10_de": 1500,
         "y5_cn": 271,
         "y10_cn": 271,
-        "y5_in": 265,
-        "y10_in": 265
+        "y5_in": 266,
+        "y10_in": 266
       }
     },
     "fx_spot": {
       "usd_inr": 95.945,
       "as_of": "2026-09-16",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-16T19:12:36+05:30",
+      "fetched_at": "2026-09-16T20:12:09+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -428,6 +422,10 @@
           "lists_today_expected": false,
           "listing_label": "Lists tomorrow",
           "days_to_listing": 1,
+          "confirmed_listing": "2026-09-17",
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "confirmed_by": "NSE circular September 16, 2026",
+          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76378.zip",
           "gmp": 10.0,
           "gmp_est_listing": 149.0,
           "gmp_est_gain_pct": 7.19,
@@ -472,6 +470,10 @@
           "lists_today_expected": false,
           "listing_label": "Lists tomorrow",
           "days_to_listing": 1,
+          "confirmed_listing": "2026-09-17",
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "confirmed_by": "NSE circular September 16, 2026",
+          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76372.zip",
           "gmp": 40.0,
           "gmp_est_listing": 294.0,
           "gmp_est_gain_pct": 15.75,
@@ -518,6 +520,10 @@
           "lists_today_expected": false,
           "listing_label": "Lists tomorrow",
           "days_to_listing": 1,
+          "confirmed_listing": "2026-09-17",
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "confirmed_by": "NSE circular September 16, 2026",
+          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76376.zip",
           "gmp": 0.0,
           "gmp_est_listing": 339.0,
           "gmp_est_gain_pct": 0.0,
@@ -539,6 +545,10 @@
           "lists_today_expected": false,
           "listing_label": "Lists tomorrow",
           "days_to_listing": 1,
+          "confirmed_listing": "2026-09-17",
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "confirmed_by": "NSE circular September 16, 2026",
+          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76379.zip",
           "gmp": 107.0,
           "gmp_est_listing": 511.0,
           "gmp_est_gain_pct": 26.49,
@@ -560,6 +570,10 @@
           "lists_today_expected": false,
           "listing_label": "Lists tomorrow",
           "days_to_listing": 1,
+          "confirmed_listing": "2026-09-17",
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "confirmed_by": "NSE circular September 16, 2026",
+          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76371.zip",
           "gmp": 16.0,
           "gmp_est_listing": 97.0,
           "gmp_est_gain_pct": 19.75,
@@ -1906,7 +1920,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-16",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-16T19:12:38+05:30",
+      "fetched_at": "2026-09-16T20:12:12+05:30",
       "stale": false,
       "calendar_added": 19,
       "horizon": {
@@ -1917,32 +1931,44 @@
         "days_ahead": 8,
         "forthcoming": 12
       },
-      "circular_confirmed": 3,
+      "circular_confirmed": 8,
       "gmp_matched": 57
     },
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Vinod Texworld Limited",
-          "match": "vinodtexworld",
-          "board": "SME",
+          "company": "Rentomojo Limited",
+          "match": "rentomojo",
+          "board": "mainboard",
           "circular_date": "September 16, 2026",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76367.zip",
-          "subject": "Listing of Equity Shares of Vinod Texworld Limited (SME IPO)",
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76379.zip",
+          "subject": "Listing of Equity Shares of Rentomojo Limited (IPO)",
           "confirmed_listing": "2026-09-17",
-          "symbol": "VINOD",
+          "symbol": "RENTOMOJO",
           "confirmed_listing_dmy": "17-Sep-2026",
           "date_pending": false
         },
         {
-          "company": "LCC Projects Limited",
-          "match": "lccprojects",
+          "company": "Asset Reconstruction Company (India) Limited",
+          "match": "assetreconstructioncompany",
           "board": "mainboard",
           "circular_date": "September 16, 2026",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76364.zip",
-          "subject": "Listing of Equity Shares of LCC Projects Limited (IPO)",
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76378.zip",
+          "subject": "Listing of Equity Shares of Asset Reconstruction Company (India) Limited (IPO)",
           "confirmed_listing": "2026-09-17",
-          "symbol": "LCCPROJECT",
+          "symbol": "ARCIL",
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "date_pending": false
+        },
+        {
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "match": "manipalpaymentandidentitysolutions",
+          "board": "mainboard",
+          "circular_date": "September 16, 2026",
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76376.zip",
+          "subject": "Listing of Equity Shares of Manipal Payment and Identity Solutions Limited (IPO)",
+          "confirmed_listing": "2026-09-17",
+          "symbol": "MPIMANIPAL",
           "confirmed_listing_dmy": "17-Sep-2026",
           "date_pending": false
         },
@@ -1951,55 +1977,48 @@
           "match": "karamtaraengineering",
           "board": "mainboard",
           "circular_date": "September 16, 2026",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76354.pdf",
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76372.zip",
           "subject": "Listing of Equity Shares of Karamtara Engineering Limited (IPO)",
-          "confirmed_listing": null,
+          "confirmed_listing": "2026-09-17",
           "symbol": "KARAMTARA",
-          "date_pending": true
-        },
-        {
-          "company": "Manipal Payment and Identity Solutions Limited",
-          "match": "manipalpaymentandidentitysolutions",
-          "board": "mainboard",
-          "circular_date": "September 16, 2026",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76353.pdf",
-          "subject": "Listing of Equity Shares of Manipal Payment and Identity Solutions Limited (IPO)",
-          "confirmed_listing": null,
-          "symbol": "MPIMANIPAL",
-          "date_pending": true
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "date_pending": false
         },
         {
           "company": "Steamhouse India Limited",
           "match": "steamhouse",
           "board": "mainboard",
           "circular_date": "September 16, 2026",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76352.pdf",
-          "subject": "Listing of Equity Shares of Steamhouse India Limited (IPO))",
-          "confirmed_listing": null,
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76371.zip",
+          "subject": "Listing of Equity Shares of Steamhouse India Limited (IPO)",
+          "confirmed_listing": "2026-09-17",
           "symbol": "STEAMHOUSE",
-          "date_pending": true
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "date_pending": false
         },
         {
-          "company": "Rentomojo Limited",
-          "match": "rentomojo",
-          "board": "mainboard",
+          "board": "SME",
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76367.zip",
           "circular_date": "September 16, 2026",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76348.pdf",
-          "subject": "Listing of Equity Shares of Rentomojo Limited (IPO)",
-          "confirmed_listing": null,
-          "symbol": "RENTOMOJO",
-          "date_pending": true
+          "company": "Vinod Texworld Limited",
+          "confirmed_listing": "2026-09-17",
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "date_pending": false,
+          "match": "vinodtexworld",
+          "subject": "Listing of Equity Shares of Vinod Texworld Limited (SME IPO)",
+          "symbol": "VINOD"
         },
         {
-          "company": "Asset Reconstruction Company (India) Limited",
-          "match": "assetreconstructioncompany",
           "board": "mainboard",
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76364.zip",
           "circular_date": "September 16, 2026",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76296.pdf",
-          "subject": "Listing of Equity Shares of Asset Reconstruction Company (India) Limited (IPO)",
-          "confirmed_listing": null,
-          "symbol": "ARCIL",
-          "date_pending": true
+          "company": "LCC Projects Limited",
+          "confirmed_listing": "2026-09-17",
+          "confirmed_listing_dmy": "17-Sep-2026",
+          "date_pending": false,
+          "match": "lccprojects",
+          "subject": "Listing of Equity Shares of LCC Projects Limited (IPO)",
+          "symbol": "LCCPROJECT"
         },
         {
           "board": "mainboard",
@@ -2118,13 +2137,13 @@
           "symbol": "ASHUTOSH"
         }
       ],
-      "confirmed": 8,
+      "confirmed": 13,
       "checked": 17,
-      "remembered": 25,
-      "as_of": "2026-09-16T19:12:44+05:30",
+      "remembered": 30,
+      "as_of": "2026-09-16T20:12:22+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-16T19:12:44+05:30",
+      "fetched_at": "2026-09-16T20:12:22+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -2184,7 +2203,7 @@
       ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-16T19:12:45+05:30",
+      "fetched_at": "2026-09-16T20:12:22+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -3014,10 +3033,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-16T19:12:47+05:30",
+      "as_of": "2026-09-16T20:12:24+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-16T19:12:47+05:30",
+      "fetched_at": "2026-09-16T20:12:24+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3633,9 +3652,9 @@
           "match": "abhhealthcare"
         }
       ],
-      "as_of": "2026-09-16T19:12:49+05:30",
+      "as_of": "2026-09-16T20:12:26+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-16T19:12:49+05:30",
+      "fetched_at": "2026-09-16T20:12:26+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -4246,8 +4265,8 @@
           "intra_pop_pct": 4.99
         }
       ],
-      "resolved_total": 804,
-      "added_this_run": 18,
+      "resolved_total": 820,
+      "added_this_run": 16,
       "bhavcopy_calls": 12,
       "corrections": [
         {
@@ -4442,17 +4461,17 @@
       },
       "stats_all": {
         "label": "all listings",
-        "count": 804,
-        "from": "2022-10-17",
+        "count": 820,
+        "from": "2022-09-06",
         "to": "2026-09-16",
-        "median_listing_pct": 12.5,
+        "median_listing_pct": 12.65,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 3.0,
+        "median_intra_close_pct": 3.03,
         "positive_open_pct": 75.4
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-16T19:13:06+05:30",
+      "fetched_at": "2026-09-16T20:12:42+05:30",
       "stale": false
     },
     "earnings": {
@@ -4566,7 +4585,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-16T19:13:07+05:30",
+      "fetched_at": "2026-09-16T20:12:43+05:30",
       "stale": false
     }
   }

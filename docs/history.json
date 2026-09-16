@@ -31315,7 +31315,7 @@
    "us_10y": 4.97,
    "us_2y": 4.65,
    "us_5y": 4.8,
-   "india_10y": 7.1,
+   "india_10y": 7.07,
    "fii_idx_fut_net": -288103.0,
    "fii_stk_fut_net": 536077.0,
    "dii_idx_fut_net": 12546.0,
@@ -31323,7 +31323,16 @@
    "y5_de": 3.34,
    "y10_de": 3.61,
    "y5_cn": 1.4103,
-   "y10_cn": 1.6858
+   "y10_cn": 1.6858,
+   "fii_net": -2032.61,
+   "dii_net": 3908.23,
+   "fii_call_oi_chg": 24835.0,
+   "fii_put_oi_chg": -98358.0,
+   "fii_fut_amt": 473.5,
+   "fii_fut_oi_chg": 2949.0,
+   "fii_fut_oi": -288103.0,
+   "y5_in": 6.79,
+   "y10_in": 7.07
   }
  ]
 }

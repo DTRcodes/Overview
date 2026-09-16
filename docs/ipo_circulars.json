@@ -281,5 +281,65 @@
 "match": "vinodtexworld",
 "subject": "Listing of Equity Shares of Vinod Texworld Limited (SME IPO)",
 "symbol": "VINOD"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76371.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76371.zip",
+"circular_date": "September 16, 2026",
+"company": "Steamhouse India Limited",
+"confirmed_listing": "2026-09-17",
+"confirmed_listing_dmy": "17-Sep-2026",
+"date_pending": false,
+"match": "steamhouse",
+"subject": "Listing of Equity Shares of Steamhouse India Limited (IPO)",
+"symbol": "STEAMHOUSE"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76372.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76372.zip",
+"circular_date": "September 16, 2026",
+"company": "Karamtara Engineering Limited",
+"confirmed_listing": "2026-09-17",
+"confirmed_listing_dmy": "17-Sep-2026",
+"date_pending": false,
+"match": "karamtaraengineering",
+"subject": "Listing of Equity Shares of Karamtara Engineering Limited (IPO)",
+"symbol": "KARAMTARA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76376.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76376.zip",
+"circular_date": "September 16, 2026",
+"company": "Manipal Payment and Identity Solutions Limited",
+"confirmed_listing": "2026-09-17",
+"confirmed_listing_dmy": "17-Sep-2026",
+"date_pending": false,
+"match": "manipalpaymentandidentitysolutions",
+"subject": "Listing of Equity Shares of Manipal Payment and Identity Solutions Limited (IPO)",
+"symbol": "MPIMANIPAL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76378.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76378.zip",
+"circular_date": "September 16, 2026",
+"company": "Asset Reconstruction Company (India) Limited",
+"confirmed_listing": "2026-09-17",
+"confirmed_listing_dmy": "17-Sep-2026",
+"date_pending": false,
+"match": "assetreconstructioncompany",
+"subject": "Listing of Equity Shares of Asset Reconstruction Company (India) Limited (IPO)",
+"symbol": "ARCIL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76379.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76379.zip",
+"circular_date": "September 16, 2026",
+"company": "Rentomojo Limited",
+"confirmed_listing": "2026-09-17",
+"confirmed_listing_dmy": "17-Sep-2026",
+"date_pending": false,
+"match": "rentomojo",
+"subject": "Listing of Equity Shares of Rentomojo Limited (IPO)",
+"symbol": "RENTOMOJO"
 }
 }

@@ -103,6 +103,17 @@
 "subject": "Listing of Equity Shares of Qualiance International Limited (SME IPO)",
 "symbol": "QUALIANCE"
 },
+"https://nsearchives.nseindia.com/content/circulars/CML76296.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76296.pdf",
+"circular_date": "September 16, 2026",
+"company": "Asset Reconstruction Company (India) Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "assetreconstructioncompany",
+"subject": "Listing of Equity Shares of Asset Reconstruction Company (India) Limited (IPO)",
+"symbol": "ARCIL"
+},
 "https://nsearchives.nseindia.com/content/circulars/CML76302.pdf": {
 "board": "mainboard",
 "circular": "https://nsearchives.nseindia.com/content/circulars/CML76302.pdf",
@@ -191,5 +202,84 @@
 "match": "kanoharelectricals",
 "subject": "Listing of Equity Shares of Kanohar Electricals Limited (IPO)",
 "symbol": "KANOHAR"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76348.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76348.pdf",
+"circular_date": "September 16, 2026",
+"company": "Rentomojo Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "rentomojo",
+"subject": "Listing of Equity Shares of Rentomojo Limited (IPO)",
+"symbol": "RENTOMOJO"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76351.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76351.pdf",
+"circular_date": "September 16, 2026",
+"company": "LCC Projects Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "lccprojects",
+"subject": "Listing of Equity Shares of LCC Projects Limited (IPO)",
+"symbol": "LCCPROJECT"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76352.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76352.pdf",
+"circular_date": "September 16, 2026",
+"company": "Steamhouse India Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "steamhouse",
+"subject": "Listing of Equity Shares of Steamhouse India Limited (IPO))",
+"symbol": "STEAMHOUSE"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76353.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76353.pdf",
+"circular_date": "September 16, 2026",
+"company": "Manipal Payment and Identity Solutions Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "manipalpaymentandidentitysolutions",
+"subject": "Listing of Equity Shares of Manipal Payment and Identity Solutions Limited (IPO)",
+"symbol": "MPIMANIPAL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76354.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76354.pdf",
+"circular_date": "September 16, 2026",
+"company": "Karamtara Engineering Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "karamtaraengineering",
+"subject": "Listing of Equity Shares of Karamtara Engineering Limited (IPO)",
+"symbol": "KARAMTARA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76364.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76364.zip",
+"circular_date": "September 16, 2026",
+"company": "LCC Projects Limited",
+"confirmed_listing": "2026-09-17",
+"confirmed_listing_dmy": "17-Sep-2026",
+"date_pending": false,
+"match": "lccprojects",
+"subject": "Listing of Equity Shares of LCC Projects Limited (IPO)",
+"symbol": "LCCPROJECT"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76367.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76367.zip",
+"circular_date": "September 16, 2026",
+"company": "Vinod Texworld Limited",
+"confirmed_listing": "2026-09-17",
+"confirmed_listing_dmy": "17-Sep-2026",
+"date_pending": false,
+"match": "vinodtexworld",
+"subject": "Listing of Equity Shares of Vinod Texworld Limited (SME IPO)",
+"symbol": "VINOD"
 }
 }

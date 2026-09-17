@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-17T08:13:06+05:30",
-  "generated_at_utc": "2026-09-17T02:43:06+00:00",
+  "generated_at": "2026-09-17T10:12:43+05:30",
+  "generated_at_utc": "2026-09-17T04:42:43+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-17T08:12:08+05:30",
+      "fetched_at": "2026-09-17T10:11:50+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-17T08:12:08+05:30",
+      "fetched_at": "2026-09-17T10:11:51+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-17T08:12:09+05:30",
+      "fetched_at": "2026-09-17T10:11:52+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-17T08:12:10+05:30",
+      "fetched_at": "2026-09-17T10:11:53+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.85,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-17T08:12:12+05:30",
+      "fetched_at": "2026-09-17T10:11:55+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-17T08:12:28+05:30",
+      "fetched_at": "2026-09-17T10:11:58+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-17T08:12:40+05:30",
+      "fetched_at": "2026-09-17T10:12:12+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 677,
@@ -321,10 +321,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.94,
+      "usd_inr": 95.8475,
       "as_of": "2026-09-17",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-17T08:12:41+05:30",
+      "fetched_at": "2026-09-17T10:12:13+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -339,7 +339,7 @@
           "listing_date": "17-SEP-2026",
           "ipo_closed": "11-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-17",
           "confirmed_listing_dmy": "17-Sep-2026",
           "confirmed_by": "NSE circular September 16, 2026",
@@ -359,7 +359,7 @@
           "listing_date": "17-SEP-2026",
           "ipo_closed": "11-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-17",
           "confirmed_listing_dmy": "17-Sep-2026",
           "confirmed_by": "NSE circular September 16, 2026",
@@ -379,7 +379,7 @@
           "listing_date": "17-SEP-2026",
           "ipo_closed": "11-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-17",
           "confirmed_listing_dmy": "17-Sep-2026",
           "confirmed_by": "NSE circular September 16, 2026",
@@ -399,7 +399,7 @@
           "listing_date": "17-SEP-2026",
           "ipo_closed": "11-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-17",
           "confirmed_listing_dmy": "17-Sep-2026",
           "confirmed_by": "NSE circular September 16, 2026",
@@ -419,7 +419,7 @@
           "listing_date": "17-SEP-2026",
           "ipo_closed": "11-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-17",
           "confirmed_listing_dmy": "17-Sep-2026",
           "confirmed_by": "NSE circular September 16, 2026",
@@ -439,7 +439,7 @@
           "listing_date": "17-SEP-2026",
           "ipo_closed": "11-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-17",
           "confirmed_listing_dmy": "17-Sep-2026",
           "confirmed_by": "NSE circular September 16, 2026",
@@ -1779,7 +1779,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-17",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-17T08:12:44+05:30",
+      "fetched_at": "2026-09-17T10:12:19+05:30",
       "stale": false,
       "calendar_added": 21,
       "horizon": {
@@ -1999,10 +1999,10 @@
       "confirmed": 13,
       "checked": 17,
       "remembered": 30,
-      "as_of": "2026-09-17T08:12:44+05:30",
+      "as_of": "2026-09-17T10:12:20+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-17T08:12:44+05:30",
+      "fetched_at": "2026-09-17T10:12:20+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -2016,20 +2016,99 @@
         "ARCIL",
         "VINOD"
       ],
-      "live": [],
+      "live": [
+        {
+          "symbol": "MPIMANIPAL",
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "issue_price": 339.0,
+          "listing_date": "2026-09-17",
+          "open": 339.0,
+          "last": 322.2,
+          "close": 322.2,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": -4.96,
+          "from_open_pct": -4.96
+        },
+        {
+          "symbol": "KARAMTARA",
+          "company": "Karamtara Engineering Limited",
+          "issue_price": 254.0,
+          "listing_date": "2026-09-17",
+          "open": 254.0,
+          "last": 352.0,
+          "close": 352.0,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 38.58,
+          "from_open_pct": 38.58
+        },
+        {
+          "symbol": "LCCPROJECT",
+          "company": "LCC Projects Limited",
+          "issue_price": 146.0,
+          "listing_date": "2026-09-17",
+          "open": 146.0,
+          "last": 173.56,
+          "close": 173.56,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 18.88,
+          "from_open_pct": 18.88
+        },
+        {
+          "symbol": "RENTOMOJO",
+          "company": "Rentomojo Limited",
+          "issue_price": 404.0,
+          "listing_date": "2026-09-17",
+          "open": 404.0,
+          "last": 502.35,
+          "close": 502.35,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 24.34,
+          "from_open_pct": 24.34
+        },
+        {
+          "symbol": "STEAMHOUSE",
+          "company": "Steamhouse India Limited",
+          "issue_price": 81.0,
+          "listing_date": "2026-09-17",
+          "open": 81.0,
+          "last": 94.55,
+          "close": 94.55,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 16.73,
+          "from_open_pct": 16.73
+        },
+        {
+          "symbol": "ARCIL",
+          "company": "Asset Reconstruction Company (India) Limited",
+          "issue_price": 139.0,
+          "listing_date": "2026-09-17",
+          "open": 139.0,
+          "last": 135.18,
+          "close": 135.18,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": -2.75,
+          "from_open_pct": -2.75
+        }
+      ],
       "no_quote_yet": [
-        "MPIMANIPAL",
-        "KARAMTARA",
-        "LCCPROJECT",
-        "RENTOMOJO",
-        "STEAMHOUSE",
-        "ARCIL",
         "VINOD"
       ],
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-17T08:12:47+05:30",
+      "fetched_at": "2026-09-17T10:12:21+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2859,10 +2938,10 @@
         "median_abs_error_pct": 6.61,
         "overstated_pct": 58.2
       },
-      "as_of": "2026-09-17T08:12:49+05:30",
+      "as_of": "2026-09-17T10:12:23+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-17T08:12:49+05:30",
+      "fetched_at": "2026-09-17T10:12:23+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3428,13 +3507,97 @@
           "match": "sumaxengineering"
         }
       ],
-      "as_of": "2026-09-17T08:12:51+05:30",
+      "as_of": "2026-09-17T10:12:25+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-17T08:12:51+05:30",
+      "fetched_at": "2026-09-17T10:12:25+05:30",
       "stale": false
     },
     "ipo_gains": {
       "listings": [
+        {
+          "symbol": "MPIMANIPAL",
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "issue_price": 339.0,
+          "listing_date": "2026-09-17",
+          "open": 339.0,
+          "last": 322.2,
+          "close": 322.2,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": -4.96,
+          "from_open_pct": -4.96
+        },
+        {
+          "symbol": "KARAMTARA",
+          "company": "Karamtara Engineering Limited",
+          "issue_price": 254.0,
+          "listing_date": "2026-09-17",
+          "open": 254.0,
+          "last": 352.0,
+          "close": 352.0,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 38.58,
+          "from_open_pct": 38.58
+        },
+        {
+          "symbol": "LCCPROJECT",
+          "company": "LCC Projects Limited",
+          "issue_price": 146.0,
+          "listing_date": "2026-09-17",
+          "open": 146.0,
+          "last": 173.56,
+          "close": 173.56,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 18.88,
+          "from_open_pct": 18.88
+        },
+        {
+          "symbol": "RENTOMOJO",
+          "company": "Rentomojo Limited",
+          "issue_price": 404.0,
+          "listing_date": "2026-09-17",
+          "open": 404.0,
+          "last": 502.35,
+          "close": 502.35,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 24.34,
+          "from_open_pct": 24.34
+        },
+        {
+          "symbol": "STEAMHOUSE",
+          "company": "Steamhouse India Limited",
+          "issue_price": 81.0,
+          "listing_date": "2026-09-17",
+          "open": 81.0,
+          "last": 94.55,
+          "close": 94.55,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 16.73,
+          "from_open_pct": 16.73
+        },
+        {
+          "symbol": "ARCIL",
+          "company": "Asset Reconstruction Company (India) Limited",
+          "issue_price": 139.0,
+          "listing_date": "2026-09-17",
+          "open": 139.0,
+          "last": 135.18,
+          "close": 135.18,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": -2.75,
+          "from_open_pct": -2.75
+        },
         {
           "symbol": "GLASSWALL",
           "company": "Glass Wall Systems (India) Limited",
@@ -3949,104 +4112,21 @@
           "low": 165.0,
           "intra_close_pct": 10.0,
           "intra_pop_pct": 10.0
-        },
-        {
-          "symbol": "MOLBIO",
-          "company": "Molbio Diagnostics Limited",
-          "issue_price": 807.0,
-          "listing_date": "2026-08-17",
-          "open": 980.0,
-          "close": 1041.7,
-          "gain_open_pct": 21.44,
-          "gain_close_pct": 29.08,
-          "price_source": "bhavcopy",
-          "high": 1064.75,
-          "low": 926.35,
-          "intra_close_pct": 6.3,
-          "intra_pop_pct": 8.65
-        },
-        {
-          "symbol": "DHOOTTRANS",
-          "company": "Dhoot Transmission Limited",
-          "issue_price": 871.0,
-          "listing_date": "2026-08-17",
-          "open": 1200.0,
-          "close": 1187.05,
-          "gain_open_pct": 37.77,
-          "gain_close_pct": 36.29,
-          "price_source": "bhavcopy",
-          "high": 1205.0,
-          "low": 1131.0,
-          "intra_close_pct": -1.08,
-          "intra_pop_pct": 0.42
-        },
-        {
-          "symbol": "TECHNOCRAF",
-          "company": "Technocraft Ventures Limited",
-          "issue_price": 212.0,
-          "listing_date": "2026-08-14",
-          "open": 284.0,
-          "close": 311.15,
-          "gain_open_pct": 33.96,
-          "gain_close_pct": 46.77,
-          "price_source": "bhavcopy",
-          "high": 334.4,
-          "low": 284.0,
-          "intra_close_pct": 9.56,
-          "intra_pop_pct": 17.75
-        },
-        {
-          "symbol": "OPTIMYSTIX",
-          "company": "Optimystix Entertainment India Limited",
-          "issue_price": 175.0,
-          "listing_date": "2026-08-14",
-          "open": 180.0,
-          "close": 189.0,
-          "gain_open_pct": 2.86,
-          "gain_close_pct": 8.0,
-          "price_source": "bhavcopy",
-          "high": 189.0,
-          "low": 175.0,
-          "intra_close_pct": 5.0,
-          "intra_pop_pct": 5.0
-        },
-        {
-          "symbol": "ARDEE",
-          "company": "Ardee Industries Limited",
-          "issue_price": 53.0,
-          "listing_date": "2026-08-12",
-          "open": 72.0,
-          "close": 67.12,
-          "gain_open_pct": 35.85,
-          "gain_close_pct": 26.64,
-          "price_source": "bhavcopy",
-          "high": 73.19,
-          "low": 65.8,
-          "intra_close_pct": -6.78,
-          "intra_pop_pct": 1.65
-        },
-        {
-          "symbol": "ANAWIL",
-          "company": "Anawil Wire and Engineering Limited",
-          "issue_price": 270.0,
-          "listing_date": "2026-08-10",
-          "open": 329.65,
-          "close": 346.1,
-          "gain_open_pct": 22.09,
-          "gain_close_pct": 28.19,
-          "price_source": "bhavcopy",
-          "high": 346.1,
-          "low": 313.2,
-          "intra_close_pct": 4.99,
-          "intra_pop_pct": 4.99
         }
       ],
-      "resolved_total": 833,
-      "added_this_run": 13,
+      "resolved_total": 851,
+      "added_this_run": 12,
       "bhavcopy_calls": 12,
       "corrections": [],
-      "verified_against_bhavcopy": 40,
-      "awaiting_bhavcopy": [],
+      "verified_against_bhavcopy": 34,
+      "awaiting_bhavcopy": [
+        "MPIMANIPAL",
+        "KARAMTARA",
+        "LCCPROJECT",
+        "RENTOMOJO",
+        "STEAMHOUSE",
+        "ARCIL"
+      ],
       "monthly": [
         {
           "month": "2025-04",
@@ -4169,8 +4249,8 @@
         },
         {
           "month": "2026-09",
-          "count": 20,
-          "median_listing_pct": 9.9,
+          "count": 26,
+          "median_listing_pct": 0.0,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 5.0
         }
@@ -4178,48 +4258,48 @@
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 67,
+          "count": 73,
           "from": "2026-06-24",
-          "to": "2026-09-16",
-          "median_listing_pct": 10.59,
+          "to": "2026-09-17",
+          "median_listing_pct": 9.9,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 3.53,
-          "positive_open_pct": 73.1
+          "positive_open_pct": 67.1
         },
         {
           "label": "last 100 listings",
           "count": 100,
-          "from": "2026-03-05",
-          "to": "2026-09-16",
-          "median_listing_pct": 7.0,
-          "median_intra_pop_pct": 5.0,
+          "from": "2026-03-18",
+          "to": "2026-09-17",
+          "median_listing_pct": 6.85,
+          "median_intra_pop_pct": 6.12,
           "median_intra_close_pct": 3.53,
-          "positive_open_pct": 66.0
+          "positive_open_pct": 64.0
         }
       ],
       "stats_last_50": {
         "label": "last 50 listings",
         "count": 50,
-        "from": "2026-07-24",
-        "to": "2026-09-16",
-        "median_listing_pct": 15.0,
+        "from": "2026-08-03",
+        "to": "2026-09-17",
+        "median_listing_pct": 10.51,
         "median_intra_pop_pct": 5.0,
         "median_intra_close_pct": 4.98,
-        "positive_open_pct": 76.0
+        "positive_open_pct": 66.0
       },
       "stats_all": {
         "label": "all listings",
-        "count": 833,
-        "from": "2022-05-27",
-        "to": "2026-09-16",
-        "median_listing_pct": 12.61,
+        "count": 851,
+        "from": "2022-03-24",
+        "to": "2026-09-17",
+        "median_listing_pct": 12.09,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 3.0,
-        "positive_open_pct": 75.5
+        "median_intra_close_pct": 3.14,
+        "positive_open_pct": 74.7
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-17T08:13:06+05:30",
+      "fetched_at": "2026-09-17T10:12:43+05:30",
       "stale": false
     },
     "earnings": {
@@ -4333,7 +4413,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-17T08:13:06+05:30",
+      "fetched_at": "2026-09-17T10:12:43+05:30",
       "stale": false
     }
   }

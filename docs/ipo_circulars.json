@@ -341,5 +341,16 @@
 "match": "rentomojo",
 "subject": "Listing of Equity Shares of Rentomojo Limited (IPO)",
 "symbol": "RENTOMOJO"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76389.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76389.pdf",
+"circular_date": "September 17, 2026",
+"company": "Veegaland Developers Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "veegalanddevelopers",
+"subject": "Listing of Equity Shares of Veegaland Developers Limited (IPO)",
+"symbol": "VEEGALAND"
 }
 }

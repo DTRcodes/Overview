@@ -352,5 +352,16 @@
 "match": "veegalanddevelopers",
 "subject": "Listing of Equity Shares of Veegaland Developers Limited (IPO)",
 "symbol": "VEEGALAND"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76393.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76393.zip",
+"circular_date": "September 17, 2026",
+"company": "Veegaland Developers Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "veegalanddevelopers",
+"subject": "Listing of Equity Shares of Veegaland Developers Limited (IPO)",
+"symbol": "VEEGALAND"
 }
 }

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-18T08:11:50+05:30",
-  "generated_at_utc": "2026-09-18T02:41:50+00:00",
+  "generated_at": "2026-09-18T10:11:12+05:30",
+  "generated_at_utc": "2026-09-18T04:41:12+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-18T08:11:06+05:30",
+      "fetched_at": "2026-09-18T10:10:29+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-18T08:11:07+05:30",
+      "fetched_at": "2026-09-18T10:10:30+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-18T08:11:07+05:30",
+      "fetched_at": "2026-09-18T10:10:31+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-18T08:11:08+05:30",
+      "fetched_at": "2026-09-18T10:10:31+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.79,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-18T08:11:10+05:30",
+      "fetched_at": "2026-09-18T10:10:34+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-18T08:11:13+05:30",
+      "fetched_at": "2026-09-18T10:10:37+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-18T08:11:24+05:30",
+      "fetched_at": "2026-09-18T10:10:49+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 678,
@@ -321,10 +321,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.93,
+      "usd_inr": 95.74,
       "as_of": "2026-09-18",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-18T08:11:25+05:30",
+      "fetched_at": "2026-09-18T10:10:50+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -1732,7 +1732,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-18",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-18T08:11:31+05:30",
+      "fetched_at": "2026-09-18T10:10:53+05:30",
       "stale": false,
       "calendar_added": 24,
       "horizon": {
@@ -1963,10 +1963,10 @@
       "confirmed": 13,
       "checked": 18,
       "remembered": 32,
-      "as_of": "2026-09-18T08:11:31+05:30",
+      "as_of": "2026-09-18T10:10:54+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-18T08:11:31+05:30",
+      "fetched_at": "2026-09-18T10:10:54+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1974,14 +1974,27 @@
       "listed_today": [
         "VEEGALAND"
       ],
-      "live": [],
-      "no_quote_yet": [
-        "VEEGALAND"
+      "live": [
+        {
+          "symbol": "VEEGALAND",
+          "company": "Veegaland Developers Limited",
+          "issue_price": 140.0,
+          "listing_date": "2026-09-18",
+          "open": 140.0,
+          "last": 146.3,
+          "close": 146.3,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 4.5,
+          "from_open_pct": 4.5
+        }
       ],
+      "no_quote_yet": [],
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-18T08:11:32+05:30",
+      "fetched_at": "2026-09-18T10:10:54+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2739,10 +2752,10 @@
         "median_abs_error_pct": 7.04,
         "overstated_pct": 59.3
       },
-      "as_of": "2026-09-18T08:11:34+05:30",
+      "as_of": "2026-09-18T10:10:56+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-18T08:11:34+05:30",
+      "fetched_at": "2026-09-18T10:10:56+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3338,13 +3351,27 @@
           "match": "kwickforensicsolutions"
         }
       ],
-      "as_of": "2026-09-18T08:11:35+05:30",
+      "as_of": "2026-09-18T10:10:58+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-18T08:11:35+05:30",
+      "fetched_at": "2026-09-18T10:10:58+05:30",
       "stale": false
     },
     "ipo_gains": {
       "listings": [
+        {
+          "symbol": "VEEGALAND",
+          "company": "Veegaland Developers Limited",
+          "issue_price": 140.0,
+          "listing_date": "2026-09-18",
+          "open": 140.0,
+          "last": 146.3,
+          "close": 146.3,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 4.5,
+          "from_open_pct": 4.5
+        },
         {
           "symbol": "MPIMANIPAL",
           "company": "Manipal Payment and Identity Solutions Limited",
@@ -3941,29 +3968,16 @@
           "low": 458.7,
           "intra_close_pct": 8.0,
           "intra_pop_pct": 15.48
-        },
-        {
-          "symbol": "PRAMODINI",
-          "company": "Pramodini Medicare Limited",
-          "issue_price": 118.0,
-          "listing_date": "2026-08-19",
-          "open": 120.0,
-          "close": 121.65,
-          "gain_open_pct": 1.69,
-          "gain_close_pct": 3.09,
-          "price_source": "bhavcopy",
-          "high": 125.55,
-          "low": 114.0,
-          "intra_close_pct": 1.38,
-          "intra_pop_pct": 4.62
         }
       ],
-      "resolved_total": 894,
-      "added_this_run": 16,
+      "resolved_total": 913,
+      "added_this_run": 18,
       "bhavcopy_calls": 12,
       "corrections": [],
-      "verified_against_bhavcopy": 40,
-      "awaiting_bhavcopy": [],
+      "verified_against_bhavcopy": 39,
+      "awaiting_bhavcopy": [
+        "VEEGALAND"
+      ],
       "monthly": [
         {
           "month": "2025-04",
@@ -4086,7 +4100,7 @@
         },
         {
           "month": "2026-09",
-          "count": 27,
+          "count": 28,
           "median_listing_pct": 9.9,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 4.98
@@ -4095,19 +4109,19 @@
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 74,
+          "count": 75,
           "from": "2026-06-24",
-          "to": "2026-09-17",
-          "median_listing_pct": 11.08,
+          "to": "2026-09-18",
+          "median_listing_pct": 10.59,
           "median_intra_pop_pct": 6.12,
           "median_intra_close_pct": 4.59,
-          "positive_open_pct": 71.6
+          "positive_open_pct": 70.7
         },
         {
-          "label": "last 100 listings",
+          "label": "last 6 months",
           "count": 100,
-          "from": "2026-03-19",
-          "to": "2026-09-17",
+          "from": "2026-03-23",
+          "to": "2026-09-18",
           "median_listing_pct": 7.22,
           "median_intra_pop_pct": 6.12,
           "median_intra_close_pct": 3.53,
@@ -4117,26 +4131,26 @@
       "stats_last_50": {
         "label": "last 50 listings",
         "count": 50,
-        "from": "2026-08-05",
-        "to": "2026-09-17",
+        "from": "2026-08-06",
+        "to": "2026-09-18",
         "median_listing_pct": 16.67,
         "median_intra_pop_pct": 5.0,
         "median_intra_close_pct": 4.98,
-        "positive_open_pct": 74.0
+        "positive_open_pct": 72.0
       },
       "stats_all": {
         "label": "all listings",
-        "count": 894,
-        "from": "2021-09-16",
-        "to": "2026-09-17",
-        "median_listing_pct": 12.26,
+        "count": 913,
+        "from": "2021-07-13",
+        "to": "2026-09-18",
+        "median_listing_pct": 12.0,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 3.0,
+        "median_intra_close_pct": 2.83,
         "positive_open_pct": 74.8
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-18T08:11:49+05:30",
+      "fetched_at": "2026-09-18T10:11:11+05:30",
       "stale": false
     },
     "earnings": {
@@ -4250,7 +4264,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-18T08:11:50+05:30",
+      "fetched_at": "2026-09-18T10:11:12+05:30",
       "stale": false
     }
   }

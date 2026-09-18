@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-18T19:06:03+05:30",
-  "generated_at_utc": "2026-09-18T13:36:03+00:00",
+  "generated_at": "2026-09-18T20:11:41+05:30",
+  "generated_at_utc": "2026-09-18T14:41:41+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,35 +21,35 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-18T19:05:09+05:30",
+      "fetched_at": "2026-09-18T20:10:55+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "buy": 8761.7099609375,
-          "sell": 11970.4697265625,
-          "net": -3208.759765625,
-          "view": "BEARISH"
+          "buy": 38461.62890625,
+          "sell": 37862.08984375,
+          "net": 599.5390625,
+          "view": "BULLISH"
         },
         "dii": {
-          "buy": 14105.009765625,
-          "sell": 10487.259765625,
-          "net": 3617.75,
+          "buy": 17310.0390625,
+          "sell": 16290.349609375,
+          "net": 1019.689453125,
           "view": "BULLISH"
         }
       },
       "fno": {
-        "fii_call_oi_chg": 5314.0,
-        "fii_put_oi_chg": 32548.0,
-        "fii_fut_amt": -300.0499267578125,
-        "fii_fut_oi_chg": -1938.0,
-        "fii_fut_oi": -290041.0,
-        "fut_view": "BEARISH",
+        "fii_call_oi_chg": 14490.0,
+        "fii_put_oi_chg": 17743.0,
+        "fii_fut_amt": 264.4700927734375,
+        "fii_fut_oi_chg": 1613.0,
+        "fii_fut_oi": -288428.0,
+        "fut_view": "BULLISH",
         "call_view": "BULLISH",
         "put_view": "BEARISH"
       },
-      "as_of": "2026-09-17",
+      "as_of": "2026-09-18",
       "window_days": 22,
       "months_advertised": [
         "2026-March",
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-18T19:05:10+05:30",
+      "fetched_at": "2026-09-18T20:10:56+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-18T19:05:11+05:30",
+      "fetched_at": "2026-09-18T20:10:56+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-18T19:05:11+05:30",
+      "fetched_at": "2026-09-18T20:10:56+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.76,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-18T19:05:12+05:30",
+      "fetched_at": "2026-09-18T20:10:58+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-18T19:05:16+05:30",
+      "fetched_at": "2026-09-18T20:11:03+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-18T19:05:29+05:30",
+      "fetched_at": "2026-09-18T20:11:12+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 678,
@@ -324,7 +324,7 @@
       "usd_inr": 95.863,
       "as_of": "2026-09-18",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-18T19:05:30+05:30",
+      "fetched_at": "2026-09-18T20:11:13+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -1882,7 +1882,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-18",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-18T19:05:33+05:30",
+      "fetched_at": "2026-09-18T20:11:17+05:30",
       "stale": false,
       "calendar_added": 26,
       "horizon": {
@@ -1899,15 +1899,15 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Manika Plastech Limited",
-          "match": "manikaplastech",
           "board": "mainboard",
-          "circular_date": "September 18, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76421.zip",
-          "subject": "Listing of Equity Shares of Manika Plastech Limited (IPO)",
+          "circular_date": "September 18, 2026",
+          "company": "Manika Plastech Limited",
           "confirmed_listing": null,
-          "symbol": "MANIKA",
-          "date_pending": false
+          "date_pending": false,
+          "match": "manikaplastech",
+          "subject": "Listing of Equity Shares of Manika Plastech Limited (IPO)",
+          "symbol": "MANIKA"
         },
         {
           "board": "mainboard",
@@ -2124,10 +2124,10 @@
       "confirmed": 13,
       "checked": 19,
       "remembered": 34,
-      "as_of": "2026-09-18T19:05:39+05:30",
+      "as_of": "2026-09-18T20:11:17+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-18T19:05:39+05:30",
+      "fetched_at": "2026-09-18T20:11:17+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -2155,7 +2155,7 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-18T19:05:40+05:30",
+      "fetched_at": "2026-09-18T20:11:18+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2913,10 +2913,10 @@
         "median_abs_error_pct": 7.04,
         "overstated_pct": 59.3
       },
-      "as_of": "2026-09-18T19:05:41+05:30",
+      "as_of": "2026-09-18T20:11:20+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-18T19:05:41+05:30",
+      "fetched_at": "2026-09-18T20:11:20+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3552,9 +3552,9 @@
           "match": "kwickforensicsolutions"
         }
       ],
-      "as_of": "2026-09-18T19:05:43+05:30",
+      "as_of": "2026-09-18T20:11:21+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-18T19:05:43+05:30",
+      "fetched_at": "2026-09-18T20:11:21+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -4173,8 +4173,8 @@
           "intra_pop_pct": 15.48
         }
       ],
-      "resolved_total": 930,
-      "added_this_run": 17,
+      "resolved_total": 943,
+      "added_this_run": 13,
       "bhavcopy_calls": 12,
       "corrections": [
         {
@@ -4351,17 +4351,17 @@
       },
       "stats_all": {
         "label": "all listings",
-        "count": 930,
-        "from": "2021-03-15",
+        "count": 943,
+        "from": "2020-11-20",
         "to": "2026-09-18",
-        "median_listing_pct": 12.0,
+        "median_listing_pct": 12.26,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 2.82,
-        "positive_open_pct": 74.6
+        "median_intra_close_pct": 2.75,
+        "positive_open_pct": 75.0
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-18T19:06:02+05:30",
+      "fetched_at": "2026-09-18T20:11:40+05:30",
       "stale": false
     },
     "earnings": {
@@ -4475,7 +4475,7 @@
       "unit": "INR",
       "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-18T19:06:03+05:30",
+      "fetched_at": "2026-09-18T20:11:41+05:30",
       "stale": false
     }
   }

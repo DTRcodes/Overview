@@ -31397,7 +31397,14 @@
    "y5_cn": 1.407,
    "y10_cn": 1.682,
    "y5_in": 6.79,
-   "y10_in": 7.08
+   "y10_in": 7.08,
+   "fii_net": 599.54,
+   "dii_net": 1019.69,
+   "fii_call_oi_chg": 14490.0,
+   "fii_put_oi_chg": 17743.0,
+   "fii_fut_amt": 264.47,
+   "fii_fut_oi_chg": 1613.0,
+   "fii_fut_oi": -288428.0
   }
  ]
 }

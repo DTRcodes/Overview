@@ -363,5 +363,27 @@
 "match": "veegalanddevelopers",
 "subject": "Listing of Equity Shares of Veegaland Developers Limited (IPO)",
 "symbol": "VEEGALAND"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76413.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76413.pdf",
+"circular_date": "September 18, 2026",
+"company": "Manika Plastech Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "manikaplastech",
+"subject": "Listing of Equity Shares of Manika Plastech Limited (IPO)",
+"symbol": "MANIKA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76421.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76421.zip",
+"circular_date": "September 18, 2026",
+"company": "Manika Plastech Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "manikaplastech",
+"subject": "Listing of Equity Shares of Manika Plastech Limited (IPO)",
+"symbol": "MANIKA"
 }
 }

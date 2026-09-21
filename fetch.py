@@ -419,20 +419,58 @@ def last_settled_trading_day():
 
 
 def ensure_fii():
-    """Fetch only if the latest trading day's FII/DII cash is still missing.
+    """Fetch the FII/DII source alone when the day's cash figure is missing.
 
-    NSE publishes the cash figure after close, and the exact minute moves - it
-    is usually there by 19:00 IST but not always. Rather than hammering every
-    source on a fixed retry schedule, this checks first and exits doing nothing
-    when the number has already landed, so an hourly cron is nearly free on the
-    days it is not needed.
+    This runs every ten minutes through the evening, so it has to be cheap in
+    both senses. It checks history first and exits having touched nothing once
+    the number has landed. When the number is still absent it fetches THIS ONE
+    source - two HTTP calls - rather than falling through to a full run of all
+    fifteen, which is what it used to do: a late publication could mean two
+    dozen complete fetches and a commit every ten minutes.
+
+    Nothing is written unless the figure actually arrives. Rewriting data.json
+    with a fresh generated_at on every tick would make the workflow commit each
+    time and fill the history with noise commits that changed no number.
+
+    Always returns 0: the caller must not fall through to the full fetch.
     """
     day = last_settled_trading_day()
     if have_fii_for(day):
         print("FII/DII for %s already present - nothing to do." % day)
         return 0
-    print("FII/DII for %s missing - fetching." % day)
-    return None          # caller runs the full fetch
+
+    print("FII/DII for %s missing - fetching that source only." % day)
+    try:
+        sec = REGISTRY["nse_fii_dii"]()
+    except Exception as e:
+        print("  fetch failed (%s: %s) - the next retry is the recovery."
+              % (type(e).__name__, e))
+        return 0
+
+    hist = merge_rows(load_history(), list(sec.get("series") or []))
+    landed = any(r.get("date") == day.isoformat() and r.get("fii_net") is not None
+                 for r in hist["rows"])
+    if not landed:
+        print("  as_of %s via %s - not published yet, nothing written."
+              % (sec.get("as_of"), sec.get("via")))
+        return 0
+
+    save_history(hist)
+    sec["fetched_at"] = now_iso()
+    sec["stale"] = False
+    trimmed = dict(sec)
+    if "series" in trimmed:          # history holds the window; data.json
+        trimmed["series_days"] = len(trimmed["series"])    # carries the count
+        del trimmed["series"]
+    data = load_previous() or {}
+    data.setdefault("sections", {})["nse_fii_dii"] = trimmed
+    data["generated_at"] = now_iso()
+    data["generated_at_utc"] = (dt.datetime.now(dt.timezone.utc)
+                                .isoformat(timespec="seconds"))
+    OUT.write_text(json.dumps(data, indent=2, ensure_ascii=False),
+                   encoding="utf-8")
+    print("  landed: %s via %s -> %s" % (sec.get("as_of"), sec.get("via"), OUT))
+    return 0
 
 
 def audit_history(max_lag=5):
@@ -2977,10 +3015,9 @@ def main():
     if args.audit:
         return audit_history()
     if args.ensure_fii:
-        done = ensure_fii()
-        if done is not None:
-            return done
-        # fall through to the normal fetch
+        # Always terminal now: ensure_fii fetches the one source it needs
+        # rather than handing a full run back to this function.
+        return ensure_fii()
     if args.refresh_ohlc:
         corrected, confirmed, pending = verify_listings(limit=args.refresh_ohlc)
         print("Re-read %d listings from the bhavcopy (%d corrected, %d pending)"

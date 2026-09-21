@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T20:01:43+05:30",
-  "generated_at_utc": "2026-09-21T14:31:43+00:00",
+  "generated_at": "2026-09-21T20:05:55+05:30",
+  "generated_at_utc": "2026-09-21T14:35:55+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-21T20:01:43+05:30",
+      "fetched_at": "2026-09-21T20:05:55+05:30",
       "stale": false,
       "series_days": 21
     },

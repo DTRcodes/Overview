@@ -1,14 +1,20 @@
 name: FII/DII retry
 
-# NSE posts the cash FII/DII figure after close, and the exact minute moves.
-# The 19:00 run usually catches it; when it does not, this retries hourly to
-# 23:00 IST. It is cheap on the days it is not needed: --ensure-fii checks
-# history first and exits without touching a single source when the number
-# has already landed.
+# NSE posts the cash FII/DII figure after close and the exact minute moves,
+# so this watches for it from 19:00 IST and checks every ten minutes until it
+# lands. Each tick is cheap: --ensure-fii reads history first and exits having
+# touched nothing once the number is in, and when it is not it fetches only
+# the FII/DII source - two HTTP calls - rather than all fifteen. Nothing is
+# written unless the figure actually arrives, so a quiet evening produces no
+# commits at all.
+#
+# GitHub's scheduler is best-effort: under load a tick can slip by several
+# minutes, so treat ten minutes as the target interval, not a guarantee.
 on:
   schedule:
-    # 14:30-17:30 UTC = 20:00-23:00 IST, weekdays, after the 19:00 main run.
-    - cron: "30 14-17 * * 1-5"
+    # 13:30-13:50 UTC = 19:00-19:20 IST, then every ten minutes to 23:20 IST.
+    - cron: "30,40,50 13 * * 1-5"
+    - cron: "*/10 14-17 * * 1-5"
   workflow_dispatch: {}
 
 permissions:
@@ -29,7 +35,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Fetch only if FII/DII is still missing
+      - name: Fetch FII/DII only if it is still missing
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python fetch.py --ensure-fii

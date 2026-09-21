@@ -30913,13 +30913,13 @@
    "dii_stk_fut_net": -4211493.0,
    "y5_in": 6.81,
    "y10_in": 7.08,
-   "fii_net": -576.2,
-   "dii_net": 2797.27,
    "fii_call_oi_chg": 12046.0,
    "fii_put_oi_chg": 7977.0,
    "fii_fut_amt": -328.08,
    "fii_fut_oi_chg": -2118.0,
-   "fii_fut_oi": -290546.0
+   "fii_fut_oi": -290546.0,
+   "fii_net": -576.2,
+   "dii_net": 2797.27
   }
  ]
 }

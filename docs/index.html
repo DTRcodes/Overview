@@ -68,6 +68,19 @@ h1{font-size:19px;margin:0 0 3px;letter-spacing:-.015em;font-weight:660}
 #stamp{cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
 
 /* ---- stat tiles: the headline numbers, no plot ---- */
+.fboxes{display:grid;grid-template-columns:1fr;gap:9px;margin-bottom:13px}
+@media(min-width:560px){.fboxes{grid-template-columns:repeat(2,1fr)}}
+.fbox{background:var(--surface-1);border:1px solid var(--line);
+  border-radius:var(--radius);padding:11px 13px}
+.fbox .t{font-size:10px;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--text-muted);font-weight:600}
+.fbox .frow{display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:7px;gap:10px}
+.fbox .frow span{font-size:12.5px;color:var(--text-secondary);font-weight:600}
+.fbox .frow b{font-size:20px;font-weight:670;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}
+.fbox .m{font-size:10.5px;color:var(--text-muted);margin-top:8px;
+  font-variant-numeric:tabular-nums}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:13px}
 @media(min-width:620px){.stats{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:960px){.stats{grid-template-columns:repeat(6,1fr)}}
@@ -176,6 +189,7 @@ table.tight td:first-child{min-width:150px}
     <div class="sub">Updated <b id="stamp">…</b> · <span id="srcs"></span></div>
   </header>
 
+  <div class="fboxes" id="fboxes"></div>
   <div class="stats" id="stats"></div>
 
   <div class="filters">
@@ -214,6 +228,12 @@ function ago(iso){
 }
 const shortDate = d => new Date(d + 'T00:00:00')
   .toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+// Module scope, not inside render(): the flow boxes at the top of the page
+// format dates too, and a const declared further down render() is in its
+// temporal dead zone up there - which blanked the whole board.
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const dmy = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
+  return m ? `${m[3]}-${MON[+m[2]-1]}-${m[1]}` : (s || '–'); };
 
 let DATA = null, HIST = [], RANGE = 180, VIEW = 'chart';
 
@@ -260,7 +280,12 @@ function rangedRows(minDays, override){
   if(!days) return rows;               // 0 = All
   const span = (override === undefined || override === null)
     ? Math.max(days, minDays || 0) : days;
-  const cut = Date.now() - span * 86400000;
+  // Counted back from the newest row, not from now: on a Monday morning the
+  // newest data is Friday's, and after a failed weekend of runs "1M" measured
+  // from the clock quietly drops rows off the near end of every chart.
+  const newest = rows.length ? rows[rows.length - 1].date : null;
+  const anchor = newest ? new Date(newest + 'T00:00:00').getTime() : Date.now();
+  const cut = anchor - span * 86400000;
   return rows.filter(r => new Date(r.date + 'T00:00:00') >= cut);
 }
 
@@ -559,8 +584,11 @@ function smeSeg(hidden){
       HIDE_SME && hidden ? ` &middot; ${hidden}` : ''}</button></div>`;
 }
 
-function histTable(series){
-  const rows = rangedRows().slice().reverse();
+function histTable(series, minDays, override){
+  // The chart reads its per-card range; the table read the global one, so
+  // switching to Table view on the world-yield cards silently changed the
+  // period under the reader without the selector moving.
+  const rows = rangedRows(minDays, override).slice().reverse();
   return `<div class="scroll"><table><thead><tr><th>Date</th>${
     series.map(s=>`<th>${esc(s.label)}</th>`).join('')}</tr></thead><tbody>${
     rows.map(r=>`<tr><td>${esc(shortDate(r.date))}</td>${
@@ -589,13 +617,43 @@ function render(){
   const us  = dig('us_rates','rates') || {};
   const usv = k => (us[k] && us[k].value != null) ? us[k].value : null;
   const in10 = dig('india_yields','yields','10Y');
+  // ---- FII / DII: the published day on its own, and the running total for
+  // the financial year. The year total used to be whatever the global range
+  // happened to cover, which is why it started on an arbitrary 27 March; an
+  // Indian financial year starts on 1 April and that is what a flow total is
+  // read against.
+  const flowRows = HIST.filter(r => r.fii_net != null || r.dii_net != null);
+  const lastFlow = flowRows[flowRows.length - 1] || {};
+  const flowDate = dig('nse_fii_dii','as_of') || lastFlow.date || '';
+  const fyStart = (() => {
+    const d = flowDate ? new Date(flowDate + 'T00:00:00') : new Date();
+    // getMonth() is 0-based, so April is 3. Before April the year runs from
+    // the previous calendar year's 1 April.
+    return `${d.getMonth() >= 3 ? d.getFullYear() : d.getFullYear() - 1}-04-01`;
+  })();
+  const fyRows = flowRows.filter(r => r.date >= fyStart);
+  const fySum = k => fyRows.reduce((a, r) => a + (r[k] || 0), 0);
+  const money = v => `${v > 0 ? '+' : ''}${nf(v, 0)}`;
+  const fRow = (label, v) =>
+    `<div class="frow"><span>${label}</span><b class="${sign(v)}">${
+      v == null ? '–' : money(v)}</b></div>`;
+  const fyLabel = `FY ${fyStart.slice(0,4)}-${String(+fyStart.slice(0,4)+1).slice(2)}`;
+  document.getElementById('fboxes').innerHTML =
+    `<div class="fbox"><div class="t">FII / DII &middot; ${
+        esc(flowDate ? dmy(flowDate) : 'latest')}</div>
+      ${fRow('FII', lastFlow.fii_net)}${fRow('DII', lastFlow.dii_net)}
+      <div class="m">&#8377; crore, cash market &middot; net of buy and sell</div></div>
+     <div class="fbox"><div class="t">Net since 1 Apr &middot; ${esc(fyLabel)}</div>
+      ${fRow('FII', fyRows.length ? fySum('fii_net') : null)}${
+        fRow('DII', fyRows.length ? fySum('dii_net') : null)}
+      <div class="m">${esc(dmy(fyStart))} &rarr; ${esc(flowDate ? dmy(flowDate) : '')}
+        &middot; ${fyRows.length} trading days</div></div>`;
+
   document.getElementById('stats').innerHTML = [
     statTile('Repo rate', nf(dig('rbi','rates','policy_repo_rate')) + '%', 'RBI'),
     statTile('Nifty 50 P/E', nf(n50.pe), dig('nse_valuation','as_of') || ''),
     statTile('Nifty 50', nf(n50.close, 0),
       `${arrow(n50.change_pct)} ${nf(n50.change_pct)}%`, sign(n50.change_pct)),
-    statTile('FII net', nf(fii.net, 0), '₹ cr · ' + (fii.date||''), sign(fii.net)),
-    statTile('DII net', nf(dii.net, 0), '₹ cr · ' + (dii.date||''), sign(dii.net)),
     statTile('US 10Y', nf(usv('us_10y')) + '%',
       in10 != null ? 'India 10Y ' + nf(in10) + '%' : 'India 10Y –'),
   ].join('');
@@ -638,12 +696,14 @@ function render(){
   b.push(card('Major economies — 10Y government bond yields',
     'Always shows at least 1 year; these move too slowly for a 1M window. ' + wyNote,
     S.world_yields,
-    VIEW==='chart' ? '<div class="chart" data-c="w10"></div>' : histTable(w10),
+    VIEW==='chart' ? '<div class="chart" data-c="w10"></div>'
+                   : histTable(w10, 365, CARD_RANGE.w10),
     '', rangeSeg('w10')));
   b.push(card('Major economies — 5Y government bond yields',
-    'US, Germany, UK, Japan and China — no free 5Y series exists for India.',
+    'US, Germany, UK, Japan, China and India.',
     S.world_yields,
-    VIEW==='chart' ? '<div class="chart" data-c="w5"></div>' : histTable(w5),
+    VIEW==='chart' ? '<div class="chart" data-c="w5"></div>'
+                   : histTable(w5, 365, CARD_RANGE.w5),
     '', rangeSeg('w5')));
   b.push(card('USD / INR', 'Traded spot. The RBI reference fixing is in the FX table.', S.fx_spot,
     VIEW==='chart' ? '<div class="chart" data-c="fx"></div>' : histTable(fx)));
@@ -811,7 +871,7 @@ function render(){
     `<div class="note" style="margin-top:10px"><b>TradingView</b> — all tickers in the pipeline:</div>` +
     tvRow('tv-all', tvAll) +
     (today.length ? `<div class="note" style="margin-top:6px">Listed today only:</div>` +
-        tvRow('tv-today', today.map(x => x.tv)) : '') +
+        tvRow('tv-today', today.map(x => x.tv).filter(Boolean)) : '') +
     (ip && ip.horizon && ip.horizon.furthest_open_dmy
       ? `<div class="note"><b>Reach:</b> furthest announced issue opens
           <b>${esc(ip.horizon.furthest_open_dmy)}</b> (${esc(ip.horizon.furthest_company)},
@@ -839,9 +899,6 @@ function render(){
   // is a different question from the allottee's gain off the issue price.
   const oc = x => (x.open && x.close) ? (x.close - x.open) / x.open * 100 : null;
   // The store keeps ISO dates so they sort; display them the way NSE prints them.
-  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const dmy = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
-    return m ? `${m[3]}-${MON[+m[2]-1]}-${m[1]}` : (s || '–'); };
   b.push(card('IPO listing-day gains',
     'Measured against the issue price. Open = the listing pop; close = holding day one out.',
     ig,
@@ -851,7 +908,7 @@ function render(){
       ? `<div class="scroll"><table class="tight"><thead><tr>
            <th>Sample</th>
            <th title="Issue price to the opening print">Median listing</th>
-           <th title="Issue price to the highest the stock traded that day">Median intra pop</th>
+           <th title="Opening print to the highest the stock traded that day">Median intra pop</th>
            <th title="Opening print to the close — what the day itself did">Median intra close</th>
            <th title="Share that opened above the issue price">Positive</th>
          </tr></thead><tbody>` +
@@ -875,7 +932,7 @@ function render(){
       : '') +
     `<div class="scroll"><table><thead><tr>
       <th title="Ticker, then the listing gain: issue price to the opening print">Company &middot; listing %</th>
-      <th title="Issue price to the day's high">Intra pop %</th>
+      <th title="Opening print to the day's high">Intra pop %</th>
       <th title="Opening print to the close">Intra close %</th>
       <th>Listed</th>
       <th>Issue</th><th>Open</th><th>High</th><th>Close</th>

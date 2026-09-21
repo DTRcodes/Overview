@@ -164,6 +164,8 @@ tr.awaiting td:first-child { box-shadow: inset 3px 0 0 var(--series-1); }
 table.tight th, table.tight td{padding:4px 8px;font-size:11.5px}
 table.tight td:first-child{min-width:150px}
 .pill.tiny{padding:0 5px;font-size:9.5px;vertical-align:1px;margin-left:4px}
+.pill.tiny.bse{margin-left:0;margin-right:5px;background:color-mix(in srgb,var(--warn) 16%,transparent);
+  border-color:var(--warn);color:var(--warn)}
 </style>
 </head>
 <body>
@@ -746,10 +748,12 @@ function render(){
   // Calendar-only rows (SME, BSE-only) carry their platform instead, and no
   // ticker until NSE assigns one.
   const nameCell = x => {
-    const tag = x.platform || x.series;
-    const sub = x.symbol ||
-      (x.platform && /^BSE/.test(x.platform) ? 'BSE only' : 'no ticker yet');
-    return `<td>${esc(x.company)}${
+    // An issue that lists only on BSE cannot be traded from an NSE watchlist,
+    // so the exchange leads the name rather than hiding in a suffix.
+    const bse = /^BSE/i.test(x.platform || '');
+    const tag = x.series || (x.platform || '').replace(/^(BSE|NSE)\s*/i, '');
+    const sub = x.symbol || (bse ? 'BSE ticker at listing' : 'no ticker yet');
+    return `<td>${bse ? '<span class="pill tiny bse">BSE</span> ' : ''}${esc(x.company)}${
       tag ? ` <span class="pill tiny">${esc(tag)}</span>` : ''}<br>
     <span style="color:var(--text-muted);font-size:11px${x.symbol ? '' : ';font-style:italic'}">${esc(sub)}</span></td>`;
   };
@@ -910,14 +914,32 @@ function render(){
   // ---- earnings
   const e = S.earnings, ec = (e && e.companies) || {};
   const cr = v => v == null ? '–' : nf(v/1e7, 0);
+  // Age is part of the number here. Yahoo's coverage lapses per company, and
+  // a year-old quarter sitting beside a current one with nothing to separate
+  // them is how the old card read as if all five were fresh.
+  const qAge = c => {
+    if(c.age_days == null) return '';
+    const m = Math.round(c.age_days / 30);
+    return `<br><span style="font-size:11px;color:var(--${c.stale?'warn':'text-muted'})">${
+      c.stale ? `${m} months old` : `${c.age_days}d ago`}</span>`;
+  };
   b.push(card('Latest quarterly results', 'Revenue and net profit, ₹ crore.', e,
     `<div class="scroll"><table><thead><tr><th>Company</th><th>Quarter</th>
       <th>Revenue</th><th>Net profit</th></tr></thead><tbody>` +
-    Object.entries(ec).map(([tk,qs]) => {
-      const q = qs[0] || {};
-      return `<tr><td>${esc(tk.replace('.NS',''))}</td><td>${esc(q.quarter)}</td>
+    Object.entries(ec)
+      .sort((a,bb) => String(bb[1].latest_quarter||'').localeCompare(String(a[1].latest_quarter||'')))
+      .map(([tk,c]) => {
+        const q = (c.quarters && c.quarters[0]) || {};
+        return `<tr${c.stale ? ' class="awaiting"' : ''}><td>${esc(tk.replace('.NS',''))}${
+          c.converted_from ? ` <span class="pill tiny" title="Reported in ${
+            esc(c.converted_from)}, converted at ${esc(String(c.fx_used))}">${
+            esc(c.converted_from)}&rarr;INR</span>` : ''}</td>
+        <td>${esc(q.quarter)}${qAge(c)}</td>
         <td>${cr(q.revenue)}</td><td>${cr(q.net_income)}</td></tr>`;
-    }).join('') + `</tbody></table></div>` +
+      }).join('') + `</tbody></table></div>` +
+    ((e && e.problems && e.problems.length)
+      ? `<div class="note"><b>Gaps:</b> ${e.problems.map(p =>
+          esc(p.ticker.replace('.NS','')) + ' — ' + esc(p.issue)).join('; ')}</div>` : '') +
     (e && e.caveat ? `<div class="note">${esc(e.caveat)}</div>` : ''), 'wide'));
 
   document.getElementById('board').innerHTML = b.join('');

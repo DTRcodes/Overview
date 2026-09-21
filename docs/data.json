@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T17:53:38+05:30",
-  "generated_at_utc": "2026-09-21T12:23:38+00:00",
+  "generated_at": "2026-09-21T18:01:46+05:30",
+  "generated_at_utc": "2026-09-21T12:31:46+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -2025,7 +2025,7 @@
       "source": "nseindia.com/api",
       "fetched_at": "2026-09-21T17:53:37+05:30",
       "stale": false,
-      "calendar_added": 25,
+      "calendar_added": 0,
       "horizon": {
         "min_days": 20,
         "furthest_open": "2026-09-25",
@@ -4618,116 +4618,182 @@
     },
     "earnings": {
       "companies": {
-        "RELIANCE.NS": [
-          {
-            "quarter": "2026-06-30",
-            "revenue": 3094680000000.0,
-            "net_income": 209460000000.0
-          },
-          {
-            "quarter": "2026-03-31",
-            "revenue": 2940590000000.0,
-            "net_income": 169710000000.0
-          },
-          {
-            "quarter": "2025-12-31",
-            "revenue": 2649050000000.0,
-            "net_income": 186450000000.0
-          },
-          {
-            "quarter": "2025-06-30",
-            "revenue": 2436320000000.0,
-            "net_income": 269940000000.0
-          }
-        ],
-        "HDFCBANK.NS": [
-          {
-            "quarter": "2025-06-30",
-            "revenue": 853464600000.0,
-            "net_income": 162579100000.0
-          },
-          {
-            "quarter": "2025-03-31",
-            "revenue": 953058900000.0,
-            "net_income": 153934600000.0
-          },
-          {
-            "quarter": "2024-12-31",
-            "revenue": 652796600000.0,
-            "net_income": 176566100000.0
-          }
-        ],
-        "TCS.NS": [
-          {
-            "quarter": "2026-06-30",
-            "revenue": 722750000000.0,
-            "net_income": 133490000000.0
-          },
-          {
-            "quarter": "2026-03-31",
-            "revenue": 706980000000.0,
-            "net_income": 137180000000.0
-          },
-          {
-            "quarter": "2025-12-31",
-            "revenue": 670870000000.0,
-            "net_income": 106570000000.0
-          },
-          {
-            "quarter": "2025-06-30",
-            "revenue": 634370000000.0,
-            "net_income": 127600000000.0
-          }
-        ],
-        "INFY.NS": [
-          {
-            "quarter": "2026-06-30",
-            "revenue": 5082000000.0,
-            "net_income": 819000000.0
-          },
-          {
-            "quarter": "2026-03-31",
-            "revenue": 5040000000.0,
-            "net_income": 919000000.0
-          },
-          {
-            "quarter": "2025-12-31",
-            "revenue": 5099000000.0,
-            "net_income": 747000000.0
-          },
-          {
-            "quarter": "2025-09-30",
-            "revenue": 5076000000.0,
-            "net_income": 839000000.0
-          }
-        ],
-        "ICICIBANK.NS": [
-          {
-            "quarter": "2026-06-30",
-            "revenue": 383657400000.0,
-            "net_income": 154400600000.0
-          },
-          {
-            "quarter": "2026-03-31",
-            "revenue": 357423400000.0,
-            "net_income": 147550600000.0
-          },
-          {
-            "quarter": "2025-12-31",
-            "revenue": 352926000000.0,
-            "net_income": 125379800000.0
-          },
-          {
-            "quarter": "2025-09-30",
-            "revenue": 346048700000.0,
-            "net_income": 133570600000.0
-          }
-        ]
+        "RELIANCE.NS": {
+          "quarters": [
+            {
+              "quarter": "2026-06-30",
+              "revenue": 3094680000000.0,
+              "net_income": 209460000000.0,
+              "age_days": 83
+            },
+            {
+              "quarter": "2026-03-31",
+              "revenue": 2940590000000.0,
+              "net_income": 169710000000.0,
+              "age_days": 174
+            },
+            {
+              "quarter": "2025-12-31",
+              "revenue": 2649050000000.0,
+              "net_income": 186450000000.0,
+              "age_days": 264
+            },
+            {
+              "quarter": "2025-06-30",
+              "revenue": 2436320000000.0,
+              "net_income": 269940000000.0,
+              "age_days": 448
+            }
+          ],
+          "currency": "INR",
+          "converted_from": null,
+          "fx_used": null,
+          "latest_quarter": "2026-06-30",
+          "age_days": 83,
+          "stale": false
+        },
+        "HDFCBANK.NS": {
+          "quarters": [
+            {
+              "quarter": "2025-06-30",
+              "revenue": 853464600000.0,
+              "net_income": 162579100000.0,
+              "age_days": 448
+            },
+            {
+              "quarter": "2025-03-31",
+              "revenue": 953058900000.0,
+              "net_income": 153934600000.0,
+              "age_days": 539
+            },
+            {
+              "quarter": "2024-12-31",
+              "revenue": 652796600000.0,
+              "net_income": 176566100000.0,
+              "age_days": 629
+            }
+          ],
+          "currency": "INR",
+          "converted_from": null,
+          "fx_used": null,
+          "latest_quarter": "2025-06-30",
+          "age_days": 448,
+          "stale": true
+        },
+        "TCS.NS": {
+          "quarters": [
+            {
+              "quarter": "2026-06-30",
+              "revenue": 722750000000.0,
+              "net_income": 133490000000.0,
+              "age_days": 83
+            },
+            {
+              "quarter": "2026-03-31",
+              "revenue": 706980000000.0,
+              "net_income": 137180000000.0,
+              "age_days": 174
+            },
+            {
+              "quarter": "2025-12-31",
+              "revenue": 670870000000.0,
+              "net_income": 106570000000.0,
+              "age_days": 264
+            },
+            {
+              "quarter": "2025-06-30",
+              "revenue": 634370000000.0,
+              "net_income": 127600000000.0,
+              "age_days": 448
+            }
+          ],
+          "currency": "INR",
+          "converted_from": null,
+          "fx_used": null,
+          "latest_quarter": "2026-06-30",
+          "age_days": 83,
+          "stale": false
+        },
+        "INFY.NS": {
+          "quarters": [
+            {
+              "quarter": "2026-06-30",
+              "revenue": 486906420000.0,
+              "net_income": 78468390000.0,
+              "age_days": 83
+            },
+            {
+              "quarter": "2026-03-31",
+              "revenue": 482882400000.0,
+              "net_income": 88049390000.0,
+              "age_days": 174
+            },
+            {
+              "quarter": "2025-12-31",
+              "revenue": 488535190000.0,
+              "net_income": 71570070000.0,
+              "age_days": 264
+            },
+            {
+              "quarter": "2025-09-30",
+              "revenue": 486331560000.0,
+              "net_income": 80384590000.0,
+              "age_days": 356
+            }
+          ],
+          "currency": "USD",
+          "converted_from": "USD",
+          "fx_used": 95.81,
+          "latest_quarter": "2026-06-30",
+          "age_days": 83,
+          "stale": false
+        },
+        "ICICIBANK.NS": {
+          "quarters": [
+            {
+              "quarter": "2026-06-30",
+              "revenue": 383657400000.0,
+              "net_income": 154400600000.0,
+              "age_days": 83
+            },
+            {
+              "quarter": "2026-03-31",
+              "revenue": 357423400000.0,
+              "net_income": 147550600000.0,
+              "age_days": 174
+            },
+            {
+              "quarter": "2025-12-31",
+              "revenue": 352926000000.0,
+              "net_income": 125379800000.0,
+              "age_days": 264
+            },
+            {
+              "quarter": "2025-09-30",
+              "revenue": 346048700000.0,
+              "net_income": 133570600000.0,
+              "age_days": 356
+            }
+          ],
+          "currency": "INR",
+          "converted_from": null,
+          "fx_used": null,
+          "latest_quarter": "2026-06-30",
+          "age_days": 83,
+          "stale": false
+        }
       },
-      "unit": "INR",
-      "caveat": "Yahoo Indian fundamentals are gappy; quarters go missing. Validate before relying.",
+      "unit": "INR crore",
+      "usd_inr": 95.81,
+      "problems": [
+        {
+          "ticker": "HDFCBANK.NS",
+          "issue": "newest quarter 2025-06-30 is 448 days old"
+        }
+      ],
+      "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-21T10:14:21+05:30",
+      "fetched_at": "2026-09-21T18:01:46+05:30",
       "stale": false
     }
   }

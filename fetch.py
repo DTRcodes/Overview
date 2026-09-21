@@ -2335,32 +2335,109 @@ def fetch_ipo_gains():
 
 @source("earnings")
 def fetch_earnings():
-    """Quarterly revenue and net income. Yahoo's Indian fundamentals have
-    gaps - quarters go missing - so treat these as indicative."""
+    """Quarterly revenue and net profit for a few index heavyweights.
+
+    Yahoo is not a good source for Indian fundamentals. It is used because it
+    is the only CURRENT one: NSE's own results API (corporates-financial-
+    results, results-comparision) and screener.in both stop at the Dec-2024
+    quarter, so neither can report what a company filed last month.
+
+    Two faults this corrects, both of which were showing wrong numbers:
+
+      * Infosys reports in USD - financialCurrency says so - and its figures
+        were being printed as rupee crore, turning a ~6,800 crore quarter into
+        "82". Non-rupee statements are now converted at the traded spot, and
+        the row says it was converted.
+      * Yahoo's coverage lapses per company: HDFC Bank's newest quarter is
+        over a year old. Rather than let that sit next to a current one as if
+        both were fresh, every company carries the age of the quarter it is
+        quoting and anything past a reporting cycle is flagged stale.
+    """
+    import warnings
+    warnings.filterwarnings("ignore")
     import yfinance as yf
-    out = {}
+
+    today = dt.datetime.now(IST).date()
+    usd_inr = None
+    try:
+        h = yf.Ticker("INR=X").history(period="5d")   # same spot as fx_spot
+        if len(h):
+            usd_inr = round(float(h["Close"].iloc[-1]), 4)
+    except Exception:
+        pass
+
+    # Banks file interest income where an industrial files revenue; Yahoo
+    # carries both under different labels, so take the first one present.
+    REV = ("Total Revenue", "Operating Revenue", "Interest Income")
+    STALE_DAYS = 150          # a quarter plus the time allowed to report it
+
+    out, problems = {}, []
     for tk in EARNINGS_TICKERS:
         try:
-            df = yf.Ticker(tk).quarterly_income_stmt
+            t = yf.Ticker(tk)
+            df = t.quarterly_income_stmt
             if df is None or df.empty:
+                problems.append({"ticker": tk, "issue": "no statement"})
                 continue
+            try:
+                cur = (t.get_info() or {}).get("financialCurrency") or "INR"
+            except Exception:
+                cur = "INR"
+            fx = 1.0
+            if cur != "INR":
+                if cur != "USD" or not usd_inr:
+                    problems.append({"ticker": tk,
+                                     "issue": "reports in %s and no rate to "
+                                              "convert it" % cur})
+                    continue
+                fx = usd_inr
+
+            def val(col, labels):
+                for lab in labels:
+                    if lab in df.index:
+                        v = df.loc[lab, col]
+                        if v is not None and v == v:
+                            return float(v) * fx
+                return None
+
             quarters = []
             for col in list(df.columns)[:4]:
-                rec = {"quarter": str(col.date())}
-                for label, key in [("Total Revenue", "revenue"),
-                                   ("Net Income", "net_income")]:
-                    val = df.loc[label, col] if label in df.index else None
-                    rec[key] = float(val) if val is not None and val == val else None
-                quarters.append(rec)
-            if quarters:
-                out[tk] = quarters
-        except Exception:
-            continue
+                q = str(col.date())
+                quarters.append({
+                    "quarter": q,
+                    "revenue": val(col, REV),
+                    "net_income": val(col, ("Net Income",)),
+                    "age_days": (today - dt.date.fromisoformat(q)).days})
+            quarters = [q for q in quarters
+                        if q["revenue"] is not None or q["net_income"] is not None]
+            if not quarters:
+                problems.append({"ticker": tk, "issue": "no revenue or profit line"})
+                continue
+            newest = quarters[0]
+            out[tk] = {"quarters": quarters,
+                       "currency": cur,
+                       "converted_from": cur if fx != 1.0 else None,
+                       "fx_used": usd_inr if fx != 1.0 else None,
+                       "latest_quarter": newest["quarter"],
+                       "age_days": newest["age_days"],
+                       "stale": newest["age_days"] > STALE_DAYS}
+            if out[tk]["stale"]:
+                problems.append({"ticker": tk,
+                                 "issue": "newest quarter %s is %d days old"
+                                          % (newest["quarter"], newest["age_days"])})
+        except Exception as e:
+            problems.append({"ticker": tk,
+                             "issue": "%s: %s" % (type(e).__name__, e)})
+
     if not out:
         raise RuntimeError("no earnings retrieved")
-    return {"companies": out, "unit": "INR",
-            "caveat": ("Yahoo Indian fundamentals are gappy; quarters go "
-                       "missing. Validate before relying."),
+    return {"companies": out, "unit": "INR crore", "usd_inr": usd_inr,
+            "problems": problems,
+            "caveat": ("Yahoo is the only source still current for Indian "
+                       "quarterlies - NSE's results API and screener.in both "
+                       "stop at Dec-2024 - but its coverage lapses per "
+                       "company, so each row carries the age of the quarter "
+                       "it quotes."),
             "source": "yahoo finance"}
 
 

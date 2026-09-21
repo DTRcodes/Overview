@@ -1241,7 +1241,10 @@ def fetch_ipo():
                 exp.strftime("%d-%b-%Y") if exp else None)
             row["expected_basis"] = "T+3 (SEBI rule; 83% exact over 151 past listings)"
             row["lists_today_expected"] = (exp == today)
-            row["listing_label"] = listing_label(exp, today)
+            # The symbol matters: without it listing_label falls back to the
+            # 10:00 bell, so an issue that had not traded still read "Listed
+            # Today" all afternoon. With it, the bhavcopy decides.
+            row["listing_label"] = listing_label(exp, today, sym)
             row["days_to_listing"] = (exp - today).days if exp else None
             awaiting.append(row)
 
@@ -1329,6 +1332,10 @@ def fetch_ipo():
                         "resolve on TradingView before the stock lists."),
             "as_of": today.isoformat(), "source": "nseindia.com/api"}
 
+
+# public-past-issues mixes equity with debt: NCDs, government paper and the
+# like. Only these series are shares whose listing gain means anything.
+EQUITY_SERIES = {"EQ", "SME", "BE"}
 
 IPO_STORE = ROOT / "docs" / "ipo_listings.json"
 IPO_PER_RUN = 12          # cap bhavcopy requests in a normal daily run
@@ -1462,6 +1469,12 @@ def resolve_ipo_gains(limit=IPO_PER_RUN, pause=0.35):
     todo = []
     for rec in past:
         sym = (rec.get("symbol") or "").strip()
+        # fetch_ipo() filters these out and this did not, so bond tickers were
+        # being chased through bhavcopies and then blacklisted when they never
+        # resolved: 33 of the symbols stuck in "unresolvable" start with a
+        # digit (0IRFC35, 727NGEL36) and none of them is an IPO.
+        if (rec.get("securityType") or "").strip().upper() not in EQUITY_SERIES:
+            continue
         ld = (rec.get("listingDate") or "").strip()
         # A provisional row (captured intraday) must stay eligible so the
         # bhavcopy can supersede it; a confirmed one is skipped.
@@ -2062,7 +2075,8 @@ def mark_bse_only(ipo):
     for bucket in ("listing_today", "awaiting", "open_now"):
         for r in ipo.get(bucket) or []:
             name = _norm_name(r.get("company"))
-            if (r.get("symbol") or "").upper() == "NSE" or                     name == "nationalstockexchange":
+            if (r.get("symbol") or "").upper() == "NSE" or name in (
+                    "nationalstockexchange", "nse"):
                 r["platform"] = "BSE"
                 r["bse_only"] = True
                 r["bse_only_reason"] = ("an exchange may not list on its own "
@@ -2078,6 +2092,16 @@ def _acronym(name):
             "pvt", "company", "co", "corporation", "corp", "industries"}
     words = [w for w in re.split(r"[^A-Za-z]+", name or "") if w]
     return "".join(w[0] for w in words if w.lower() not in skip).lower()
+
+
+def _shift_back_a_year(d):
+    """One year earlier, without tripping over 29 February."""
+    if not d:
+        return d
+    try:
+        return d.replace(year=d.year - 1)
+    except ValueError:
+        return d.replace(year=d.year - 1, day=28)
 
 
 def opens_label(opens, today):
@@ -2133,6 +2157,7 @@ def fetch_ipo_calendar():
                            % len(tables))
     out = []
     for tbl, board in ((tables[0], "mainboard"), (tables[1], "sme")):
+        prev_close = None
         for r in re.findall(r"<tr[^>]*>(.*?)</tr>", tbl, re.S)[1:]:
             c = [_html.unescape(_strip_tags(x)).strip() for x in
                  re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, re.S)]
@@ -2141,11 +2166,19 @@ def fetch_ipo_calendar():
             if re.search(r"\b(invit|reit)s?\b", c[0], re.I):
                 continue          # trust units, not equity listings
             opens, closes = _cal_window(c[1], today)
+            # The table is ordered newest first and carries no year, so a row
+            # can only be older than the one above it. Without this, a window
+            # from last October reads as next October once the table grows
+            # past twelve months - a closed issue resurrected as forthcoming.
+            if closes and prev_close and closes > prev_close:
+                opens, closes = _shift_back_a_year(opens), _shift_back_a_year(closes)
+            if closes:
+                prev_close = closes
             if not closes or (today - closes).days > 20:
                 continue          # long since listed; the table runs back months
             out.append({
                 "company": c[0], "board": board,
-                "platform": c[4] if board == "sme" and len(c) > 5 else None,
+                "platform": c[4] if board == "sme" and len(c) > 4 else None,
                 "opens": opens.isoformat() if opens else None,
                 "closes": closes.isoformat(),
                 "price_band": c[3].replace("\u20b9", "Rs."), "size": c[2],
@@ -2190,7 +2223,12 @@ def merge_calendar(sections):
         for h, sym, acr, ho, hc in have:
             # Same rule as the GMP join: exact, or containment above 8 chars
             # (ipowatch truncates: "Asset Reconstruction" for the full name).
-            if n == h or (len(n) >= 8 and len(h) >= 8 and (n in h or h in n)):
+            # Prefix, not substring: ipowatch truncates from the END
+            # ("Asset Reconstruction" for "Asset Reconstruction Company
+            # (India) Limited"), so a prefix test covers every real case while
+            # a substring test would fold "Paramount" into "XYZ Paramount".
+            if n == h or (len(n) >= 8 and len(h) >= 8
+                          and (h.startswith(n) or n.startswith(h))):
                 return True
             # ipowatch writes the short name a company is known by, which for
             # the exchange's own IPO is just "NSE" while NSE's feed says
@@ -2459,7 +2497,7 @@ def fetch_earnings():
 
     if not out:
         raise RuntimeError("no earnings retrieved")
-    return {"companies": out, "unit": "INR crore", "usd_inr": usd_inr,
+    return {"companies": out, "unit": "INR", "usd_inr": usd_inr,
             "problems": problems,
             "caveat": ("Yahoo is the only source still current for Indian "
                        "quarterlies - NSE's results API and screener.in both "
@@ -2511,8 +2549,23 @@ def merge_rows(hist, new_rows):
     return hist
 
 
-def row_from_sections(S):
-    """Flatten today's snapshot into one history row."""
+def rows_from_sections(S):
+    """Flatten the snapshot into history rows, each stamped with the date the
+    DATA belongs to - not the date of the run.
+
+    This used to build ONE row dated by NSE's valuation date and fill it with
+    whatever every other source happened to be returning at that moment. On a
+    Monday morning NSE's newest valuation is Friday's, so Monday's FX spot and
+    Monday's US yields were written onto Friday's row: 18-Sep-2026 had its
+    usd_inr rewritten 95.863 -> 95.775 and its us_10y 5.01 -> 4.94 by Monday's
+    runs, silently corrupting a day that had already closed correctly.
+
+    It is the same fault that was found in FII/DII: a figure is only as dated
+    as its source says it is. Each source here carries its own date (FRED
+    returns an observation date per series, FBIL and Yahoo an as_of), so each
+    goes to its own row and merge_rows upserts them by date. World yields and
+    FII/DII already worked this way; this brings the rest into line.
+    """
     def dig(*path, default=None):
         cur = S
         for p in path:
@@ -2521,34 +2574,52 @@ def row_from_sections(S):
             cur = cur.get(p)
         return cur if cur is not None else default
 
+    rows = {}
+
+    def put(date, **fields):
+        """Add fields to the row for `date`, skipping anything absent."""
+        if not date:
+            return
+        row = rows.setdefault(date, {"date": date})
+        for k, v in fields.items():
+            if v is not None:
+                row[k] = v
+
+    today = dt.datetime.now(IST).date().isoformat()
+
+    # Nifty valuation is published for a trading day and carries that date.
     n50 = dig("nse_valuation", "indices", "Nifty 50", default={}) or {}
-    date = dig("nse_valuation", "as_of") or dt.datetime.now(IST).date().isoformat()
+    put(dig("nse_valuation", "as_of") or today,
+        nifty_close=n50.get("close"), nifty_pe=n50.get("pe"),
+        nifty_pb=n50.get("pb"), nifty_div_yield=n50.get("div_yield"))
+
+    # The repo rate is a standing policy rate with no observation date of its
+    # own - it is whatever it is today, until the MPC changes it.
+    put(today, repo=dig("rbi", "rates", "policy_repo_rate"))
+
+    # Market spot, not the RBI fixing - see fetch_fx_spot.
+    put(dig("fx_spot", "as_of") or today, usd_inr=dig("fx_spot", "usd_inr"))
+
+    # FRED returns an observation date per series, and they differ: a US
+    # holiday or a publication lag leaves one series a day behind another.
     us = dig("us_rates", "rates", default={}) or {}
+    for key in ("us_10y", "us_2y", "us_5y"):
+        v = us.get(key)
+        if isinstance(v, dict):
+            if v.get("value") is not None:
+                put(v.get("date") or today, **{key: v["value"]})
+        elif v is not None:
+            put(today, **{key: v})       # yfinance fallback carries no date
 
-    def usv(k):
-        v = us.get(k)
-        return v.get("value") if isinstance(v, dict) else None
+    put(dig("india_yields", "as_of") or today,
+        india_10y=dig("india_yields", "yields", "10Y"))
 
-    return {
-        "date": date,
-        "nifty_close": n50.get("close"),
-        "nifty_pe": n50.get("pe"),
-        "nifty_pb": n50.get("pb"),
-        "nifty_div_yield": n50.get("div_yield"),
-        # FII/DII deliberately NOT written here. This row is stamped with
-        # today's date, but flows carries the latest PUBLISHED figure, which
-        # before ~19:00 is still yesterday's. Writing it stamped yesterday's
-        # number onto today, and the duplicate then satisfied --ensure-fii so
-        # the evening retry skipped the real fetch. The Sensibull series
-        # supplies correctly dated rows; that is the only writer.
-        "repo": dig("rbi", "rates", "policy_repo_rate"),
-        # market spot, not the RBI fixing - see fetch_fx_spot
-        "usd_inr": dig("fx_spot", "usd_inr"),
-        "us_10y": usv("us_10y"),
-        "us_2y": usv("us_2y"),
-        "us_5y": usv("us_5y"),
-        "india_10y": dig("india_yields", "yields", "10Y"),
-    }
+    # FII/DII deliberately NOT written here. The flows block carries the latest
+    # PUBLISHED figure, which before ~19:00 is still yesterday's, so stamping
+    # it with any date computed here was how yesterday's number landed on
+    # today. The Sensibull series supplies correctly dated rows; it is the
+    # only writer.
+    return [rows[d] for d in sorted(rows)]
 
 
 NIFTY_PE_JSON = ("https://nifty-pe-ratio.com/wp-content/uploads/nifty-data/"
@@ -2911,7 +2982,7 @@ def main():
                 by_circ[c["symbol"]] = c
     ipo_s = data["sections"].get("nse_ipo") or {}
     confirmed_n = 0
-    for bucket in ("listing_today", "awaiting", "open_now", "current"):
+    for bucket in ("listing_today", "awaiting", "open_now"):
         for row in ipo_s.get(bucket) or []:
             c = by_circ.get(row.get("symbol")) or by_circ.get(_norm_name(row.get("company")))
             if not c:
@@ -2949,7 +3020,9 @@ def main():
         return cands[0] if len(cands) == 1 else None
     ipo_sec = data["sections"].get("nse_ipo") or {}
     matched = 0
-    for bucket in ("listing_today", "awaiting", "open_now", "current"):
+    # "current" is the same list object as "open_now"; iterating both counted
+    # every open issue twice and reported twice the matches actually made.
+    for bucket in ("listing_today", "awaiting", "open_now"):
         for row in ipo_sec.get(bucket) or []:
             g = find_gmp(row.get("company"))
             if not g:
@@ -2962,7 +3035,7 @@ def main():
     if ipo_sec:
         ipo_sec["gmp_matched"] = matched
 
-    rows = [row_from_sections(data["sections"])]
+    rows = rows_from_sections(data["sections"])
     # FII/DII now arrives as a rolling window, not a single day - fold every
     # date in so history deepens and past revisions get corrected.
     fd = data["sections"].get("nse_fii_dii") or {}

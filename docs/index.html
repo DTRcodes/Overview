@@ -540,6 +540,23 @@ function rangeSeg(key){
     ).join('') + `</div>`;
 }
 
+// SME issues now outnumber mainboard ones in the pipeline, and most list on
+// BSE where they cannot be traded from an NSE watchlist - so they are hidden
+// unless asked for. The choice is remembered per browser; storage throws in
+// some private windows, so every access is wrapped and the default stands.
+let HIDE_SME = true;
+try { const v = localStorage.getItem('hideSME'); if(v !== null) HIDE_SME = v === '1'; }
+catch(e){}
+const isSME = x => /SME/i.test(x.platform || '') ||
+  String(x.series || '').toUpperCase() === 'SME';
+
+function smeSeg(hidden){
+  return `<div class="seg seg-sm" role="group" aria-label="SME issues">
+    <button data-smetoggle="1"${HIDE_SME ? ' aria-pressed="true"' : ''}
+      title="Hide SME issues on both NSE Emerge and BSE SME">Hide SME${
+      HIDE_SME && hidden ? ` &middot; ${hidden}` : ''}</button></div>`;
+}
+
 function histTable(series){
   const rows = rangedRows().slice().reverse();
   return `<div class="scroll"><table><thead><tr><th>Date</th>${
@@ -700,10 +717,16 @@ function render(){
   // ---- IPOs
   const ip = S.nse_ipo, cur = (ip && ip.current) || [];
   // ---- IPO pipeline: listed today (green), awaiting listing (blue), open now
-  const today = (ip && ip.listing_today) || [];
-  const soon  = (ip && ip.awaiting) || [];
-  const cur2  = (ip && ip.open_now) || cur;
-  const tvAll = (ip && ip.tv_watchlist) || [];
+  const keep = list => HIDE_SME ? list.filter(x => !isSME(x)) : list;
+  const allToday = (ip && ip.listing_today) || [];
+  const allSoon  = (ip && ip.awaiting) || [];
+  const allCur   = (ip && ip.open_now) || cur;
+  const today = keep(allToday), soon = keep(allSoon), cur2 = keep(allCur);
+  const smeHidden = (allToday.length + allSoon.length + allCur.length) -
+                    (today.length + soon.length + cur2.length);
+  // The watchlist follows what is on screen: handing over tickers for rows the
+  // board is hiding would be a surprise.
+  const tvAll = [...today, ...soon, ...cur2].map(x => x.tv).filter(Boolean);
   // Grey market premium. Unofficial, so it is shown plainly with its implied
   // percentage and never styled as a forecast.
   // A circular date is NSE stating the fact; T+3 is arithmetic. The board
@@ -801,7 +824,7 @@ function render(){
       estimate &mdash; 83% of 151 past
       listings landed exactly on T+3, ~93% within T+2 to T+6. It is an estimate
       until the stock appears in a bhavcopy, which is what turns a row
-      green.</div>`, 'wide'));
+      green.</div>`, 'wide', smeSeg(smeHidden)));
 
   // ---- IPO listing-day gains
   const lv = S.ipo_listing_live;
@@ -944,6 +967,14 @@ document.addEventListener('click', e => {
   const btn = e.target.closest('[data-cardrange]');
   if(!btn) return;
   CARD_RANGE[btn.dataset.cardrange] = +btn.dataset.d;
+  if(DATA) render();
+});
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('[data-smetoggle]');
+  if(!btn) return;
+  HIDE_SME = !HIDE_SME;
+  try { localStorage.setItem('hideSME', HIDE_SME ? '1' : '0'); } catch(err){}
   if(DATA) render();
 });
 

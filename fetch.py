@@ -2050,6 +2050,15 @@ def _cal_window(txt, today):
         return None, best
 
 
+def _acronym(name):
+    """'National Stock Exchange of India Limited' -> 'nse'. The words dropped
+    are the ones a company is never called by."""
+    skip = {"of", "the", "and", "india", "indian", "limited", "ltd", "private",
+            "pvt", "company", "co", "corporation", "corp", "industries"}
+    words = [w for w in re.split(r"[^A-Za-z]+", name or "") if w]
+    return "".join(w[0] for w in words if w.lower() not in skip).lower()
+
+
 def opens_label(opens, today):
     """Same calendar logic as listing_label: 'tomorrow' means tomorrow."""
     delta = (opens - today).days
@@ -2145,26 +2154,42 @@ def merge_calendar(sections):
     awaiting = ipo.setdefault("awaiting", [])
     open_now = ipo.setdefault("open_now", [])
 
-    have = [_norm_name(r.get("company"))
-            for b in ("listing_today", "awaiting", "open_now")
-            for r in ipo.get(b) or []]
-    have += [_norm_name(r.get("company")) for r in ipo.get("recent_past") or []]
-    have = [h for h in have if h]
+    have = []
+    for b in ("listing_today", "awaiting", "open_now", "recent_past"):
+        for r in ipo.get(b) or []:
+            n = _norm_name(r.get("company"))
+            if not n:
+                continue
+            have.append((n, (r.get("symbol") or "").lower(),
+                         _acronym(r.get("company")),
+                         _d(r.get("opens")),
+                         _d(r.get("closes") or r.get("ipo_closed"))))
 
-    def known(n):
-        # Same rule as the GMP join: exact, or containment above 8 chars
-        # (ipowatch truncates: "Asset Reconstruction" for the full name).
-        return any(n == h or (len(n) >= 8 and len(h) >= 8
-                              and (n in h or h in n)) for h in have)
+    def known(n, o=None, c=None):
+        for h, sym, acr, ho, hc in have:
+            # Same rule as the GMP join: exact, or containment above 8 chars
+            # (ipowatch truncates: "Asset Reconstruction" for the full name).
+            if n == h or (len(n) >= 8 and len(h) >= 8 and (n in h or h in n)):
+                return True
+            # ipowatch writes the short name a company is known by, which for
+            # the exchange's own IPO is just "NSE" while NSE's feed says
+            # "National Stock Exchange of India Limited". Those share no
+            # substring, so the board carried the issue twice. A ticker or
+            # initials match settles it, but only when the subscription window
+            # is identical too - three letters alone is far too thin.
+            if n and (n == sym or n == acr) and c and hc == c and (
+                    o is None or ho is None or ho == o):
+                return True
+        return False
 
     fmt = lambda d: d.strftime("%d-%b-%Y") if d else None
     added = 0
     for x in cal:
         n = x.get("match") or _norm_name(x.get("company"))
-        if not n or known(n):
-            continue
         o = dt.date.fromisoformat(x["opens"]) if x.get("opens") else None
         c = dt.date.fromisoformat(x["closes"])
+        if not n or known(n, o, c):
+            continue
         exp = expected_listing(c)
         band = x.get("price_band")
         row = {"company": x["company"], "symbol": None, "tv": None,

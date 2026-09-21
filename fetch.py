@@ -2050,6 +2050,27 @@ def _cal_window(txt, today):
         return None, best
 
 
+def mark_bse_only(ipo):
+    """A stock exchange cannot list on its own platform.
+
+    SEBI requires an exchange's own shares to be listed elsewhere, so that
+    oversight of the listing is independent of the issuer. NSE's IPO therefore
+    trades on BSE only - which matters twice on this board: the row must say
+    so, and its TradingView ticker is BSE:NSE, not the NSE:NSE the symbol
+    would otherwise produce (a ticker that resolves to nothing).
+    """
+    for bucket in ("listing_today", "awaiting", "open_now"):
+        for r in ipo.get(bucket) or []:
+            name = _norm_name(r.get("company"))
+            if (r.get("symbol") or "").upper() == "NSE" or                     name == "nationalstockexchange":
+                r["platform"] = "BSE"
+                r["bse_only"] = True
+                r["bse_only_reason"] = ("an exchange may not list on its own "
+                                        "platform (SEBI)")
+                if r.get("symbol"):
+                    r["tv"] = "BSE:" + r["symbol"]
+
+
 def _acronym(name):
     """'National Stock Exchange of India Limited' -> 'nse'. The words dropped
     are the ones a company is never called by."""
@@ -2223,8 +2244,15 @@ def merge_calendar(sections):
         if not r.get("live") and o and o > today and not r.get("listing_label"):
             r["listing_label"] = opens_label(o, today)
 
+    mark_bse_only(ipo)
     sort_pipeline(awaiting, open_now)
     ipo["current"] = open_now
+    # Rebuilt here, not in the fetcher: the calendar rows arrive after it ran,
+    # and mark_bse_only rewrites the exchange's own ticker to BSE:NSE. Built
+    # earlier, the list still carried the NSE:NSE that resolves to nothing.
+    ipo["tv_watchlist"] = [r["tv"] for r in
+                           (ipo.get("listing_today") or []) + awaiting + open_now
+                           if r.get("tv")]
     ipo["calendar_added"] = added
 
     # How far ahead the board actually reaches today.

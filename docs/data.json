@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T18:06:31+05:30",
-  "generated_at_utc": "2026-09-21T12:36:31+00:00",
+  "generated_at": "2026-09-21T18:08:07+05:30",
+  "generated_at_utc": "2026-09-21T12:38:07+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -551,7 +551,7 @@
         {
           "company": "National Stock Exchange of India Limited",
           "symbol": "NSE",
-          "tv": "NSE:NSE",
+          "tv": "BSE:NSE",
           "price": "Rs.1700 to Rs.1785",
           "opens": "17-Sep-2026",
           "closes": "21-Sep-2026",
@@ -560,7 +560,10 @@
           "live": true,
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)"
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "platform": "BSE",
+          "bse_only": true,
+          "bse_only_reason": "an exchange may not list on its own platform (SEBI)"
         },
         {
           "company": "Sonaselection India Limited",
@@ -1129,7 +1132,7 @@
         {
           "company": "National Stock Exchange of India Limited",
           "symbol": "NSE",
-          "tv": "NSE:NSE",
+          "tv": "BSE:NSE",
           "price": "Rs.1700 to Rs.1785",
           "opens": "17-Sep-2026",
           "closes": "21-Sep-2026",
@@ -1138,7 +1141,10 @@
           "live": true,
           "expected_listing": "2026-09-24",
           "expected_listing_dmy": "24-Sep-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)"
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "platform": "BSE",
+          "bse_only": true,
+          "bse_only_reason": "an exchange may not list on its own platform (SEBI)"
         },
         {
           "company": "Sonaselection India Limited",
@@ -2010,7 +2016,7 @@
         "NSE:HEROMOTORS",
         "NSE:JSIPL",
         "NSE:SSRETAIL",
-        "NSE:NSE",
+        "BSE:NSE",
         "NSE:SONA",
         "NSE:VARMORA",
         "NSE:ARMEE",
@@ -2023,7 +2029,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-21",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-21T18:06:17+05:30",
+      "fetched_at": "2026-09-21T18:08:05+05:30",
       "stale": false,
       "calendar_added": 25,
       "horizon": {
@@ -2265,10 +2271,10 @@
       "confirmed": 13,
       "checked": 19,
       "remembered": 34,
-      "as_of": "2026-09-21T18:06:17+05:30",
+      "as_of": "2026-09-21T18:08:06+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-21T18:06:17+05:30",
+      "fetched_at": "2026-09-21T18:08:06+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -3114,10 +3120,10 @@
         "median_abs_error_pct": 7.0,
         "overstated_pct": 59.3
       },
-      "as_of": "2026-09-21T18:06:19+05:30",
+      "as_of": "2026-09-21T18:08:06+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-21T18:06:19+05:30",
+      "fetched_at": "2026-09-21T18:08:06+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3813,9 +3819,9 @@
           "match": "completesportsmanagement"
         }
       ],
-      "as_of": "2026-09-21T18:06:21+05:30",
+      "as_of": "2026-09-21T18:08:07+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-21T18:06:21+05:30",
+      "fetched_at": "2026-09-21T18:08:07+05:30",
       "stale": false
     },
     "ipo_gains": {

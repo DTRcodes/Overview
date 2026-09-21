@@ -14732,13 +14732,15 @@
    "issue_price": 43.0,
    "listing_date": "2026-09-21",
    "open": 43.0,
-   "last": 40.85,
-   "close": 40.85,
-   "provisional": true,
-   "price_source": "yahoo intraday",
+   "close": 43.14,
+   "price_source": "bhavcopy",
    "gain_open_pct": 0.0,
-   "gain_close_pct": -5.0,
-   "from_open_pct": -5.0
+   "gain_close_pct": 0.33,
+   "from_open_pct": 0.33,
+   "high": 43.5,
+   "low": 40.85,
+   "intra_close_pct": 0.33,
+   "intra_pop_pct": 1.16
   },
   "VCL": {
    "high": 25.0,

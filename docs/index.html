@@ -16,6 +16,8 @@
   --text-primary:#0b0b0b;
   --text-secondary:#52514e;
   --text-muted:#86847d;
+  --flow-fii:#1f5f82;          /* FII: blue */
+  --flow-dii:#7da869;          /* DII: green */
   --series-1:#2a78d6;
   --series-2:#eb6834;
   --series-3:#1baf7a;
@@ -39,6 +41,8 @@
     --text-primary:#ffffff;
     --text-secondary:#c3c2b7;
     --text-muted:#8b8a81;
+    --flow-fii:#4098c9;
+    --flow-dii:#8fbd77;
     --series-1:#3987e5;
     --series-2:#d95926;
     --series-3:#199e70;
@@ -68,19 +72,12 @@ h1{font-size:19px;margin:0 0 3px;letter-spacing:-.015em;font-weight:660}
 #stamp{cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
 
 /* ---- stat tiles: the headline numbers, no plot ---- */
-.fboxes{display:grid;grid-template-columns:1fr;gap:9px;margin-bottom:13px}
-@media(min-width:560px){.fboxes{grid-template-columns:repeat(2,1fr)}}
-.fbox{background:var(--surface-1);border:1px solid var(--line);
-  border-radius:var(--radius);padding:11px 13px}
-.fbox .t{font-size:10px;text-transform:uppercase;letter-spacing:.07em;
-  color:var(--text-muted);font-weight:600}
-.fbox .frow{display:flex;justify-content:space-between;align-items:baseline;
-  margin-top:7px;gap:10px}
-.fbox .frow span{font-size:12.5px;color:var(--text-secondary);font-weight:600}
-.fbox .frow b{font-size:20px;font-weight:670;letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums}
-.fbox .m{font-size:10.5px;color:var(--text-muted);margin-top:8px;
-  font-variant-numeric:tabular-nums}
+.stat.pair .rows{display:flex;gap:12px;flex-wrap:nowrap;margin-top:3px}
+.stat.pair .p{display:flex;align-items:baseline;gap:4px}
+.stat.pair .p span{font-size:10px;color:var(--text-muted);font-weight:600;
+  text-transform:uppercase;letter-spacing:.04em}
+.stat.pair .p b{font-size:17px;font-weight:670;letter-spacing:-.025em;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:13px}
 @media(min-width:620px){.stats{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:960px){.stats{grid-template-columns:repeat(6,1fr)}}
@@ -189,7 +186,6 @@ table.tight td:first-child{min-width:150px}
     <div class="sub">Updated <b id="stamp">…</b> · <span id="srcs"></span></div>
   </header>
 
-  <div class="fboxes" id="fboxes"></div>
   <div class="stats" id="stats"></div>
 
   <div class="filters">
@@ -544,6 +540,82 @@ function monthlyBars(el, rows, opts = {}){
      </div>`;
 }
 
+/* Institutional flows as paired bars: FII blue, DII green, positive above the
+   zero line and negative below. These are discrete daily quantities - a line
+   drawn between two days implies a path the money never took - so bars are
+   the honest shape for them. Both series share one axis because both are
+   rupees crore and the whole point is comparing them. */
+function flowBars(el, opts = {}){
+  const from = opts.from || '';
+  const rows = HIST.filter(r => r.date >= from &&
+    (r.fii_net != null || r.dii_net != null));
+  if(rows.length < 2){
+    el.innerHTML = `<div class="empty">Not enough history yet.</div>`;
+    return;
+  }
+  const W = Math.max(el.clientWidth || 320, 280), H = opts.height || 215;
+  const padL = 46, padR = 10, padT = 12, padB = 26;
+  const iw = W - padL - padR, ih = H - padT - padB;
+
+  const vals = [];
+  rows.forEach(r => [r.fii_net, r.dii_net].forEach(v => {
+    if(v != null) vals.push(v);
+  }));
+  let lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
+  const pad = (hi - lo) * 0.08 || 1; lo -= pad; hi += pad;
+  const Y = v => padT + ih - ((v - lo) / (hi - lo)) * ih;
+  const y0 = Y(0);
+
+  const slot = iw / rows.length;
+  const bw = Math.max(Math.min(slot * 0.42, 9), 1);
+  const cF = cssv('--flow-fii'), cD = cssv('--flow-dii');
+
+  // Horizontal guides at round numbers, plus the zero line drawn solid.
+  const step = Math.pow(10, Math.floor(Math.log10(Math.max(Math.abs(hi),
+                                                           Math.abs(lo)))));
+  const grid = [], ylab = [];
+  for(let v = Math.ceil(lo / step) * step; v <= hi; v += step){
+    const y = Y(v);
+    grid.push(`<line class="grid" x1="${padL}" x2="${W - padR}"
+                 y1="${y.toFixed(1)}" y2="${y.toFixed(1)}"/>`);
+    ylab.push(`<text class="axis" x="${padL - 6}" y="${(y + 3.5).toFixed(1)}"
+                 text-anchor="end">${nf(v / 1000, 0)}k</text>`);
+  }
+
+  let bars = '', labs = '';
+  const every = Math.max(1, Math.round(rows.length / 6));
+  rows.forEach((r, i) => {
+    const x = padL + i * slot;
+    [['fii_net', cF, 'FII'], ['dii_net', cD, 'DII']].forEach(([k, col, name], j) => {
+      const v = r[k];
+      if(v == null) return;
+      const y = Y(v), top = Math.min(y, y0);
+      bars += `<rect x="${(x + j * (bw + 0.6)).toFixed(1)}" y="${top.toFixed(1)}"
+        width="${bw.toFixed(1)}" height="${Math.max(Math.abs(y - y0), 0.8).toFixed(1)}"
+        fill="${col}"><title>${esc(shortDate(r.date))} · ${name} ${
+        nf(v, 0)} cr</title></rect>`;
+    });
+    if(i % every === 0){
+      labs += `<text class="axis" x="${(x + bw).toFixed(1)}" y="${H - 8}"
+                 text-anchor="middle">${esc(shortDate(r.date))}</text>`;
+    }
+  });
+
+  el.innerHTML =
+    `<svg viewBox="0 0 ${W} ${H}" role="img"
+       aria-label="Daily net FII and DII cash flows, rupees crore">
+       ${grid.join('')}${ylab.join('')}
+       <line class="zero" x1="${padL}" x2="${W - padR}"
+         y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>
+       ${bars}${labs}
+     </svg>
+     <div class="legend">
+       <span><i style="background:${cF}"></i>FII</span>
+       <span><i style="background:${cD}"></i>DII</span>
+       <span style="color:var(--text-muted)">&#8377; crore, net</span>
+     </div>`;
+}
+
 function card(title, caption, sec, body, cls, head){
   if(sec && sec.stale && !sec.fetched_at){
     body = `<div class="err">No data yet — ${esc(sec.stale_reason||'not fetched')}</div>`;
@@ -584,11 +656,12 @@ function smeSeg(hidden){
       HIDE_SME && hidden ? ` &middot; ${hidden}` : ''}</button></div>`;
 }
 
-function histTable(series, minDays, override){
+function histTable(series, minDays, override, from){
   // The chart reads its per-card range; the table read the global one, so
   // switching to Table view on the world-yield cards silently changed the
   // period under the reader without the selector moving.
-  const rows = rangedRows(minDays, override).slice().reverse();
+  const rows = rangedRows(minDays, override)
+    .filter(r => !from || r.date >= from).slice().reverse();
   return `<div class="scroll"><table><thead><tr><th>Date</th>${
     series.map(s=>`<th>${esc(s.label)}</th>`).join('')}</tr></thead><tbody>${
     rows.map(r=>`<tr><td>${esc(shortDate(r.date))}</td>${
@@ -633,23 +706,31 @@ function render(){
   })();
   const fyRows = flowRows.filter(r => r.date >= fyStart);
   const fySum = k => fyRows.reduce((a, r) => a + (r[k] || 0), 0);
-  const money = v => `${v > 0 ? '+' : ''}${nf(v, 0)}`;
-  const fRow = (label, v) =>
-    `<div class="frow"><span>${label}</span><b class="${sign(v)}">${
-      v == null ? '–' : money(v)}</b></div>`;
   const fyLabel = `FY ${fyStart.slice(0,4)}-${String(+fyStart.slice(0,4)+1).slice(2)}`;
-  document.getElementById('fboxes').innerHTML =
-    `<div class="fbox"><div class="t">FII / DII &middot; ${
-        esc(flowDate ? dmy(flowDate) : 'latest')}</div>
-      ${fRow('FII', lastFlow.fii_net)}${fRow('DII', lastFlow.dii_net)}
-      <div class="m">&#8377; crore, cash market &middot; net of buy and sell</div></div>
-     <div class="fbox"><div class="t">Net since 1 Apr &middot; ${esc(fyLabel)}</div>
-      ${fRow('FII', fyRows.length ? fySum('fii_net') : null)}${
-        fRow('DII', fyRows.length ? fySum('dii_net') : null)}
-      <div class="m">${esc(dmy(fyStart))} &rarr; ${esc(flowDate ? dmy(flowDate) : '')}
-        &middot; ${fyRows.length} trading days</div></div>`;
+  // A single day is a few hundred crore and reads naturally; a year of flows
+  // runs to six figures of crore, which nobody reads at a glance. The year
+  // total is shown in lakh crore, with the exact figure on hover.
+  const flowCr = v => v == null ? '–' : `${v > 0 ? '+' : ''}${nf(v, 0)}`;
+  const lakhCr = v => v == null ? '–' : `${v > 0 ? '+' : ''}${nf(v / 1e5, 2)}`;
+  const pairTile = (title, rows, meta) =>
+    `<div class="stat pair"><div class="t">${esc(title)}</div>
+      <div class="rows">${
+        rows.map(([label, text, v, hint]) =>
+          `<div class="p"><span>${esc(label)}</span><b class="${sign(v)}"${
+            hint ? ` title="${esc(hint)}"` : ''}>${text}</b></div>`).join('')
+      }</div><div class="m">${meta}</div></div>`;
 
+  const fyFii = fyRows.length ? fySum('fii_net') : null;
+  const fyDii = fyRows.length ? fySum('dii_net') : null;
   document.getElementById('stats').innerHTML = [
+    pairTile('FII / DII cash',
+      [['FII', flowCr(lastFlow.fii_net), lastFlow.fii_net],
+       ['DII', flowCr(lastFlow.dii_net), lastFlow.dii_net]],
+      `&#8377; cr &middot; ${esc(flowDate ? shortDate(flowDate) : 'latest')}`),
+    pairTile('Net since 1 Apr',
+      [['FII', lakhCr(fyFii), fyFii, fyFii == null ? '' : nf(fyFii, 0) + ' crore'],
+       ['DII', lakhCr(fyDii), fyDii, fyDii == null ? '' : nf(fyDii, 0) + ' crore']],
+      `L Cr &middot; ${esc(fyLabel)} &middot; ${fyRows.length}d`),
     statTile('Repo rate', nf(dig('rbi','rates','policy_repo_rate')) + '%', 'RBI'),
     statTile('Nifty 50 P/E', nf(n50.pe), dig('nse_valuation','as_of') || ''),
     statTile('Nifty 50', nf(n50.close, 0),
@@ -707,9 +788,12 @@ function render(){
     '', rangeSeg('w5')));
   b.push(card('USD / INR', 'Traded spot. The RBI reference fixing is in the FX table.', S.fx_spot,
     VIEW==='chart' ? '<div class="chart" data-c="fx"></div>' : histTable(fx)));
-  b.push(card('Institutional flows', 'Daily net cash-market activity, ₹ crore.',
+  b.push(card('Institutional flows',
+    `Daily net cash-market activity, ₹ crore — the financial year so far, from
+     1 April ${fyStart.slice(0,4)}.`,
     S.nse_fii_dii,
-    VIEW==='chart' ? '<div class="chart" data-c="flows"></div>' : histTable(flows), 'wide'));
+    VIEW==='chart' ? '<div class="chart" data-c="flows"></div>'
+                   : histTable(flows, null, 0, fyStart), 'wide'));
 
   // ---- FII F&O positioning
   const fdx = S.nse_fii_dii, fo = fdx && fdx.fno;
@@ -1011,6 +1095,10 @@ function render(){
                   fno:{dp:0, zeroLine:true, height:210},
                   oi:{dp:0, zeroLine:true, height:200}};
     document.querySelectorAll('.chart').forEach(el => {
+      if(el.dataset.c === 'flows'){
+        flowBars(el, {from: fyStart, height: 215});
+        return;
+      }
       if(el.dataset.c === 'ipomonth'){
         monthlyBars(el, (S.ipo_gains && S.ipo_gains.monthly) || []);
         return;

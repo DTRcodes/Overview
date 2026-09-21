@@ -252,9 +252,35 @@ def _sensibull_fii_dii():
     return rows, latest, payload.get("key_list") or []
 
 
+def _nse_fii_dii_day():
+    """NSE's own figure for the latest published day. Single day only - the
+    endpoint ignores any date parameter."""
+    out = {}
+    for row in get("https://www.nseindia.com/api/fiidiiTradeReact").json():
+        key = "fii" if "FII" in (row.get("category") or "").upper() else "dii"
+        out[key] = {"date": row.get("date"),
+                    "buy": num(row.get("buyValue")),
+                    "sell": num(row.get("sellValue")),
+                    "net": num(row.get("netValue"))}
+    return out
+
+
 @source("nse_fii_dii")
 def fetch_fii_dii():
-    """Daily FII/DII cash-market activity, with history where it exists."""
+    """Daily FII/DII cash-market activity, with history where it exists.
+
+    Two sources, and BOTH are read every run. Sensibull carries a rolling
+    window (23 days) plus the F&O block, which NSE does not expose; NSE
+    carries only the latest day but publishes it first.
+
+    Reading NSE only as a fallback was wrong: on 21-Sep-2026 the 19:00 run
+    found Sensibull's cache still on 18-Sep and published that, while NSE had
+    already served the day's numbers (-576.2 / +2797.27) and they were visible
+    on Moneycontrol. Nothing had failed, so no fallback triggered and the board
+    sat a day behind until the evening retry. Now whichever source has the
+    later date wins, and NSE's day is appended to the window as its own dated
+    row.
+    """
     try:
         rows, latest, months = _sensibull_fii_dii()
     except Exception as e:
@@ -263,25 +289,43 @@ def fetch_fii_dii():
         err = None
 
     if latest and rows:
-        return {"flows": {"fii": latest["fii"], "dii": latest["dii"]},
-                "fno": latest.get("fno"),
-                "as_of": latest["date"], "series": rows,
-                "window_days": len(rows), "months_advertised": months,
-                "unit": "INR crore", "via": "sensibull (rolling window)",
-                "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily"}
+        payload = {"flows": {"fii": latest["fii"], "dii": latest["dii"]},
+                   "fno": latest.get("fno"),
+                   "as_of": latest["date"], "series": rows,
+                   "window_days": len(rows), "months_advertised": months,
+                   "unit": "INR crore", "via": "sensibull (rolling window)",
+                   "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily"}
+        try:
+            day = _nse_fii_dii_day()
+            nd = _d((day.get("fii") or {}).get("date"))
+            if nd and day.get("fii") and day.get("dii") \
+                    and nd.isoformat() > str(latest["date"]):
+                payload["flows"] = {"fii": day["fii"], "dii": day["dii"]}
+                payload["as_of"] = nd.isoformat()
+                payload["via"] = ("nseindia for %s, sensibull window behind at %s"
+                                  % (nd.isoformat(), latest["date"]))
+                # Cash only: the F&O block belongs to Sensibull's own day and
+                # must not be carried onto this one.
+                rows = rows + [{"date": nd.isoformat(),
+                                "fii_net": day["fii"]["net"],
+                                "dii_net": day["dii"]["net"]}]
+                payload["series"] = rows
+                payload["window_days"] = len(rows)
+        except Exception as e:
+            payload["nse_topup_error"] = "%s: %s" % (type(e).__name__, e)
+        return payload
 
-    # Fall back to NSE's single-day figure.
-    data = get("https://www.nseindia.com/api/fiidiiTradeReact").json()
-    out = {}
-    for row in data:
-        key = "fii" if "FII" in row.get("category", "").upper() else "dii"
-        out[key] = {"date": row.get("date"),
-                    "buy": num(row.get("buyValue")),
-                    "sell": num(row.get("sellValue")),
-                    "net": num(row.get("netValue"))}
+    # Sensibull unreachable: NSE's single day is all there is.
+    out = _nse_fii_dii_day()
     if not out:
         raise RuntimeError("empty FII/DII payload")
+    nd = _d((out.get("fii") or {}).get("date"))
     return {"flows": out, "unit": "INR crore",
+            "as_of": nd.isoformat() if nd else None,
+            "series": ([{"date": nd.isoformat(),
+                         "fii_net": out["fii"]["net"],
+                         "dii_net": out["dii"]["net"]}]
+                       if nd and out.get("fii") and out.get("dii") else []),
             "via": "nseindia (single day; sensibull failed: %s)" % err,
             "source": "nseindia.com/api"}
 

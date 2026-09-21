@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T19:06:38+05:30",
-  "generated_at_utc": "2026-09-21T13:36:38+00:00",
+  "generated_at": "2026-09-21T20:01:43+05:30",
+  "generated_at_utc": "2026-09-21T14:31:43+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -27,30 +27,30 @@
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "buy": 38461.62890625,
-          "sell": 37862.08984375,
-          "net": 599.5390625,
-          "view": "BULLISH"
+          "buy": 10637.169921875,
+          "sell": 11213.3701171875,
+          "net": -576.2001953125,
+          "view": "BEARISH"
         },
         "dii": {
-          "buy": 17310.0390625,
-          "sell": 16290.349609375,
-          "net": 1019.689453125,
+          "buy": 14098.6396484375,
+          "sell": 11301.3701171875,
+          "net": 2797.26953125,
           "view": "BULLISH"
         }
       },
       "fno": {
-        "fii_call_oi_chg": 14490.0,
-        "fii_put_oi_chg": 17743.0,
-        "fii_fut_amt": 264.4700927734375,
-        "fii_fut_oi_chg": 1613.0,
-        "fii_fut_oi": -288428.0,
-        "fut_view": "BULLISH",
+        "fii_call_oi_chg": 12046.0,
+        "fii_put_oi_chg": 7977.0,
+        "fii_fut_amt": -328.080078125,
+        "fii_fut_oi_chg": -2118.0,
+        "fii_fut_oi": -290546.0,
+        "fut_view": "BEARISH",
         "call_view": "BULLISH",
         "put_view": "BEARISH"
       },
-      "as_of": "2026-09-18",
-      "window_days": 22,
+      "as_of": "2026-09-21",
+      "window_days": 21,
       "months_advertised": [
         "2026-March",
         "2026-April",
@@ -63,9 +63,9 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-21T19:05:46+05:30",
+      "fetched_at": "2026-09-21T20:01:43+05:30",
       "stale": false,
-      "series_days": 22
+      "series_days": 21
     },
     "fii_derivatives": {
       "date": "2026-09-21",
@@ -2031,7 +2031,7 @@
       "source": "nseindia.com/api",
       "fetched_at": "2026-09-21T19:06:23+05:30",
       "stale": false,
-      "calendar_added": 25,
+      "calendar_added": 0,
       "horizon": {
         "min_days": 20,
         "furthest_open": "2026-09-25",

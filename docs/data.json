@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-22T08:12:08+05:30",
-  "generated_at_utc": "2026-09-22T02:42:08+00:00",
+  "generated_at": "2026-09-22T10:11:07+05:30",
+  "generated_at_utc": "2026-09-22T04:41:07+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-22T08:11:29+05:30",
+      "fetched_at": "2026-09-22T10:10:28+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-22T08:11:30+05:30",
+      "fetched_at": "2026-09-22T10:10:29+05:30",
       "stale": false,
       "series_days": 21
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-22T08:11:31+05:30",
+      "fetched_at": "2026-09-22T10:10:29+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-22T08:11:32+05:30",
+      "fetched_at": "2026-09-22T10:10:31+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.77,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-22T08:11:35+05:30",
+      "fetched_at": "2026-09-22T10:10:33+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-22T08:11:37+05:30",
+      "fetched_at": "2026-09-22T10:10:35+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-22T08:11:50+05:30",
+      "fetched_at": "2026-09-22T10:10:47+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 680,
@@ -321,10 +321,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.805,
+      "usd_inr": 95.78,
       "as_of": "2026-09-22",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-22T08:11:51+05:30",
+      "fetched_at": "2026-09-22T10:10:48+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -371,9 +371,9 @@
           "days_since_close": 5,
           "days_to_listing": 0,
           "listing_label": "Lists Today",
-          "gmp": 6.0,
-          "gmp_est_listing": 65.0,
-          "gmp_est_gain_pct": 10.17,
+          "gmp": 10.0,
+          "gmp_est_listing": 69.0,
+          "gmp_est_gain_pct": 16.95,
           "gmp_direction": "premium"
         },
         {
@@ -540,9 +540,9 @@
           "lists_today_expected": false,
           "listing_label": "Lists Thursday",
           "days_to_listing": 2,
-          "gmp": 45.0,
-          "gmp_est_listing": 163.0,
-          "gmp_est_gain_pct": 38.14,
+          "gmp": 67.0,
+          "gmp_est_listing": 185.0,
+          "gmp_est_gain_pct": 56.78,
           "gmp_direction": "premium"
         }
       ],
@@ -605,9 +605,9 @@
           "from_calendar": true,
           "live": true,
           "status": "Active",
-          "gmp": 51.0,
-          "gmp_est_listing": 157.0,
-          "gmp_est_gain_pct": 48.11,
+          "gmp": 55.0,
+          "gmp_est_listing": 161.0,
+          "gmp_est_gain_pct": 51.89,
           "gmp_direction": "premium"
         },
         {
@@ -1103,9 +1103,9 @@
           "from_calendar": true,
           "live": true,
           "status": "Active",
-          "gmp": 51.0,
-          "gmp_est_listing": 157.0,
-          "gmp_est_gain_pct": 48.11,
+          "gmp": 55.0,
+          "gmp_est_listing": 161.0,
+          "gmp_est_gain_pct": 51.89,
           "gmp_direction": "premium"
         },
         {
@@ -1888,7 +1888,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-22",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-22T08:11:55+05:30",
+      "fetched_at": "2026-09-22T10:10:52+05:30",
       "stale": false,
       "calendar_added": 20,
       "horizon": {
@@ -2130,10 +2130,10 @@
       "confirmed": 13,
       "checked": 19,
       "remembered": 34,
-      "as_of": "2026-09-22T08:11:55+05:30",
+      "as_of": "2026-09-22T10:10:52+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-22T08:11:55+05:30",
+      "fetched_at": "2026-09-22T10:10:52+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -2144,7 +2144,7 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-22T08:11:56+05:30",
+      "fetched_at": "2026-09-22T10:10:53+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2230,7 +2230,7 @@
           "est_gain_pct": 3.38,
           "direction": "premium",
           "window": "22-24 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "varmoragranito"
         },
         {
@@ -2242,7 +2242,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "17-21 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "sonaselection"
         },
         {
@@ -2254,7 +2254,7 @@
           "est_gain_pct": 3.64,
           "direction": "premium",
           "window": "17-21 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "nse"
         },
         {
@@ -2434,7 +2434,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "22-24 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "anandseamless"
         },
         {
@@ -2446,7 +2446,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "22-24 Sept",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "himalayanutravedics"
         },
         {
@@ -2464,10 +2464,10 @@
         {
           "company": "Robokidz Eduventures",
           "board": "sme",
-          "gmp": 51.0,
+          "gmp": 55.0,
           "price_band_upper": 106.0,
-          "est_listing": 157.0,
-          "est_gain_pct": 48.11,
+          "est_listing": 161.0,
+          "est_gain_pct": 51.89,
           "direction": "premium",
           "window": "21-23 Sept",
           "status": "Open",
@@ -2500,13 +2500,13 @@
         {
           "company": "SpectraA Technology",
           "board": "sme",
-          "gmp": 45.0,
+          "gmp": 67.0,
           "price_band_upper": 118.0,
-          "est_listing": 163.0,
-          "est_gain_pct": 38.14,
+          "est_listing": 185.0,
+          "est_gain_pct": 56.78,
           "direction": "premium",
           "window": "17-21 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "spectraatechnology"
         },
         {
@@ -2518,7 +2518,7 @@
           "est_gain_pct": 2.97,
           "direction": "premium",
           "window": "17-21 Sept",
-          "status": "Open",
+          "status": "Closed",
           "match": "kheriaautocomp"
         },
         {
@@ -2536,10 +2536,10 @@
         {
           "company": "Shakti Polytarp",
           "board": "sme",
-          "gmp": 6.0,
+          "gmp": 10.0,
           "price_band_upper": 59.0,
-          "est_listing": 65.0,
-          "est_gain_pct": 10.17,
+          "est_listing": 69.0,
+          "est_gain_pct": 16.95,
           "direction": "premium",
           "window": "15-17 Sept",
           "status": "Closed",
@@ -2556,30 +2556,6 @@
           "window": "15-17 Sept",
           "status": "Closed",
           "match": "quantoagroworld"
-        },
-        {
-          "company": "Injecto Polymers",
-          "board": "sme",
-          "gmp": 0.0,
-          "price_band_upper": 100.0,
-          "est_listing": 100.0,
-          "est_gain_pct": 0.0,
-          "direction": "flat",
-          "window": "11-16 Sept",
-          "status": "Closed",
-          "match": "injectopolymers"
-        },
-        {
-          "company": "Century Business Media",
-          "board": "sme",
-          "gmp": 0.0,
-          "price_band_upper": 74.0,
-          "est_listing": 74.0,
-          "est_gain_pct": 0.0,
-          "direction": "flat",
-          "window": "11-16 Sept",
-          "status": "Closed",
-          "match": "centurybusinessmedia"
         }
       ],
       "history": [
@@ -2950,10 +2926,10 @@
         "median_abs_error_pct": 7.0,
         "overstated_pct": 59.3
       },
-      "as_of": "2026-09-22T08:11:57+05:30",
+      "as_of": "2026-09-22T10:10:55+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-22T08:11:57+05:30",
+      "fetched_at": "2026-09-22T10:10:55+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3609,9 +3585,9 @@
           "match": "shantiinorganics"
         }
       ],
-      "as_of": "2026-09-22T08:11:59+05:30",
+      "as_of": "2026-09-22T10:10:58+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-22T08:11:59+05:30",
+      "fetched_at": "2026-09-22T10:10:58+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -4409,7 +4385,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-22T08:12:06+05:30",
+      "fetched_at": "2026-09-22T10:11:05+05:30",
       "stale": false
     },
     "earnings": {
@@ -4514,32 +4490,32 @@
           "quarters": [
             {
               "quarter": "2026-06-30",
-              "revenue": 486881010000.00006,
-              "net_income": 78464295000.0,
+              "revenue": 486741255000.0,
+              "net_income": 78441772500.0,
               "age_days": 84
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 482857200000.00006,
-              "net_income": 88044795000.0,
+              "revenue": 482718600000.0,
+              "net_income": 88019522500.0,
               "age_days": 175
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 488509695000.00006,
-              "net_income": 71566335000.0,
+              "revenue": 488369472500.0,
+              "net_income": 71545792500.0,
               "age_days": 265
             },
             {
               "quarter": "2025-09-30",
-              "revenue": 486306180000.00006,
-              "net_income": 80380395000.0,
+              "revenue": 486166590000.0,
+              "net_income": 80357322500.0,
               "age_days": 357
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 95.805,
+          "fx_used": 95.7775,
           "latest_quarter": "2026-06-30",
           "age_days": 84,
           "stale": false
@@ -4580,7 +4556,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 95.805,
+      "usd_inr": 95.7775,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -4589,7 +4565,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-22T08:12:08+05:30",
+      "fetched_at": "2026-09-22T10:11:07+05:30",
       "stale": false
     }
   }

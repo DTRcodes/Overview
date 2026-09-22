@@ -323,10 +323,10 @@ function lineChart(el, series, opts = {}){
 
   // ---- broken x-axis. The recent window gets ZOOM times the pixels per day
   // of the span before it, so one plot carries the six-month shape and the
-  // three-month detail at once: equal spans, two thirds of the width to the
-  // recent one. Paths, axis labels and the crosshair all go through X(), so
-  // the break is expressed once and everything else follows.
-  const ZOOM = opts.zoom ?? 2;
+  // three-month detail at once: equal spans split the width 40/60. Paths,
+  // axis labels and the crosshair all go through X(), so the break is
+  // expressed once and everything else follows.
+  const ZOOM = opts.zoom ?? 1.5;
   const emphDays = opts.emphasisDays ?? 90;
   const tCut = t1 - emphDays * 86400000;
   // Not worth breaking the axis unless there is a meaningful older span left
@@ -612,7 +612,7 @@ function flowBars(el, opts = {}){
   // Same break as the line charts: each day in the recent window occupies
   // ZOOM times the width of an older one, so the bars there are readable
   // while the earlier months still fit on the same plot.
-  const ZOOM = opts.zoom ?? 2;
+  const ZOOM = opts.zoom ?? 1.5;
   const emphDays = opts.emphasisDays ?? 90;
   const cutISO = new Date(new Date(rows[rows.length-1].date + 'T00:00:00')
                    .getTime() - emphDays * 86400000).toISOString().slice(0,10);

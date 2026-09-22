@@ -79,8 +79,8 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .grid-l{stroke:var(--line);stroke-width:1}
 .zero{stroke:var(--text-muted);stroke-width:1;opacity:.55}
 .axis{fill:var(--text-muted);font-size:9.5px}
-.band{fill:var(--text-secondary);opacity:.07}
-.bandline{stroke:var(--text-muted);stroke-dasharray:3 3;opacity:.5}
+.band{fill:var(--text-secondary);opacity:.05}
+.bandline{stroke:var(--text-muted);stroke-dasharray:3 3;opacity:.3}
 .bandlab{fill:var(--text-muted);font-size:9px;letter-spacing:.06em;
   text-transform:uppercase}
 .legend{display:flex;gap:13px;flex-wrap:wrap;color:var(--text-secondary);
@@ -92,17 +92,17 @@ svg{display:block;width:100%;height:auto;overflow:visible}
   letter-spacing:.08em;color:var(--text-muted);font-weight:600;
   border-top:1px solid var(--line);padding-top:16px}
 </style></head><body>
-<h1>Mockup — 6-month trend with the last 3 months emphasised</h1>
+<h1>Mockup — 6 months, with the last 3 at a larger x-scale</h1>
 <div class="sub">Real data from the board's history, to __END__. Nothing here is
  wired to the live dashboard; this file only exists to judge the treatment.</div>
 
-<div class="sec" style="border:0;margin-top:0;padding-top:0">Option A — one chart, recent span emphasised <span style="text-transform:none;letter-spacing:0">(recommended)</span></div>
+<div class="sec" style="border:0;margin-top:0;padding-top:0">Nifty 50 P/E — the same six months, three treatments</div>
+<div class="grid" id="cmp" style="grid-template-columns:1fr"></div>
+
+<div class="sec">The rest of the board at &times;1.5</div>
 <div class="grid" id="optA"></div>
 
-<div class="sec">Option B — the same card without emphasis, for comparison</div>
-<div class="grid" id="optB"></div>
-
-<div class="sec">Flows — bars, financial year with the last 3 months at full colour</div>
+<div class="sec">Flows — bars, financial year, last 3 months at &times;1.5</div>
 <div class="grid" id="optC" style="grid-template-columns:1fr"></div>
 
 <script>
@@ -145,14 +145,23 @@ function lineCard(el, title, cap, pts, color, opts={}){
   const lo0 = Math.min(...pts.map(p=>p.v)), hi0 = Math.max(...pts.map(p=>p.v));
   const pad = (hi0-lo0)*0.12 || 1, lo = lo0-pad, hi = hi0+pad;
   const t0 = T(pts[0].d), t1 = T(pts[pts.length-1].d);
-  const X = d => padL + ((T(d)-t0)/(t1-t0||1))*iw;
+  const ZOOM = opts.zoom ?? 1.5, tCut = T(D.cut3);
+  const split = opts.emphasise && tCut > t0;
+  const dOld = split ? tCut-t0 : t1-t0, dNew = split ? t1-tCut : 0;
+  const wOld = split ? iw*dOld/(dOld + ZOOM*dNew) : iw;
+  const X = d => {
+    const t = T(d);
+    if(!split) return padL + ((t-t0)/(t1-t0||1))*iw;
+    return t <= tCut ? padL + ((t-t0)/dOld)*wOld
+                     : padL + wOld + ((t-tCut)/dNew)*(iw-wOld);
+  };
   const Y = v => padT + ih - ((v-lo)/(hi-lo))*ih;
   const path = seg => seg.map((p,i)=>`${i?'L':'M'}${X(p.d).toFixed(1)},${Y(p.v).toFixed(1)}`).join(' ');
 
   // split at the 3-month cut so the recent span can be drawn solid
   const older = pts.filter(p=>p.d <= D.cut3);
   const recent = pts.filter(p=>p.d >= D.cut3);
-  const xCut = X(D.cut3);
+  const xCut = padL + wOld;
 
   let grid='', ylab='';
   for(let i=0;i<=3;i++){
@@ -170,15 +179,15 @@ function lineCard(el, title, cap, pts, color, opts={}){
       width="${(padL+iw-xCut).toFixed(1)}" height="${ih}"/>
     <line class="bandline" x1="${xCut.toFixed(1)}" x2="${xCut.toFixed(1)}"
       y1="${padT}" y2="${padT+ih}"/>
-    <text class="bandlab" x="${(xCut+6).toFixed(1)}" y="${padT+11}">last 3 months</text>` : '';
+    <text class="bandlab" x="${(xCut+6).toFixed(1)}" y="${padT+11}">last 3 months &times;${ZOOM}</text>` : '';
 
   el.insertAdjacentHTML('beforeend', `<div class="card">
     <div class="cardhead"><h2>${title}</h2>${figHTML(pts, 'level', opts.unit)}</div>
     <div class="cap">${cap}</div>
     <svg viewBox="0 0 ${W} ${H}">
       ${grid}${band}
-      <path d="${path(older)}" fill="none" stroke="${color}" stroke-width="1.6"
-        opacity="${opts.emphasise?0.32:1}"/>
+      <path d="${path(older)}" fill="none" stroke="${color}" stroke-width="1.8"
+        opacity="${opts.emphasise?0.75:1}"/>
       <path d="${path(recent)}" fill="none" stroke="${color}" stroke-width="2"/>
       ${ylab}${xlab}
     </svg></div>`);
@@ -196,9 +205,12 @@ function barCard(el, title, cap){
   let lo = Math.min(0,...vals), hi = Math.max(0,...vals);
   const pad=(hi-lo)*0.08; lo-=pad; hi+=pad;
   const Y = v => padT + ih - ((v-lo)/(hi-lo))*ih, y0 = Y(0);
-  const slot = iw/days.length, bw = Math.max(Math.min(slot*0.40, 9), 1.4);
+  const ZOOM = 1.5;
+  const nNew = days.filter(d=>d>=D.cut3).length, nOld = days.length-nNew;
+  const unit = iw/(nOld + ZOOM*nNew);
+  const slotOf = d => d >= D.cut3 ? unit*ZOOM : unit;
   const cF = cssv('--flow-fii'), cD = cssv('--flow-dii');
-  const xCut = padL + days.findIndex(d=>d>=D.cut3)*slot;
+  const xCut = padL + unit*nOld;
 
   let grid='', ylab='';
   const stepv = 2000;
@@ -207,19 +219,20 @@ function barCard(el, title, cap){
     grid += `<line class="grid-l" x1="${padL}" x2="${W-padR}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
     ylab += `<text class="axis" x="${padL-7}" y="${(y+3.5).toFixed(1)}" text-anchor="end">${nf(v/1000,0)}k</text>`;
   }
-  let bars='', xlab='';
-  const every = Math.max(1, Math.round(days.length/8));
-  days.forEach((d,i)=>{
-    const x = padL + i*slot, fresh = d >= D.cut3;
+  let bars='', xlab='', x = padL, lastLab = -99;
+  days.forEach(d=>{
+    const slot = slotOf(d), bw = Math.max(Math.min(slot*0.40, 11), 1.4);
+    const fresh = d >= D.cut3;
     [['fii',cF],['dii',cD]].forEach(([k,col],j)=>{
       const v = byDate[d][k]; if(v==null) return;
       const y=Y(v), top=Math.min(y,y0);
       bars += `<rect x="${(x+j*(bw+0.7)).toFixed(1)}" y="${top.toFixed(1)}"
         width="${bw.toFixed(1)}" height="${Math.max(Math.abs(y-y0),0.8).toFixed(1)}"
-        fill="${col}" opacity="${fresh?1:0.38}"/>`;
+        fill="${col}" opacity="${fresh?1:0.55}"/>`;
     });
-    if(i%every===0) xlab += `<text class="axis" x="${(x+bw).toFixed(1)}" y="${H-8}"
-      text-anchor="middle">${shortDate(d)}</text>`;
+    if(x-lastLab > 78){ xlab += `<text class="axis" x="${(x+bw).toFixed(1)}" y="${H-8}"
+      text-anchor="middle">${shortDate(d)}</text>`; lastLab = x; }
+    x += slot;
   });
 
   const sum = (pts, since) => pts.filter(p=>p.d>=since).reduce((a,p)=>a+p.v,0);
@@ -239,31 +252,36 @@ function barCard(el, title, cap){
       ${grid}${
         `<rect class="band" x="${xCut.toFixed(1)}" y="${padT}" width="${(padL+iw-xCut).toFixed(1)}" height="${ih}"/>
          <line class="bandline" x1="${xCut.toFixed(1)}" x2="${xCut.toFixed(1)}" y1="${padT}" y2="${padT+ih}"/>
-         <text class="bandlab" x="${(xCut+6).toFixed(1)}" y="${padT+11}">last 3 months</text>`
+         <text class="bandlab" x="${(xCut+6).toFixed(1)}" y="${padT+11}">last 3 months &times;${ZOOM}</text>`
       }
       <line class="zero" x1="${padL}" x2="${W-padR}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>
       ${bars}${ylab}${xlab}
     </svg>
     <div class="legend"><span><i style="background:${cF}"></i>FII</span>
       <span><i style="background:${cD}"></i>DII</span>
-      <span style="color:var(--text-muted)">₹ crore, net · faded = older than 3 months</span></div>
+      <span style="color:var(--text-muted)">₹ crore, net · last 3 months at double width</span></div>
     <div class="note">All figures in L Cr (lakh crore). The financial year holds
       the full span; the emphasised bars are the recent quarter.</div></div>`);
 }
 
-const A = document.getElementById('optA');
-lineCard(A, 'Nifty 50 P/E', 'Valuation — 6 months, recent quarter emphasised.',
-  D.pe, cssv('--series-1'), {emphasise:true, dp:2});
-lineCard(A, 'USD / INR', 'Traded spot — 6 months, recent quarter emphasised.',
-  D.fx, cssv('--series-2'), {emphasise:true, dp:2});
-lineCard(A, 'India 10Y yield', 'FBIL par yield — 6 months, recent quarter emphasised.',
-  D.y10in, cssv('--series-1'), {emphasise:true, dp:2, unit:'%'});
-
-const B = document.getElementById('optB');
-lineCard(B, 'Nifty 50 P/E', 'The same 6 months with no emphasis — every point weighted alike.',
+// Like for like: one series, one height, three x-scales, stacked so the
+// break lands in the same place on screen and the difference is the shape.
+const C = document.getElementById('cmp');
+lineCard(C, 'Nifty 50 P/E · plain 6 months',
+  'What the board did before — one scale throughout, every day the same width.',
   D.pe, cssv('--series-1'), {emphasise:false, dp:2});
-lineCard(B, 'USD / INR', 'The same 6 months with no emphasis.',
-  D.fx, cssv('--series-2'), {emphasise:false, dp:2});
+lineCard(C, 'Nifty 50 P/E · last 3 months at ×1.5',
+  'The new default. Equal 90-day spans split the width 40 / 60.',
+  D.pe, cssv('--series-1'), {emphasise:true, dp:2, zoom:1.5});
+lineCard(C, 'Nifty 50 P/E · last 3 months at ×2',
+  'The previous proposal, for comparison — 33 / 67, the older span squeezed harder.',
+  D.pe, cssv('--series-1'), {emphasise:true, dp:2, zoom:2});
+
+const A = document.getElementById('optA');
+lineCard(A, 'USD / INR', 'Traded spot — 6 months, last quarter at ×1.5.',
+  D.fx, cssv('--series-2'), {emphasise:true, dp:2});
+lineCard(A, 'India 10Y yield', 'FBIL par yield — 6 months, last quarter at ×1.5.',
+  D.y10in, cssv('--series-1'), {emphasise:true, dp:2, unit:'%'});
 
 barCard(document.getElementById('optC'), 'Institutional flows',
   'Daily net cash-market activity, ₹ crore — financial year to date.');

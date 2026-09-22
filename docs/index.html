@@ -424,6 +424,7 @@ function lineChart(el, series, opts = {}){
        text-anchor="${i===0?'start':i===rows.length-1?'end':'middle'}">${
        esc(fmtX(rows[i].date))}</text>`).join('');
 
+  const endLabels = [];
   const paths = series.map((s, si) => {
     const pts = rows.map(r => r[s.key] == null ? null : {x:X(r), y:Y(r[s.key])})
                     .filter(Boolean);
@@ -440,20 +441,52 @@ function lineChart(el, series, opts = {}){
          </linearGradient></defs>
          <path d="${d}L${last.x},${padT+ih}L${pts[0].x},${padT+ih}Z" fill="url(#${gid})"/>`
       : '';
+    // direct label — identity is never carried by colour alone
+    endLabels.push({
+      text: opts.nameLabels ? `${s.label} ${nf(lastV, opts.dp ?? 2)}`
+                            : nf(lastV, opts.dp ?? 2),
+      color: s.color, x: last.x - 6, y: last.y - 9, v: lastV});
     return area
       + `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round"/>`
       + `<circle cx="${last.x}" cy="${last.y}" r="3.4" fill="${s.color}"
-           stroke="${cssv('--surface-1')}" stroke-width="2"/>`
-      // direct label — identity is never carried by colour alone
-      + `<text class="serieslabel" x="${last.x-6}" y="${last.y-9}"
-           text-anchor="end" fill="${s.color}">${nf(lastV, opts.dp ?? 2)}</text>`;
+           stroke="${cssv('--surface-1')}" stroke-width="2"/>`;
   }).join('');
+
+  // Place the end labels so none sits on top of another. Six government bond
+  // yields inside a point of each other is the normal case, not the edge one,
+  // and stacked text is unreadable however good the colours are.
+  //
+  // Order is by VALUE, not by where the label happens to land: the label for
+  // the higher yield stays above the label for the lower one, so the stack
+  // still reads as the ranking even after they have been nudged apart.
+  const LBL_H = 13;                     // line box, a shade over the 11px text
+  endLabels.sort((a, b) => b.v - a.v);  // highest value first = topmost
+  const top = padT + 9, bottom = padT + ih - 2;
+  endLabels.forEach((l, i) => {         // push down off the one above
+    if(i) l.y = Math.max(l.y, endLabels[i-1].y + LBL_H);
+  });
+  const overflow = endLabels.length
+    ? endLabels[endLabels.length-1].y - bottom : 0;
+  if(overflow > 0) endLabels.forEach(l => { l.y -= overflow; });
+  endLabels.forEach(l => { l.y = Math.max(l.y, top); });
+
+  // A translucent plate behind each label: these sit over the plot, and a
+  // line running under the text is what makes a number hard to read.
+  const labelPlates = endLabels.map(l => {
+    const w = l.text.length * 5.6 + 9;
+    return `<rect x="${(l.x - w + 4).toFixed(1)}" y="${(l.y - 10).toFixed(1)}"
+      width="${w.toFixed(1)}" height="13" rx="3"
+      fill="${cssv('--surface-1')}" opacity=".72"/>`;
+  }).join('');
+  const labelText = endLabels.map(l =>
+    `<text class="serieslabel" x="${l.x.toFixed(1)}" y="${l.y.toFixed(1)}"
+       text-anchor="end" fill="${l.color}">${esc(l.text)}</text>`).join('');
 
   el.innerHTML =
     `<svg viewBox="0 0 ${W} ${H}" role="img"
        aria-label="${esc(series.map(s=>s.label).join(' and '))} over time">
-       ${gridlines.join('')}${emphasis}${ctxPath}${xlabels}${labels.join('')}${paths}
+       ${gridlines.join('')}${emphasis}${ctxPath}${xlabels}${labels.join('')}${paths}${labelPlates}${labelText}
        <g id="cross" style="opacity:0">
          <line y1="${padT}" y2="${padT+ih}" stroke="${cssv('--text-muted')}"
            stroke-width="1" stroke-dasharray="3 3"/>
@@ -1146,8 +1179,8 @@ function render(){
     const map = {pe, us: usc, fx, flows, deriv, w10, w5, fno, oi};
     const opts = {pe:{dp:2, height:235, context:{key:'nifty_close',
                     label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
-                  w10:{dp:2, rangeKey:'w10', height:230},
-                  w5:{dp:2, rangeKey:'w5',  height:230},
+                  w10:{dp:2, rangeKey:'w10', height:230, nameLabels:true},
+                  w5:{dp:2, rangeKey:'w5',  height:230, nameLabels:true},
                   flows:{dp:0, zeroLine:true, height:210},
                   fno:{dp:0, zeroLine:true, height:210},
                   oi:{dp:0, zeroLine:true, height:200}};

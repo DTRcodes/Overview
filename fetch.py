@@ -1487,8 +1487,15 @@ def _bhavcopy(day):
 
     One request covers every stock that listed that day, so resolving N IPOs
     costs one call per distinct listing date rather than one per company.
-    (Note the old `cmDDMMMYYYYbhav.csv.zip` path most tutorials use now 404s;
-    `sec_bhavdata_full` is the live one.)
+
+    Archive depth, probed 22-Sep-2026:
+      sec_bhavdata_full_DDMMYYYY.csv  - used here. Back to about Oct 2019
+        (20-Sep-2019 is a 404, 01-Oct-2019 is not). ~300 KB a day, and the
+        only one of the two carrying DELIV_QTY and DELIV_PER.
+      content/historical/EQUITIES/YYYY/MON/cmDDMONYYYYbhav.csv.zip - still
+        live, contrary to the note that used to sit here, and it reaches back
+        to 1996. ~70 KB zipped, OHLC/volume/ISIN only, no delivery columns.
+        That is the fallback if anything ever needs pre-2019 prices.
     """
     if day in _BHAV_MEMO:
         return _BHAV_MEMO[day]

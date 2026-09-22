@@ -320,8 +320,41 @@ function lineChart(el, series, opts = {}){
   // rows evenly would misdraw both.
   const tof = r => new Date(r.date + 'T00:00:00').getTime();
   const t0 = tof(rows[0]), t1 = tof(rows[rows.length - 1]);
-  const X = r => padL + (t1 === t0 ? iw/2 : ((tof(r) - t0) / (t1 - t0)) * iw);
+
+  // ---- broken x-axis. The recent window gets ZOOM times the pixels per day
+  // of the span before it, so one plot carries the six-month shape and the
+  // three-month detail at once: equal spans, two thirds of the width to the
+  // recent one. Paths, axis labels and the crosshair all go through X(), so
+  // the break is expressed once and everything else follows.
+  const ZOOM = opts.zoom ?? 2;
+  const emphDays = opts.emphasisDays ?? 90;
+  const tCut = t1 - emphDays * 86400000;
+  // Not worth breaking the axis unless there is a meaningful older span left
+  // to compress - on a 1M view the whole window IS the recent one.
+  const split = (t1 - t0) > emphDays * 86400000 * 1.25 && tCut > t0;
+  const dOld = split ? tCut - t0 : t1 - t0;
+  const dNew = split ? t1 - tCut : 0;
+  const wOld = split ? iw * dOld / (dOld + ZOOM * dNew) : iw;
+  const xCut = padL + wOld;
+  const X = r => {
+    const t = tof(r);
+    if(t1 === t0) return padL + iw/2;
+    if(!split) return padL + ((t - t0) / (t1 - t0)) * iw;
+    return t <= tCut ? padL + ((t - t0) / dOld) * wOld
+                     : xCut + ((t - tCut) / dNew) * (iw - wOld);
+  };
   const Y = v => padT + ih - ((v - lo) / (hi - lo)) * ih;
+
+  // A shadow over the magnified span, kept very light: it marks the region,
+  // it does not compete with the line drawn on top of it.
+  const emphasis = split ? `<rect x="${xCut.toFixed(1)}" y="${padT}"
+      width="${(iw - wOld).toFixed(1)}" height="${ih}"
+      fill="${cssv('--text-secondary')}" opacity=".05"/>
+    <line x1="${xCut.toFixed(1)}" x2="${xCut.toFixed(1)}" y1="${padT}"
+      y2="${padT + ih}" stroke="${cssv('--text-muted')}" stroke-width="1"
+      stroke-dasharray="3 3" opacity=".3"/>
+    <text class="axis" x="${(xCut + 5).toFixed(1)}" y="${padT + 9}"
+      opacity=".7">${emphDays === 90 ? '3M' : emphDays + 'd'} &times;${ZOOM}</text>` : '';
 
   const ticks = 4, gridlines = [], labels = [];
   for(let i = 0; i <= ticks; i++){
@@ -368,7 +401,17 @@ function lineChart(el, series, opts = {}){
     : spanDays > 200
       ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', {month:'short', year:'2-digit'})
       : shortDate(d);
-  const xlabels = [0, Math.floor((rows.length-1)/2), rows.length-1]
+  // With a broken axis the middle of the plot is no longer the middle of the
+  // period, so the third label is the break itself rather than row n/2.
+  let iMid = Math.floor((rows.length - 1) / 2);
+  if(split){
+    let best = Infinity;
+    rows.forEach((r, i) => {
+      const d = Math.abs(tof(r) - tCut);
+      if(d < best){ best = d; iMid = i; }
+    });
+  }
+  const xlabels = [0, iMid, rows.length-1]
     .filter((v,i,a) => a.indexOf(v) === i)
     .map(i => `<text class="axis" x="${X(rows[i]).toFixed(1)}" y="${H-5}"
        text-anchor="${i===0?'start':i===rows.length-1?'end':'middle'}">${
@@ -403,7 +446,7 @@ function lineChart(el, series, opts = {}){
   el.innerHTML =
     `<svg viewBox="0 0 ${W} ${H}" role="img"
        aria-label="${esc(series.map(s=>s.label).join(' and '))} over time">
-       ${gridlines.join('')}${ctxPath}${xlabels}${labels.join('')}${paths}
+       ${gridlines.join('')}${emphasis}${ctxPath}${xlabels}${labels.join('')}${paths}
        <g id="cross" style="opacity:0">
          <line y1="${padT}" y2="${padT+ih}" stroke="${cssv('--text-muted')}"
            stroke-width="1" stroke-dasharray="3 3"/>
@@ -566,8 +609,19 @@ function flowBars(el, opts = {}){
   const Y = v => padT + ih - ((v - lo) / (hi - lo)) * ih;
   const y0 = Y(0);
 
-  const slot = iw / rows.length;
-  const bw = Math.max(Math.min(slot * 0.42, 9), 1);
+  // Same break as the line charts: each day in the recent window occupies
+  // ZOOM times the width of an older one, so the bars there are readable
+  // while the earlier months still fit on the same plot.
+  const ZOOM = opts.zoom ?? 2;
+  const emphDays = opts.emphasisDays ?? 90;
+  const cutISO = new Date(new Date(rows[rows.length-1].date + 'T00:00:00')
+                   .getTime() - emphDays * 86400000).toISOString().slice(0,10);
+  const nNew = rows.filter(r => r.date >= cutISO).length;
+  const nOld = rows.length - nNew;
+  const split = nOld > 4 && nNew > 4;
+  const unit = split ? iw / (nOld + ZOOM * nNew) : iw / rows.length;
+  const slotOf = r => (split && r.date >= cutISO) ? unit * ZOOM : unit;
+  const xCut = padL + (split ? unit * nOld : iw);
   const cF = cssv('--flow-fii'), cD = cssv('--flow-dii');
 
   // Horizontal guides at round numbers, plus the zero line drawn solid.
@@ -582,10 +636,10 @@ function flowBars(el, opts = {}){
                  text-anchor="end">${nf(v / 1000, 0)}k</text>`);
   }
 
-  let bars = '', labs = '';
-  const every = Math.max(1, Math.round(rows.length / 6));
-  rows.forEach((r, i) => {
-    const x = padL + i * slot;
+  let bars = '', labs = '', x = padL, lastLabel = -99;
+  rows.forEach(r => {
+    const slot = slotOf(r);
+    const bw = Math.max(Math.min(slot * 0.40, 11), 1);
     [['fii_net', cF, 'FII'], ['dii_net', cD, 'DII']].forEach(([k, col, name], j) => {
       const v = r[k];
       if(v == null) return;
@@ -595,16 +649,28 @@ function flowBars(el, opts = {}){
         fill="${col}"><title>${esc(shortDate(r.date))} · ${name} ${
         nf(v, 0)} cr</title></rect>`;
     });
-    if(i % every === 0){
+    // Label by pixel spacing, not every Nth row: the two halves of a broken
+    // axis have different widths per day, so every-Nth crowds one end.
+    if(x - lastLabel > 76){
       labs += `<text class="axis" x="${(x + bw).toFixed(1)}" y="${H - 8}"
                  text-anchor="middle">${esc(shortDate(r.date))}</text>`;
+      lastLabel = x;
     }
+    x += slot;
   });
+  const emphasis = split ? `<rect x="${xCut.toFixed(1)}" y="${padT}"
+      width="${(padL + iw - xCut).toFixed(1)}" height="${ih}"
+      fill="${cssv('--text-secondary')}" opacity=".05"/>
+    <line x1="${xCut.toFixed(1)}" x2="${xCut.toFixed(1)}" y1="${padT}"
+      y2="${padT + ih}" stroke="${cssv('--text-muted')}" stroke-width="1"
+      stroke-dasharray="3 3" opacity=".3"/>
+    <text class="axis" x="${(xCut + 5).toFixed(1)}" y="${padT + 9}"
+      opacity=".7">3M &times;${ZOOM}</text>` : '';
 
   el.innerHTML =
     `<svg viewBox="0 0 ${W} ${H}" role="img"
        aria-label="Daily net FII and DII cash flows, rupees crore">
-       ${grid.join('')}${ylab.join('')}
+       ${grid.join('')}${emphasis}${ylab.join('')}
        <line class="zero" x1="${padL}" x2="${W - padR}"
          y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>
        ${bars}${labs}

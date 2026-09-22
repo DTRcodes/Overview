@@ -195,9 +195,10 @@ table.tight td:first-child{min-width:150px}
       <button data-d="180" aria-pressed="true">6M</button>
       <button data-d="0">All</button>
     </div>
-    <div class="seg" role="group" aria-label="View">
-      <button id="viewChart" aria-pressed="true">Charts</button>
-      <button id="viewTable" aria-pressed="false">Table</button>
+    <div class="seg" role="group" aria-label="Recent-window zoom">
+      <button id="zoom3m" aria-pressed="true"
+        title="Draw the last 3 months at 1.5x the width per day, so the recent
+ moves are larger than the earlier ones">Zoom 3M</button>
     </div>
   </div>
 
@@ -231,7 +232,15 @@ const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','
 const dmy = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
   return m ? `${m[3]}-${MON[+m[2]-1]}-${m[1]}` : (s || '–'); };
 
-let DATA = null, HIST = [], RANGE = 180, VIEW = 'chart';
+let DATA = null, HIST = [], RANGE = 180;
+// Kept so the card bodies read the same; the table view has no control now.
+const VIEW = 'chart';
+// The recent window is drawn at this many times the pixels per day of the
+// span before it. 1 means one scale throughout - the plain chart.
+let ZOOM3 = true;
+try { const z = localStorage.getItem('zoom3m'); if(z !== null) ZOOM3 = z === '1'; }
+catch(e){}
+const zoomFactor = () => ZOOM3 ? 1.5 : 1;
 
 /* --------------------------------------------------- monotone cubic path
    Fritsch–Carlson: smooth, but it cannot overshoot between points. A plain
@@ -326,12 +335,12 @@ function lineChart(el, series, opts = {}){
   // three-month detail at once: equal spans split the width 40/60. Paths,
   // axis labels and the crosshair all go through X(), so the break is
   // expressed once and everything else follows.
-  const ZOOM = opts.zoom ?? 1.5;
+  const ZOOM = opts.zoom ?? zoomFactor();
   const emphDays = opts.emphasisDays ?? 90;
   const tCut = t1 - emphDays * 86400000;
   // Not worth breaking the axis unless there is a meaningful older span left
   // to compress - on a 1M view the whole window IS the recent one.
-  const split = (t1 - t0) > emphDays * 86400000 * 1.25 && tCut > t0;
+  const split = ZOOM > 1 && (t1 - t0) > emphDays * 86400000 * 1.25 && tCut > t0;
   const dOld = split ? tCut - t0 : t1 - t0;
   const dNew = split ? t1 - tCut : 0;
   const wOld = split ? iw * dOld / (dOld + ZOOM * dNew) : iw;
@@ -612,13 +621,13 @@ function flowBars(el, opts = {}){
   // Same break as the line charts: each day in the recent window occupies
   // ZOOM times the width of an older one, so the bars there are readable
   // while the earlier months still fit on the same plot.
-  const ZOOM = opts.zoom ?? 1.5;
+  const ZOOM = opts.zoom ?? zoomFactor();
   const emphDays = opts.emphasisDays ?? 90;
   const cutISO = new Date(new Date(rows[rows.length-1].date + 'T00:00:00')
                    .getTime() - emphDays * 86400000).toISOString().slice(0,10);
   const nNew = rows.filter(r => r.date >= cutISO).length;
   const nOld = rows.length - nNew;
-  const split = nOld > 4 && nNew > 4;
+  const split = ZOOM > 1 && nOld > 4 && nNew > 4;
   const unit = split ? iw / (nOld + ZOOM * nNew) : iw / rows.length;
   const slotOf = r => (split && r.date >= cutISO) ? unit * ZOOM : unit;
   const xCut = padL + (split ? unit * nOld : iw);
@@ -1217,11 +1226,14 @@ document.getElementById('range').addEventListener('click', e => {
   RANGE = +btn.dataset.d;
   if(DATA) render();
 });
-const vc = document.getElementById('viewChart'), vt = document.getElementById('viewTable');
-vc.addEventListener('click', () => { VIEW='chart'; vc.setAttribute('aria-pressed',true);
-  vt.setAttribute('aria-pressed',false); if(DATA) render(); });
-vt.addEventListener('click', () => { VIEW='table'; vt.setAttribute('aria-pressed',true);
-  vc.setAttribute('aria-pressed',false); if(DATA) render(); });
+const zoomBtn = document.getElementById('zoom3m');
+zoomBtn.setAttribute('aria-pressed', ZOOM3);
+zoomBtn.addEventListener('click', () => {
+  ZOOM3 = !ZOOM3;
+  zoomBtn.setAttribute('aria-pressed', ZOOM3);
+  try { localStorage.setItem('zoom3m', ZOOM3 ? '1' : '0'); } catch(err){}
+  if(DATA) render();
+});
 
 // Copy the TradingView ticker list. execCommand is the fallback because
 // navigator.clipboard needs a secure context, and this page is opened over

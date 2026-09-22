@@ -385,5 +385,49 @@
 "match": "manikaplastech",
 "subject": "Listing of Equity Shares of Manika Plastech Limited (IPO)",
 "symbol": "MANIKA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76456.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76456.pdf",
+"circular_date": "September 22, 2026",
+"company": "Jindal Supreme (India) Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "jindalsupreme",
+"subject": "Listing of Equity Shares of Jindal Supreme (India) Limited (IPO)",
+"symbol": "JSIPL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76471.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76471.pdf",
+"circular_date": "September 22, 2026",
+"company": "Hero Motors Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "heromotors",
+"subject": "Listing of Equity Shares of Hero Motors Limited (IPO)",
+"symbol": "HEROMOTORS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76472.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76472.pdf",
+"circular_date": "September 22, 2026",
+"company": "SS Retail Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "ssretail",
+"subject": "Listing of Equity Shares of SS Retail Limited (IPO)",
+"symbol": null
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76473.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76473.zip",
+"circular_date": "September 22, 2026",
+"company": "Jindal Supreme (India) Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "jindalsupreme",
+"subject": "Listing of Equity Shares of Jindal Supreme (India) Limited (IPO)",
+"symbol": "JSIPL"
 }
 }

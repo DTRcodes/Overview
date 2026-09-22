@@ -233,8 +233,6 @@ const dmy = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
   return m ? `${m[3]}-${MON[+m[2]-1]}-${m[1]}` : (s || '–'); };
 
 let DATA = null, HIST = [], RANGE = 180;
-// Kept so the card bodies read the same; the table view has no control now.
-const VIEW = 'chart';
 // The recent window is drawn at this many times the pixels per day of the
 // span before it. 1 means one scale throughout - the plain chart.
 let ZOOM3 = true;
@@ -731,19 +729,6 @@ function smeSeg(hidden){
       HIDE_SME && hidden ? ` &middot; ${hidden}` : ''}</button></div>`;
 }
 
-function histTable(series, minDays, override, from){
-  // The chart reads its per-card range; the table read the global one, so
-  // switching to Table view on the world-yield cards silently changed the
-  // period under the reader without the selector moving.
-  const rows = rangedRows(minDays, override)
-    .filter(r => !from || r.date >= from).slice().reverse();
-  return `<div class="scroll"><table><thead><tr><th>Date</th>${
-    series.map(s=>`<th>${esc(s.label)}</th>`).join('')}</tr></thead><tbody>${
-    rows.map(r=>`<tr><td>${esc(shortDate(r.date))}</td>${
-      series.map(s=>`<td>${nf(r[s.key],2)}</td>`).join('')}</tr>`).join('')
-  }</tbody></table></div>`;
-}
-
 function render(){
   const d = DATA, S = d.sections || {};
   const dig = (...p) => p.reduce((a,k) => (a && typeof a === 'object') ? a[k] : undefined, S);
@@ -840,35 +825,32 @@ function render(){
                 {key:'dii_net', label:'DII net', color:cssv('--series-2')}];
 
   b.push(card('Nifty 50 P/E', 'Earnings multiple, from the NSE daily archive. The index sits behind it, dashed, on the right axis — context for the multiple, not a second subject.',
-    S.nse_valuation, VIEW==='chart' ? '<div class="chart" data-c="pe"></div>' : histTable(pe)));
+    S.nse_valuation, '<div class="chart" data-c="pe"></div>'));
   b.push(card('US Treasury yields', 'Two tenors, one scale.', S.us_rates,
-    VIEW==='chart' ? '<div class="chart" data-c="us"></div>' : histTable(usc)));
+    '<div class="chart" data-c="us"></div>'));
   b.push(card('FII / DII derivatives positioning',
     'Net index-futures open interest, in contracts. This is positioning, not the ' +
     'cash flow on the FII/DII tile — NSE archives this one, so it goes back years.',
     S.fii_derivatives,
-    VIEW==='chart' ? '<div class="chart" data-c="deriv"></div>' : histTable(deriv)));
+    '<div class="chart" data-c="deriv"></div>'));
   const wyNote = (S.world_yields && S.world_yields.note) || '';
   b.push(card('Major economies — 10Y government bond yields',
     'Always shows at least 1 year; these move too slowly for a 1M window. ' + wyNote,
     S.world_yields,
-    VIEW==='chart' ? '<div class="chart" data-c="w10"></div>'
-                   : histTable(w10, 365, CARD_RANGE.w10),
+    '<div class="chart" data-c="w10"></div>',
     '', rangeSeg('w10')));
   b.push(card('Major economies — 5Y government bond yields',
     'US, Germany, UK, Japan, China and India.',
     S.world_yields,
-    VIEW==='chart' ? '<div class="chart" data-c="w5"></div>'
-                   : histTable(w5, 365, CARD_RANGE.w5),
+    '<div class="chart" data-c="w5"></div>',
     '', rangeSeg('w5')));
   b.push(card('USD / INR', 'Traded spot. The RBI reference fixing is in the FX table.', S.fx_spot,
-    VIEW==='chart' ? '<div class="chart" data-c="fx"></div>' : histTable(fx)));
+    '<div class="chart" data-c="fx"></div>'));
   b.push(card('Institutional flows',
     `Daily net cash-market activity, ₹ crore — the financial year so far, from
      1 April ${fyStart.slice(0,4)}.`,
     S.nse_fii_dii,
-    VIEW==='chart' ? '<div class="chart" data-c="flows"></div>'
-                   : histTable(flows, null, 0, fyStart), 'wide'));
+    '<div class="chart" data-c="flows"></div>', 'wide'));
 
   // ---- FII F&O positioning
   const fdx = S.nse_fii_dii, fo = fdx && fdx.fno;
@@ -884,11 +866,11 @@ function render(){
       <tr><td>Call OI change</td><td>${foQt(fo.fii_call_oi_chg)}</td><td>${esc(fo.call_view||'')}</td></tr>
       <tr><td>Put OI change</td><td>${foQt(fo.fii_put_oi_chg)}</td><td>${esc(fo.put_view||'')}</td></tr>
     </tbody></table></div>` : '<div class="note">No F&O data in this run.</div>') +
-    (VIEW==='chart' ? '<div class="chart" data-c="fno"></div>' : histTable(fno)) +
+    '<div class="chart" data-c="fno"></div>' +
     `<div class="note">Cash and futures share the axis above &mdash; both are
       INR crore, so they are directly comparable. Options OI is a contract
       count, not a rupee amount, so it gets its own panel.</div>` +
-    (VIEW==='chart' ? '<div class="chart" data-c="oi"></div>' : histTable(oi)),
+    '<div class="chart" data-c="oi"></div>',
     'wide'));
 
   // ---- index valuation table
@@ -1160,7 +1142,7 @@ function render(){
 
   document.getElementById('board').innerHTML = b.join('');
 
-  if(VIEW === 'chart'){
+  {
     const map = {pe, us: usc, fx, flows, deriv, w10, w5, fno, oi};
     const opts = {pe:{dp:2, height:235, context:{key:'nifty_close',
                     label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},

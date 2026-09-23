@@ -429,5 +429,29 @@
 "match": "jindalsupreme",
 "subject": "Listing of Equity Shares of Jindal Supreme (India) Limited (IPO)",
 "symbol": "JSIPL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76479.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76479.zip",
+"circular_date": "September 22, 2026",
+"company": "Hero Motors Limited",
+"confirmed_listing": "2026-09-23",
+"confirmed_listing_dmy": "23-Sep-2026",
+"date_pending": false,
+"match": "heromotors",
+"subject": "Listing of Equity Shares of Hero Motors Limited (IPO)",
+"symbol": "HEROMOTORS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76482.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76482.zip",
+"circular_date": "September 22, 2026",
+"company": "SS Retail Limited",
+"confirmed_listing": "2026-09-23",
+"confirmed_listing_dmy": "23-Sep-2026",
+"date_pending": false,
+"match": "ssretail",
+"subject": "Listing of Equity Shares of SS Retail Limited (IPO)",
+"symbol": "SSRETAIL"
 }
 }

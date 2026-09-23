@@ -14846,6 +14846,48 @@
    "close": 727.75,
    "gain_open_pct": 95.62,
    "gain_close_pct": 127.42
+  },
+  "HEROMOTORS": {
+   "symbol": "HEROMOTORS",
+   "company": "Hero Motors Limited",
+   "issue_price": 84.0,
+   "listing_date": "2026-09-23",
+   "open": 84.0,
+   "last": 88.25,
+   "close": 88.25,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 5.06,
+   "from_open_pct": 5.06
+  },
+  "SSRETAIL": {
+   "symbol": "SSRETAIL",
+   "company": "SS Retail Limited",
+   "issue_price": 424.0,
+   "listing_date": "2026-09-23",
+   "open": 424.0,
+   "last": 608.2,
+   "close": 608.2,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 43.44,
+   "from_open_pct": 43.44
+  },
+  "JSIPL": {
+   "symbol": "JSIPL",
+   "company": "Jindal Supreme (India) Limited",
+   "issue_price": 93.0,
+   "listing_date": "2026-09-23",
+   "open": 93.0,
+   "last": 126.0,
+   "close": 126.0,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 35.48,
+   "from_open_pct": 35.48
   }
  },
  "unresolvable": [

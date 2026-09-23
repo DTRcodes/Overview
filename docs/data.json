@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-23T08:12:03+05:30",
-  "generated_at_utc": "2026-09-23T02:42:03+00:00",
+  "generated_at": "2026-09-23T10:11:56+05:30",
+  "generated_at_utc": "2026-09-23T04:41:56+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-23T08:11:15+05:30",
+      "fetched_at": "2026-09-23T10:11:13+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-23T08:11:16+05:30",
+      "fetched_at": "2026-09-23T10:11:14+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-23T08:11:17+05:30",
+      "fetched_at": "2026-09-23T10:11:15+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-23T08:11:18+05:30",
+      "fetched_at": "2026-09-23T10:11:16+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.72,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-23T08:11:20+05:30",
+      "fetched_at": "2026-09-23T10:11:18+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-23T08:11:23+05:30",
+      "fetched_at": "2026-09-23T10:11:21+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-23T08:11:35+05:30",
+      "fetched_at": "2026-09-23T10:11:33+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 681,
@@ -321,10 +321,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.58,
+      "usd_inr": 95.625,
       "as_of": "2026-09-23",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-23T08:11:36+05:30",
+      "fetched_at": "2026-09-23T10:11:34+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -339,7 +339,7 @@
           "listing_date": "23-SEP-2026",
           "ipo_closed": "18-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-23",
           "confirmed_listing_dmy": "23-Sep-2026",
           "confirmed_by": "NSE circular September 22, 2026",
@@ -359,7 +359,7 @@
           "listing_date": "23-SEP-2026",
           "ipo_closed": "18-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-23",
           "confirmed_listing_dmy": "23-Sep-2026",
           "confirmed_by": "NSE circular September 22, 2026",
@@ -2031,7 +2031,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-23",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-23T08:11:40+05:30",
+      "fetched_at": "2026-09-23T10:11:38+05:30",
       "stale": false,
       "calendar_added": 21,
       "horizon": {
@@ -2048,28 +2048,28 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "SS Retail Limited",
-          "match": "ssretail",
           "board": "mainboard",
-          "circular_date": "September 22, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76482.zip",
-          "subject": "Listing of Equity Shares of SS Retail Limited (IPO)",
+          "circular_date": "September 22, 2026",
+          "company": "SS Retail Limited",
           "confirmed_listing": "2026-09-23",
-          "symbol": "SSRETAIL",
           "confirmed_listing_dmy": "23-Sep-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "ssretail",
+          "subject": "Listing of Equity Shares of SS Retail Limited (IPO)",
+          "symbol": "SSRETAIL"
         },
         {
-          "company": "Hero Motors Limited",
-          "match": "heromotors",
           "board": "mainboard",
-          "circular_date": "September 22, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76479.zip",
-          "subject": "Listing of Equity Shares of Hero Motors Limited (IPO)",
+          "circular_date": "September 22, 2026",
+          "company": "Hero Motors Limited",
           "confirmed_listing": "2026-09-23",
-          "symbol": "HEROMOTORS",
           "confirmed_listing_dmy": "23-Sep-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "heromotors",
+          "subject": "Listing of Equity Shares of Hero Motors Limited (IPO)",
+          "symbol": "HEROMOTORS"
         },
         {
           "board": "mainboard",
@@ -2319,10 +2319,10 @@
       "confirmed": 15,
       "checked": 23,
       "remembered": 40,
-      "as_of": "2026-09-23T08:11:47+05:30",
+      "as_of": "2026-09-23T10:11:38+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-23T08:11:47+05:30",
+      "fetched_at": "2026-09-23T10:11:38+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -2332,16 +2332,55 @@
         "SSRETAIL",
         "JSIPL"
       ],
-      "live": [],
-      "no_quote_yet": [
-        "HEROMOTORS",
-        "SSRETAIL",
-        "JSIPL"
+      "live": [
+        {
+          "symbol": "HEROMOTORS",
+          "company": "Hero Motors Limited",
+          "issue_price": 84.0,
+          "listing_date": "2026-09-23",
+          "open": 84.0,
+          "last": 88.25,
+          "close": 88.25,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 5.06,
+          "from_open_pct": 5.06
+        },
+        {
+          "symbol": "SSRETAIL",
+          "company": "SS Retail Limited",
+          "issue_price": 424.0,
+          "listing_date": "2026-09-23",
+          "open": 424.0,
+          "last": 608.2,
+          "close": 608.2,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 43.44,
+          "from_open_pct": 43.44
+        },
+        {
+          "symbol": "JSIPL",
+          "company": "Jindal Supreme (India) Limited",
+          "issue_price": 93.0,
+          "listing_date": "2026-09-23",
+          "open": 93.0,
+          "last": 126.0,
+          "close": 126.0,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 35.48,
+          "from_open_pct": 35.48
+        }
       ],
+      "no_quote_yet": [],
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-23T08:11:48+05:30",
+      "fetched_at": "2026-09-23T10:11:39+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -3159,10 +3198,10 @@
         "median_abs_error_pct": 7.0,
         "overstated_pct": 59.3
       },
-      "as_of": "2026-09-23T08:11:49+05:30",
+      "as_of": "2026-09-23T10:11:42+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-23T08:11:49+05:30",
+      "fetched_at": "2026-09-23T10:11:42+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -3838,13 +3877,55 @@
           "match": "farmpeace"
         }
       ],
-      "as_of": "2026-09-23T08:11:51+05:30",
+      "as_of": "2026-09-23T10:11:47+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-23T08:11:51+05:30",
+      "fetched_at": "2026-09-23T10:11:47+05:30",
       "stale": false
     },
     "ipo_gains": {
       "listings": [
+        {
+          "symbol": "HEROMOTORS",
+          "company": "Hero Motors Limited",
+          "issue_price": 84.0,
+          "listing_date": "2026-09-23",
+          "open": 84.0,
+          "last": 88.25,
+          "close": 88.25,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 5.06,
+          "from_open_pct": 5.06
+        },
+        {
+          "symbol": "SSRETAIL",
+          "company": "SS Retail Limited",
+          "issue_price": 424.0,
+          "listing_date": "2026-09-23",
+          "open": 424.0,
+          "last": 608.2,
+          "close": 608.2,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 43.44,
+          "from_open_pct": 43.44
+        },
+        {
+          "symbol": "JSIPL",
+          "company": "Jindal Supreme (India) Limited",
+          "issue_price": 93.0,
+          "listing_date": "2026-09-23",
+          "open": 93.0,
+          "last": 126.0,
+          "close": 126.0,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 35.48,
+          "from_open_pct": 35.48
+        },
         {
           "symbol": "MANIKA",
           "company": "Manika Plastech Limited",
@@ -4413,59 +4494,18 @@
           "low": 114.8,
           "intra_close_pct": -4.97,
           "intra_pop_pct": 0.0
-        },
-        {
-          "symbol": "SKYTECH",
-          "company": "Skytech Infinite Platform Limited",
-          "issue_price": 77.0,
-          "listing_date": "2026-08-21",
-          "open": 74.0,
-          "close": 70.3,
-          "gain_open_pct": -3.9,
-          "gain_close_pct": -8.7,
-          "price_source": "bhavcopy",
-          "high": 74.0,
-          "low": 70.3,
-          "intra_close_pct": -5.0,
-          "intra_pop_pct": 0.0
-        },
-        {
-          "symbol": "CREDENT",
-          "company": "Credent Connect N Care Limited",
-          "issue_price": 189.0,
-          "listing_date": "2026-08-20",
-          "open": 359.1,
-          "close": 377.05,
-          "gain_open_pct": 90.0,
-          "gain_close_pct": 99.5,
-          "price_source": "bhavcopy",
-          "high": 377.05,
-          "low": 359.1,
-          "intra_close_pct": 5.0,
-          "intra_pop_pct": 5.0
-        },
-        {
-          "symbol": "SHIPROCKET",
-          "company": "Shiprocket Limited",
-          "issue_price": 97.0,
-          "listing_date": "2026-08-19",
-          "open": 131.0,
-          "close": 143.45,
-          "gain_open_pct": 35.05,
-          "gain_close_pct": 47.89,
-          "price_source": "bhavcopy",
-          "high": 156.0,
-          "low": 131.0,
-          "intra_close_pct": 9.5,
-          "intra_pop_pct": 19.08
         }
       ],
-      "resolved_total": 965,
+      "resolved_total": 968,
       "added_this_run": 0,
       "bhavcopy_calls": 0,
       "corrections": [],
-      "verified_against_bhavcopy": 40,
-      "awaiting_bhavcopy": [],
+      "verified_against_bhavcopy": 37,
+      "awaiting_bhavcopy": [
+        "HEROMOTORS",
+        "SSRETAIL",
+        "JSIPL"
+      ],
       "monthly": [
         {
           "month": "2025-04",
@@ -4588,8 +4628,8 @@
         },
         {
           "month": "2026-09",
-          "count": 29,
-          "median_listing_pct": 9.9,
+          "count": 32,
+          "median_listing_pct": 8.47,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 4.98
         }
@@ -4597,48 +4637,48 @@
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 76,
+          "count": 79,
           "from": "2026-06-24",
-          "to": "2026-09-21",
-          "median_listing_pct": 10.59,
+          "to": "2026-09-23",
+          "median_listing_pct": 10.0,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 3.53,
-          "positive_open_pct": 71.1
+          "positive_open_pct": 68.4
         },
         {
-          "label": "last 100 listings",
-          "count": 100,
-          "from": "2026-03-24",
-          "to": "2026-09-21",
-          "median_listing_pct": 8.47,
-          "median_intra_pop_pct": 6.12,
+          "label": "last 6 months",
+          "count": 101,
+          "from": "2026-03-30",
+          "to": "2026-09-23",
+          "median_listing_pct": 7.22,
+          "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 3.53,
-          "positive_open_pct": 68.0
+          "positive_open_pct": 65.3
         }
       ],
       "stats_last_50": {
         "label": "last 50 listings",
         "count": 50,
-        "from": "2026-08-06",
-        "to": "2026-09-21",
-        "median_listing_pct": 15.62,
+        "from": "2026-08-14",
+        "to": "2026-09-23",
+        "median_listing_pct": 11.08,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 4.59,
-        "positive_open_pct": 72.0
+        "median_intra_close_pct": 1.38,
+        "positive_open_pct": 66.0
       },
       "stats_all": {
         "label": "all listings",
-        "count": 965,
+        "count": 968,
         "from": "2019-10-14",
-        "to": "2026-09-21",
-        "median_listing_pct": 12.0,
+        "to": "2026-09-23",
+        "median_listing_pct": 11.78,
         "median_intra_pop_pct": 5.0,
         "median_intra_close_pct": 2.57,
-        "positive_open_pct": 74.7
+        "positive_open_pct": 74.5
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-23T08:12:01+05:30",
+      "fetched_at": "2026-09-23T10:11:53+05:30",
       "stale": false
     },
     "earnings": {
@@ -4743,32 +4783,32 @@
           "quarters": [
             {
               "quarter": "2026-06-30",
-              "revenue": 485737560000.0,
-              "net_income": 78280020000.0,
+              "revenue": 485953545000.0,
+              "net_income": 78314827500.0,
               "age_days": 85
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 481723200000.0,
-              "net_income": 87838020000.0,
+              "revenue": 481937400000.0,
+              "net_income": 87877077500.0,
               "age_days": 176
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 487362420000.0,
-              "net_income": 71398260000.0,
+              "revenue": 487579127500.0,
+              "net_income": 71430007500.0,
               "age_days": 266
             },
             {
               "quarter": "2025-09-30",
-              "revenue": 485164080000.0,
-              "net_income": 80191620000.0,
+              "revenue": 485379810000.0,
+              "net_income": 80227277500.0,
               "age_days": 358
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 95.58,
+          "fx_used": 95.6225,
           "latest_quarter": "2026-06-30",
           "age_days": 85,
           "stale": false
@@ -4809,7 +4849,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 95.58,
+      "usd_inr": 95.6225,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -4818,7 +4858,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-23T08:12:03+05:30",
+      "fetched_at": "2026-09-23T10:11:56+05:30",
       "stale": false
     }
   }

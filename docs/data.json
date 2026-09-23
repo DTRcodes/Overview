@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-23T19:07:15+05:30",
-  "generated_at_utc": "2026-09-23T13:37:15+00:00",
+  "generated_at": "2026-09-23T19:47:21+05:30",
+  "generated_at_utc": "2026-09-23T14:17:21+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -27,16 +27,16 @@
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "buy": 9845.8095703125,
-          "sell": 13655.7998046875,
-          "net": -3809.990234375,
-          "view": "BEARISH"
+          "date": "23-Sep-2026",
+          "buy": 13580.4,
+          "sell": 11962.95,
+          "net": 1617.45
         },
         "dii": {
-          "buy": 14599.7197265625,
-          "sell": 10479.650390625,
-          "net": 4120.0693359375,
-          "view": "BULLISH"
+          "date": "23-Sep-2026",
+          "buy": 14404.9,
+          "sell": 12063.44,
+          "net": 2341.46
         }
       },
       "fno": {
@@ -49,8 +49,8 @@
         "call_view": "BEARISH",
         "put_view": "BEARISH"
       },
-      "as_of": "2026-09-22",
-      "window_days": 22,
+      "as_of": "2026-09-23",
+      "window_days": 23,
       "months_advertised": [
         "2026-March",
         "2026-April",
@@ -61,11 +61,11 @@
         "2026-September"
       ],
       "unit": "INR crore",
-      "via": "sensibull (rolling window)",
+      "via": "nseindia for 2026-09-23, sensibull window behind at 2026-09-22",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-23T19:06:44+05:30",
+      "fetched_at": "2026-09-23T19:47:21+05:30",
       "stale": false,
-      "series_days": 22
+      "series_days": 23
     },
     "fii_derivatives": {
       "date": "2026-09-23",

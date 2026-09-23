@@ -453,5 +453,16 @@
 "match": "ssretail",
 "subject": "Listing of Equity Shares of SS Retail Limited (IPO)",
 "symbol": "SSRETAIL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76490.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76490.pdf",
+"circular_date": "September 23, 2026",
+"company": "Sonaselection India Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "sonaselection",
+"subject": "Listing of Equity Shares of Sonaselection India Limited (IPO)",
+"symbol": "SONA"
 }
 }

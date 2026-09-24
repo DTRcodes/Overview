@@ -464,5 +464,41 @@
 "match": "sonaselection",
 "subject": "Listing of Equity Shares of Sonaselection India Limited (IPO)",
 "symbol": "SONA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76503.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76503.zip",
+"circular_date": "September 23, 2026",
+"company": "SpectraA Technology Solutions Limited",
+"confirmed_listing": "2026-09-24",
+"confirmed_listing_dmy": "24-Sep-2026",
+"date_pending": false,
+"match": "spectraatechnologysolutions",
+"subject": "Listing of Equity Shares of SpectraA Technology Solutions Limited (SME IPO)",
+"symbol": "SPECTRAA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76512.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76512.zip",
+"circular_date": "September 23, 2026",
+"company": "Sonaselection India Limited",
+"confirmed_listing": "2026-09-24",
+"confirmed_listing_dmy": "24-Sep-2026",
+"date_pending": false,
+"match": "sonaselection",
+"subject": "Listing of Equity Shares of Sonaselection India Limited (IPO)",
+"symbol": "SONA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76517.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76517.zip",
+"circular_date": "September 23, 2026",
+"company": "Kheria Autocomp Limited",
+"confirmed_listing": "2026-09-24",
+"confirmed_listing_dmy": "24-Sep-2026",
+"date_pending": false,
+"match": "kheriaautocomp",
+"subject": "Listing of Equity Shares of Kheria Autocomp Limited (SME IPO)",
+"symbol": "KHERIAAUTO"
 }
 }

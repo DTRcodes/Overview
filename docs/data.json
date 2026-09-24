@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-24T08:12:47+05:30",
-  "generated_at_utc": "2026-09-24T02:42:47+00:00",
+  "generated_at": "2026-09-24T10:11:51+05:30",
+  "generated_at_utc": "2026-09-24T04:41:51+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-24T08:12:07+05:30",
+      "fetched_at": "2026-09-24T10:11:14+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-24T08:12:08+05:30",
+      "fetched_at": "2026-09-24T10:11:15+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-24T08:12:09+05:30",
+      "fetched_at": "2026-09-24T10:11:16+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-24T08:12:09+05:30",
+      "fetched_at": "2026-09-24T10:11:16+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.74,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-24T08:12:12+05:30",
+      "fetched_at": "2026-09-24T10:11:19+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-24T08:12:14+05:30",
+      "fetched_at": "2026-09-24T10:11:22+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-24T08:12:27+05:30",
+      "fetched_at": "2026-09-24T10:11:34+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 682,
@@ -321,10 +321,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.73,
+      "usd_inr": 95.885,
       "as_of": "2026-09-24",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-24T08:12:28+05:30",
+      "fetched_at": "2026-09-24T10:11:36+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -339,11 +339,15 @@
           "listing_date": "24-SEP-2026",
           "ipo_closed": "21-SEP-2026",
           "traded_today": false,
-          "listing_label": "Lists Today",
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-09-24",
           "confirmed_listing_dmy": "24-Sep-2026",
           "confirmed_by": "NSE circular September 23, 2026",
-          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76512.zip"
+          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76512.zip",
+          "gmp": 0.0,
+          "gmp_est_listing": 99.0,
+          "gmp_est_gain_pct": 0.0,
+          "gmp_direction": "flat"
         },
         {
           "company": "Kheria Autocomp Limited",
@@ -359,7 +363,11 @@
           "confirmed_listing": "2026-09-24",
           "confirmed_listing_dmy": "24-Sep-2026",
           "confirmed_by": "NSE circular September 23, 2026",
-          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76517.zip"
+          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76517.zip",
+          "gmp": 3.0,
+          "gmp_est_listing": 104.0,
+          "gmp_est_gain_pct": 2.97,
+          "gmp_direction": "premium"
         },
         {
           "company": "SpectraA Technology Solutions Limited",
@@ -375,7 +383,11 @@
           "confirmed_listing": "2026-09-24",
           "confirmed_listing_dmy": "24-Sep-2026",
           "confirmed_by": "NSE circular September 23, 2026",
-          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76503.zip"
+          "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML76503.zip",
+          "gmp": 81.0,
+          "gmp_est_listing": 199.0,
+          "gmp_est_gain_pct": 68.64,
+          "gmp_direction": "premium"
         }
       ],
       "awaiting": [
@@ -2217,7 +2229,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-24",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-24T08:12:32+05:30",
+      "fetched_at": "2026-09-24T10:11:39+05:30",
       "stale": false,
       "calendar_added": 24,
       "horizon": {
@@ -2229,45 +2241,45 @@
         "forthcoming": 17
       },
       "circular_confirmed": 3,
-      "gmp_matched": 37
+      "gmp_matched": 40
     },
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Kheria Autocomp Limited",
-          "match": "kheriaautocomp",
           "board": "SME",
-          "circular_date": "September 23, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76517.zip",
+          "circular_date": "September 23, 2026",
+          "company": "Kheria Autocomp Limited",
+          "confirmed_listing": "2026-09-24",
+          "confirmed_listing_dmy": "24-Sep-2026",
+          "date_pending": false,
+          "match": "kheriaautocomp",
           "subject": "Listing of Equity Shares of Kheria Autocomp Limited (SME IPO)",
-          "confirmed_listing": "2026-09-24",
-          "symbol": "KHERIAAUTO",
-          "confirmed_listing_dmy": "24-Sep-2026",
-          "date_pending": false
+          "symbol": "KHERIAAUTO"
         },
         {
-          "company": "Sonaselection India Limited",
-          "match": "sonaselection",
           "board": "mainboard",
-          "circular_date": "September 23, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76512.zip",
-          "subject": "Listing of Equity Shares of Sonaselection India Limited (IPO)",
+          "circular_date": "September 23, 2026",
+          "company": "Sonaselection India Limited",
           "confirmed_listing": "2026-09-24",
-          "symbol": "SONA",
           "confirmed_listing_dmy": "24-Sep-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "sonaselection",
+          "subject": "Listing of Equity Shares of Sonaselection India Limited (IPO)",
+          "symbol": "SONA"
         },
         {
-          "company": "SpectraA Technology Solutions Limited",
-          "match": "spectraatechnologysolutions",
           "board": "SME",
-          "circular_date": "September 23, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76503.zip",
-          "subject": "Listing of Equity Shares of SpectraA Technology Solutions Limited (SME IPO)",
+          "circular_date": "September 23, 2026",
+          "company": "SpectraA Technology Solutions Limited",
           "confirmed_listing": "2026-09-24",
-          "symbol": "SPECTRAA",
           "confirmed_listing_dmy": "24-Sep-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "spectraatechnologysolutions",
+          "subject": "Listing of Equity Shares of SpectraA Technology Solutions Limited (SME IPO)",
+          "symbol": "SPECTRAA"
         },
         {
           "board": "mainboard",
@@ -2541,10 +2553,10 @@
       "confirmed": 18,
       "checked": 26,
       "remembered": 44,
-      "as_of": "2026-09-24T08:12:36+05:30",
+      "as_of": "2026-09-24T10:11:39+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-24T08:12:36+05:30",
+      "fetched_at": "2026-09-24T10:11:39+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -2554,16 +2566,30 @@
         "KHERIAAUTO",
         "SPECTRAA"
       ],
-      "live": [],
+      "live": [
+        {
+          "symbol": "SONA",
+          "company": "Sonaselection India Limited",
+          "issue_price": 99.0,
+          "listing_date": "2026-09-24",
+          "open": 99.0,
+          "last": 107.42,
+          "close": 107.42,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 8.51,
+          "from_open_pct": 8.51
+        }
+      ],
       "no_quote_yet": [
-        "SONA",
         "KHERIAAUTO",
         "SPECTRAA"
       ],
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-24T08:12:37+05:30",
+      "fetched_at": "2026-09-24T10:11:40+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2723,6 +2749,30 @@
           "window": "22-24 Sept",
           "status": "Open",
           "match": "varmoragranito"
+        },
+        {
+          "company": "Sonaselection India",
+          "board": "mainboard",
+          "gmp": 0.0,
+          "price_band_upper": 99.0,
+          "est_listing": 99.0,
+          "est_gain_pct": 0.0,
+          "direction": "flat",
+          "window": "17-21 Sept",
+          "status": "Closed",
+          "match": "sonaselection"
+        },
+        {
+          "company": "NSE",
+          "board": "mainboard",
+          "gmp": 40.0,
+          "price_band_upper": 1785.0,
+          "est_listing": 1825.0,
+          "est_gain_pct": 2.24,
+          "direction": "premium",
+          "window": "17-21 Sept",
+          "status": "Closed",
+          "match": "nse"
         },
         {
           "company": "Omara Ventures",
@@ -3023,6 +3073,30 @@
           "window": "18-22 Sept",
           "status": "Closed",
           "match": "axiomgasengineering"
+        },
+        {
+          "company": "Kheria Autocomp",
+          "board": "sme",
+          "gmp": 3.0,
+          "price_band_upper": 101.0,
+          "est_listing": 104.0,
+          "est_gain_pct": 2.97,
+          "direction": "premium",
+          "window": "17-21 Sept",
+          "status": "Closed",
+          "match": "kheriaautocomp"
+        },
+        {
+          "company": "SpectraA Technology",
+          "board": "sme",
+          "gmp": 81.0,
+          "price_band_upper": 118.0,
+          "est_listing": 199.0,
+          "est_gain_pct": 68.64,
+          "direction": "premium",
+          "window": "17-21 Sept",
+          "status": "Closed",
+          "match": "spectraatechnology"
         }
       ],
       "history": [
@@ -3393,10 +3467,10 @@
         "median_abs_error_pct": 7.0,
         "overstated_pct": 59.3
       },
-      "as_of": "2026-09-24T08:12:38+05:30",
+      "as_of": "2026-09-24T10:11:43+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-24T08:12:38+05:30",
+      "fetched_at": "2026-09-24T10:11:43+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -4112,13 +4186,27 @@
           "match": "qualianceinternational"
         }
       ],
-      "as_of": "2026-09-24T08:12:40+05:30",
+      "as_of": "2026-09-24T10:11:45+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-24T08:12:40+05:30",
+      "fetched_at": "2026-09-24T10:11:45+05:30",
       "stale": false
     },
     "ipo_gains": {
       "listings": [
+        {
+          "symbol": "SONA",
+          "company": "Sonaselection India Limited",
+          "issue_price": 99.0,
+          "listing_date": "2026-09-24",
+          "open": 99.0,
+          "last": 107.42,
+          "close": 107.42,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 8.51,
+          "from_open_pct": 8.51
+        },
         {
           "symbol": "HEROMOTORS",
           "company": "Hero Motors Limited",
@@ -4720,29 +4808,16 @@
           "low": 56.57,
           "intra_close_pct": -3.47,
           "intra_pop_pct": 0.0
-        },
-        {
-          "symbol": "FASCINATE",
-          "company": "Fascinate Textiles Limited",
-          "issue_price": 151.0,
-          "listing_date": "2026-08-24",
-          "open": 120.8,
-          "close": 114.8,
-          "gain_open_pct": -20.0,
-          "gain_close_pct": -23.97,
-          "price_source": "bhavcopy",
-          "high": 120.8,
-          "low": 114.8,
-          "intra_close_pct": -4.97,
-          "intra_pop_pct": 0.0
         }
       ],
-      "resolved_total": 968,
+      "resolved_total": 969,
       "added_this_run": 0,
       "bhavcopy_calls": 0,
       "corrections": [],
-      "verified_against_bhavcopy": 40,
-      "awaiting_bhavcopy": [],
+      "verified_against_bhavcopy": 39,
+      "awaiting_bhavcopy": [
+        "SONA"
+      ],
       "monthly": [
         {
           "month": "2025-04",
@@ -4865,8 +4940,8 @@
         },
         {
           "month": "2026-09",
-          "count": 32,
-          "median_listing_pct": 10.0,
+          "count": 33,
+          "median_listing_pct": 9.9,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 5.0
         }
@@ -4874,48 +4949,48 @@
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 78,
+          "count": 79,
           "from": "2026-06-25",
-          "to": "2026-09-23",
-          "median_listing_pct": 11.08,
+          "to": "2026-09-24",
+          "median_listing_pct": 10.59,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 4.59,
-          "positive_open_pct": 70.5
+          "positive_open_pct": 69.6
         },
         {
           "label": "last 6 months",
-          "count": 101,
+          "count": 102,
           "from": "2026-03-30",
-          "to": "2026-09-23",
+          "to": "2026-09-24",
           "median_listing_pct": 8.47,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 3.97,
-          "positive_open_pct": 67.3
+          "positive_open_pct": 66.7
         }
       ],
       "stats_last_50": {
         "label": "last 50 listings",
         "count": 50,
         "from": "2026-08-14",
-        "to": "2026-09-23",
+        "to": "2026-09-24",
         "median_listing_pct": 15.62,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 4.98,
-        "positive_open_pct": 70.0
+        "median_intra_close_pct": 4.59,
+        "positive_open_pct": 68.0
       },
       "stats_all": {
         "label": "all listings",
-        "count": 968,
+        "count": 969,
         "from": "2019-10-14",
-        "to": "2026-09-23",
-        "median_listing_pct": 12.09,
+        "to": "2026-09-24",
+        "median_listing_pct": 12.0,
         "median_intra_pop_pct": 5.0,
         "median_intra_close_pct": 2.75,
-        "positive_open_pct": 74.7
+        "positive_open_pct": 74.6
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-24T08:12:46+05:30",
+      "fetched_at": "2026-09-24T10:11:50+05:30",
       "stale": false
     },
     "earnings": {
@@ -5020,32 +5095,32 @@
           "quarters": [
             {
               "quarter": "2026-06-30",
-              "revenue": 486499860000.0,
-              "net_income": 78402870000.0,
+              "revenue": 487287570000.0,
+              "net_income": 78529815000.0,
               "age_days": 86
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 482479200000.0,
-              "net_income": 87975870000.0,
+              "revenue": 483260400000.0,
+              "net_income": 88118315000.0,
               "age_days": 177
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 488127270000.0,
-              "net_income": 71510310000.0,
+              "revenue": 488917615000.0,
+              "net_income": 71626095000.0,
               "age_days": 267
             },
             {
               "quarter": "2025-09-30",
-              "revenue": 485925480000.0,
-              "net_income": 80317470000.0,
+              "revenue": 486712260000.0,
+              "net_income": 80447515000.0,
               "age_days": 359
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 95.73,
+          "fx_used": 95.885,
           "latest_quarter": "2026-06-30",
           "age_days": 86,
           "stale": false
@@ -5086,7 +5161,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 95.73,
+      "usd_inr": 95.885,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -5095,7 +5170,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-24T08:12:47+05:30",
+      "fetched_at": "2026-09-24T10:11:51+05:30",
       "stale": false
     }
   }

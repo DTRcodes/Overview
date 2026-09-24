@@ -14894,6 +14894,20 @@
    "low": 120.0,
    "intra_close_pct": 5.0,
    "intra_pop_pct": 5.0
+  },
+  "SONA": {
+   "symbol": "SONA",
+   "company": "Sonaselection India Limited",
+   "issue_price": 99.0,
+   "listing_date": "2026-09-24",
+   "open": 99.0,
+   "last": 107.42,
+   "close": 107.42,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 8.51,
+   "from_open_pct": 8.51
   }
  },
  "unresolvable": [

@@ -14942,6 +14942,21 @@
    "gain_open_pct": 90.0,
    "gain_close_pct": 99.49,
    "price_source": "bhavcopy"
+  },
+  "AXIOMGAS": {
+   "high": 57.0,
+   "low": 54.0,
+   "intra_pop_pct": 4.11,
+   "intra_close_pct": -1.28,
+   "symbol": "AXIOMGAS",
+   "company": "Axiom Gas Engineering Limited",
+   "issue_price": 54.0,
+   "listing_date": "2026-09-25",
+   "ipo_closed": "22-SEP-2026",
+   "open": 54.75,
+   "close": 54.05,
+   "gain_open_pct": 1.39,
+   "gain_close_pct": 0.09
   }
  },
  "unresolvable": [

@@ -1,7 +1,12 @@
 {
-  "generated_at": "2026-09-25T08:11:22+05:30",
-  "generated_at_utc": "2026-09-25T02:41:22+00:00",
-  "failures": [],
+  "generated_at": "2026-09-25T10:13:38+05:30",
+  "generated_at_utc": "2026-09-25T04:43:38+00:00",
+  "failures": [
+    {
+      "source": "ipo_calendar",
+      "error": "ConnectTimeout: HTTPSConnectionPool(host='ipowatch.in', port=443): Max retries exceeded with url: /upcoming-ipo-calendar-ipo-list/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='ipowatch.in', port=443) at 0x7f23a756d040>, 'Connection to ipowatch.in timed out. (connect timeout=30)'))"
+    }
+  ],
   "sections": {
     "rbi": {
       "rates": {
@@ -21,7 +26,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-09-25T08:10:47+05:30",
+      "fetched_at": "2026-09-25T10:12:30+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +68,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-09-25T08:10:48+05:30",
+      "fetched_at": "2026-09-25T10:12:32+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +103,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-09-25T08:10:49+05:30",
+      "fetched_at": "2026-09-25T10:12:33+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +168,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-09-25T08:10:50+05:30",
+      "fetched_at": "2026-09-25T10:12:34+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +187,7 @@
       "spread_10y_2y": 0.81,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-09-25T08:10:52+05:30",
+      "fetched_at": "2026-09-25T10:12:36+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +228,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-09-25T08:10:54+05:30",
+      "fetched_at": "2026-09-25T10:12:38+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +308,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-09-25T08:11:05+05:30",
+      "fetched_at": "2026-09-25T10:12:49+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 683,
@@ -321,10 +326,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 95.945,
+      "usd_inr": 95.9125,
       "as_of": "2026-09-25",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-09-25T08:11:06+05:30",
+      "fetched_at": "2026-09-25T10:12:49+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -412,9 +417,9 @@
           "days_since_close": 2,
           "days_to_listing": 3,
           "listing_label": "Lists Monday",
-          "gmp": 55.0,
-          "gmp_est_listing": 161.0,
-          "gmp_est_gain_pct": 51.89,
+          "gmp": 70.0,
+          "gmp_est_listing": 176.0,
+          "gmp_est_gain_pct": 66.04,
           "gmp_direction": "premium"
         },
         {
@@ -699,9 +704,9 @@
           "expected_listing": "2026-10-01",
           "expected_listing_dmy": "01-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 45.0,
-          "gmp_est_listing": 450.0,
-          "gmp_est_gain_pct": 11.11,
+          "gmp": 49.0,
+          "gmp_est_listing": 454.0,
+          "gmp_est_gain_pct": 12.1,
           "gmp_direction": "premium"
         },
         {
@@ -798,9 +803,9 @@
           "expected_listing": "2026-10-05",
           "expected_listing_dmy": "05-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 1.5,
-          "gmp_est_listing": 33.5,
-          "gmp_est_gain_pct": 4.69,
+          "gmp": 2.0,
+          "gmp_est_listing": 34.0,
+          "gmp_est_gain_pct": 6.25,
           "gmp_direction": "premium"
         },
         {
@@ -840,10 +845,10 @@
           "from_calendar": true,
           "live": true,
           "status": "Active",
-          "gmp": 0.0,
-          "gmp_est_listing": 29.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
+          "gmp": 3.0,
+          "gmp_est_listing": 32.0,
+          "gmp_est_gain_pct": 10.34,
+          "gmp_direction": "premium"
         },
         {
           "company": "German Green Steel and Power Limited",
@@ -897,9 +902,9 @@
           "expected_listing": "2026-10-05",
           "expected_listing_dmy": "05-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 60.0,
-          "gmp_est_listing": 332.0,
-          "gmp_est_gain_pct": 22.06,
+          "gmp": 113.0,
+          "gmp_est_listing": 385.0,
+          "gmp_est_gain_pct": 41.54,
           "gmp_direction": "premium"
         },
         {
@@ -915,9 +920,9 @@
           "expected_listing": "2026-10-05",
           "expected_listing_dmy": "05-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 35.0,
-          "gmp_est_listing": 340.0,
-          "gmp_est_gain_pct": 11.48,
+          "gmp": 30.0,
+          "gmp_est_listing": 335.0,
+          "gmp_est_gain_pct": 9.84,
           "gmp_direction": "premium"
         },
         {
@@ -1057,9 +1062,9 @@
           "expected_listing_dmy": "06-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "listing_label": "Opens Monday",
-          "gmp": 13.0,
-          "gmp_est_listing": 143.0,
-          "gmp_est_gain_pct": 10.0,
+          "gmp": 22.0,
+          "gmp_est_listing": 152.0,
+          "gmp_est_gain_pct": 16.92,
           "gmp_direction": "premium"
         },
         {
@@ -1408,9 +1413,9 @@
           "expected_listing": "2026-10-01",
           "expected_listing_dmy": "01-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 45.0,
-          "gmp_est_listing": 450.0,
-          "gmp_est_gain_pct": 11.11,
+          "gmp": 49.0,
+          "gmp_est_listing": 454.0,
+          "gmp_est_gain_pct": 12.1,
           "gmp_direction": "premium"
         },
         {
@@ -1507,9 +1512,9 @@
           "expected_listing": "2026-10-05",
           "expected_listing_dmy": "05-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 1.5,
-          "gmp_est_listing": 33.5,
-          "gmp_est_gain_pct": 4.69,
+          "gmp": 2.0,
+          "gmp_est_listing": 34.0,
+          "gmp_est_gain_pct": 6.25,
           "gmp_direction": "premium"
         },
         {
@@ -1549,10 +1554,10 @@
           "from_calendar": true,
           "live": true,
           "status": "Active",
-          "gmp": 0.0,
-          "gmp_est_listing": 29.0,
-          "gmp_est_gain_pct": 0.0,
-          "gmp_direction": "flat"
+          "gmp": 3.0,
+          "gmp_est_listing": 32.0,
+          "gmp_est_gain_pct": 10.34,
+          "gmp_direction": "premium"
         },
         {
           "company": "German Green Steel and Power Limited",
@@ -1606,9 +1611,9 @@
           "expected_listing": "2026-10-05",
           "expected_listing_dmy": "05-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 60.0,
-          "gmp_est_listing": 332.0,
-          "gmp_est_gain_pct": 22.06,
+          "gmp": 113.0,
+          "gmp_est_listing": 385.0,
+          "gmp_est_gain_pct": 41.54,
           "gmp_direction": "premium"
         },
         {
@@ -1624,9 +1629,9 @@
           "expected_listing": "2026-10-05",
           "expected_listing_dmy": "05-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "gmp": 35.0,
-          "gmp_est_listing": 340.0,
-          "gmp_est_gain_pct": 11.48,
+          "gmp": 30.0,
+          "gmp_est_listing": 335.0,
+          "gmp_est_gain_pct": 9.84,
           "gmp_direction": "premium"
         },
         {
@@ -1766,9 +1771,9 @@
           "expected_listing_dmy": "06-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "listing_label": "Opens Monday",
-          "gmp": 13.0,
-          "gmp_est_listing": 143.0,
-          "gmp_est_gain_pct": 10.0,
+          "gmp": 22.0,
+          "gmp_est_listing": 152.0,
+          "gmp_est_gain_pct": 16.92,
           "gmp_direction": "premium"
         },
         {
@@ -2272,7 +2277,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-09-25",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-09-25T08:11:09+05:30",
+      "fetched_at": "2026-09-25T10:12:52+05:30",
       "stale": false,
       "calendar_added": 28,
       "horizon": {
@@ -2289,16 +2294,16 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Axiom Gas Engineering Limited",
-          "match": "axiomgasengineering",
           "board": "SME",
-          "circular_date": "September 24, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76534.zip",
-          "subject": "Listing of Equity Shares of Axiom Gas Engineering Limited (SME IPO)",
+          "circular_date": "September 24, 2026",
+          "company": "Axiom Gas Engineering Limited",
           "confirmed_listing": "2026-09-25",
-          "symbol": "AXIOMGAS",
           "confirmed_listing_dmy": "25-Sep-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "axiomgasengineering",
+          "subject": "Listing of Equity Shares of Axiom Gas Engineering Limited (SME IPO)",
+          "symbol": "AXIOMGAS"
         },
         {
           "board": "SME",
@@ -2608,10 +2613,10 @@
       "confirmed": 19,
       "checked": 27,
       "remembered": 45,
-      "as_of": "2026-09-25T08:11:11+05:30",
+      "as_of": "2026-09-25T10:12:53+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-09-25T08:11:11+05:30",
+      "fetched_at": "2026-09-25T10:12:53+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -2626,7 +2631,7 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-09-25T08:11:12+05:30",
+      "fetched_at": "2026-09-25T10:12:53+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2634,10 +2639,10 @@
         {
           "company": "SRIT India",
           "board": "mainboard",
-          "gmp": 13.0,
+          "gmp": 22.0,
           "price_band_upper": 130.0,
-          "est_listing": 143.0,
-          "est_gain_pct": 10.0,
+          "est_listing": 152.0,
+          "est_gain_pct": 16.92,
           "direction": "premium",
           "window": "28-30 Sep",
           "status": "Upcoming",
@@ -2658,13 +2663,13 @@
         {
           "company": "Acevector",
           "board": "mainboard",
-          "gmp": 1.5,
+          "gmp": 2.0,
           "price_band_upper": 32.0,
-          "est_listing": 33.5,
-          "est_gain_pct": 4.69,
+          "est_listing": 34.0,
+          "est_gain_pct": 6.25,
           "direction": "premium",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "acevector"
         },
         {
@@ -2676,31 +2681,31 @@
           "est_gain_pct": 20.14,
           "direction": "premium",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "germangreensteel"
         },
         {
           "company": "Runwal Enterprises",
           "board": "mainboard",
-          "gmp": 35.0,
+          "gmp": 30.0,
           "price_band_upper": 305.0,
-          "est_listing": 340.0,
-          "est_gain_pct": 11.48,
+          "est_listing": 335.0,
+          "est_gain_pct": 9.84,
           "direction": "premium",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "runwalenterprises"
         },
         {
           "company": "Orient Cables",
           "board": "mainboard",
-          "gmp": 60.0,
+          "gmp": 113.0,
           "price_band_upper": 272.0,
-          "est_listing": 332.0,
-          "est_gain_pct": 22.06,
+          "est_listing": 385.0,
+          "est_gain_pct": 41.54,
           "direction": "premium",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "orientcables"
         },
         {
@@ -2718,10 +2723,10 @@
         {
           "company": "A-One Steels",
           "board": "mainboard",
-          "gmp": 45.0,
+          "gmp": 49.0,
           "price_band_upper": 405.0,
-          "est_listing": 450.0,
-          "est_gain_pct": 11.11,
+          "est_listing": 454.0,
+          "est_gain_pct": 12.1,
           "direction": "premium",
           "window": "24-28 Sep",
           "status": "Open",
@@ -2784,7 +2789,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "22-24 Sep",
-          "status": "Open",
+          "status": "Closed",
           "match": "varmoragranito"
         },
         {
@@ -2910,13 +2915,13 @@
         {
           "company": "Dudani Retail",
           "board": "sme",
-          "gmp": 0.0,
+          "gmp": 3.0,
           "price_band_upper": 29.0,
-          "est_listing": 29.0,
-          "est_gain_pct": 0.0,
-          "direction": "flat",
+          "est_listing": 32.0,
+          "est_gain_pct": 10.34,
+          "direction": "premium",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "dudaniretail"
         },
         {
@@ -2928,7 +2933,7 @@
           "est_gain_pct": 9.62,
           "direction": "premium",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "shreetnbpolymers"
         },
         {
@@ -2940,7 +2945,7 @@
           "est_gain_pct": 10.91,
           "direction": "premium",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "benchmarkinfotech"
         },
         {
@@ -2952,7 +2957,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "saiurjaindoventures"
         },
         {
@@ -2964,7 +2969,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "25-29 Sep",
-          "status": "Upcoming",
+          "status": "Open",
           "match": "himalayansolar"
         },
         {
@@ -3072,7 +3077,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "22-24 Sep",
-          "status": "Open",
+          "status": "Closed",
           "match": "anandseamless"
         },
         {
@@ -3084,7 +3089,7 @@
           "est_gain_pct": 0.0,
           "direction": "flat",
           "window": "22-24 Sep",
-          "status": "Open",
+          "status": "Closed",
           "match": "himalayanutravedics"
         },
         {
@@ -3102,10 +3107,10 @@
         {
           "company": "Robokidz Eduventures",
           "board": "sme",
-          "gmp": 55.0,
+          "gmp": 70.0,
           "price_band_upper": 106.0,
-          "est_listing": 161.0,
-          "est_gain_pct": 51.89,
+          "est_listing": 176.0,
+          "est_gain_pct": 66.04,
           "direction": "premium",
           "window": "21-23 Sep",
           "status": "Closed",
@@ -3504,10 +3509,10 @@
         "median_abs_error_pct": 7.0,
         "overstated_pct": 59.3
       },
-      "as_of": "2026-09-25T08:11:13+05:30",
+      "as_of": "2026-09-25T10:12:59+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-09-25T08:11:13+05:30",
+      "fetched_at": "2026-09-25T10:12:59+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -4266,7 +4271,8 @@
       "as_of": "2026-09-25T08:11:15+05:30",
       "source": "ipowatch.in",
       "fetched_at": "2026-09-25T08:11:15+05:30",
-      "stale": false
+      "stale": true,
+      "stale_reason": "ConnectTimeout: HTTPSConnectionPool(host='ipowatch.in', port=443): Max retries exceeded with url: /upcoming-ipo-calendar-ipo-list/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='ipowatch.in', port=443) at 0x7f23a756d040>, 'Connection to ipowatch.in timed out. (connect timeout=30)'))"
     },
     "ipo_gains": {
       "listings": [
@@ -5069,7 +5075,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-09-25T08:11:20+05:30",
+      "fetched_at": "2026-09-25T10:13:37+05:30",
       "stale": false
     },
     "earnings": {
@@ -5174,32 +5180,32 @@
           "quarters": [
             {
               "quarter": "2026-06-30",
-              "revenue": 487592489999.99994,
-              "net_income": 78578955000.0,
+              "revenue": 487427325000.0,
+              "net_income": 78552337500.0,
               "age_days": 87
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 483562799999.99994,
-              "net_income": 88173455000.0,
+              "revenue": 483399000000.0,
+              "net_income": 88143587500.0,
               "age_days": 178
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 489223554999.99994,
-              "net_income": 71670915000.0,
+              "revenue": 489057837500.0,
+              "net_income": 71646637500.0,
               "age_days": 268
             },
             {
               "quarter": "2025-09-30",
-              "revenue": 487016819999.99994,
-              "net_income": 80497855000.0,
+              "revenue": 486851850000.0,
+              "net_income": 80470587500.0,
               "age_days": 360
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 95.945,
+          "fx_used": 95.9125,
           "latest_quarter": "2026-06-30",
           "age_days": 87,
           "stale": false
@@ -5240,7 +5246,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 95.945,
+      "usd_inr": 95.9125,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -5249,7 +5255,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-09-25T08:11:22+05:30",
+      "fetched_at": "2026-09-25T10:13:38+05:30",
       "stale": false
     }
   }

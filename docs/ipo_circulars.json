@@ -500,5 +500,17 @@
 "match": "kheriaautocomp",
 "subject": "Listing of Equity Shares of Kheria Autocomp Limited (SME IPO)",
 "symbol": "KHERIAAUTO"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76534.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76534.zip",
+"circular_date": "September 24, 2026",
+"company": "Axiom Gas Engineering Limited",
+"confirmed_listing": "2026-09-25",
+"confirmed_listing_dmy": "25-Sep-2026",
+"date_pending": false,
+"match": "axiomgasengineering",
+"subject": "Listing of Equity Shares of Axiom Gas Engineering Limited (SME IPO)",
+"symbol": "AXIOMGAS"
 }
 }

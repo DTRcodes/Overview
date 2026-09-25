@@ -14924,7 +14924,8 @@
    "open": 104.9,
    "close": 103.05,
    "gain_open_pct": 3.86,
-   "gain_close_pct": 2.03
+   "gain_close_pct": 2.03,
+   "price_source": "bhavcopy"
   },
   "SPECTRAA": {
    "high": 235.4,
@@ -14939,7 +14940,8 @@
    "open": 224.2,
    "close": 235.4,
    "gain_open_pct": 90.0,
-   "gain_close_pct": 99.49
+   "gain_close_pct": 99.49,
+   "price_source": "bhavcopy"
   }
  },
  "unresolvable": [

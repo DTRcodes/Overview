@@ -512,5 +512,16 @@
 "match": "axiomgasengineering",
 "subject": "Listing of Equity Shares of Axiom Gas Engineering Limited (SME IPO)",
 "symbol": "AXIOMGAS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76573.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76573.pdf",
+"circular_date": "September 28, 2026",
+"company": "Varmora Granito Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "varmoragranito",
+"subject": "Listing of Equity Shares of Varmora Granito Limited (IPO)",
+"symbol": "VARMORA"
 }
 }

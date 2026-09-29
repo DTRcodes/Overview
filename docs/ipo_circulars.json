@@ -523,5 +523,17 @@
 "match": "varmoragranito",
 "subject": "Listing of Equity Shares of Varmora Granito Limited (IPO)",
 "symbol": "VARMORA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76587.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76587.zip",
+"circular_date": "September 28, 2026",
+"company": "Varmora Granito Limited",
+"confirmed_listing": "2026-09-29",
+"confirmed_listing_dmy": "29-Sep-2026",
+"date_pending": false,
+"match": "varmoragranito",
+"subject": "Listing of Equity Shares of Varmora Granito Limited (IPO)",
+"symbol": "VARMORA"
 }
 }

@@ -14964,14 +14964,16 @@
    "company": "Varmora Granito Limited",
    "issue_price": 148.0,
    "listing_date": "2026-09-29",
-   "open": 148.0,
-   "last": 153.8,
-   "close": 153.8,
-   "provisional": true,
-   "price_source": "yahoo intraday",
-   "gain_open_pct": 0.0,
-   "gain_close_pct": 3.92,
-   "from_open_pct": 3.92
+   "open": 155.0,
+   "close": 152.19,
+   "price_source": "bhavcopy",
+   "gain_open_pct": 4.73,
+   "gain_close_pct": 2.83,
+   "from_open_pct": 1.08,
+   "high": 163.77,
+   "low": 148.1,
+   "intra_close_pct": -1.81,
+   "intra_pop_pct": 5.66
   }
  },
  "unresolvable": [

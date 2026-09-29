@@ -535,5 +535,61 @@
 "match": "varmoragranito",
 "subject": "Listing of Equity Shares of Varmora Granito Limited (IPO)",
 "symbol": "VARMORA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76597.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76597.pdf",
+"circular_date": "September 29, 2026",
+"company": "Elevate Campuses Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "elevatecampuses",
+"subject": "Listing of Equity Shares of Elevate Campuses Limited (IPO)",
+"symbol": "ELEVATE"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76599.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76599.pdf",
+"circular_date": "September 29, 2026",
+"company": "Adroit Industries (India) Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "adroitindustries",
+"subject": "Listing of Equity Shares of Adroit Industries (India) Limited (IPO)",
+"symbol": "ADROITIND"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76601.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76601.pdf",
+"circular_date": "September 29, 2026",
+"company": "Swastika Infra Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "swastikainfra",
+"subject": "Listing of Equity Shares of Swastika Infra Limited (IPO)",
+"symbol": "SWASTIKAIN"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76604.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76604.pdf",
+"circular_date": "September 29, 2026",
+"company": "ArMee Infotech Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "armeeinfotech",
+"subject": "Listing of Equity Shares of ArMee Infotech Limited (IPO)",
+"symbol": "ARMEE"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76618.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76618.zip",
+"circular_date": "September 29, 2026",
+"company": "Elevate Campuses Limited",
+"confirmed_listing": "2026-09-30",
+"confirmed_listing_dmy": "30-Sep-2026",
+"date_pending": false,
+"match": "elevatecampuses",
+"subject": "Listing of Equity Shares of Elevate Campuses Limited (IPO)",
+"symbol": "ELEVATE"
 }
 }

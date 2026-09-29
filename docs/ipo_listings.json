@@ -14958,6 +14958,20 @@
    "gain_open_pct": 1.39,
    "gain_close_pct": 0.09,
    "price_source": "bhavcopy"
+  },
+  "VARMORA": {
+   "symbol": "VARMORA",
+   "company": "Varmora Granito Limited",
+   "issue_price": 148.0,
+   "listing_date": "2026-09-29",
+   "open": 148.0,
+   "last": 153.8,
+   "close": 153.8,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 3.92,
+   "from_open_pct": 3.92
   }
  },
  "unresolvable": [

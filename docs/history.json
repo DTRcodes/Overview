@@ -31099,7 +31099,9 @@
    "y10_jp": 3.082,
    "us_10y": 5.24,
    "us_2y": 4.92,
-   "us_5y": 5.06
+   "us_5y": 5.06,
+   "y5_uk": 4.9696,
+   "y10_uk": 5.3829
   },
   {
    "date": "2026-09-29",
@@ -31135,7 +31137,29 @@
   {
    "date": "2026-09-30",
    "repo": 5.25,
-   "usd_inr": 95.97
+   "usd_inr": 95.82,
+   "nifty_close": 22620.45,
+   "nifty_pe": 19.36,
+   "nifty_pb": 2.78,
+   "nifty_div_yield": 1.22,
+   "india_10y": 7.19,
+   "fii_net": -10148.41,
+   "dii_net": 11271.73,
+   "fii_call_oi_chg": -44120.0,
+   "fii_put_oi_chg": 16868.0,
+   "fii_fut_amt": -2291.7,
+   "fii_fut_oi_chg": -15563.0,
+   "fii_fut_oi": -282870.0,
+   "fii_idx_fut_net": -282870.0,
+   "fii_stk_fut_net": 489549.0,
+   "dii_idx_fut_net": 32050.0,
+   "dii_stk_fut_net": -4309555.0,
+   "y5_de": 3.36,
+   "y10_de": 3.64,
+   "y5_cn": 1.409,
+   "y10_cn": 1.6822,
+   "y5_in": 6.94,
+   "y10_in": 7.19
   }
  ]
 }

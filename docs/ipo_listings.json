@@ -14974,6 +14974,62 @@
    "low": 148.1,
    "intra_close_pct": -1.81,
    "intra_pop_pct": 5.66
+  },
+  "ADROITIND": {
+   "symbol": "ADROITIND",
+   "company": "Adroit Industries (India) Limited",
+   "issue_price": 134.0,
+   "listing_date": "2026-09-30",
+   "open": 134.0,
+   "last": 248.39,
+   "close": 248.39,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 85.37,
+   "from_open_pct": 85.37
+  },
+  "ELEVATE": {
+   "symbol": "ELEVATE",
+   "company": "Elevate Campuses Limited",
+   "issue_price": 362.0,
+   "listing_date": "2026-09-30",
+   "open": 362.0,
+   "last": 362.85,
+   "close": 362.85,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 0.23,
+   "from_open_pct": 0.23
+  },
+  "ARMEE": {
+   "symbol": "ARMEE",
+   "company": "ArMee Infotech Limited",
+   "issue_price": 375.0,
+   "listing_date": "2026-09-30",
+   "open": 375.0,
+   "last": 345.8,
+   "close": 345.8,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -7.79,
+   "from_open_pct": -7.79
+  },
+  "SWASTIKAIN": {
+   "symbol": "SWASTIKAIN",
+   "company": "Swastika Infra Limited",
+   "issue_price": 185.0,
+   "listing_date": "2026-09-30",
+   "open": 185.0,
+   "last": 210.0,
+   "close": 210.0,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 13.51,
+   "from_open_pct": 13.51
   }
  },
  "unresolvable": [

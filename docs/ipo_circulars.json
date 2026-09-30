@@ -580,6 +580,17 @@
 "subject": "Listing of Equity Shares of ArMee Infotech Limited (IPO)",
 "symbol": "ARMEE"
 },
+"https://nsearchives.nseindia.com/content/circulars/CML76616.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76616.zip",
+"circular_date": "September 29, 2026",
+"company": "Adroit Industries (India) Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "adroitindustries",
+"subject": "Listing of Equity Shares of Adroit Industries (India) Limited (IPO)",
+"symbol": "ADROITIND"
+},
 "https://nsearchives.nseindia.com/content/circulars/CML76618.zip": {
 "board": "mainboard",
 "circular": "https://nsearchives.nseindia.com/content/circulars/CML76618.zip",
@@ -591,5 +602,52 @@
 "match": "elevatecampuses",
 "subject": "Listing of Equity Shares of Elevate Campuses Limited (IPO)",
 "symbol": "ELEVATE"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76620.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76620.zip",
+"circular_date": "September 29, 2026",
+"company": "Pooja Logistics Limited",
+"confirmed_listing": "2026-09-30",
+"confirmed_listing_dmy": "30-Sep-2026",
+"date_pending": false,
+"match": "poojalogistics",
+"subject": "Listing of Equity Shares of Pooja Logistics Limited (SME IPO)",
+"symbol": "POOJALOGIS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76623.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76623.zip",
+"circular_date": "September 29, 2026",
+"company": "Coreintegra Consulting Services Limited",
+"confirmed_listing": "2026-09-30",
+"confirmed_listing_dmy": "30-Sep-2026",
+"date_pending": false,
+"match": "coreintegraconsultingservices",
+"subject": "Listing of Equity Shares of Coreintegra Consulting Services Limited (SME IPO)",
+"symbol": "COREIN"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76626.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76626.zip",
+"circular_date": "September 29, 2026",
+"company": "ArMee Infotech Limited",
+"confirmed_listing": "2026-09-30",
+"confirmed_listing_dmy": "30-Sep-2026",
+"date_pending": false,
+"match": "armeeinfotech",
+"subject": "Listing of Equity Shares of ArMee Infotech Limited (IPO)",
+"symbol": "ARMEE"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76628.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76628.zip",
+"circular_date": "September 29, 2026",
+"company": "Swastika Infra Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "swastikainfra",
+"subject": "Listing of Equity Shares of Swastika Infra Limited (IPO)",
+"symbol": "SWASTIKAIN"
 }
 }

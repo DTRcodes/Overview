@@ -694,5 +694,60 @@
 "match": "aonesteels",
 "subject": "Listing of Equity Shares of A-One Steels India Limited (IPO)",
 "symbol": "AONESTEELS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76667.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76667.pdf",
+"circular_date": "October 01, 2026",
+"company": "German Green Steel and Power Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "germangreensteelandpower",
+"subject": "Listing of Equity Shares of German Green Steel and Power Limited (IPO)",
+"symbol": "GERMAN"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76674.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76674.pdf",
+"circular_date": "October 01, 2026",
+"company": "Orient Cables (India) Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "orientcables",
+"subject": "Listing of Equity Shares of Orient Cables (India) Limited (IPO)",
+"symbol": "ORIENTCABL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76676.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76676.pdf",
+"circular_date": "October 01, 2026",
+"company": "AceVector Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "acevector",
+"subject": "Listing of Equity Shares of AceVector Limited (IPO)",
+"symbol": "ACEVECTOR"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76680.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76680.pdf",
+"circular_date": "October 01, 2026",
+"company": "Runwal Enterprises Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "runwalenterprises",
+"subject": "Listing of Equity Shares of Runwal Enterprises Limited (IPO)",
+"symbol": "RUNWALENTR"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76687.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76687.zip",
+"circular_date": "October 01, 2026",
+"company": "Runwal Enterprises Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "runwalenterprises",
+"subject": "Listing of Equity Shares of Runwal Enterprises Limited (IPO)",
+"symbol": "RUNWALENTR"
 }
 }

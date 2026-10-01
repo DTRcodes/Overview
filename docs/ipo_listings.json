@@ -15070,6 +15070,34 @@
    "gain_open_pct": 2.61,
    "gain_close_pct": 7.74,
    "price_source": "bhavcopy"
+  },
+  "AONESTEELS": {
+   "symbol": "AONESTEELS",
+   "company": "A-One Steels India Limited",
+   "issue_price": 405.0,
+   "listing_date": "2026-10-01",
+   "open": 405.0,
+   "last": 437.75,
+   "close": 437.75,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 8.09,
+   "from_open_pct": 8.09
+  },
+  "MONEYVIEW": {
+   "symbol": "MONEYVIEW",
+   "company": "Moneyview Limited",
+   "issue_price": 34.0,
+   "listing_date": "2026-10-01",
+   "open": 34.0,
+   "last": 60.66,
+   "close": 60.66,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 78.41,
+   "from_open_pct": 78.41
   }
  },
  "unresolvable": [

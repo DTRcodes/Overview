@@ -671,5 +671,28 @@
 "match": "swastikainfra",
 "subject": "Listing of Equity Shares of Swastika Infra Limited (IPO)",
 "symbol": "MONEYVIEW"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76642.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76642.zip",
+"circular_date": "September 30, 2026",
+"company": "Moneyview Limited",
+"confirmed_listing": "2026-10-01",
+"confirmed_listing_dmy": "01-Oct-2026",
+"date_pending": false,
+"match": "moneyview",
+"subject": "Listing of Equity Shares of Moneyview Limited (IPO)",
+"symbol": "MONEYVIEW"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76643.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76643.zip",
+"circular_date": "September 30, 2026",
+"company": "A-One Steels India Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "aonesteels",
+"subject": "Listing of Equity Shares of A-One Steels India Limited (IPO)",
+"symbol": "AONESTEELS"
 }
 }

@@ -15052,7 +15052,8 @@
    "open": 78.1,
    "close": 78.9,
    "gain_open_pct": 0.13,
-   "gain_close_pct": 1.15
+   "gain_close_pct": 1.15,
+   "price_source": "bhavcopy"
   },
   "POOJALOGIS": {
    "high": 123.9,
@@ -15067,7 +15068,8 @@
    "open": 118.0,
    "close": 123.9,
    "gain_open_pct": 2.61,
-   "gain_close_pct": 7.74
+   "gain_close_pct": 7.74,
+   "price_source": "bhavcopy"
   }
  },
  "unresolvable": [

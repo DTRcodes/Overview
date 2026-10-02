@@ -749,5 +749,62 @@
 "match": "runwalenterprises",
 "subject": "Listing of Equity Shares of Runwal Enterprises Limited (IPO)",
 "symbol": "RUNWALENTR"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76694.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76694.zip",
+"circular_date": "October 01, 2026",
+"company": "German Green Steel and Power Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "germangreensteelandpower",
+"subject": "Listing of Equity Shares of German Green Steel and Power Limited (IPO)",
+"symbol": "GERMAN"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76697.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76697.zip",
+"circular_date": "October 01, 2026",
+"company": "AceVector Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "acevector",
+"subject": "Listing of Equity Shares of AceVector Limited (IPO)",
+"symbol": "ACEVECTOR"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76698.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76698.zip",
+"circular_date": "October 01, 2026",
+"company": "Orient Cables (India) Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "orientcables",
+"subject": "Listing of Equity Shares of Orient Cables (India) Limited (IPO)",
+"symbol": "ORIENTCABL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76699.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76699.zip",
+"circular_date": "October 01, 2026",
+"company": "Himalayan Solar Limited",
+"confirmed_listing": "2026-10-05",
+"confirmed_listing_dmy": "05-Oct-2026",
+"date_pending": false,
+"match": "himalayansolar",
+"subject": "Listing of Equity Shares of Himalayan Solar Limited (SME IPO)",
+"symbol": "HIMALAYAN"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76703.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76703.zip",
+"circular_date": "October 01, 2026",
+"company": "Bench Mark Infotech Services Limited",
+"confirmed_listing": "2026-10-05",
+"confirmed_listing_dmy": "05-Oct-2026",
+"date_pending": false,
+"match": "benchmarkinfotechservices",
+"subject": "Listing of Equity Shares of Bench Mark Infotech Services Limited (SME IPO)",
+"symbol": "BMISL"
 }
 }

@@ -1,0 +1,71 @@
+Symbol Security Name Industry Close Price Index Mcap
+(Rs. Crores)
+Weightage
+(%)
+ 
+Constituents of NIFTY 50
+September 30, 2026
+ADANIENT Adani Enterprises Ltd. Metals & Mining 2903.40 0.9498174
+ADANIPORTS Adani Ports and Special Economic
+Zone Ltd. Services 1798.30 1.35140545
+APOLLOHOSP Apollo Hospitals Enterprise Ltd. Healthcare 8165.50 0.8083806
+ASIANPAINT Asian Paints Ltd. Consumer Durables 2402.60 1.04108293
+AXISBANK Axis Bank Ltd. Financial Services 1226.00 3.37351500
+BSE BSE Ltd. Financial Services 3092.00 1.21125998
+BAJAJ-AUTO Bajaj Auto Ltd. Automobile and Auto Components 10874.00 1.13118323
+BAJFINANCE Bajaj Finance Ltd. Financial Services 959.40 2.50261072
+BAJAJFINSV Bajaj Finserv Ltd. Financial Services 1731.00 0.96100350
+BEL Bharat Electronics Ltd. Capital Goods 388.30 1.33138688
+BHARTIARTL Bharti Airtel Ltd. Telecommunication 1757.00 5.10532867
+CIPLA Cipla Ltd. Healthcare 1346.00 0.7275545
+COALINDIA Coal India Ltd. Oil, Gas & Consumable Fuels 425.00 0.97101535
+DRREDDY Dr. Reddy's Laboratories Ltd. Healthcare 1233.00 0.7274994
+EICHERMOT Eicher Motors Ltd. Automobile and Auto Components 7150.00 0.9498379
+ETERNAL Eternal Ltd. Consumer Services 320.00 2.22231246
+GRASIM Grasim Industries Ltd. Construction Materials 3061.90 1.10115238
+HCLTECH HCL Technologies Ltd. Information Technology 1230.00 1.24129238
+HDFCBANK HDFC Bank Ltd. Financial Services 708.70 10.381083321
+HDFCLIFE HDFC Life Insurance Company Ltd. Financial Services 521.20 0.5455918
+HINDALCO Hindalco Industries Ltd. Metals & Mining 941.80 1.30135981
+HINDUNILVR Hindustan Unilever Ltd. Fast Moving Consumer Goods 1879.10 1.59166272
+ICICIBANK ICICI Bank Ltd. Financial Services 1321.70 9.05944763
+ITC ITC Ltd. Fast Moving Consumer Goods 262.75 2.42252623
+INFY Infosys Ltd. Information Technology 994.10 3.35350140
+INDIGO InterGlobe Aviation Ltd. Services 4984.00 1.08112510
+JSWSTEEL JSW Steel Ltd. Metals & Mining 1253.40 1.15120340
+1
+Symbol Security Name Industry Close Price Index Mcap
+(Rs. Crores)
+Weightage
+(%)
+ 
+Constituents of NIFTY 50
+September 30, 2026
+JIOFIN Jio Financial Services Ltd. Financial Services 216.88 0.6870990
+KOTAKBANK Kotak Mahindra Bank Ltd. Financial Services 417.00 2.93306231
+LT Larsen & Toubro Ltd. Construction 3760.00 4.20438901
+M&M Mahindra & Mahindra Ltd. Automobile and Auto Components 2950.00 2.52262847
+MARUTI Maruti Suzuki India Ltd. Automobile and Auto Components 11967.00 1.49155200
+MAXHEALTH Max Healthcare Institute Ltd. Healthcare 929.80 0.6669011
+NTPC NTPC Ltd. Power 322.75 1.47152957
+NESTLEIND Nestle India Ltd. Fast Moving Consumer Goods 1310.00 0.9093675
+ONGC Oil & Natural Gas Corporation Ltd. Oil, Gas & Consumable Fuels 225.80 0.8487466
+POWERGRID Power Grid Corporation of India Ltd. Power 260.50 1.13117638
+RELIANCE Reliance Industries Ltd. Oil, Gas & Consumable Fuels 1187.00 7.58791510
+SBILIFE SBI Life Insurance Company Ltd. Financial Services 1696.40 0.7376041
+SHRIRAMFIN Shriram Finance Ltd. Financial Services 982.70 1.32137281
+SBIN State Bank of India Financial Services 959.50 3.79395462
+SUNPHARMA Sun Pharmaceutical Industries Ltd. Healthcare 1816.60 1.84191834
+TCS Tata Consultancy Services Ltd. Information Technology 2050.60 2.00208778
+TATACONSUM Tata Consumer Products Ltd. Fast Moving Consumer Goods 949.50 0.5961662
+TMPV Tata Motors Passenger Vehicles Ltd. Automobile and Auto Components 283.50 0.5759155
+TATASTEEL Tata Steel Ltd. Metals & Mining 184.30 1.46152500
+TECHM Tech Mahindra Ltd. Information Technology 1524.00 0.9296543
+TITAN Titan Company Ltd. Consumer Durables 4587.00 1.81189056
+TRENT Trent Ltd. Consumer Services 2621.60 0.8386983
+ULTRACEMCO UltraTech Cement Ltd. Construction Materials 10956.00 1.24129328
+Disclaimer: All information contained herewith is provided for reference purpose only. NSE Indices Limited (formerly known as India Index Services & Products Limited-
+IISL) ensures accuracy and reliability of the above information to the best of its endeavors. However, NSE Indices Limited makes no warranty or representation as to the
+accuracy, completeness or reliability of any of the information contained herein and disclaim any and all liability whatsoever to any person for any damage or loss of any
+nature arising from or as a result of reliance on any of the information provided herein. The information contained in this document is not intended to provide any
+professional advice.

@@ -1,0 +1,919 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © RohitNain
+
+//@version=6
+indicator("NIFTY50 Sector/Stock Allocation DashBoard Pro", overlay=true)
+
+// ==============================================================================
+// INPUTS & DISPLAY CONFIGURATIONS (Unified Sizing & Anchoring Controls)
+// ==============================================================================
+view_mode      = input.string("Standard Multi-Matrix", title="Dashboard View Mode", options=["Standard Multi-Matrix", "Sector Grouped View"], group="Display Options")
+theme_opt      = input.string("Light Sectors", title="Color Theme", options=["Normal", "B&W Stocks", "Light Sectors"], group="Display Options")
+light_theme_bg = input.color(color.new(color.white, 0), title="Light Theme Sector BG", group="Display Options", tooltip="Only applies when the 'Light Sectors' theme is selected.")
+text_size_opt  = input.string("Normal", title="Matrix Text Size", options=["Tiny", "Small", "Normal", "Large", "Huge"], group="Display Options")
+show_grid      = input.bool(true, title="Show Sector Grid Matrix", group="Display Options", tooltip="Only applies to Standard Multi-Matrix view.")
+show_points    = input.bool(false, title="Show Points Contribution to NIFTY", group="Display Options", tooltip="When ON, shows the approximate NIFTY index points each stock/sector is pushing up (+) or pulling down (–), placed just before the ▲/▼ and % change.\n\nApproximation: NIFTY level × weight% × change% (the standard index-attribution formula).")
+sector_pts_basis = input.string("Official NSE Weight", title="Sector Points Basis", options=["Official NSE Weight", "Tracked Stocks Only"], group="Display Options", tooltip="Only matters when 'Show Points Contribution to NIFTY' is ON. Controls how a SECTOR's point value is weighted (stock cells are unaffected):\n\n• Official NSE Weight — scales the sector to its full official NSE weight (e.g. 37% Financials). Best estimate of true index impact; all sectors sum ≈ to NIFTY's real point move. A header won't exactly equal the sum of its shown stocks (extrapolates over the untracked constituents).\n\n• Tracked Stocks Only — sector = exact sum of the stocks shown (~35% for Financials). Fully additive (header = sum of its visible stocks) but ~5% understated.")
+
+show_wchg_gauge = input.bool(false, title="Use Weightage Chg Gauge", inline="wgt", group="Display Options", tooltip="Replaces the side-by-side Weighted Chg +/- values with mini gauge bars. The positive % stays put with its gauge to the right; the negative % drops to the row below with its own gauge. Each bar fills by its SHARE of the total move — |pos| / (|pos|+|neg|) and |neg| / (|pos|+|neg|) — so if up-moves and down-moves are equal, both read ~50%.")
+use_abs_lines   = input.bool(false, title="Use Abs for lines", inline="wgt", group="Display Options", tooltip="For the companion Weighted-Chg pane lines: plot the NEGATIVE % change as a POSITIVE (absolute) value, so its magnitude sits alongside the positive line for a direct size comparison — instead of mirroring below zero.")
+wg_pos_col      = input.color(#2962ff, title="Gauge Colors      +", inline="wgcol", group="Display Options")
+wg_neg_col      = input.color(color.red, title="–", inline="wgcol", group="Display Options")
+wg_gauge_bg     = input.color(color.new(color.gray, 97), title="Track", inline="wgcol", group="Display Options", tooltip="Colors for the Weighted-Chg gauge and its +/- values: positive fill, negative fill, and the gauge track background.")
+
+main_v_pos     = input.string("Top", title="Main Table Position", options=["Top", "Middle", "Bottom"], inline="main_pos", group="Display Options")
+main_h_pos     = input.string("Right", title="", options=["Left", "Center", "Right"], inline="main_pos", group="Display Options")
+shift_dash     = input.bool(false, title="Shift Dashboard", inline="shift", group="Display Options")
+shift_amount   = input.int(6, title="", inline="shift", group="Display Options", minval=1, maxval=60, tooltip="Adds a blank, fully transparent spacer column on the RIGHT of the main table. The number is its width in characters — bigger = bigger shift.\n\nA table is anchored by its edge, so the spacer pushes the dashboard inward: with the default Right position (or Center) the dashboard moves LEFT, away from the price scale. It has no effect if the Main Table Position is set to Left.")
+
+show_stocks      = input.bool(true, title="Show Top Stocks Matrix", group="Top Stocks Matrix Settings")
+stocks_layout    = input.string("Combined With Main Table", title="Layout Style", options=["Combined With Main Table", "Separate Standalone Table"], group="Top Stocks Matrix Settings", tooltip="Only applies to Standard Multi-Matrix view.")
+stocks_row_count = input.string("All 50 Stocks (10 Rows)", title="Display How Many Stocks?", options=["25 Stocks (5 Rows)", "30 Stocks (6 Rows)", "35 Stocks (7 Rows)", "40 Stocks (8 Rows)", "45 Stocks (9 Rows)", "All 50 Stocks (10 Rows)"], group="Top Stocks Matrix Settings", tooltip="Only applies to Standard Multi-Matrix view.")
+
+stock_v_pos      = input.string("Bottom", title="Standalone Stock Position", options=["Top", "Middle", "Bottom"], inline="stk_pos", group="Top Stocks Matrix Settings")
+stock_h_pos      = input.string("Right", title="", options=["Left", "Center", "Right"], inline="stk_pos", group="Top Stocks Matrix Settings")
+
+sort_mode        = input.string("Index Weightage", title="Organize Grid Order By", options=["Index Weightage", "Sector Performance %", "ALL Performance %", "ALL Points"], group="Matrix Sorting Logic Settings", tooltip="Order of the grid:\n• Index Weightage — fixed, by index weight.\n• Sector Performance % — sectors by their % change (stocks stay in weight order).\n• ALL Performance % — sectors AND stocks by their % change.\n• ALL Points — sectors AND stocks by their NIFTY POINTS contribution (weight × %). Ranks what's actually moving the index, so a heavy stock with a small % can outrank a light stock with a big %. (Uses the 'Sector Points Basis' for sectors; independent of the Show-Points toggle.)")
+
+// % Change Basis — dropdown + inline Custom time. Controls how every % (stocks, sectors, NIFTY) is measured.
+chg_basis        = input.string("Daily %chg", title="% Change Basis", options=["Intraday %chg", "Intraday 3PM", "Daily %chg", "Weekly %chg", "Monthly %chg", "Custom"], inline="chg", group="Timeframe Options", tooltip="How every % change (stocks, sectors, NIFTY) is measured:\n\n• Intraday %chg — vs TODAY'S OPEN (change since the market opened).\n• Intraday 3PM — vs today's 15:00 (3 PM) 1-minute candle OPEN (the closing-hour move). Shows values only AFTER 3 PM; the extra-11 stocks read na in this mode.\n• Daily %chg — vs the previous day's close (standard daily change).\n• Weekly %chg — vs the previous week's close.\n• Monthly %chg — vs the previous month's close.\n• Custom — vs the OPEN of a chosen 1-minute candle; set HH:MM to the right.\n\nDaily & Intraday read from the Daily bar; Weekly/Monthly from their own timeframe — all work on ANY chart timeframe. Intraday 3PM & Custom pull 1-minute data via request.security — also works on any chart, but only the CURRENT day's anchor is guaranteed.")
+anchor_hh        = input.int(9,  title="HH", inline="chg", group="Timeframe Options", minval=0, maxval=23, tooltip="Custom anchor candle — HOUR (0-23, IST). Only used when Basis = 'Custom'. Anchors to the OPEN of the HH:MM 1-minute candle, e.g. 09:15 = today's 09:15 candle open. Resets each new day.")
+anchor_mm        = input.int(15, title="MM", inline="chg", group="Timeframe Options", minval=0, maxval=59, tooltip="Custom anchor candle — MINUTE (0-59, IST). Only used when Basis = 'Custom'.")
+anchor_hhmm      = anchor_hh * 100 + anchor_mm   // e.g. HH=9, MM=15 -> 915
+
+// B&W Theme Customization Options
+bw_col_5         = input.color(#fdfaf6, title="B&W: High Positive", group="B&W Theme Colors")
+bw_col_4         = input.color(#e2e8f0, title="B&W: Low Positive", group="B&W Theme Colors")
+bw_col_3         = input.color(#cbd5e1, title="B&W: Neutral", group="B&W Theme Colors")
+bw_col_2         = input.color(#64748b, title="B&W: Low Negative", group="B&W Theme Colors")
+bw_col_1         = input.color(#334155, title="B&W: High Negative", group="B&W Theme Colors")
+bw_apply_sectors = input.bool(false, title="Apply B&W Colors to Sectors as well", group="B&W Theme Colors")
+
+// ==============================================================================
+// EXTRA-11 STOCKS — link each "Stock N" to the SAME "Stock N" plot from the companion
+// "NIFTY50 Extra-11 Stocks — Packed Feed (Helper)" indicator (Stock 1→Stock 1, …).
+// The slots are POSITIONAL: on a quarterly rebalance change ONLY the tickers in code
+// (the Helper's p_sN lines + the MASTER DATA arrays below) — the user's Stock N→Stock N
+// links NEVER need redoing. Sector denominators are dynamic (na-aware), no math to update.
+// Leave any unlinked and that stock is simply ignored (dashboard = 39-stock mode).
+//
+// Current slot → ticker (grid index):
+//   1=ONGC(39)  2=TECHM(40)  3=ADANIENT(41)  4=MAXHEALTH(42)  5=DRREDDY(43)  6=SBILIFE(44)
+//   7=JIOFIN(45)  8=TMPV(46)  9=TATACONSUM(47)  10=HDFCLIFE(48)  11=WIPRO(49)
+// ==============================================================================
+src_s1  = input.source(close, title="Stock 1",  group="Extra Stocks — link to Helper (11)")
+src_s2  = input.source(close, title="Stock 2",  group="Extra Stocks — link to Helper (11)")
+src_s3  = input.source(close, title="Stock 3",  group="Extra Stocks — link to Helper (11)")
+src_s4  = input.source(close, title="Stock 4",  group="Extra Stocks — link to Helper (11)")
+src_s5  = input.source(close, title="Stock 5",  group="Extra Stocks — link to Helper (11)")
+src_s6  = input.source(close, title="Stock 6",  group="Extra Stocks — link to Helper (11)")
+src_s7  = input.source(close, title="Stock 7",  group="Extra Stocks — link to Helper (11)")
+src_s8  = input.source(close, title="Stock 8",  group="Extra Stocks — link to Helper (11)")
+src_s9  = input.source(close, title="Stock 9",  group="Extra Stocks — link to Helper (11)")
+src_s10 = input.source(close, title="Stock 10", group="Extra Stocks — link to Helper (11)")
+src_s11 = input.source(close, title="Stock 11", group="Extra Stocks — link to Helper (11)")
+
+// ==============================================================================
+// CORE DATA ENGINE FETCH HOOKS
+// ==============================================================================
+// % of `cur` vs an arbitrary `base`, na-safe.
+f_pct(cur, base) => (not na(cur) and not na(base) and base != 0) ? (cur - base) / base * 100.0 : na
+
+// ── PER-CHART-BAR % (the key to per-candle lines on ANY timeframe) ─────────────
+// Evaluated INSIDE request.security at the CHART's OWN timeframe, so `close` updates
+// every candle instead of returning one flat daily value. All anchors are captured
+// from that same per-bar series via `var`s:
+//   today's open (Intraday), prev day/week/month close (Daily/Weekly/Monthly),
+//   today's 15:00 open (3PM), today's HH:MM open (Custom).
+f_chart_pct() =>
+    var float dopen = na   // today's open
+    var float pdc   = na   // previous day's close
+    var float pwc   = na   // previous week's close
+    var float pmc   = na   // previous month's close
+    var float a3pm  = na   // today's 15:00 open
+    var float acus  = na   // today's HH:MM open
+    bool nd = na(time[1]) or dayofmonth != dayofmonth[1] or month != month[1] or year != year[1]
+    if nd
+        dopen := open
+        pdc   := close[1]
+        a3pm  := na
+        acus  := na
+    if weekofyear != weekofyear[1]
+        pwc := close[1]
+    if month != month[1]
+        pmc := close[1]
+    int cur_min = hour * 60 + minute
+    if na(a3pm) and cur_min >= 900                          // 15:00 = 3 PM
+        a3pm := open
+    if na(acus) and cur_min >= (anchor_hh * 60 + anchor_mm)
+        acus := open
+    float base = chg_basis == "Intraday %chg" ? dopen : chg_basis == "Weekly %chg" ? pwc : chg_basis == "Monthly %chg" ? pmc : chg_basis == "Intraday 3PM" ? a3pm : chg_basis == "Custom" ? acus : pdc
+    f_pct(close, base)
+
+// ONE request per symbol, at the CHART timeframe -> per-candle data, 40-call budget intact.
+// Requesting the chart's OWN resolution means no timeframe mismatch (no memory blow-up);
+// calc_bars_count=5000 caps history — enough to span week / most month boundaries so the
+// Weekly/Monthly anchors resolve (very fine charts may leave Monthly na until enough history).
+get_perf_tf(sym) =>
+    request.security(sym, timeframe.period, f_chart_pct(), lookahead = barmerge.lookahead_off, gaps = barmerge.gaps_off, calc_bars_count = 5000)
+
+f_get_size(opt) =>
+    switch opt
+        "Tiny"   => size.tiny
+        "Small"  => size.small
+        "Normal" => size.normal
+        "Large"  => size.large
+        "Huge"   => size.huge
+        => size.normal
+
+f_resolve_position(v, h) =>
+    if v == "Top"
+        h == "Left" ? position.top_left : h == "Center" ? position.top_center : position.top_right
+    else if v == "Middle"
+        h == "Left" ? position.middle_left : h == "Center" ? position.middle_center : position.middle_right
+    else
+        h == "Left" ? position.bottom_left : h == "Center" ? position.bottom_center : position.bottom_right
+
+// ==============================================================================
+// ██  MASTER DATA — THE ONLY PLACE TO EDIT ON A QUARTERLY REBALANCE  ██
+// ------------------------------------------------------------------------------
+// Everything below (sector %s, stock %s, points, grid, sorting) is derived from
+// the arrays in this block. To update after an NSE rebalance, change the values
+// here and keep the 3 stock arrays (name / weight / sector#) POSITION-ALIGNED.
+//
+// ── SECTORS (index → name → official weight %) ───────────────────────────────
+//   0 Financial Services            37.00     8 Construction               4.44
+//   1 Oil, Gas & Consumable Fuels    9.79     9 Consumer Durables          2.75
+//   2 Information Technology         7.41    10 Consumer Services          2.75
+//   3 Automobile and Auto Comp.      6.74    11 Power                      2.73
+//   4 Fast Moving Consumer Goods     5.81    12 Services                   2.33
+//   5 Telecommunication             5.15    13 Construction Materials      2.29
+//   6 Healthcare                    4.90    14 Capital Goods               1.35
+//   7 Metals & Mining               4.54
+//
+// ── STOCKS (grid index → ticker → weight % → sector#) ────────────────────────
+//   DIRECT — fetched by the 40-call engine (indices 0-38):
+//    0 HDFCBANK   11.18 s0    10 M&M         2.51 s3    20 BEL        1.35 s14   30 HCLTECH    1.03 s2
+//    1 ICICIBANK   9.01 s0    11 BAJFINANCE  2.46 s0    21 SHRIRAMFIN 1.34 s0    31 TRENT      1.00 s10
+//    2 RELIANCE    8.00 s1    12 TCS         1.90 s2    22 HINDALCO   1.27 s7    32 BAJAJ_AUTO 0.98 s3
+//    3 BHARTIARTL  5.15 s5    13 SUNPHARMA   1.80 s6    23 ADANIPORTS 1.22 s12   33 COALINDIA  0.96 s1
+//    4 LT          4.44 s8    14 ETERNAL     1.75 s10   24 ULTRACEMCO 1.22 s13   34 BAJAJFINSV 0.94 s0
+//    5 SBIN        3.88 s0    15 HINDUNILVR  1.72 s4    25 POWERGRID  1.19 s11   35 NESTLEIND  0.92 s4
+//    6 AXISBANK    3.54 s0    16 MARUTI      1.68 s3    26 INDIGO     1.11 s12   36 EICHERMOT  0.89 s3
+//    7 INFY        3.21 s2    17 TITAN       1.66 s9    27 ASIANPAINT 1.09 s9    37 APOLLOHOSP 0.82 s6
+//    8 KOTAKBANK   2.64 s0    18 NTPC        1.55 s11   28 GRASIM     1.07 s13   38 CIPLA      0.75 s6
+//    9 ITC         2.53 s4    19 TATASTEEL   1.42 s7    29 JSWSTEEL   1.05 s7
+//   VIA HELPER — the extra 11 (index 39-49 = Helper "Stock 1".."Stock 11"):
+//   39 S1  ONGC      0.83 s1    44 S6  SBILIFE   0.73 s0    48 S10 HDFCLIFE 0.57 s0
+//   40 S2  TECHM     0.82 s2    45 S7  JIOFIN    0.71 s0    49 S11 WIPRO    0.45 s2
+//   41 S3  ADANIENT  0.80 s7    46 S8  TMPV      0.67 s3
+//   42 S4  MAXHEALTH 0.77 s6    47 S9  TATACONSUM 0.64 s4
+//   43 S5  DRREDDY   0.76 s6
+//
+// If you ADD/REMOVE a constituent (not just reweight), also update: the 40-call
+// engine fetches + get_stock_pct (for a direct stock) OR the Helper p_sN ticker
+// (for a slot). Sector denominators are auto-derived — no math to touch.
+// ==============================================================================
+sector_names   = array.from("Financial Services", "Oil, Gas & Consumable Fuels", "Information Technology", "Automobile and Auto Components", "Fast Moving Consumer Goods", "Telecommunication", "Healthcare", "Metals & Mining", "Construction", "Consumer Durables", "Consumer Services", "Power", "Services", "Construction Materials", "Capital Goods")
+sector_weights = array.from(37.00, 9.79, 7.41, 6.74, 5.81, 5.15, 4.90, 4.54, 4.44, 2.75, 2.75, 2.73, 2.33, 2.29, 1.35)
+
+stock_names    = array.from("HDFCBANK", "ICICIBANK", "RELIANCE", "BHARTIARTL", "LT", "SBIN", "AXISBANK", "INFY", "KOTAKBANK", "ITC", "M&M", "BAJFINANCE", "TCS", "SUNPHARMA", "ETERNAL", "HINDUNILVR", "MARUTI", "TITAN", "NTPC", "TATASTEEL", "BEL", "SHRIRAMFIN", "HINDALCO", "ADANIPORTS", "ULTRACEMCO", "POWERGRID", "INDIGO", "ASIANPAINT", "GRASIM", "JSWSTEEL", "HCLTECH", "TRENT", "BAJAJ_AUTO", "COALINDIA", "BAJAJFINSV", "NESTLEIND", "EICHERMOT", "APOLLOHOSP", "CIPLA", "ONGC", "TECHM", "ADANIENT", "MAXHEALTH", "DRREDDY", "SBILIFE", "JIOFIN", "TMPV", "TATACONSUM", "HDFCLIFE", "WIPRO")
+stock_weights  = array.from(11.18, 9.01, 8.00, 5.15, 4.44, 3.88, 3.54, 3.21, 2.64, 2.53, 2.51, 2.46, 1.90, 1.80, 1.75, 1.72, 1.68, 1.66, 1.55, 1.42, 1.35, 1.34, 1.27, 1.22, 1.22, 1.19, 1.11, 1.09, 1.07, 1.05, 1.03, 1.00, 0.98, 0.96, 0.94, 0.92, 0.89, 0.82, 0.75, 0.83, 0.82, 0.80, 0.77, 0.76, 0.73, 0.71, 0.67, 0.64, 0.57, 0.45)
+// Sector# for each stock above (SAME order/position). Sector membership derives from this.
+stock_sectors  = array.from(0, 0, 1, 5, 8, 0, 0, 2, 0, 4, 3, 0, 2, 6, 10, 4, 3, 9, 11, 7, 14, 0, 7, 12, 13, 11, 12, 9, 13, 7, 2, 10, 3, 1, 0, 4, 3, 6, 6, 1, 2, 7, 6, 6, 0, 0, 3, 4, 0, 2)
+
+// ==============================================================================
+// THE 40-CALL ENGINE: RAW STOCK PROXIES (Maximal Efficiency)
+// ==============================================================================
+// Call 1 now bundles the NIFTY % change AND the raw index level in ONE tuple
+// request.security -> still counts as a single security call (40 total).
+// nifty50_price is the current index level (e.g. 24000) needed for points math.
+// Honours the selected % basis exactly like the stock calls above.
+[nifty50_pct, nifty50_price] = request.security("NSE:NIFTY", timeframe.period, [f_chart_pct(), close], lookahead = barmerge.lookahead_off, gaps = barmerge.gaps_off, calc_bars_count = 5000) // Call 1
+
+stk_hdfc       = get_perf_tf("NSE:HDFCBANK")
+stk_icici      = get_perf_tf("NSE:ICICIBANK")
+stk_rel        = get_perf_tf("NSE:RELIANCE")
+stk_bharti     = get_perf_tf("NSE:BHARTIARTL")
+stk_lt         = get_perf_tf("NSE:LT")
+stk_sbin       = get_perf_tf("NSE:SBIN")
+stk_axis       = get_perf_tf("NSE:AXISBANK")
+stk_infy       = get_perf_tf("NSE:INFY")
+stk_kotak      = get_perf_tf("NSE:KOTAKBANK")
+stk_itc        = get_perf_tf("NSE:ITC")
+stk_mm         = get_perf_tf("NSE:M&M")
+stk_bajfin     = get_perf_tf("NSE:BAJFINANCE")
+stk_tcs        = get_perf_tf("NSE:TCS")
+stk_sun        = get_perf_tf("NSE:SUNPHARMA")
+stk_eternal    = get_perf_tf("NSE:ETERNAL")
+stk_hul        = get_perf_tf("NSE:HINDUNILVR")
+stk_maruti     = get_perf_tf("NSE:MARUTI")
+stk_titan      = get_perf_tf("NSE:TITAN")
+stk_ntpc       = get_perf_tf("NSE:NTPC")
+stk_tatasteel  = get_perf_tf("NSE:TATASTEEL")
+stk_bel        = get_perf_tf("NSE:BEL")
+stk_shriram    = get_perf_tf("NSE:SHRIRAMFIN")
+stk_hindalco   = get_perf_tf("NSE:HINDALCO")
+stk_adaniports = get_perf_tf("NSE:ADANIPORTS")
+stk_ultracemco = get_perf_tf("NSE:ULTRACEMCO") // Call 26
+
+// Additional Building Blocks for Minor Sectors
+stk_powergrid  = get_perf_tf("NSE:POWERGRID")
+stk_indigo     = get_perf_tf("NSE:INDIGO")
+stk_asianpaint = get_perf_tf("NSE:ASIANPAINT")
+stk_grasim     = get_perf_tf("NSE:GRASIM")
+stk_jsw        = get_perf_tf("NSE:JSWSTEEL")
+stk_hcl        = get_perf_tf("NSE:HCLTECH")
+stk_trent      = get_perf_tf("NSE:TRENT")
+stk_bajajauto  = get_perf_tf("NSE:BAJAJ_AUTO")
+stk_coalindia  = get_perf_tf("NSE:COALINDIA")
+stk_bajfinsv   = get_perf_tf("NSE:BAJAJFINSV")
+stk_nestle     = get_perf_tf("NSE:NESTLEIND")
+stk_eicher     = get_perf_tf("NSE:EICHERMOT")
+stk_apollo     = get_perf_tf("NSE:APOLLOHOSP")
+stk_cipla      = get_perf_tf("NSE:CIPLA") // Call 40 (Limit Reached!)
+
+// ==============================================================================
+// EXTRA-11 DECODER — unpack the Helper's single packed plot, WITH slot-ID checking.
+// Packed layout (14 digits): SS DDD III WWW MMM
+//   SS  = slot id 1..11 (identifies WHICH stock this plot is)
+//   DDD III WWW WWW = Daily/Intraday/Weekly/Monthly % offsets (mult 10/10/5/5)
+// This lets the main verify each source is linked to the RIGHT Helper plot:
+//   • embedded slot 0            -> unlinked (source still = chart close) -> na
+//   • embedded slot != expected  -> MIS-LINKED (wrong plot) -> na + cell warning
+//   • embedded slot == expected  -> decode the % for the selected Basis
+// ==============================================================================
+f_slot_of(packed) => na(packed) ? 0 : int((packed - (packed % 1000000000000)) / 1000000000000)   // 0 = unlinked, else 1..11
+
+f_unpack_body(packed) =>
+    float body  = packed % 1000000000000
+    int   d_off = int(math.floor(body / 1000000000))
+    int   i_off = int(math.floor((body % 1000000000) / 1000000))
+    int   w_off = int(math.floor((body % 1000000) / 1000))
+    int   m_off = int(body % 1000)
+    chg_basis == "Intraday %chg" ? (i_off - 500) / 10.0 : chg_basis == "Weekly %chg" ? (w_off - 500) / 5.0 : chg_basis == "Monthly %chg" ? (m_off - 500) / 5.0 : (d_off - 500) / 10.0
+
+// % for a slot — only when linked to the CORRECT plot and not in Custom mode.
+f_xpct(packed, expect) => (f_slot_of(packed) == expect and chg_basis != "Custom" and chg_basis != "Intraday 3PM") ? f_unpack_body(packed) : na
+// True when the source is linked to SOME Helper plot but the WRONG one.
+f_mis(packed, expect)  => f_slot_of(packed) != 0 and f_slot_of(packed) != expect
+
+xpct_s1  = f_xpct(src_s1, 1)
+xpct_s2  = f_xpct(src_s2, 2)
+xpct_s3  = f_xpct(src_s3, 3)
+xpct_s4  = f_xpct(src_s4, 4)
+xpct_s5  = f_xpct(src_s5, 5)
+xpct_s6  = f_xpct(src_s6, 6)
+xpct_s7  = f_xpct(src_s7, 7)
+xpct_s8  = f_xpct(src_s8, 8)
+xpct_s9  = f_xpct(src_s9, 9)
+xpct_s10 = f_xpct(src_s10, 10)
+xpct_s11 = f_xpct(src_s11, 11)
+mis_s1  = f_mis(src_s1, 1)
+mis_s2  = f_mis(src_s2, 2)
+mis_s3  = f_mis(src_s3, 3)
+mis_s4  = f_mis(src_s4, 4)
+mis_s5  = f_mis(src_s5, 5)
+mis_s6  = f_mis(src_s6, 6)
+mis_s7  = f_mis(src_s7, 7)
+mis_s8  = f_mis(src_s8, 8)
+mis_s9  = f_mis(src_s9, 9)
+mis_s10 = f_mis(src_s10, 10)
+mis_s11 = f_mis(src_s11, 11)
+
+// ==============================================================================
+// REAL NIFTY 50 DATA ROUTING (Custom Built Sector Aggregation)
+// ==============================================================================
+get_stock_pct(idx) =>
+    switch idx
+        0  => stk_hdfc
+        1  => stk_icici
+        2  => stk_rel
+        3  => stk_bharti
+        4  => stk_lt
+        5  => stk_sbin
+        6  => stk_axis
+        7  => stk_infy
+        8  => stk_kotak
+        9  => stk_itc
+        10 => stk_mm
+        11 => stk_bajfin
+        12 => stk_tcs
+        13 => stk_sun
+        14 => stk_eternal
+        15 => stk_hul
+        16 => stk_maruti
+        17 => stk_titan
+        18 => stk_ntpc
+        19 => stk_tatasteel
+        20 => stk_bel
+        21 => stk_shriram
+        22 => stk_hindalco
+        23 => stk_adaniports
+        24 => stk_ultracemco
+        25 => stk_powergrid
+        26 => stk_indigo
+        27 => stk_asianpaint
+        28 => stk_grasim
+        29 => stk_jsw
+        30 => stk_hcl
+        31 => stk_trent
+        32 => stk_bajajauto
+        33 => stk_coalindia
+        34 => stk_bajfinsv
+        35 => stk_nestle
+        36 => stk_eicher
+        37 => stk_apollo
+        38 => stk_cipla
+        39 => xpct_s1    // ONGC
+        40 => xpct_s2    // TECHM
+        41 => xpct_s3    // ADANIENT
+        42 => xpct_s4    // MAXHEALTH
+        43 => xpct_s5    // DRREDDY
+        44 => xpct_s6    // SBILIFE
+        45 => xpct_s7    // JIOFIN
+        46 => xpct_s8    // TMPV
+        47 => xpct_s9    // TATACONSUM
+        48 => xpct_s10   // HDFCLIFE
+        49 => xpct_s11   // WIPRO
+        => na
+
+// True only for an extra stock (39-49) whose source IS linked but to the WRONG
+// Helper plot (embedded slot ≠ expected). Direct stocks (0-38) can never mis-link.
+get_stock_mislinked(idx) =>
+    switch idx
+        39 => mis_s1
+        40 => mis_s2
+        41 => mis_s3
+        42 => mis_s4
+        43 => mis_s5
+        44 => mis_s6
+        45 => mis_s7
+        46 => mis_s8
+        47 => mis_s9
+        48 => mis_s10
+        49 => mis_s11
+        => false
+
+// Constituent stock indices for a sector — DERIVED from the stock_sectors master
+// array (no hardcoded lists). Returns indices in ascending (weight-descending) order.
+// The extra-11 are included automatically; each decodes to na when its Helper source
+// is unlinked (or in Custom mode).
+f_get_sector_stocks(s_idx) =>
+    var int[] stks = array.new_int(0)
+    array.clear(stks)
+    for i = 0 to array.size(stock_sectors) - 1
+        if array.get(stock_sectors, i) == s_idx
+            array.push(stks, i)
+    stks
+
+// Sector % = weight-weighted average of the constituents that HAVE data (na-aware,
+// DYNAMIC denominator). Fully linked -> denominator = official sector weight (exact);
+// unlinked extras drop out -> graceful fallback to the 39-stock behaviour.
+get_sector_pct(s_idx) =>
+    int[] stks = f_get_sector_stocks(s_idx)
+    float wsum = 0.0
+    float psum = 0.0
+    for i = 0 to array.size(stks) - 1
+        int idx = array.get(stks, i)
+        float p = get_stock_pct(idx)
+        if not na(p)
+            float w = array.get(stock_weights, idx)
+            wsum += w
+            psum += w * p
+    wsum > 0 ? psum / wsum : na
+
+get_short_name(idx) =>
+    switch idx
+        0 => "Finance"
+        1 => "Oil & Gas"
+        2 => "IT"
+        3 => "Auto"
+        4 => "FMCG"
+        5 => "Telecom"
+        6 => "Health"
+        7 => "Metals"
+        8 => "Construction"
+        9 => "Durables"
+        10 => "Consumer"
+        11 => "Power"
+        12 => "Services"
+        13 => "Materials"
+        14 => "Capital"
+        => ""
+
+// ==============================================================================
+// INDEX POINTS CONTRIBUTION ENGINE (Part 1: per-stock + formatter)
+// ------------------------------------------------------------------------------
+// points = NIFTY level × (weight% / 100) × (change% / 100)
+// This is the standard index-attribution approximation. It is mathematically
+// identical to the manual "share = idxLtp * weight * chgP" method (exact up to
+// a negligible 2nd-order term). A positive value = the stock is pushing NIFTY
+// UP by that many points; negative = pulling it DOWN.
+//
+// NOTE: get_stock_points is defined HERE (early) because f_build_tooltip below
+// needs it. get_sector_points is defined later, after f_get_sector_stocks exists.
+// ==============================================================================
+get_stock_points(idx) =>
+    float pct = get_stock_pct(idx)
+    float wt  = array.get(stock_weights, idx)
+    (na(pct) or na(nifty50_price)) ? na : nifty50_price * (wt / 100.0) * (pct / 100.0)
+
+// ── Sort routing ──────────────────────────────────────────────────────────────
+// "ALL Points" sorts by index-points contribution; the % modes sort by % change.
+bool sort_by_points  = sort_mode == "ALL Points"
+bool do_sort_sectors = sort_mode == "Sector Performance %" or sort_mode == "ALL Performance %" or sort_mode == "ALL Points"
+bool do_sort_stocks  = sort_mode == "ALL Performance %" or sort_mode == "ALL Points"
+// Descending sort key for a stock (na sinks to the bottom).
+f_stock_key(idx) => sort_by_points ? nz(get_stock_points(idx), -999999.0) : nz(get_stock_pct(idx), -999.0)
+
+// Returns the pre-formatted points chunk (e.g. "+40.2 pt  ") or "" when the
+// toggle is OFF / value is na -> guarantees identical output when disabled.
+f_fmt_points(pts) =>
+    (not show_points or na(pts)) ? "" : (pts > 0 ? "+" : "") + str.tostring(pts, "#.#") + " pt  "
+
+// Formats an HHMM int (e.g. 915) as a padded clock string ("09:15") for the banner.
+f_fmt_hhmm(v) =>
+    int h = int(v / 100)
+    int m = int(v % 100)
+    (h < 10 ? "0" : "") + str.tostring(h) + ":" + (m < 10 ? "0" : "") + str.tostring(m)
+
+// ==============================================================================
+// THEMED COLOR ENGINE CLASSIFIERS
+// ==============================================================================
+f_get_standard_bg(val) =>
+    if na(val)
+        #e0e0e0
+    else if val >= 1.5
+        #2e7d32
+    else if val >= 0.25
+        #4caf50
+    else if val > -0.25
+        #e2e8f0
+    else if val >= -1.5
+        #ef9a9a
+    else
+        #c62828
+
+f_get_standard_tc(val) =>
+    if na(val)
+        color.gray
+    else if val >= 1.5
+        #d4effc
+    else if val >= 0.25
+        color.white
+    else if val > -0.25
+        #475569
+    else if val >= -1.5
+        #5c0000
+    else
+        color.white
+
+f_get_bw_bg(val) =>
+    if na(val)
+        #e0e0e0
+    else if val >= 1.5
+        bw_col_5
+    else if val >= 0.25
+        bw_col_4
+    else if val > -0.25
+        bw_col_3
+    else if val >= -1.5
+        bw_col_2
+    else
+        bw_col_1
+
+f_get_bw_tc(val) =>
+    if na(val)
+        color.gray
+    else if val >= 0.25
+        color.black
+    else if val > -0.25
+        color.black
+    else
+        color.white
+
+f_get_light_text(val) =>
+    if na(val)
+        color.gray
+    else if val >= 1.5
+        #2e7d32
+    else if val >= 0.25
+        #4caf50
+    else if val > -0.25
+        #475569
+    else if val >= -1.5
+        #d32f2f // Darkened red for better contrast on light background
+    else
+        #c62828
+
+f_get_bg(val, is_sector) =>
+    if theme_opt == "Normal"
+        f_get_standard_bg(val)
+    else if theme_opt == "B&W Stocks"
+        (is_sector and not bw_apply_sectors) ? f_get_standard_bg(val) : f_get_bw_bg(val)
+    else if theme_opt == "Light Sectors"
+        is_sector ? light_theme_bg : f_get_standard_bg(val)
+    else
+        f_get_standard_bg(val)
+
+f_get_text_col(val, is_sector) =>
+    if theme_opt == "Normal"
+        f_get_standard_tc(val)
+    else if theme_opt == "B&W Stocks"
+        (is_sector and not bw_apply_sectors) ? f_get_standard_tc(val) : f_get_bw_tc(val)
+    else if theme_opt == "Light Sectors"
+        is_sector ? f_get_light_text(val) : f_get_standard_tc(val)
+    else
+        f_get_standard_tc(val)
+
+calc_weighted_sentiment() =>
+    weighted_positive = 0.0
+    weighted_negative = 0.0
+    for i = 0 to 14
+        weight = array.get(sector_weights, i)
+        pct = get_sector_pct(i)
+        if not na(pct) and weight > 0
+            weighted_contribution = (weight / 100.0) * pct
+            if pct > 0
+                weighted_positive += weighted_contribution
+            else if pct < 0
+                weighted_negative += math.abs(weighted_contribution)
+    [math.max(0, math.min(100, (weighted_positive / (weighted_positive + weighted_negative) * 100))), weighted_positive, weighted_negative]
+
+// ==============================================================================
+// TOOLTIP DATA GENERATORS   (f_get_sector_stocks is defined earlier, by the sector engine)
+// ==============================================================================
+f_build_tooltip(s_idx, s_mode) =>
+    int[] stks = f_get_sector_stocks(s_idx)
+    int sz = array.size(stks)
+
+    // Sort array identically to the selected view mode (Fixed sz check)
+    if sz > 1 and do_sort_stocks
+        for x = 0 to sz - 2
+            for y = 0 to sz - 2 - x
+                int a = array.get(stks, y)
+                int b = array.get(stks, y + 1)
+                if f_stock_key(a) < f_stock_key(b)
+                    array.set(stks, y, b)
+                    array.set(stks, y + 1, a)
+
+    string tt = "--- " + str.upper(get_short_name(s_idx)) + " STOCKS ---\n"
+    for i = 0 to sz - 1
+        int idx = array.get(stks, i)
+        float pct = get_stock_pct(idx)
+        string name = array.get(stock_names, idx)
+        string dir = na(pct) ? "" : (pct > 0 ? "▲ " : (pct < 0 ? "▼ " : ""))
+        string val_str = na(pct) ? "--" : str.tostring(pct, "#.##") + "%"
+        string pts_str = f_fmt_points(get_stock_points(idx))
+        tt += name + ": " + pts_str + dir + val_str + (i < sz - 1 ? "\n" : "")
+    tt
+
+f_get_sorted_sector_stocks(s_idx) =>
+    int[] stks = f_get_sector_stocks(s_idx)
+    int sz = array.size(stks)
+
+    // (Fixed sz check)
+    if sz > 1 and do_sort_stocks
+        for x = 0 to sz - 2
+            for y = 0 to sz - 2 - x
+                int a = array.get(stks, y)
+                int b = array.get(stks, y + 1)
+                if f_stock_key(a) < f_stock_key(b)
+                    array.set(stks, y, b)
+                    array.set(stks, y + 1, a)
+    stks
+
+// ==============================================================================
+// INDEX POINTS CONTRIBUTION ENGINE (Part 2: per-sector)
+// ------------------------------------------------------------------------------
+// Two selectable bases (see 'Sector Points Basis' input):
+//   • "Official NSE Weight" -> NIFTY level × official_sector_weight% × sector%.
+//       Scales the tracked stocks up to the full NSE sector weight. Best estimate
+//       of true impact; all sectors sum ≈ to NIFTY's real point move.
+//   • "Tracked Stocks Only" -> sum of the tracked constituents' points. Exact &
+//       fully additive (header = sum of its shown stocks) but ~5% understated.
+// ==============================================================================
+get_sector_points(s_idx) =>
+    if sector_pts_basis == "Official NSE Weight"
+        float pct = get_sector_pct(s_idx)
+        (na(pct) or na(nifty50_price)) ? na : nifty50_price * (array.get(sector_weights, s_idx) / 100.0) * (pct / 100.0)
+    else
+        int[] stks = f_get_sector_stocks(s_idx)
+        float total = 0.0
+        bool  any   = false
+        for i = 0 to array.size(stks) - 1
+            float p = get_stock_points(array.get(stks, i))
+            if not na(p)
+                total += p
+                any := true
+        any ? total : na
+
+// Descending sort key for a sector (na sinks to the bottom).
+f_sector_key(s_idx) => sort_by_points ? nz(get_sector_points(s_idx), -999999.0) : nz(get_sector_pct(s_idx), -999.0)
+
+// Weighted % change across all 15 sectors — returns [positive%, negative%]
+// (neg is a positive magnitude). These ARE the actual weighted %-change contributions
+// (same numbers as the header's "Weighted Chg" +/-), NOT the gauge's share-of-move.
+f_wbreadth() =>
+    float pw = 0.0
+    float nw = 0.0
+    for i = 0 to 14
+        float sp = get_sector_pct(i)
+        float w  = array.get(sector_weights, i)
+        if not na(sp)
+            if sp > 0
+                pw += w / 100.0 * sp
+            else if sp < 0
+                nw += w / 100.0 * (-sp)
+    [pw, nw]
+
+// Horizontal fill-bar for the Weighted-Chg gauge. Fixed 12-cell width: `share`
+// (0-100) worth of solid "█" (fill) then faint "░" (track) — so the bar's full
+// extent is always visible and share=100 fills it entirely. Track "░" over the
+// gauge-BG cell reads as the unfilled portion.
+f_gauge_bar(share) =>
+    int w = 12
+    int n = math.max(0, math.min(w, int(math.round(nz(share) / 100.0 * w))))
+    string s = ""
+    for k = 0 to w - 1
+        s += k < n ? "█" : "░"
+    s
+
+// ==============================================================================
+// STOCK CELL BUILDERS — one place that builds every stock cell's text & colours,
+// including the ⚠ WRONG-LINK warning for a mis-linked extra stock.
+// ==============================================================================
+f_stock_cell_text(idx) =>
+    string hdr = array.get(stock_names, idx) + " (" + str.tostring(array.get(stock_weights, idx), "#.#") + "%)\n\n"
+    string body = na
+    if get_stock_mislinked(idx)
+        body := "⚠ WRONG LINK\n→ set to \"Stock " + str.tostring(idx - 38) + "\""
+    else
+        float pct = get_stock_pct(idx)
+        body := f_fmt_points(get_stock_points(idx)) + (na(pct) ? "" : (pct > 0 ? "▲ " : (pct < 0 ? "▼ " : ""))) + (na(pct) ? "--" : str.tostring(pct, "#.##") + "%")
+    hdr + body
+
+f_stock_cell_bg(idx) => get_stock_mislinked(idx) ? color.new(#ff9800, 0) : f_get_bg(get_stock_pct(idx), false)
+f_stock_cell_tc(idx) => get_stock_mislinked(idx) ? color.white : f_get_text_col(get_stock_pct(idx), false)
+
+// ==============================================================================
+// SECTOR VIEW DYNAMIC HELPER FUNCTIONS
+// ==============================================================================
+f_render_stock(table tbl, int c, int r, int idx, string txt_size) =>
+    table.cell(tbl, c, r, f_stock_cell_text(idx), text_color=f_stock_cell_tc(idx), bgcolor=f_stock_cell_bg(idx), text_size=txt_size, text_halign=text.align_center)
+
+f_render_sector_header(table tbl, int r, int c_offset, int idx, string txt_size) =>
+    float pct = get_sector_pct(idx)
+    float pts = get_sector_points(idx)
+    color bg = f_get_bg(pct, true)
+    color tc = f_get_text_col(pct, true)
+    string name = get_short_name(idx)
+    float wt = array.get(sector_weights, idx)
+    string txt = "✦ " + str.upper(name) + " SECTOR (" + str.tostring(wt, "#.#") + "%) ✦\n" + f_fmt_points(pts) + (na(pct) ? "" : (pct > 0 ? "▲ " : (pct < 0 ? "▼ " : ""))) + (na(pct) ? "--" : str.tostring(pct, "#.##") + "%")
+    table.cell(tbl, c_offset, r, txt, text_color=tc, bgcolor=bg, text_size=txt_size, text_halign=text.align_center)
+    table.merge_cells(tbl, c_offset, r, c_offset + 4, r)
+
+// Generic sector block: header (5-wide) then the sector's stocks wrapped 5 per row,
+// each row's cells sharing the 5 columns as evenly as possible. Handles any count
+// (1 stock -> full-width; 11 stocks like Finance -> rows of 5, 5, 1).
+f_render_sector(table tbl, int r_start, int c_offset, int s_idx, string txt_size) =>
+    f_render_sector_header(tbl, r_start, c_offset, s_idx, txt_size)
+    int[] stks = f_get_sorted_sector_stocks(s_idx)
+    int n = array.size(stks)
+    int r = r_start + 1
+    int i = 0
+    while i < n
+        int k    = int(math.min(5, n - i))   // cells to place in this row
+        int base = int(5 / k)                // even column spans across the 5-wide block
+        int rem  = 5 - base * k
+        int col  = 0
+        for j = 0 to k - 1
+            int span = base + (j < rem ? 1 : 0)
+            f_render_stock(tbl, c_offset + col, r, array.get(stks, i + j), txt_size)
+            if span > 1
+                table.merge_cells(tbl, c_offset + col, r, c_offset + col + span - 1, r)
+            col := col + span
+        r := r + 1
+        i := i + k
+    r - r_start   // rows consumed (header + stock rows)
+
+// ==============================================================================
+// RENDERING GRID ENGINE CANVAS (DYNAMIC SIZE ROUTING)
+// ==============================================================================
+bool is_combined = (show_stocks and stocks_layout == "Combined With Main Table")
+
+int stock_rows = stocks_row_count == "All 50 Stocks (10 Rows)" ? 10 : (stocks_row_count == "45 Stocks (9 Rows)" ? 9 : (stocks_row_count == "40 Stocks (8 Rows)" ? 8 : (stocks_row_count == "35 Stocks (7 Rows)" ? 7 : (stocks_row_count == "30 Stocks (6 Rows)" ? 6 : 5))))
+int stock_limit = stock_rows * 5
+
+// Generate dynamic column sizing depending on layout structure needed
+int table_cols = view_mode == "Sector Grouped View" ? 11 : 5
+// One extra, fully transparent spacer column appended on the OUTER side. Its width
+// pushes the whole dashboard off the edge it's anchored to. table_cols stays the
+// CONTENT column count, so every existing cell/merge/loop below is untouched.
+int shift_cols = shift_dash ? 1 : 0
+
+main_position_resolved   = f_resolve_position(main_v_pos, main_h_pos)
+stocks_position_resolved = f_resolve_position(stock_v_pos, stock_h_pos)
+
+var table main_tbl = table.new(position = main_position_resolved, columns = table_cols + shift_cols, rows = 50, border_width = 1, frame_color = color.new(color.gray, 0), bgcolor = color.new(color.white, 100))
+var table stock_tbl = table.new(position = stocks_position_resolved, columns = 5, rows = 11, border_width = 1, frame_color = color.new(color.gray, 0), bgcolor = color.new(color.white, 100))
+
+if barstate.islast
+    table.clear(main_tbl, 0, 0, table_cols + shift_cols - 1, 49)
+    table.clear(stock_tbl, 0, 0, 4, 10)
+
+    table.set_position(main_tbl, main_position_resolved)
+    table.set_position(stock_tbl, stocks_position_resolved)
+
+    [position_sentiment, weighted_pos, weighted_neg] = calc_weighted_sentiment()
+    net_weighted = weighted_pos - weighted_neg
+
+    int pointer_col = math.round(position_sentiment / 100 * (table_cols - 1))
+    selected_text_size = f_get_size(text_size_opt)
+
+    // ── Blank spacer column (Shift Dashboard) ─────────────────────────────────
+    // Sits in the extra column to the RIGHT of the content (index table_cols).
+    // Invisible blocks (fully transparent text AND bg) purely to give the column
+    // width — spaces alone can collapse. Because a table is anchored by its edge,
+    // that width pushes the content LEFT when the table is Right/Center anchored.
+    if shift_dash
+        string pad = ""
+        for k = 1 to shift_amount
+            pad += "█"
+        table.cell(main_tbl, table_cols, 0, pad, text_color = color.new(color.white, 100), bgcolor = color.new(color.white, 100), text_size = selected_text_size)
+
+    table.cell(main_tbl, pointer_col, 0, "▼", text_color = net_weighted >= 0 ? color.green : color.red, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_center)
+
+    for col = 0 to table_cols - 1
+        float color_intensity = col / (table_cols - 1.0)
+        int transparency_val = color_intensity <= 0.5 ? int(color_intensity * 160) : int(80 - ((color_intensity - 0.5) * 160))
+        color bg_color = color_intensity < 0.5 ? color.new(color.red, transparency_val) : color.new(color.green, transparency_val)
+        table.cell(main_tbl, col, 1, " ", bgcolor = bg_color, text_size = selected_text_size)
+
+    // NIFTY50 header value: when points toggle is ON, show the TOTAL index point move first
+    float nifty_pts = (na(nifty50_pct) or na(nifty50_price)) ? na : nifty50_price * nifty50_pct / 100.0
+    n50_string      = f_fmt_points(nifty_pts) + (nifty50_pct >= 0 ? "▲ " : "▼ ") + str.tostring(nifty50_pct, "#.##") + "%"
+    pos_contrib_str = "▲ " + str.tostring(weighted_pos, "#.##") + "%"
+    neg_contrib_str = "▼ " + str.tostring(weighted_neg, "#.##") + "%"
+
+    // Weighted-Chg gauge shares (weighted_pos/neg are positive magnitudes).
+    float wg_total  = weighted_pos + weighted_neg
+    float pos_share = wg_total > 0 ? weighted_pos / wg_total * 100.0 : 0.0
+    float neg_share = wg_total > 0 ? weighted_neg / wg_total * 100.0 : 0.0
+
+    if view_mode == "Sector Grouped View"
+        table.cell(main_tbl, 0, 2, "NIFTY50:", text_color = color.black, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_right)
+        table.merge_cells(main_tbl, 0, 2, 1, 2)
+        table.cell(main_tbl, 2, 2, n50_string, text_color = nifty50_pct >= 0 ? color.green : color.red, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_left)
+        table.merge_cells(main_tbl, 2, 2, 3, 2)
+        table.cell(main_tbl, 4, 2, "Weighted Chg:", text_color = color.black, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_center)
+        table.merge_cells(main_tbl, 4, 2, 6, 2)
+        table.cell(main_tbl, 7, 2, pos_contrib_str, text_color = wg_pos_col, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_left)
+        table.merge_cells(main_tbl, 7, 2, 8, 2)
+        if show_wchg_gauge
+            table.cell(main_tbl, 9, 2, f_gauge_bar(pos_share), text_color = wg_pos_col, bgcolor = wg_gauge_bg, text_size = selected_text_size, text_halign = text.align_left)
+            table.merge_cells(main_tbl, 9, 2, 10, 2)
+            table.cell(main_tbl, 7, 3, neg_contrib_str, text_color = wg_neg_col, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_left)
+            table.merge_cells(main_tbl, 7, 3, 8, 3)
+            table.cell(main_tbl, 9, 3, f_gauge_bar(neg_share), text_color = wg_neg_col, bgcolor = wg_gauge_bg, text_size = selected_text_size, text_halign = text.align_left)
+            table.merge_cells(main_tbl, 9, 3, 10, 3)
+        else
+            table.cell(main_tbl, 9, 2, neg_contrib_str, text_color = wg_neg_col, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_left)
+            table.merge_cells(main_tbl, 9, 2, 10, 2)
+    else
+        table.cell(main_tbl, 0, 2, "NIFTY50:", text_color = color.black, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_right)
+        table.cell(main_tbl, 1, 2, n50_string, text_color = nifty50_pct >= 0 ? color.green : color.red, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_left)
+        table.cell(main_tbl, 2, 2, "Weighted Chg:", text_color = color.black, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_center)
+        table.cell(main_tbl, 3, 2, pos_contrib_str, text_color = wg_pos_col, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_left)
+        if show_wchg_gauge
+            table.cell(main_tbl, 4, 2, f_gauge_bar(pos_share), text_color = wg_pos_col, bgcolor = wg_gauge_bg, text_size = selected_text_size, text_halign = text.align_left)
+            table.cell(main_tbl, 3, 3, neg_contrib_str, text_color = wg_neg_col, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_left)
+            table.cell(main_tbl, 4, 3, f_gauge_bar(neg_share), text_color = wg_neg_col, bgcolor = wg_gauge_bg, text_size = selected_text_size, text_halign = text.align_left)
+        else
+            table.cell(main_tbl, 4, 2, neg_contrib_str, text_color = wg_neg_col, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_left)
+
+    // ── Row 3: anchor banner for non-Daily bases; "Daily %chg" leaves this row blank ──
+    // When the gauge is ON, row 3's right side holds the neg% + neg gauge, so the banner
+    // and the blank spacer only occupy the LEFT columns (0..wg_left_end).
+    int wg_left_end = view_mode == "Sector Grouped View" ? 6 : 2
+    int row3_end    = show_wchg_gauge ? wg_left_end : table_cols - 1
+    string anchor_label = chg_basis == "Intraday %chg" ? "Today's Open" : chg_basis == "Intraday 3PM" ? "the 15:00 (3 PM) candle Open" : chg_basis == "Custom" ? "the " + f_fmt_hhmm(anchor_hhmm) + " candle Open" : ""
+    if anchor_label != ""
+        table.cell(main_tbl, 0, 3, "⚓ Prices anchored to " + anchor_label, text_color = #1976d2, bgcolor = color.new(color.white, 100), text_size = selected_text_size, text_halign = text.align_center)
+        table.merge_cells(main_tbl, 0, 3, row3_end, 3)
+
+    if view_mode == "Sector Grouped View"
+        if anchor_label == ""
+            for col = 0 to row3_end
+                table.cell(main_tbl, col, 3, " ", bgcolor = color.new(color.white, 100), text_size = size.tiny)
+
+        var int[] sector_order_gv = array.new_int(15)
+        for k = 0 to 14
+            array.set(sector_order_gv, k, k)
+
+        if do_sort_sectors
+            for x = 0 to 13
+                for y = 0 to 13 - x
+                    s_a = array.get(sector_order_gv, y)
+                    s_b = array.get(sector_order_gv, y + 1)
+                    if f_sector_key(s_a) < f_sector_key(s_b)
+                        array.set(sector_order_gv, y, s_b)
+                        array.set(sector_order_gv, y + 1, s_a)
+
+        // Independent row trackers for left and right columns
+        int r_left = 4
+        int r_right = 4
+
+        for i = 0 to 14
+            int s_idx = array.get(sector_order_gv, i)
+
+            // Greedily place the next sector in the column that has fewer rows used
+            if r_left <= r_right
+                r_left += f_render_sector(main_tbl, r_left, 0, s_idx, selected_text_size)
+            else
+                r_right += f_render_sector(main_tbl, r_right, 6, s_idx, selected_text_size)
+
+        int max_rows = math.max(r_left, r_right)
+
+        // Generate visual border buffer splitting left and right table blocks
+        for r_fill = 4 to max_rows - 1
+            table.cell(main_tbl, 5, r_fill, " ", bgcolor = color.new(color.white, 100), text_size = size.tiny)
+
+    else // Standard Multi-Matrix Mode
+        if (show_grid or is_combined or show_wchg_gauge) and anchor_label == ""
+            for col = 0 to row3_end
+                table.cell(main_tbl, col, 3, " ", bgcolor = color.new(color.white, 100), text_size = size.tiny)
+
+        var int[] sector_order = array.new_int(15)
+        var int[] stock_order = array.new_int(50)
+
+        for k = 0 to 14
+            array.set(sector_order, k, k)
+        for k = 0 to stock_limit - 1
+            array.set(stock_order, k, k)
+
+        if do_sort_sectors
+            for x = 0 to 13
+                for y = 0 to 13 - x
+                    s_a = array.get(sector_order, y)
+                    s_b = array.get(sector_order, y + 1)
+                    if f_sector_key(s_a) < f_sector_key(s_b)
+                        array.set(sector_order, y, s_b)
+                        array.set(sector_order, y + 1, s_a)
+
+        if do_sort_stocks
+            int sort_stk_limit = stock_limit
+            for x = 0 to sort_stk_limit - 2
+                for y = 0 to sort_stk_limit - 2 - x
+                    stk_a = array.get(stock_order, y)
+                    stk_b = array.get(stock_order, y + 1)
+                    if f_stock_key(stk_a) < f_stock_key(stk_b)
+                        array.set(stock_order, y, stk_b)
+                        array.set(stock_order, y + 1, stk_a)
+
+        if show_grid
+            for i = 0 to 14
+                int target_idx = array.get(sector_order, i)
+                pct = get_sector_pct(target_idx)
+                float pts = get_sector_points(target_idx)
+                grid_row = math.floor(i / 5) + 4
+                grid_col = i % 5
+
+                string tt_text = f_build_tooltip(target_idx, sort_mode)
+
+                cell_text = get_short_name(target_idx) + " (" + str.tostring(array.get(sector_weights, target_idx), "#.#") + "%)\n\n" + f_fmt_points(pts) + (na(pct) ? "" : (pct > 0 ? "▲ " : (pct < 0 ? "▼ " : ""))) + (na(pct) ? "--" : str.tostring(pct, "#.##") + "%")
+                table.cell(main_tbl, grid_col, grid_row, cell_text, text_color = f_get_text_col(pct, true), bgcolor = f_get_bg(pct, true), text_size = selected_text_size, text_halign = text.align_center, tooltip = tt_text)
+
+        int stock_start_row = show_grid ? 8 : 4
+
+        if is_combined
+            if show_grid
+                for col = 0 to 4
+                    table.cell(main_tbl, col, 7, " ", bgcolor = color.new(color.white, 100), text_size = selected_text_size)
+
+            for i = 0 to stock_limit - 1
+                int target_idx = array.get(stock_order, i)
+                grid_row = math.floor(i / 5) + stock_start_row
+                grid_col = i % 5
+                table.cell(main_tbl, grid_col, grid_row, f_stock_cell_text(target_idx), text_color = f_stock_cell_tc(target_idx), bgcolor = f_stock_cell_bg(target_idx), text_size = selected_text_size, text_halign = text.align_center)
+
+        else if show_stocks and stocks_layout == "Separate Standalone Table"
+            for i = 0 to stock_limit - 1
+                int target_idx = array.get(stock_order, i)
+                grid_row = math.floor(i / 5)
+                grid_col = i % 5
+                table.cell(stock_tbl, grid_col, grid_row, f_stock_cell_text(target_idx), text_color = f_stock_cell_tc(target_idx), bgcolor = f_stock_cell_bg(target_idx), text_size = selected_text_size, text_halign = text.align_center)
+
+// ==============================================================================
+// WEIGHTED-CHANGE EXPORTS (for the companion "Nifty50 Weighted Chg" pane indicator)
+// The weighted % CHANGE (positive above 0, negative below 0) — the same numbers as
+// the header's "Weighted Chg" +/-, NOT the gauge's share-of-move. Computed every bar.
+// Plotted display.none — invisible on THIS overlay, but linkable as an input.source.
+// In the companion indicator, link "Weighted Chg +" (green) and "Weighted Chg -" (red).
+// ==============================================================================
+[wb_pw, wb_nw] = f_wbreadth()
+float wchg_pos_export = wb_pw                          // weighted POSITIVE % change (above 0)
+float wchg_neg_export = use_abs_lines ? wb_nw : -wb_nw // negative %: absolute (above 0, comparable) or mirrored below 0
+plot(wchg_pos_export, title = "Weighted Chg +", color = color.green, display = display.none)
+plot(wchg_neg_export, title = "Weighted Chg -", color = color.red,   display = display.none)

@@ -12,6 +12,19 @@
         "docs"
       ],
       "port": 8913
+    },
+    {
+      "name": "nifty-dash",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "nifty/nifty_feed.py",
+        "serve",
+        "--site",
+        "docs",
+        "--port",
+        "8050"
+      ],
+      "port": 8050
     }
   ]
 }

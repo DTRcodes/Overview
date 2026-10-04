@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIFTY 50 · Sector & Stock Allocation</title>
+  <style>
+    /* ==========================================================================
+       CSS Variables & Theme Setup (Supports prefers-color-scheme)
+       ========================================================================== */
+    :root {
+      --bg-page: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --cell-border: #cbd5e1;
+      --drawer-bg: #ffffff;
+      --drawer-overlay: rgba(15, 23, 42, 0.5);
+      --input-bg: #f8fafc;
+      --input-border: #cbd5e1;
+      --status-open-bg: #dcfce7;
+      --status-open-text: #15803d;
+      --status-close-bg: #fee2e2;
+      --status-close-text: #b91c1c;
+      --badge-stale-bg: #ef4444;
+      --badge-stale-text: #ffffff;
+      --btn-bg: #f1f5f9;
+      --btn-hover: #e2e8f0;
+      --btn-text: #0f172a;
+      --tooltip-bg: #0f172a;
+      --tooltip-text: #f8fafc;
+      --anchor-blue: #1976d2;
+      --table-header-bg: #f1f5f9;
+      --table-row-alt: #f8fafc;
+      --cell-font-size: 13px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-page: #0b0f19;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --card-bg: #131b2e;
+        --card-border: #1e293b;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+        --cell-border: #334155;
+        --drawer-bg: #131b2e;
+        --drawer-overlay: rgba(0, 0, 0, 0.7);
+        --input-bg: #1e293b;
+        --input-border: #334155;
+        --status-open-bg: #064e3b;
+        --status-open-text: #6ee7b7;
+        --status-close-bg: #7f1d1d;
+        --status-close-text: #fca5a5;
+        --btn-bg: #1e293b;
+        --btn-hover: #334155;
+        --btn-text: #f1f5f9;
+        --tooltip-bg: #020617;
+        --tooltip-text: #f8fafc;
+        --table-header-bg: #1e293b;
+        --table-row-alt: #162035;
+      }
+    }
+
+    /* Font Size Classes for Cells */
+    .fs-tiny { --cell-font-size: 10px; }
+    .fs-small { --cell-font-size: 11px; }
+    .fs-normal { --cell-font-size: 13px; }
+    .fs-large { --cell-font-size: 15px; }
+    .fs-huge { --cell-font-size: 18px; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================================================
+       Header / App Bar
+       ========================================================================== */
+    .app-container {
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 4px;
+    }
+
+    .app-title-area h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .pill-open {
+      background-color: var(--status-open-bg);
+      color: var(--status-open-text);
+    }
+
+    .pill-close {
+      background-color: var(--status-close-bg);
+      color: var(--status-close-text);
+    }
+
+    .badge-stale {
+      background-color: var(--badge-stale-bg);
+      color: var(--badge-stale-text);
+      display: none;
+    }
+
+    .btn-settings {
+      background-color: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1px solid var(--card-border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-settings:hover {
+      background-color: var(--btn-hover);
+    }
+
+    /* ==========================================================================
+       Dashboard Main Card
+       ========================================================================== */
+    .dash-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      box-shadow: var(--card-shadow);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    /* Sentiment Bar */
+    .sentiment-container {
+      position: relative;
+      width: 100%;
+      padding-top: 14px;
+      padding-bottom: 2px;
+    }
+
+    .sentiment-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      background: linear-gradient(to right, #c62828 0%, #e2e8f0 50%, #2e7d32 100%);
+      border: 1px solid var(--cell-border);
+      position: relative;
+    }
+
+    .sentiment-marker {
+      position: absolute;
+      top: -12px;
+      transform: translateX(-50%);
+      font-size: 13px;
+      line-height: 1;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      transition: left 0.3s ease;
+    }
+
+    /* Header Row */
+    .dash-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 8px 12px;
+      border: 1px solid var(--cell-border);
+      border-radius: 4px;
+      background-color: transparent;
+      font-size: 0.95rem;
+    }
+
+    .header-nifty-sec {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-label {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .header-val {
+      font-weight: 700;
+    }
+
+    .header-weighted-sec {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gauge-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .gauge-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gauge-track-bar {
+      width: 90px;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      display: inline-block;
+      position: relative;
+    }
+
+    .gauge-fill-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    /* Anchor Banner */
+    .anchor-banner {
+      width: 100%;
+      text-align: center;
+      color: var(--anchor-blue);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 6px 8px;
+      border: 1px solid rgba(25, 118, 210, 0.2);
+      border-radius: 4px;
+      background-color: rgba(25, 118, 210, 0.04);
+    }
+
+    /* ==========================================================================
+       Grids & Matrix Cells
+       ========================================================================== */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      width: 100%;
+    }
+
+    .matrix-spacer {
+      height: 4px;
+      grid-column: 1 / -1;
+    }
+
+    .grid-cell {
+      border: 1px solid var(--cell-border);
+      border-radius: 3px;
+      padding: 8px 4px;
+      text-align: center;
+      white-space: pre-line;
+      font-size: var(--cell-font-size);
+      font-variant-numeric: tabular-nums;
+      cursor: default;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      line-height: 1.25;
+      transition: transform 0.1s ease, filter 0.1s ease;
+    }
+
+    .grid-cell:hover {
+      filter: brightness(0.96);
+      transform: translateY(-1px);
+    }
+
+    /* Sector Grouped View Layout */
+    .grouped-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .grouped-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sector-block {
+      border: 1px solid var(--cell-border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sector-block-header {
+      padding: 8px 6px;
+      text-align: center;
+      white-space: pre-line;
+      font-size: var(--cell-font-size);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      border-bottom: 1px solid var(--cell-border);
+    }
+
+    .sector-stocks-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sector-stocks-row {
+      display: grid;
+      width: 100%;
+    }
+
+    .sector-stocks-row .grid-cell {
+      border-radius: 0;
+      border: none;
+      border-right: 1px solid var(--cell-border);
+      border-bottom: 1px solid var(--cell-border);
+    }
+
+    .sector-stocks-row .grid-cell:last-child {
+      border-right: none;
+    }
+
+    .sector-stocks-row:last-child .grid-cell {
+      border-bottom: none;
+    }
+
+    /* ==========================================================================
+       Weights & Data Sources Collapsible Section
+       ========================================================================== */
+    .details-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      box-shadow: var(--card-shadow);
+      padding: 16px;
+      width: 100%;
+    }
+
+    .details-card summary {
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-main);
+      user-select: none;
+      outline: none;
+    }
+
+    .details-content {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 0.875rem;
+    }
+
+    .info-line {
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .changes-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .chip-added {
+      background-color: var(--status-open-bg);
+      color: var(--status-open-text);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    .chip-removed {
+      background-color: var(--status-close-bg);
+      color: var(--status-close-text);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--cell-border);
+      border-radius: 6px;
+      margin-top: 6px;
+    }
+
+    .weights-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    .weights-table th {
+      background-color: var(--table-header-bg);
+      color: var(--text-main);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--cell-border);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .weights-table th:hover {
+      background-color: var(--btn-hover);
+    }
+
+    .weights-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--cell-border);
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .weights-table tr:nth-child(even) {
+      background-color: var(--table-row-alt);
+    }
+
+    .weights-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .btn-download-csv {
+      align-self: flex-start;
+      background-color: #1976d2;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-download-csv:hover {
+      background-color: #1565c0;
+    }
+
+    /* ==========================================================================
+       Custom Global Tooltip
+       ========================================================================== */
+    .app-tooltip {
+      position: fixed;
+      display: none;
+      background-color: var(--tooltip-bg);
+      color: var(--tooltip-text);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      pointer-events: none;
+      z-index: 9999;
+      max-width: 320px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      white-space: pre-line;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================================================
+       Settings Drawer
+       ========================================================================== */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: var(--drawer-overlay);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 440px;
+      background-color: var(--drawer-bg);
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-header h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .drawer-close-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .drawer-body {
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .drawer-section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .form-group-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .form-group select,
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--input-border);
+      background-color: var(--input-bg);
+      color: var(--text-main);
+      font-size: 0.875rem;
+      outline: none;
+    }
+
+    .form-group input[type="color"] {
+      border: 1px solid var(--input-border);
+      background-color: transparent;
+      height: 34px;
+      width: 60px;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 2px;
+    }
+
+    .drawer-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-reset {
+      flex: 1;
+      background-color: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1px solid var(--card-border);
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+
+    .btn-reset:hover {
+      background-color: var(--btn-hover);
+    }
+
+    /* ==========================================================================
+       Responsive Rules
+       ========================================================================== */
+    @media (max-width: 640px) {
+      body {
+        padding: 16px;
+      }
+      .matrix-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .grouped-container {
+        grid-template-columns: 1fr;
+      }
+      .dash-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-weighted-sec {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body class="fs-normal">
+
+  <div class="app-container">
+    <!-- Header / Status Bar -->
+    <header class="app-header">
+      <div class="app-title-area">
+        <h1>NIFTY 50 · Sector & Stock Allocation</h1>
+      </div>
+      <div class="status-line">
+        <span id="stat-last-update">Last update: --</span>
+        <span id="stat-market-pill" class="pill pill-close">Market is Closed</span>
+        <span id="stat-stale-badge" class="pill badge-stale">Stale / Offline</span>
+        <button id="btn-open-settings" class="btn-settings" aria-label="Settings">
+          ⚙ Settings
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Card -->
+    <main class="dash-card" id="main-dash-card">
+      <!-- 1. Sentiment Bar -->
+      <div class="sentiment-container" id="sentiment-container">
+        <div class="sentiment-track">
+          <div class="sentiment-marker" id="sentiment-marker">▼</div>
+        </div>
+      </div>
+
+      <!-- 2. Header Row -->
+      <div class="dash-header-row" id="dash-header-row">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- 3. Anchor Banner (Only shown for non-Daily bases) -->
+      <div class="anchor-banner" id="anchor-banner" style="display: none;"></div>
+
+      <!-- 4. Matrix / Grouped Views Container -->
+      <div id="views-container"></div>
+    </main>
+
+    <!-- Standalone Stocks Card (Shown only in Standalone table mode) -->
+    <section class="dash-card" id="standalone-stocks-card" style="display: none;">
+      <div class="matrix-grid" id="standalone-stocks-grid"></div>
+    </section>
+
+    <!-- 5. Weights & Data Sources Collapsible Section -->
+    <details class="details-card">
+      <summary>Weights & data sources</summary>
+      <div class="details-content">
+        <div class="info-line" id="info-weights-method">Weights: Live free-float market cap from NSE (ffmc).</div>
+        <div class="info-line" id="info-constituents-source">Constituents: niftyindices.com, fetched --, 50 stocks</div>
+
+        <div>
+          <div style="font-weight: 600; margin-bottom: 6px;">Constituent changes:</div>
+          <div class="changes-box" id="info-changes-box">No change since last official list</div>
+        </div>
+
+        <div class="info-line" id="info-base-dates">
+          Base dates: pwc --, pmc --
+        </div>
+        <div class="info-line" id="info-base-adjustments">
+          Base adjustments: None
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Constituents Weights Table:</span>
+            <button class="btn-download-csv" id="btn-download-csv">Download CSV</button>
+          </div>
+          <div class="table-container">
+            <table class="weights-table" id="weights-table">
+              <thead>
+                <tr id="weights-table-header"></tr>
+              </thead>
+              <tbody id="weights-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Global Shared Tooltip Element -->
+  <div id="app-tooltip" class="app-tooltip"></div>
+
+  <!-- Settings Drawer Overlay & Panel -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <aside class="drawer" id="settings-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <h2>Dashboard Settings</h2>
+      <button class="drawer-close-btn" id="btn-close-settings" aria-label="Close">✕</button>
+    </div>
+    <div class="drawer-body">
+      <!-- Section: Display Options -->
+      <div>
+        <div class="drawer-section-title">Display Options</div>
+        <div class="form-group">
+          <label for="cfg-view-mode">Dashboard View Mode</label>
+          <select id="cfg-view-mode">
+            <option value="Standard Multi-Matrix">Standard Multi-Matrix</option>
+            <option value="Sector Grouped View">Sector Grouped View</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cfg-theme-opt">Color Theme</label>
+          <select id="cfg-theme-opt">
+            <option value="Normal">Normal</option>
+            <option value="B&W Stocks">B&W Stocks</option>
+            <option value="Light Sectors">Light Sectors</option>
+          </select>
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-light-bg">Light Theme Sector BG</label>
+          <input type="color" id="cfg-light-bg" value="#ffffff">
+        </div>
+        <div class="form-group">
+          <label for="cfg-text-size">Matrix Text Size</label>
+          <select id="cfg-text-size">
+            <option value="Tiny">Tiny</option>
+            <option value="Small">Small</option>
+            <option value="Normal">Normal</option>
+            <option value="Large">Large</option>
+            <option value="Huge">Huge</option>
+          </select>
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-show-grid">Show Sector Grid Matrix</label>
+          <input type="checkbox" id="cfg-show-grid">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-show-points">Show Points Contribution</label>
+          <input type="checkbox" id="cfg-show-points">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-show-gauge">Use Contribution Gauge</label>
+          <input type="checkbox" id="cfg-show-gauge">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-gauge-pos">Gauge Color (+)</label>
+          <input type="color" id="cfg-gauge-pos" value="#2962ff">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-gauge-neg">Gauge Color (–)</label>
+          <input type="color" id="cfg-gauge-neg" value="#e53935">
+        </div>
+        <div class="form-group">
+          <label for="cfg-gauge-track">Gauge Track Color</label>
+          <input type="text" id="cfg-gauge-track" value="rgba(128,128,128,0.15)">
+        </div>
+      </div>
+
+      <!-- Section: Stocks Settings -->
+      <div>
+        <div class="drawer-section-title">Top Stocks Matrix Settings</div>
+        <div class="form-group-row">
+          <label for="cfg-show-stocks">Show Top Stocks Matrix</label>
+          <input type="checkbox" id="cfg-show-stocks">
+        </div>
+        <div class="form-group">
+          <label for="cfg-stocks-layout">Layout Style</label>
+          <select id="cfg-stocks-layout">
+            <option value="Combined With Main Table">Combined With Main Table</option>
+            <option value="Separate Standalone Table">Separate Standalone Table</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cfg-stock-count">Display How Many Stocks?</label>
+          <select id="cfg-stock-count">
+            <option value="25">25 Stocks (5 Rows)</option>
+            <option value="30">30 Stocks (6 Rows)</option>
+            <option value="35">35 Stocks (7 Rows)</option>
+            <option value="40">40 Stocks (8 Rows)</option>
+            <option value="45">45 Stocks (9 Rows)</option>
+            <option value="50">All 50 Stocks (10 Rows)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Section: Sorting -->
+      <div>
+        <div class="drawer-section-title">Matrix Sorting Logic</div>
+        <div class="form-group">
+          <label for="cfg-sort-mode">Organize Grid Order By</label>
+          <select id="cfg-sort-mode">
+            <option value="Index Weightage">Index Weightage</option>
+            <option value="Sector Performance %">Sector Performance %</option>
+            <option value="ALL Performance %">ALL Performance %</option>
+            <option value="ALL Points">ALL Points</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Section: Timeframe -->
+      <div>
+        <div class="drawer-section-title">Timeframe Options</div>
+        <div class="form-group">
+          <label for="cfg-chg-basis">% Change Basis</label>
+          <select id="cfg-chg-basis">
+            <option value="Daily %chg">Daily %chg</option>
+            <option value="Intraday %chg">Intraday %chg</option>
+            <option value="Intraday 3PM">Intraday 3PM</option>
+            <option value="Weekly %chg">Weekly %chg</option>
+            <option value="Monthly %chg">Monthly %chg</option>
+            <option value="Custom">Custom</option>
+          </select>
+        </div>
+        <div id="custom-time-row" style="display: none; gap: 10px;" class="form-group">
+          <label>Custom Anchor Time (IST)</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="number" id="cfg-anchor-hh" min="0" max="23" value="9" style="width: 50%;">
+            <input type="number" id="cfg-anchor-mm" min="0" max="59" value="15" style="width: 50%;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: B&W Theme Colors -->
+      <div>
+        <div class="drawer-section-title">B&W Theme Colors</div>
+        <div class="form-group-row">
+          <label for="cfg-bw5">B&W: High Positive</label>
+          <input type="color" id="cfg-bw5" value="#fdfaf6">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-bw4">B&W: Low Positive</label>
+          <input type="color" id="cfg-bw4" value="#e2e8f0">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-bw3">B&W: Neutral</label>
+          <input type="color" id="cfg-bw3" value="#cbd5e1">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-bw2">B&W: Low Negative</label>
+          <input type="color" id="cfg-bw2" value="#64748b">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-bw1">B&W: High Negative</label>
+          <input type="color" id="cfg-bw1" value="#334155">
+        </div>
+        <div class="form-group-row">
+          <label for="cfg-bw-sectors">Apply B&W to Sectors as well</label>
+          <input type="checkbox" id="cfg-bw-sectors">
+        </div>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn-reset" id="btn-reset-defaults">Reset to defaults</button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       Application Logic & Math Engine
+       ========================================================================== -->
+  <script>
+    /**
+     * Configuration & Global Constants
+     */
+    const CFG = Object.assign({
+      dataUrl: 'data/nifty50.json',
+      intradayUrl: 'data/intraday.json',
+      pollOpenSec: 30,       // when market.status === 'Open'
+      pollClosedSec: 300
+    }, window.NIFTY_DASH_CONFIG || {});
+
+    const STORAGE_KEY = 'n50dash.v1';
+
+    const DEFAULT_SETTINGS = {
+      viewMode: "Standard Multi-Matrix",
+      themeOpt: "Light Sectors",
+      lightThemeBg: "#ffffff",
+      textSizeOpt: "Normal",
+      showGrid: true,
+      showPoints: false,
+      showWchgGauge: false,
+      wgPosCol: "#2962ff",
+      wgNegCol: "#e53935",
+      wgGaugeBg: "rgba(128,128,128,0.15)",
+      showStocks: true,
+      stocksLayout: "Combined With Main Table",
+      stockCount: 50,
+      sortMode: "Index Weightage",
+      chgBasis: "Daily %chg",
+      anchorHh: 9,
+      anchorMm: 15,
+      bwCol5: "#fdfaf6",
+      bwCol4: "#e2e8f0",
+      bwCol3: "#cbd5e1",
+      bwCol2: "#64748b",
+      bwCol1: "#334155",
+      bwApplySectors: false
+    };
+
+    const SECTOR_SHORT_NAMES = {
+      "Financial Services": "Finance",
+      "Oil Gas & Consumable Fuels": "Oil & Gas",
+      "Oil, Gas & Consumable Fuels": "Oil & Gas",
+      "Information Technology": "IT",
+      "Automobile and Auto Components": "Auto",
+      "Fast Moving Consumer Goods": "FMCG",
+      "Telecommunication": "Telecom",
+      "Healthcare": "Health",
+      "Metals & Mining": "Metals",
+      "Construction": "Construction",
+      "Consumer Durables": "Durables",
+      "Consumer Services": "Consumer",
+      "Power": "Power",
+      "Services": "Services",
+      "Construction Materials": "Materials",
+      "Capital Goods": "Capital",
+      "Realty": "Realty",
+      "Chemicals": "Chemicals",
+      "Media Entertainment & Publication": "Media",
+      "Textiles": "Textiles",
+      "Diversified": "Diversified",
+      "Forest Materials": "Forest",
+      "Utilities": "Utilities",
+      "Unclassified": "Other"
+    };
+
+    function getSectorShortName(fullName) {
+      return SECTOR_SHORT_NAMES[fullName] || fullName || "Other";
+    }
+
+    // App State
+    let settings = loadSettings();
+    let currentNiftyData = null;
+    let currentIntradayData = null;
+    let pollTimerId = null;
+    let intradayPollTimerId = null;
+    let tableSortCol = "liveW";
+    let tableSortAsc = false;
+
+    /**
+     * Settings persistence (safe localStorage wrapper)
+     */
+    function loadSettings() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          return Object.assign({}, DEFAULT_SETTINGS, JSON.parse(stored));
+        }
+      } catch (e) {
+        console.warn("Could not read settings from localStorage", e);
+      }
+      return Object.assign({}, DEFAULT_SETTINGS);
+    }
+
+    function saveSettings(newSettings) {
+      settings = Object.assign({}, newSettings);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+      } catch (e) {
+        console.warn("Could not save settings to localStorage", e);
+      }
+    }
+
+    /**
+     * Core Math Engine
+     * 
+     * Formulas:
+     * pct_i   = (last_i / b_i - 1) * 100
+     * liveW_i = ffmc_i / Σ_all ffmc * 100
+     * baseW_i = (ffmc_i * b_i / last_i) / Σ_{stocks with valid b} (ffmc_j * b_j / last_j) * 100
+     * idxPct  = (index.last / B - 1) * 100
+     * idxPts  = index.last - B
+     * pts_i   = B * baseW_i/100 * pct_i/100
+     * 
+     * sectorLiveW = Σ liveW_i
+     * sectorBaseW = Σ baseW_i over members with valid pct
+     * sectorPct   = Σ baseW_i*pct_i / sectorBaseW
+     * sectorPts   = Σ pts_i
+     * 
+     * pos = Σ_{sectorPct>0} sectorBaseW/100 * sectorPct
+     * neg = Σ_{sectorPct<0} sectorBaseW/100 * |sectorPct|
+     * sentiment = pos+neg > 0 ? pos/(pos+neg)*100 : 50 ; net = pos - neg
+     */
+    function computeModel(data, intraday, cfg) {
+      if (!data || !data.stocks) return null;
+
+      const stocksRaw = data.stocks;
+      const indexRaw = data.index || {};
+      const totalFfmc = stocksRaw.reduce((acc, s) => acc + (s.ffmc || 0), 0);
+
+      // Determine Index Base B
+      let indexBase = null;
+      if (cfg.chgBasis === "Daily %chg") {
+        indexBase = indexRaw.prevClose;
+      } else if (cfg.chgBasis === "Intraday %chg") {
+        indexBase = indexRaw.open;
+      } else if (cfg.chgBasis === "Intraday 3PM") {
+        indexBase = intraday?.series?.["__INDEX__"]?.[345] ?? null;
+      } else if (cfg.chgBasis === "Weekly %chg") {
+        indexBase = indexRaw.pwc;
+      } else if (cfg.chgBasis === "Monthly %chg") {
+        indexBase = indexRaw.pmc;
+      } else if (cfg.chgBasis === "Custom") {
+        const k = Math.max(0, cfg.anchorHh * 60 + cfg.anchorMm - 555);
+        indexBase = intraday?.series?.["__INDEX__"]?.[k] ?? null;
+      }
+      if (indexBase <= 0 || isNaN(indexBase)) indexBase = null;
+
+      // Calculate base prices and start-values for each stock
+      let sumStartVal = 0;
+      const computedStocks = stocksRaw.map(s => {
+        let b = null;
+        if (cfg.chgBasis === "Daily %chg") {
+          b = s.prevClose;
+        } else if (cfg.chgBasis === "Intraday %chg") {
+          b = s.open;
+        } else if (cfg.chgBasis === "Intraday 3PM") {
+          b = intraday?.series?.[s.sym]?.[345] ?? null;
+        } else if (cfg.chgBasis === "Weekly %chg") {
+          b = s.pwc;
+        } else if (cfg.chgBasis === "Monthly %chg") {
+          b = s.pmc;
+        } else if (cfg.chgBasis === "Custom") {
+          const k = Math.max(0, cfg.anchorHh * 60 + cfg.anchorMm - 555);
+          b = intraday?.series?.[s.sym]?.[k] ?? null;
+        }
+        if (b <= 0 || isNaN(b)) b = null;
+
+        const liveW = totalFfmc > 0 ? ((s.ffmc || 0) / totalFfmc) * 100 : 0;
+        let pct = null;
+        let startVal = null;
+        if (b !== null && s.last && s.last > 0) {
+          pct = (s.last / b - 1) * 100;
+          startVal = (s.ffmc * b) / s.last;
+          sumStartVal += startVal;
+        }
+
+        return {
+          sym: s.sym,
+          name: s.name,
+          sector: s.sector,
+          last: s.last,
+          base: b,
+          ffmc: s.ffmc,
+          liveW: liveW,
+          pct: pct,
+          startVal: startVal,
+          official: s.official || {},
+          baseW: 0,
+          pts: null
+        };
+      });
+
+      // Calculate baseW and pts for stocks
+      computedStocks.forEach(s => {
+        if (s.startVal !== null && sumStartVal > 0) {
+          s.baseW = (s.startVal / sumStartVal) * 100;
+        }
+        if (s.pct !== null && indexBase !== null) {
+          s.pts = indexBase * (s.baseW / 100) * (s.pct / 100);
+        }
+      });
+
+      // Rebalance split (Weekly / Monthly only). If NIFTY changed members inside the period,
+      // the feed sends `rebalance[pwc|pmc]`: pts1 = each OLD member's points from the base to
+      // the close before the effective date (old list, official month-end mcap), and closePre /
+      // indexPre for the rest. From then on today's members carry the move:
+      //   pts_i = pts1_i + I_pre * wPre_i/100 * (last_i/closePre_i - 1)
+      //   wPre_i = ffmc_i*closePre_i/last_i / sum(...)
+      // Sum of pts_i then equals NIFTY's actual move (verified: -718.55 vs -718.55, week to 1-Oct-2026).
+      const rbKey = cfg.chgBasis === "Weekly %chg" ? "pwc" : cfg.chgBasis === "Monthly %chg" ? "pmc" : null;
+      const rb = rbKey ? (data.rebalance || {})[rbKey] || null : null;
+      if (rb && indexBase !== null) {
+        let sumPre = 0;
+        const preVal = {};
+        computedStocks.forEach(s => {
+          const cp = rb.closePre?.[s.sym];
+          if (cp > 0 && s.last > 0) { preVal[s.sym] = s.ffmc * cp / s.last; sumPre += preVal[s.sym]; }
+        });
+        computedStocks.forEach(s => {
+          const cp = rb.closePre?.[s.sym];
+          if (!(cp > 0) || !(s.last > 0) || !(sumPre > 0)) return;
+          const p2 = rb.indexPre * (preVal[s.sym] / sumPre) * (s.last / cp - 1);
+          s.pts = (rb.pts1?.[s.sym] || 0) + p2;
+          if ((rb.entered || []).includes(s.sym)) {
+            s.joined = true;
+            s.joinedOn = rb.effective;
+            s.inIndexPct = (s.last / cp - 1) * 100;   // the move that actually counted for NIFTY
+          }
+        });
+        (rb.exited || []).forEach(x => {
+          if (rb.pts1?.[x.sym] === undefined) return;
+          computedStocks.push({
+            sym: x.sym, name: x.name, sector: x.sector, last: null, base: null, ffmc: 0,
+            liveW: 0, pct: rb.pct1?.[x.sym] ?? null, startVal: null, official: {}, baseW: 0,
+            pts: rb.pts1[x.sym], exited: true, exitedOn: rb.effective, exitedPre: rb.preDate
+          });
+        });
+      }
+
+      // Index Moves
+      let idxPct = null;
+      let idxPts = null;
+      if (indexBase !== null && indexRaw.last) {
+        idxPct = (indexRaw.last / indexBase - 1) * 100;
+        idxPts = indexRaw.last - indexBase;
+      }
+
+      // Dynamic Sector Aggregation (never hardcode sector list)
+      const sectorMap = new Map();
+      computedStocks.forEach(s => {
+        const secName = s.sector || "Unclassified";
+        if (!sectorMap.has(secName)) {
+          sectorMap.set(secName, {
+            name: secName,
+            shortName: getSectorShortName(secName),
+            stocks: [],
+            sectorLiveW: 0,
+            sectorBaseW: 0,
+            sumWeightedPct: 0,
+            sectorPts: 0,
+            hasValidPts: false
+          });
+        }
+        const sec = sectorMap.get(secName);
+        sec.stocks.push(s);
+        sec.sectorLiveW += s.liveW;
+        if (s.exited) {
+          sec.sectorPts += s.pts;
+          sec.hasValidPts = true;
+        } else if (s.pct !== null) {
+          sec.sectorBaseW += s.baseW;
+          sec.sumWeightedPct += s.baseW * s.pct;
+          if (s.pts !== null) {
+            sec.sectorPts += s.pts;
+            sec.hasValidPts = true;
+          }
+        }
+      });
+
+      const sectors = Array.from(sectorMap.values()).map(sec => {
+        let sectorPct = sec.sectorBaseW > 0 ? sec.sumWeightedPct / sec.sectorBaseW : null;
+        if (rb && indexBase !== null && sec.hasValidPts && sec.sectorBaseW > 0) {
+          // includes exited members' points: sectorBaseW/100 * sectorPct == sectorPts/B * 100
+          sectorPct = (sec.sectorPts / indexBase * 100) / (sec.sectorBaseW / 100);
+        }
+        const sectorPts = sec.hasValidPts ? sec.sectorPts : null;
+        return {
+          name: sec.name,
+          shortName: sec.shortName,
+          sectorLiveW: sec.sectorLiveW,
+          sectorBaseW: sec.sectorBaseW,
+          sectorPct: sectorPct,
+          sectorPts: sectorPts,
+          stocks: sec.stocks
+        };
+      });
+
+      // Weighted sentiment across sectors
+      let pos = 0;
+      let neg = 0;
+      sectors.forEach(sec => {
+        if (rb && indexBase !== null && sec.sectorPts !== null) {
+          const contrib = sec.sectorPts / indexBase * 100;   // equals baseW*pct when there is no split
+          if (contrib > 0) pos += contrib; else if (contrib < 0) neg += -contrib;
+        } else if (sec.sectorPct !== null && sec.sectorBaseW > 0) {
+          const contrib = (sec.sectorBaseW / 100) * sec.sectorPct;
+          if (sec.sectorPct > 0) {
+            pos += contrib;
+          } else if (sec.sectorPct < 0) {
+            neg += Math.abs(contrib);
+          }
+        }
+      });
+
+      const sentiment = (pos + neg > 0) ? (pos / (pos + neg)) * 100 : 50;
+      const net = pos - neg;
+
+      // Sorting Logic
+      const sortMode = cfg.sortMode;
+      const compareDesc = (a, b) => {
+        const an = a === null || a === undefined || isNaN(a), bn = b === null || b === undefined || isNaN(b);
+        if (an && bn) return 0;
+        if (an) return 1;
+        if (bn) return -1;
+        return b - a;
+      };
+
+      // Sort sectors
+      sectors.sort((s1, s2) => {
+        if (sortMode === "Sector Performance %" || sortMode === "ALL Performance %") {
+          return compareDesc(s1.sectorPct, s2.sectorPct);
+        } else if (sortMode === "ALL Points") {
+          return compareDesc(s1.sectorPts, s2.sectorPts);
+        } else {
+          return compareDesc(s1.sectorLiveW, s2.sectorLiveW);
+        }
+      });
+
+      // Sort stocks within sectors (for tooltip & grouped view)
+      sectors.forEach(sec => {
+        sec.stocks.sort((stk1, stk2) => {
+          if (sortMode === "ALL Performance %") {
+            return compareDesc(stk1.pct, stk2.pct);
+          } else if (sortMode === "ALL Points") {
+            return compareDesc(stk1.pts, stk2.pts);
+          } else {
+            return compareDesc(stk1.liveW, stk2.liveW);
+          }
+        });
+      });
+
+      // Sort all stocks array
+      const sortedStocks = [...computedStocks];
+      sortedStocks.sort((stk1, stk2) => {
+        if (sortMode === "ALL Performance %") {
+          return compareDesc(stk1.pct, stk2.pct);
+        } else if (sortMode === "ALL Points") {
+          return compareDesc(stk1.pts, stk2.pts);
+        } else {
+          return compareDesc(stk1.liveW, stk2.liveW);
+        }
+      });
+
+      return {
+        dataRaw: data,
+        stocks: computedStocks,
+        sortedStocks: sortedStocks,
+        sectors: sectors,
+        indexBase: indexBase,
+        rebalance: rb,
+        idxPct: idxPct,
+        idxPts: idxPts,
+        pos: pos,
+        neg: neg,
+        sentiment: sentiment,
+        net: net
+      };
+    }
+
+    /**
+     * Color Classifiers (Pine Script Identical)
+     */
+    function getStandardBg(val) {
+      if (val === null || isNaN(val)) return "#e0e0e0";
+      if (val >= 1.5) return "#2e7d32";
+      if (val >= 0.25) return "#4caf50";
+      if (val > -0.25) return "#e2e8f0";
+      if (val >= -1.5) return "#ef9a9a";
+      return "#c62828";
+    }
+
+    function getStandardTextCol(val) {
+      if (val === null || isNaN(val)) return "#757575";
+      if (val >= 1.5) return "#d4effc";
+      if (val >= 0.25) return "#ffffff";
+      if (val > -0.25) return "#475569";
+      if (val >= -1.5) return "#5c0000";
+      return "#ffffff";
+    }
+
+    function getBwBg(val, cfg) {
+      if (val === null || isNaN(val)) return "#e0e0e0";
+      if (val >= 1.5) return cfg.bwCol5;
+      if (val >= 0.25) return cfg.bwCol4;
+      if (val > -0.25) return cfg.bwCol3;
+      if (val >= -1.5) return cfg.bwCol2;
+      return cfg.bwCol1;
+    }
+
+    function getBwTextCol(val) {
+      if (val === null || isNaN(val)) return "#757575";
+      if (val > -0.25) return "#000000";
+      return "#ffffff";
+    }
+
+    function getLightTextCol(val) {
+      if (val === null || isNaN(val)) return "#757575";
+      if (val >= 1.5) return "#2e7d32";
+      if (val >= 0.25) return "#4caf50";
+      if (val > -0.25) return "#475569";
+      if (val >= -1.5) return "#d32f2f";
+      return "#c62828";
+    }
+
+    function getCellColors(pct, isSector, cfg) {
+      if (cfg.themeOpt === "Normal") {
+        return {
+          bg: getStandardBg(pct),
+          text: getStandardTextCol(pct)
+        };
+      } else if (cfg.themeOpt === "B&W Stocks") {
+        if (isSector && !cfg.bwApplySectors) {
+          return {
+            bg: getStandardBg(pct),
+            text: getStandardTextCol(pct)
+          };
+        } else {
+          return {
+            bg: getBwBg(pct, cfg),
+            text: getBwTextCol(pct)
+          };
+        }
+      } else if (cfg.themeOpt === "Light Sectors") {
+        if (isSector) {
+          return {
+            bg: cfg.lightThemeBg || "#ffffff",
+            text: getLightTextCol(pct)
+          };
+        } else {
+          return {
+            bg: getStandardBg(pct),
+            text: getStandardTextCol(pct)
+          };
+        }
+      }
+      return { bg: getStandardBg(pct), text: getStandardTextCol(pct) };
+    }
+
+    /**
+     * Formatting Helpers (Pine Identical)
+     */
+    function formatPct(pct) {
+      if (pct === null || isNaN(pct)) return "--";
+      const dir = pct > 0 ? "▲ " : (pct < 0 ? "▼ " : "");
+      return `${dir}${pct.toFixed(2)}%`;
+    }
+
+    function formatPoints(pts, showPoints) {
+      if (!showPoints || pts === null || isNaN(pts)) return "";
+      const sign = pts > 0 ? "+" : "";
+      return `${sign}${pts.toFixed(1)} pt  `;
+    }
+
+    /**
+     * Tooltip Handler
+     */
+    const tooltipEl = document.getElementById("app-tooltip");
+
+    function esc(v) {
+      return String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    function showTooltip(html, clientX, clientY) {
+      tooltipEl.innerHTML = html;
+      tooltipEl.style.display = "block";
+      const rect = tooltipEl.getBoundingClientRect();
+      let x = clientX + 12;
+      let y = clientY + 12;
+      const pad = 10;
+      if (x + rect.width > window.innerWidth - pad) {
+        x = clientX - rect.width - 12;
+      }
+      if (x < pad) x = pad;
+      if (y + rect.height > window.innerHeight - pad) {
+        y = clientY - rect.height - 12;
+      }
+      if (y < pad) y = pad;
+      tooltipEl.style.left = `${x}px`;
+      tooltipEl.style.top = `${y}px`;
+    }
+
+    function hideTooltip() {
+      tooltipEl.style.display = "none";
+    }
+
+    /**
+     * Rendering Engine
+     */
+    function render(model, cfg) {
+      if (!model) return;
+
+      // Update Text Size Class on Body
+      document.body.className = `fs-${cfg.textSizeOpt.toLowerCase()}`;
+
+      // 1. Status Bar
+      const market = model.dataRaw.market;
+      const statPill = document.getElementById("stat-market-pill");
+      const statLast = document.getElementById("stat-last-update");
+      statLast.textContent = `Last update: ${model.dataRaw.lastUpdate || model.dataRaw.generated || "--"}`;
+
+      if (market && market.status === "Open") {
+        statPill.textContent = "Market is Open";
+        statPill.className = "pill pill-open";
+      } else {
+        statPill.textContent = (market && market.status) ? `Market is ${market.status}` : "Market is Closed";
+        statPill.className = "pill pill-close";
+      }
+
+      // 2. Sentiment Bar
+      const marker = document.getElementById("sentiment-marker");
+      const clampedSentiment = Math.max(0, Math.min(100, model.sentiment));
+      marker.style.left = `${clampedSentiment}%`;
+      marker.style.color = model.net >= 0 ? "#2e7d32" : "#c62828";
+      const sentimentTooltipText = `Up-weight share ${Math.round(model.sentiment)}%`;
+      const sentimentContainer = document.getElementById("sentiment-container");
+      sentimentContainer.onmouseenter = (e) => showTooltip(sentimentTooltipText, e.clientX, e.clientY);
+      sentimentContainer.onmousemove = (e) => showTooltip(sentimentTooltipText, e.clientX, e.clientY);
+      sentimentContainer.onmouseleave = hideTooltip;
+
+      // 3. Header Row
+      const headerRow = document.getElementById("dash-header-row");
+      const n50PtsText = formatPoints(model.idxPts, cfg.showPoints);
+      const n50PctText = formatPct(model.idxPct);
+      const n50Col = model.idxPct === null ? "var(--text-muted, #888)" : model.idxPct >= 0 ? "#2e7d32" : "#c62828";
+
+      const totalWeightChg = model.pos + model.neg;
+      const posShare = totalWeightChg > 0 ? (model.pos / totalWeightChg) * 100 : 0;
+      const negShare = totalWeightChg > 0 ? (model.neg / totalWeightChg) * 100 : 0;
+
+      let weightedSecHtml = '';
+      if (cfg.showWchgGauge) {
+        weightedSecHtml = `
+          <div class="header-weighted-sec">
+            <span class="header-label">Contribution:</span>
+            <div class="gauge-wrapper">
+              <div class="gauge-item">
+                <span style="color: ${cfg.wgPosCol}; font-weight: 700;">▲ ${model.pos.toFixed(2)}%</span>
+                <div class="gauge-track-bar" style="background-color: ${cfg.wgGaugeBg};">
+                  <div class="gauge-fill-bar" style="width: ${posShare}%; background-color: ${cfg.wgPosCol};"></div>
+                </div>
+              </div>
+              <div class="gauge-item">
+                <span style="color: ${cfg.wgNegCol}; font-weight: 700;">▼ ${model.neg.toFixed(2)}%</span>
+                <div class="gauge-track-bar" style="background-color: ${cfg.wgGaugeBg};">
+                  <div class="gauge-fill-bar" style="width: ${negShare}%; background-color: ${cfg.wgNegCol};"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        weightedSecHtml = `
+          <div class="header-weighted-sec">
+            <span class="header-label">Contribution:</span>
+            <span style="color: ${cfg.wgPosCol}; font-weight: 700;">▲ ${model.pos.toFixed(2)}%</span>
+            <span style="color: ${cfg.wgNegCol}; font-weight: 700;">▼ ${model.neg.toFixed(2)}%</span>
+          </div>
+        `;
+      }
+
+      headerRow.innerHTML = `
+        <div class="header-nifty-sec">
+          <span class="header-label">NIFTY50:</span>
+          <span class="header-val" style="color: ${n50Col};">${n50PtsText}${n50PctText}</span>
+        </div>
+        ${weightedSecHtml}
+      `;
+
+      // 4. Anchor Banner
+      const anchorBanner = document.getElementById("anchor-banner");
+      if (cfg.chgBasis === "Daily %chg") {
+        anchorBanner.style.display = "none";
+      } else {
+        anchorBanner.style.display = "block";
+        let bannerText = "";
+        const baseDates = model.dataRaw.baseDates || {};
+        if (cfg.chgBasis === "Intraday %chg") {
+          bannerText = "⚓ Prices anchored to Today's Open";
+        } else if (cfg.chgBasis === "Intraday 3PM") {
+          const now = new Date();
+          const istMinutes = (now.getUTCHours() * 60 + now.getUTCMinutes() + 330) % 1440;
+          const avail = istMinutes < 900 ? " — available after 15:00" : "";
+          bannerText = `⚓ Prices anchored to the 15:00 (3 PM) candle Open${avail}`;
+        } else if (cfg.chgBasis === "Weekly %chg") {
+          bannerText = `⚓ Prices anchored to the previous week's close (${baseDates.pwc || "--"})`;
+        } else if (cfg.chgBasis === "Monthly %chg") {
+          bannerText = `⚓ Prices anchored to the previous month's close (${baseDates.pmc || "--"})`;
+        } else if (cfg.chgBasis === "Custom") {
+          const hh = String(cfg.anchorHh).padStart(2, "0");
+          const mm = String(cfg.anchorMm).padStart(2, "0");
+          bannerText = `⚓ Prices anchored to the ${hh}:${mm} candle Open`;
+        }
+        if (model.rebalance) {
+          const r = model.rebalance;
+          bannerText += ` · split at the ${r.effective} rebalance (out: ${(r.exited || []).map(x => x.sym).join(", ") || "-"}; in: ${(r.entered || []).join(", ") || "-"})`;
+        }
+        anchorBanner.textContent = bannerText;
+      }
+
+      // 5. Views Rendering
+      const viewsContainer = document.getElementById("views-container");
+      const standaloneCard = document.getElementById("standalone-stocks-card");
+      const standaloneGrid = document.getElementById("standalone-stocks-grid");
+
+      viewsContainer.innerHTML = "";
+      standaloneCard.style.display = "none";
+      standaloneGrid.innerHTML = "";
+
+      if (cfg.viewMode === "Sector Grouped View") {
+        // Greedy 2-Column Sector Grouped Layout
+        const groupedContainer = document.createElement("div");
+        groupedContainer.className = "grouped-container";
+
+        const leftCol = document.createElement("div");
+        leftCol.className = "grouped-column";
+        const rightCol = document.createElement("div");
+        rightCol.className = "grouped-column";
+
+        let rLeft = 0;
+        let rRight = 0;
+
+        model.sectors.forEach(sec => {
+          const n = sec.stocks.length;
+          const rowsCount = 1 + Math.ceil(n / 5);
+
+          const block = document.createElement("div");
+          block.className = "sector-block";
+
+          const secColors = getCellColors(sec.sectorPct, true, cfg);
+          const secPtsText = formatPoints(sec.sectorPts, cfg.showPoints);
+          const secPctText = formatPct(sec.sectorPct);
+
+          const header = document.createElement("div");
+          header.className = "sector-block-header";
+          header.style.backgroundColor = secColors.bg;
+          header.style.color = secColors.text;
+          header.textContent = `✦ ${sec.shortName.toUpperCase()} SECTOR (${sec.sectorLiveW.toFixed(1)}%) ✦\n${secPtsText}${secPctText}`;
+          block.appendChild(header);
+
+          // Sector stocks wrapped 5 per row, sharing row width equally
+          const stocksGrid = document.createElement("div");
+          stocksGrid.className = "sector-stocks-grid";
+
+          for (let i = 0; i < n; i += 5) {
+            const chunk = sec.stocks.slice(i, i + 5);
+            const row = document.createElement("div");
+            row.className = "sector-stocks-row";
+            row.style.gridTemplateColumns = `repeat(${chunk.length}, 1fr)`;
+
+            chunk.forEach(stk => {
+              const cell = createStockCell(stk, cfg, model.dataRaw);
+              row.appendChild(cell);
+            });
+
+            stocksGrid.appendChild(row);
+          }
+
+          block.appendChild(stocksGrid);
+
+          if (rLeft <= rRight) {
+            leftCol.appendChild(block);
+            rLeft += rowsCount;
+          } else {
+            rightCol.appendChild(block);
+            rRight += rowsCount;
+          }
+        });
+
+        groupedContainer.appendChild(leftCol);
+        groupedContainer.appendChild(rightCol);
+        viewsContainer.appendChild(groupedContainer);
+
+      } else {
+        // View A: Standard Multi-Matrix
+        if (cfg.showGrid) {
+          const sectorGrid = document.createElement("div");
+          sectorGrid.className = "matrix-grid";
+
+          model.sectors.forEach(sec => {
+            const cell = document.createElement("div");
+            cell.className = "grid-cell";
+            const colors = getCellColors(sec.sectorPct, true, cfg);
+            cell.style.backgroundColor = colors.bg;
+            cell.style.color = colors.text;
+
+            const ptsText = formatPoints(sec.sectorPts, cfg.showPoints);
+            const pctText = formatPct(sec.sectorPct);
+            cell.textContent = `${sec.shortName} (${sec.sectorLiveW.toFixed(1)}%)\n\n${ptsText}${pctText}`;
+
+            // Sector Tooltip
+            let ttHtml = `<strong>--- ${sec.shortName.toUpperCase()} STOCKS ---</strong>\n`;
+            sec.stocks.forEach(stk => {
+              const sPts = formatPoints(stk.pts, cfg.showPoints);
+              const sPct = formatPct(stk.pct);
+              ttHtml += `${stk.sym}: ${sPts}${sPct}\n`;
+            });
+
+            cell.onmouseenter = (e) => showTooltip(ttHtml.trim(), e.clientX, e.clientY);
+            cell.onmousemove = (e) => showTooltip(ttHtml.trim(), e.clientX, e.clientY);
+            cell.onmouseleave = hideTooltip;
+            cell.onclick = (e) => showTooltip(ttHtml.trim(), e.clientX, e.clientY);
+
+            sectorGrid.appendChild(cell);
+          });
+
+          viewsContainer.appendChild(sectorGrid);
+        }
+
+        if (cfg.showStocks) {
+          const stockLimit = parseInt(cfg.stockCount, 10) || 50;
+          const displayStocks = model.sortedStocks.filter(x => !x.exited).slice(0, stockLimit)
+            .concat(model.sortedStocks.filter(x => x.exited));
+
+          if (cfg.stocksLayout === "Separate Standalone Table") {
+            standaloneCard.style.display = "flex";
+            displayStocks.forEach(stk => {
+              standaloneGrid.appendChild(createStockCell(stk, cfg, model.dataRaw));
+            });
+          } else {
+            if (cfg.showGrid) {
+              const spacer = document.createElement("div");
+              spacer.className = "matrix-spacer";
+              viewsContainer.appendChild(spacer);
+            }
+            const stockGrid = document.createElement("div");
+            stockGrid.className = "matrix-grid";
+            displayStocks.forEach(stk => {
+              stockGrid.appendChild(createStockCell(stk, cfg, model.dataRaw));
+            });
+            viewsContainer.appendChild(stockGrid);
+          }
+        }
+      }
+
+      // 6. Weights & Sources Section Render
+      renderWeightsSection(model);
+    }
+
+    /**
+     * Stock Cell Creator Helper
+     */
+    function createStockCell(stk, cfg, dataRaw) {
+      const cell = document.createElement("div");
+      cell.className = "grid-cell";
+      const colors = getCellColors(stk.pct, false, cfg);
+      cell.style.backgroundColor = colors.bg;
+      cell.style.color = colors.text;
+
+      const ptsText = formatPoints(stk.pts, cfg.showPoints);
+      const pctText = formatPct(stk.pct);
+      if (stk.exited) {
+        cell.textContent = `${stk.sym} (exited)\n\n${ptsText}${pctText}`;
+        cell.style.outline = "2px dashed #ff9800";
+        cell.style.outlineOffset = "-3px";
+        const tt = `<strong>${esc(stk.sym)} — ${esc(stk.name)}</strong>
+Left NIFTY 50 at the ${esc(stk.exitedOn)} rebalance.
+Points and % cover only its time in the index (to the ${esc(stk.exitedPre)} close).
+Index Impact: ${stk.pts != null ? stk.pts.toFixed(2) + " pts" : "--"}`;
+        cell.onmouseenter = (e) => showTooltip(tt, e.clientX, e.clientY);
+        cell.onmousemove = (e) => showTooltip(tt, e.clientX, e.clientY);
+        cell.onmouseleave = hideTooltip;
+        cell.onclick = (e) => showTooltip(tt, e.clientX, e.clientY);
+        return cell;
+      }
+      if (stk.joined) {
+        cell.style.outline = "2px dashed #2962ff";
+        cell.style.outlineOffset = "-3px";
+      }
+      cell.textContent = `${stk.sym}${stk.joined ? " (new)" : ""} (${stk.liveW.toFixed(1)}%)\n\n${ptsText}${pctText}`;
+
+      // Tooltip construction
+      const officialItems = dataRaw.official || [];
+      let officialLines = "";
+      officialItems.forEach(off => {
+        const val = stk.official?.[off.kind];
+        officialLines += `\n${off.label}: ${val !== undefined && val !== null ? val.toFixed(2) + '%' : '--'}`;
+      });
+
+      const ptsLine = stk.pts !== null ? `${stk.pts.toFixed(2)} pts` : '--';
+      const joinedLine = stk.joined
+        ? `\nJoined NIFTY 50 at the ${esc(stk.joinedOn)} rebalance: points count from then (in-index move ${stk.inIndexPct.toFixed(2)}%; the % shown is the full period)`
+        : "";
+      const ttHtml = `<strong>${esc(stk.sym)} — ${esc(stk.name)}</strong>${joinedLine}
+Sector: ${esc(stk.sector || '--')}
+Live Weight: ${stk.liveW.toFixed(2)}%
+Base Weight: ${stk.baseW.toFixed(2)}%${officialLines}
+Index Impact: ${ptsLine}`;
+
+      cell.onmouseenter = (e) => showTooltip(ttHtml, e.clientX, e.clientY);
+      cell.onmousemove = (e) => showTooltip(ttHtml, e.clientX, e.clientY);
+      cell.onmouseleave = hideTooltip;
+      cell.onclick = (e) => showTooltip(ttHtml, e.clientX, e.clientY);
+
+      return cell;
+    }
+
+    /**
+     * Render Weights Table & Metadata Section
+     */
+    function renderWeightsSection(model) {
+      const data = model.dataRaw;
+      if (!data) return;
+
+      document.getElementById("info-weights-method").textContent = `Weights: ${data.weights?.method || 'N/A'}`;
+      document.getElementById("info-constituents-source").textContent = `Constituents: ${data.constituents?.source || 'N/A'}, fetched ${data.constituents?.fetched || 'N/A'}, ${data.constituents?.count || 50} stocks`;
+
+      // Constituent changes chips
+      const changesBox = document.getElementById("info-changes-box");
+      const changes = data.constituents?.changes || [];
+      if (changes.length === 0) {
+        changesBox.textContent = "No change since last official list";
+      } else {
+        changesBox.innerHTML = "";
+        changes.forEach(ch => {
+          const chipLine = document.createElement("div");
+          chipLine.style.display = "flex";
+          chipLine.style.alignItems = "center";
+          chipLine.style.gap = "6px";
+          chipLine.style.marginRight = "12px";
+
+          const label = document.createElement("span");
+          label.textContent = `${ch.date} (${ch.source}): `;
+          chipLine.appendChild(label);
+
+          if (ch.added && ch.added.length) {
+            const addChip = document.createElement("span");
+            addChip.className = "chip-added";
+            addChip.textContent = `+ ADDED ${ch.added.join(', ')}`;
+            chipLine.appendChild(addChip);
+          }
+          if (ch.removed && ch.removed.length) {
+            const remChip = document.createElement("span");
+            remChip.className = "chip-removed";
+            remChip.textContent = `− REMOVED ${ch.removed.join(', ')}`;
+            chipLine.appendChild(remChip);
+          }
+          changesBox.appendChild(chipLine);
+        });
+      }
+
+      // Base dates & adjustments
+      document.getElementById("info-base-dates").textContent = `Base dates: previous week close ${data.baseDates?.pwc || '--'}, previous month close ${data.baseDates?.pmc || '--'}`;
+
+      const adj = data.baseAdjustments || [];
+      if (adj.length === 0) {
+        document.getElementById("info-base-adjustments").textContent = "Base adjustments: None";
+      } else {
+        const adjStrs = adj.map(a => `${a.sym} split/bonus ×${a.mult} ex ${a.exDate}`);
+        document.getElementById("info-base-adjustments").textContent = `Base adjustments: ${adjStrs.join(', ')}`;
+      }
+
+      // Table Header & Rows
+      const headerTr = document.getElementById("weights-table-header");
+      const tbody = document.getElementById("weights-table-body");
+      const officialList = data.official || [];
+
+      headerTr.innerHTML = `
+        <th data-sort="sym">Symbol</th>
+        <th data-sort="sector">Sector</th>
+        <th data-sort="liveW">Live wt %</th>
+        ${officialList.map((o, idx) => `<th data-sort="official_${idx}">${esc(o.label)}</th>`).join('')}
+        <th data-sort="delta">Δ Live − First Official</th>
+      `;
+
+      // Attach sort handlers
+      headerTr.querySelectorAll("th").forEach(th => {
+        th.onclick = () => {
+          const col = th.dataset.sort;
+          if (tableSortCol === col) {
+            tableSortAsc = !tableSortAsc;
+          } else {
+            tableSortCol = col;
+            tableSortAsc = false;
+          }
+          renderWeightsSection(model);
+        };
+      });
+
+      // Sort stocks for table
+      const tableStocks = model.stocks.filter(s => !s.exited);
+      const firstOfficialKind = officialList[0]?.kind;
+
+      tableStocks.sort((a, b) => {
+        let vA, vB;
+        if (tableSortCol === "sym") {
+          vA = a.sym; vB = b.sym;
+          return tableSortAsc ? vA.localeCompare(vB) : vB.localeCompare(vA);
+        } else if (tableSortCol === "sector") {
+          vA = a.sector || ""; vB = b.sector || "";
+          return tableSortAsc ? vA.localeCompare(vB) : vB.localeCompare(vA);
+        } else if (tableSortCol === "liveW") {
+          vA = a.liveW; vB = b.liveW;
+        } else if (tableSortCol.startsWith("official_")) {
+          const idx = parseInt(tableSortCol.split("_")[1], 10);
+          const kind = officialList[idx]?.kind;
+          vA = a.official?.[kind] ?? -999;
+          vB = b.official?.[kind] ?? -999;
+        } else if (tableSortCol === "delta") {
+          const offA = a.official?.[firstOfficialKind] ?? null;
+          const offB = b.official?.[firstOfficialKind] ?? null;
+          vA = offA !== null ? a.liveW - offA : -999;
+          vB = offB !== null ? b.liveW - offB : -999;
+        }
+        return tableSortAsc ? vA - vB : vB - vA;
+      });
+
+      tbody.innerHTML = "";
+      tableStocks.forEach(stk => {
+        const tr = document.createElement("tr");
+        const firstOffVal = stk.official?.[firstOfficialKind];
+        let deltaStr = "--";
+        let deltaStyle = "";
+        if (firstOffVal !== undefined && firstOffVal !== null) {
+          const delta = stk.liveW - firstOffVal;
+          deltaStr = (delta > 0 ? "+" : "") + delta.toFixed(2) + "%";
+          deltaStyle = delta >= 0 ? "color: #2e7d32; font-weight: 600;" : "color: #c62828; font-weight: 600;";
+        }
+
+        const officialTds = officialList.map(o => {
+          const val = stk.official?.[o.kind];
+          return `<td class="tabular">${val !== undefined && val !== null ? val.toFixed(2) + '%' : '--'}</td>`;
+        }).join('');
+
+        tr.innerHTML = `
+          <td style="font-weight: 600;">${esc(stk.sym)}</td>
+          <td>${esc(stk.sector)}</td>
+          <td class="tabular">${stk.liveW.toFixed(2)}%</td>
+          ${officialTds}
+          <td class="tabular" style="${deltaStyle}">${deltaStr}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // CSV Export Button
+      document.getElementById("btn-download-csv").onclick = () => {
+        downloadWeightsCsv(model);
+      };
+    }
+
+    /**
+     * CSV Download Helper
+     */
+    function downloadWeightsCsv(model) {
+      const data = model.dataRaw;
+      if (!data || !data.stocks) return;
+
+      const officialCols = data.official || [];
+      const firstKind = officialCols[0]?.kind;
+
+      const headers = [
+        "Symbol",
+        "Company Name",
+        "Sector",
+        "Live Weight %",
+        ...officialCols.map(o => `Official: ${o.label} %`),
+        `Delta vs ${officialCols[0]?.label || 'First Official'} %`
+      ];
+
+      const rows = model.stocks.filter(s => !s.exited).map(s => {
+        const firstOff = s.official?.[firstKind];
+        const delta = (firstOff !== undefined && firstOff !== null) ? (s.liveW - firstOff).toFixed(2) : "";
+        return [
+          `"${s.sym}"`,
+          `"${(s.name || '').replace(/"/g, '""')}"`,
+          `"${(s.sector || '').replace(/"/g, '""')}"`,
+          s.liveW.toFixed(2),
+          ...officialCols.map(o => s.official?.[o.kind] !== undefined && s.official?.[o.kind] !== null ? s.official[o.kind].toFixed(2) : ""),
+          delta
+        ].join(",");
+      });
+
+      const csvContent = [headers.join(","), ...rows].join("\r\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `nifty50_weights_${data.tradeDate || 'export'}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    /**
+     * Data Fetching & Polling
+     */
+    async function fetchNiftyData() {
+      const staleBadge = document.getElementById("stat-stale-badge");
+      try {
+        const res = await fetch(CFG.dataUrl, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        currentNiftyData = await res.json();
+        staleBadge.style.display = "none";
+      } catch (err) {
+        console.warn("Error loading nifty50.json:", err);
+        staleBadge.style.display = "inline-flex";
+      }
+
+      // Check if intraday data is required
+      if (settings.chgBasis === "Intraday 3PM" || settings.chgBasis === "Custom") {
+        if (!currentIntradayData) {
+          await fetchIntradayData();
+        }
+      }
+
+      try {
+        if (currentNiftyData) {
+          const model = computeModel(currentNiftyData, currentIntradayData, settings);
+          render(model, settings);
+        }
+      } catch (err) {
+        console.error("render failed:", err);
+      } finally {
+        scheduleNextPoll();   // a bad payload must never stop the polling loop
+      }
+    }
+
+    async function fetchIntradayData() {
+      try {
+        const res = await fetch(CFG.intradayUrl, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        currentIntradayData = await res.json();
+      } catch (err) {
+        console.warn("intraday.json unavailable or failed to fetch:", err);
+      }
+    }
+
+    function scheduleNextPoll() {
+      if (pollTimerId) clearTimeout(pollTimerId);
+      const isOpen = currentNiftyData?.market?.status === "Open";
+      const pollSec = isOpen ? (CFG.pollOpenSec || 30) : (CFG.pollClosedSec || 300);
+      pollTimerId = setTimeout(fetchNiftyData, pollSec * 1000);
+    }
+
+    function setupIntradayPolling() {
+      if (intradayPollTimerId) clearInterval(intradayPollTimerId);
+      if (settings.chgBasis === "Intraday 3PM" || settings.chgBasis === "Custom") {
+        intradayPollTimerId = setInterval(async () => {
+          await fetchIntradayData();
+          if (currentNiftyData) {
+            const model = computeModel(currentNiftyData, currentIntradayData, settings);
+            render(model, settings);
+          }
+        }, 120000); // 120 seconds
+      }
+    }
+
+    /**
+     * Settings Drawer & Form Bindings
+     */
+    function initDrawer() {
+      const overlay = document.getElementById("drawer-overlay");
+      const drawer = document.getElementById("settings-drawer");
+      const btnOpen = document.getElementById("btn-open-settings");
+      const btnClose = document.getElementById("btn-close-settings");
+      const btnReset = document.getElementById("btn-reset-defaults");
+
+      function openDrawer() {
+        populateDrawerInputs();
+        overlay.classList.add("open");
+        drawer.classList.add("open");
+        drawer.setAttribute("aria-hidden", "false");
+      }
+
+      function closeDrawer() {
+        overlay.classList.remove("open");
+        drawer.classList.remove("open");
+        drawer.setAttribute("aria-hidden", "true");
+      }
+
+      btnOpen.onclick = openDrawer;
+      btnClose.onclick = closeDrawer;
+      overlay.onclick = closeDrawer;
+
+      // Populate inputs from current settings
+      function populateDrawerInputs() {
+        document.getElementById("cfg-view-mode").value = settings.viewMode;
+        document.getElementById("cfg-theme-opt").value = settings.themeOpt;
+        document.getElementById("cfg-light-bg").value = settings.lightThemeBg;
+        document.getElementById("cfg-text-size").value = settings.textSizeOpt;
+        document.getElementById("cfg-show-grid").checked = settings.showGrid;
+        document.getElementById("cfg-show-points").checked = settings.showPoints;
+        document.getElementById("cfg-show-gauge").checked = settings.showWchgGauge;
+        document.getElementById("cfg-gauge-pos").value = settings.wgPosCol;
+        document.getElementById("cfg-gauge-neg").value = settings.wgNegCol;
+        document.getElementById("cfg-gauge-track").value = settings.wgGaugeBg;
+
+        document.getElementById("cfg-show-stocks").checked = settings.showStocks;
+        document.getElementById("cfg-stocks-layout").value = settings.stocksLayout;
+        document.getElementById("cfg-stock-count").value = String(settings.stockCount);
+
+        document.getElementById("cfg-sort-mode").value = settings.sortMode;
+        document.getElementById("cfg-chg-basis").value = settings.chgBasis;
+        document.getElementById("cfg-anchor-hh").value = settings.anchorHh;
+        document.getElementById("cfg-anchor-mm").value = settings.anchorMm;
+
+        document.getElementById("cfg-bw5").value = settings.bwCol5;
+        document.getElementById("cfg-bw4").value = settings.bwCol4;
+        document.getElementById("cfg-bw3").value = settings.bwCol3;
+        document.getElementById("cfg-bw2").value = settings.bwCol2;
+        document.getElementById("cfg-bw1").value = settings.bwCol1;
+        document.getElementById("cfg-bw-sectors").checked = settings.bwApplySectors;
+
+        // Custom time visibility
+        document.getElementById("custom-time-row").style.display = settings.chgBasis === "Custom" ? "flex" : "none";
+      }
+
+      // Listeners for live update on settings change
+      function onSettingChange() {
+        const oldBasis = settings.chgBasis;
+        settings.viewMode = document.getElementById("cfg-view-mode").value;
+        settings.themeOpt = document.getElementById("cfg-theme-opt").value;
+        settings.lightThemeBg = document.getElementById("cfg-light-bg").value;
+        settings.textSizeOpt = document.getElementById("cfg-text-size").value;
+        settings.showGrid = document.getElementById("cfg-show-grid").checked;
+        settings.showPoints = document.getElementById("cfg-show-points").checked;
+        settings.showWchgGauge = document.getElementById("cfg-show-gauge").checked;
+        settings.wgPosCol = document.getElementById("cfg-gauge-pos").value;
+        settings.wgNegCol = document.getElementById("cfg-gauge-neg").value;
+        settings.wgGaugeBg = document.getElementById("cfg-gauge-track").value;
+
+        settings.showStocks = document.getElementById("cfg-show-stocks").checked;
+        settings.stocksLayout = document.getElementById("cfg-stocks-layout").value;
+        settings.stockCount = parseInt(document.getElementById("cfg-stock-count").value, 10);
+
+        settings.sortMode = document.getElementById("cfg-sort-mode").value;
+        settings.chgBasis = document.getElementById("cfg-chg-basis").value;
+        const hhIn = parseInt(document.getElementById("cfg-anchor-hh").value, 10);
+        const mmIn = parseInt(document.getElementById("cfg-anchor-mm").value, 10);
+        settings.anchorHh = isNaN(hhIn) ? 9 : Math.min(23, Math.max(0, hhIn));
+        settings.anchorMm = isNaN(mmIn) ? 15 : Math.min(59, Math.max(0, mmIn));
+
+        settings.bwCol5 = document.getElementById("cfg-bw5").value;
+        settings.bwCol4 = document.getElementById("cfg-bw4").value;
+        settings.bwCol3 = document.getElementById("cfg-bw3").value;
+        settings.bwCol2 = document.getElementById("cfg-bw2").value;
+        settings.bwCol1 = document.getElementById("cfg-bw1").value;
+        settings.bwApplySectors = document.getElementById("cfg-bw-sectors").checked;
+
+        document.getElementById("custom-time-row").style.display = settings.chgBasis === "Custom" ? "flex" : "none";
+
+        saveSettings(settings);
+
+        // Fetch intraday if newly needed
+        if ((settings.chgBasis === "Intraday 3PM" || settings.chgBasis === "Custom") && !currentIntradayData) {
+          fetchIntradayData().then(() => {
+            if (currentNiftyData) {
+              const model = computeModel(currentNiftyData, currentIntradayData, settings);
+              render(model, settings);
+            }
+          });
+        } else {
+          if (currentNiftyData) {
+            const model = computeModel(currentNiftyData, currentIntradayData, settings);
+            render(model, settings);
+          }
+        }
+
+        setupIntradayPolling();
+      }
+
+      drawer.querySelectorAll("input, select").forEach(el => {
+        el.onchange = onSettingChange;
+        if (el.type === "color" || el.type === "number" || el.type === "text") {
+          el.oninput = onSettingChange;
+        }
+      });
+
+      btnReset.onclick = () => {
+        settings = Object.assign({}, DEFAULT_SETTINGS);
+        saveSettings(settings);
+        populateDrawerInputs();
+        if (currentNiftyData) {
+          const model = computeModel(currentNiftyData, currentIntradayData, settings);
+          render(model, settings);
+        }
+      };
+    }
+
+    // Dismiss tooltip on outside click / tap
+    window.addEventListener("click", (e) => {
+      if (!e.target.closest(".grid-cell") && !e.target.closest(".sentiment-container")) {
+        hideTooltip();
+      }
+    });
+
+    // Initialize App
+    document.addEventListener("DOMContentLoaded", () => {
+      initDrawer();
+      fetchNiftyData();
+      setupIntradayPolling();
+    });
+  </script>
+</body>
+</html>

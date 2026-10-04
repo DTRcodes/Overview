@@ -1,0 +1,355 @@
+{
+ "asof": "2026-08-31",
+ "weights": {
+  "ADANIENT": {
+   "w": 0.75,
+   "close": 2859.1,
+   "mcapCr": 82274,
+   "desc": "Adani Enterprises Ltd. Metals & Mining",
+   "sector": "Metals & Mining"
+  },
+  "ADANIPORTS": {
+   "w": 1.07,
+   "close": 1593.1,
+   "mcapCr": 117200,
+   "desc": "Adani Ports and Special Economic Zone Ltd. Services",
+   "sector": "Services"
+  },
+  "APOLLOHOSP": {
+   "w": 0.83,
+   "close": 8898.5,
+   "mcapCr": 91318,
+   "desc": "Apollo Hospitals Enterprise Ltd. Healthcare",
+   "sector": "Healthcare"
+  },
+  "ASIANPAINT": {
+   "w": 1.09,
+   "close": 2653.6,
+   "mcapCr": 119667,
+   "desc": "Asian Paints Ltd. Consumer Durables",
+   "sector": "Consumer Durables"
+  },
+  "AXISBANK": {
+   "w": 3.39,
+   "close": 1300.0,
+   "mcapCr": 372304,
+   "desc": "Axis Bank Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "BAJAJ-AUTO": {
+   "w": 1.22,
+   "close": 12130.0,
+   "mcapCr": 133968,
+   "desc": "Bajaj Auto Ltd. Automobile and Auto Components",
+   "sector": "Automobile and Auto Components"
+  },
+  "BAJFINANCE": {
+   "w": 2.57,
+   "close": 1057.0,
+   "mcapCr": 282507,
+   "desc": "Bajaj Finance Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "BAJAJFINSV": {
+   "w": 1.06,
+   "close": 2021.0,
+   "mcapCr": 116673,
+   "desc": "Bajaj Finserv Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "BEL": {
+   "w": 1.35,
+   "close": 414.45,
+   "mcapCr": 148028,
+   "desc": "Bharat Electronics Ltd. Capital Goods",
+   "sector": "Capital Goods"
+  },
+  "BHARTIARTL": {
+   "w": 5.0,
+   "close": 1811.9,
+   "mcapCr": 549433,
+   "desc": "Bharti Airtel Ltd. Telecommunication",
+   "sector": "Telecommunication"
+  },
+  "CIPLA": {
+   "w": 0.72,
+   "close": 1409.2,
+   "mcapCr": 79072,
+   "desc": "Cipla Ltd. Healthcare",
+   "sector": "Healthcare"
+  },
+  "COALINDIA": {
+   "w": 0.87,
+   "close": 401.75,
+   "mcapCr": 95962,
+   "desc": "Coal India Ltd. Oil, Gas & Consumable Fuels",
+   "sector": "Oil Gas & Consumable Fuels"
+  },
+  "DRREDDY": {
+   "w": 0.64,
+   "close": 1154.4,
+   "mcapCr": 70173,
+   "desc": "Dr. Reddy's Laboratories Ltd. Healthcare",
+   "sector": "Healthcare"
+  },
+  "EICHERMOT": {
+   "w": 0.99,
+   "close": 7953.5,
+   "mcapCr": 109305,
+   "desc": "Eicher Motors Ltd. Automobile and Auto Components",
+   "sector": "Automobile and Auto Components"
+  },
+  "ETERNAL": {
+   "w": 2.15,
+   "close": 328.1,
+   "mcapCr": 236537,
+   "desc": "Eternal Ltd. Consumer Services",
+   "sector": "Consumer Services"
+  },
+  "GRASIM": {
+   "w": 1.15,
+   "close": 3371.0,
+   "mcapCr": 126835,
+   "desc": "Grasim Industries Ltd. Construction Materials",
+   "sector": "Construction Materials"
+  },
+  "HCLTECH": {
+   "w": 1.26,
+   "close": 1312.2,
+   "mcapCr": 137956,
+   "desc": "HCL Technologies Ltd. Information Technology",
+   "sector": "Information Technology"
+  },
+  "HDFCBANK": {
+   "w": 9.85,
+   "close": 709.0,
+   "mcapCr": 1082671,
+   "desc": "HDFC Bank Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "HDFCLIFE": {
+   "w": 0.53,
+   "close": 543.35,
+   "mcapCr": 58288,
+   "desc": "HDFC Life Insurance Company Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "HINDALCO": {
+   "w": 1.33,
+   "close": 1015.45,
+   "mcapCr": 146616,
+   "desc": "Hindalco Industries Ltd. Metals & Mining",
+   "sector": "Metals & Mining"
+  },
+  "HINDUNILVR": {
+   "w": 1.58,
+   "close": 1967.4,
+   "mcapCr": 174057,
+   "desc": "Hindustan Unilever Ltd. Fast Moving Consumer Goods",
+   "sector": "Fast Moving Consumer Goods"
+  },
+  "ICICIBANK": {
+   "w": 9.45,
+   "close": 1454.0,
+   "mcapCr": 1038687,
+   "desc": "ICICI Bank Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "ITC": {
+   "w": 2.24,
+   "close": 255.5,
+   "mcapCr": 245605,
+   "desc": "ITC Ltd. Fast Moving Consumer Goods",
+   "sector": "Fast Moving Consumer Goods"
+  },
+  "INFY": {
+   "w": 3.61,
+   "close": 1133.8,
+   "mcapCr": 396568,
+   "desc": "Infosys Ltd. Information Technology",
+   "sector": "Information Technology"
+  },
+  "INDIGO": {
+   "w": 1.08,
+   "close": 5234.0,
+   "mcapCr": 118143,
+   "desc": "InterGlobe Aviation Ltd. Services",
+   "sector": "Services"
+  },
+  "JSWSTEEL": {
+   "w": 1.11,
+   "close": 1307.7,
+   "mcapCr": 122312,
+   "desc": "JSW Steel Ltd. Metals & Mining",
+   "sector": "Metals & Mining"
+  },
+  "JIOFIN": {
+   "w": 0.72,
+   "close": 241.35,
+   "mcapCr": 78968,
+   "desc": "Jio Financial Services Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "KOTAKBANK": {
+   "w": 2.8,
+   "close": 419.4,
+   "mcapCr": 307920,
+   "desc": "Kotak Mahindra Bank Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "LT": {
+   "w": 4.3,
+   "close": 4044.9,
+   "mcapCr": 472106,
+   "desc": "Larsen & Toubro Ltd. Construction",
+   "sector": "Construction"
+  },
+  "M&M": {
+   "w": 2.66,
+   "close": 3282.0,
+   "mcapCr": 292191,
+   "desc": "Mahindra & Mahindra Ltd. Automobile and Auto Components",
+   "sector": "Automobile and Auto Components"
+  },
+  "MARUTI": {
+   "w": 1.6,
+   "close": 13547.0,
+   "mcapCr": 176233,
+   "desc": "Maruti Suzuki India Ltd. Automobile and Auto Components",
+   "sector": "Automobile and Auto Components"
+  },
+  "MAXHEALTH": {
+   "w": 0.7,
+   "close": 1042.1,
+   "mcapCr": 77340,
+   "desc": "Max Healthcare Institute Ltd. Healthcare",
+   "sector": "Healthcare"
+  },
+  "NTPC": {
+   "w": 1.41,
+   "close": 327.4,
+   "mcapCr": 154781,
+   "desc": "NTPC Ltd. Power",
+   "sector": "Power"
+  },
+  "NESTLEIND": {
+   "w": 0.97,
+   "close": 1496.5,
+   "mcapCr": 107001,
+   "desc": "Nestle India Ltd. Fast Moving Consumer Goods",
+   "sector": "Fast Moving Consumer Goods"
+  },
+  "ONGC": {
+   "w": 0.82,
+   "close": 231.8,
+   "mcapCr": 89791,
+   "desc": "Oil & Natural Gas Corporation Ltd. Oil, Gas & Consumable Fuels",
+   "sector": "Oil Gas & Consumable Fuels"
+  },
+  "POWERGRID": {
+   "w": 1.08,
+   "close": 263.55,
+   "mcapCr": 119016,
+   "desc": "Power Grid Corporation of India Ltd. Power",
+   "sector": "Power"
+  },
+  "RELIANCE": {
+   "w": 7.83,
+   "close": 1277.0,
+   "mcapCr": 860282,
+   "desc": "Reliance Industries Ltd. Oil, Gas & Consumable Fuels",
+   "sector": "Oil Gas & Consumable Fuels"
+  },
+  "SBILIFE": {
+   "w": 0.71,
+   "close": 1740.5,
+   "mcapCr": 77986,
+   "desc": "SBI Life Insurance Company Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "SHRIRAMFIN": {
+   "w": 1.41,
+   "close": 1109.9,
+   "mcapCr": 155005,
+   "desc": "Shriram Finance Ltd. Financial Services",
+   "sector": "Financial Services"
+  },
+  "SBIN": {
+   "w": 3.98,
+   "close": 1060.0,
+   "mcapCr": 436920,
+   "desc": "State Bank of India Financial Services",
+   "sector": "Financial Services"
+  },
+  "SUNPHARMA": {
+   "w": 1.91,
+   "close": 1984.8,
+   "mcapCr": 209578,
+   "desc": "Sun Pharmaceutical Industries Ltd. Healthcare",
+   "sector": "Healthcare"
+  },
+  "TCS": {
+   "w": 2.22,
+   "close": 2399.3,
+   "mcapCr": 244278,
+   "desc": "Tata Consultancy Services Ltd. Information Technology",
+   "sector": "Information Technology"
+  },
+  "TATACONSUM": {
+   "w": 0.61,
+   "close": 1037.5,
+   "mcapCr": 67375,
+   "desc": "Tata Consumer Products Ltd. Fast Moving Consumer Goods",
+   "sector": "Fast Moving Consumer Goods"
+  },
+  "TMPV": {
+   "w": 0.59,
+   "close": 308.85,
+   "mcapCr": 64367,
+   "desc": "Tata Motors Passenger Vehicles Ltd. Automobile and Auto Components",
+   "sector": "Automobile and Auto Components"
+  },
+  "TATASTEEL": {
+   "w": 1.38,
+   "close": 184.35,
+   "mcapCr": 151959,
+   "desc": "Tata Steel Ltd. Metals & Mining",
+   "sector": "Metals & Mining"
+  },
+  "TECHM": {
+   "w": 0.94,
+   "close": 1628.0,
+   "mcapCr": 103103,
+   "desc": "Tech Mahindra Ltd. Information Technology",
+   "sector": "Information Technology"
+  },
+  "TITAN": {
+   "w": 1.91,
+   "close": 5102.4,
+   "mcapCr": 210071,
+   "desc": "Titan Company Ltd. Consumer Durables",
+   "sector": "Consumer Durables"
+  },
+  "TRENT": {
+   "w": 0.87,
+   "close": 2879.9,
+   "mcapCr": 95562,
+   "desc": "Trent Ltd. Consumer Services",
+   "sector": "Consumer Services"
+  },
+  "ULTRACEMCO": {
+   "w": 1.23,
+   "close": 11450.0,
+   "mcapCr": 135117,
+   "desc": "UltraTech Cement Ltd. Construction Materials",
+   "sector": "Construction Materials"
+  },
+  "WIPRO": {
+   "w": 0.45,
+   "close": 184.5,
+   "mcapCr": 49827,
+   "desc": "Wipro Ltd. Information Technology",
+   "sector": "Information Technology"
+  }
+ }
+}

@@ -1064,6 +1064,22 @@ function render(){
       until the stock appears in a bhavcopy, which is what turns a row
       green.</div>`, 'wide', smeSeg(smeHidden)));
 
+  // ---- NIFTY 50 allocation board, framed from its own page.
+  // It is a full page in its own right (settings drawer, view modes, its own
+  // refresh loop), so it is embedded rather than rewritten as a card: the two
+  // pages share no element ids and only --text-muted and .pill in CSS, and a
+  // frame keeps it that way.
+  b.push(card('NIFTY 50 — sector & stock allocation',
+    'Weights from NSE free-float market cap, refreshed every 5 minutes in market hours.',
+    null,
+    `<div class="note" style="margin:-2px 0 8px">
+       <a href="nifty.html" target="_blank" rel="noopener">Open the full board &#8599;</a>
+       &middot; settings, view modes and the intraday timeframes live there</div>
+     <iframe src="nifty.html" title="NIFTY 50 sector and stock allocation"
+       loading="lazy" style="width:100%;height:760px;border:1px solid var(--line);
+       border-radius:9px;background:var(--surface-1)"></iframe>`,
+    'wide'));
+
   // ---- IPO listing-day gains
   const lv = S.ipo_listing_live;
   const ig = S.ipo_gains, gl = (ig && ig.listings) || [], gs = ig && ig.stats_last_50;

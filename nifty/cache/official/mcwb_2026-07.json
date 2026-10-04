@@ -1,0 +1,255 @@
+{
+ "asof": "2026-07",
+ "weights": {
+  "ADANIENT": {
+   "w": 0.78,
+   "beta": 1.65,
+   "industry": "Trading - Minerals"
+  },
+  "ADANIPORTS": {
+   "w": 1.12,
+   "beta": 1.45,
+   "industry": "Port & Port services"
+  },
+  "APOLLOHOSP": {
+   "w": 0.83,
+   "beta": 0.58,
+   "industry": "Hospital"
+  },
+  "ASIANPAINT": {
+   "w": 1.11,
+   "beta": 0.99,
+   "industry": "Paints"
+  },
+  "AXISBANK": {
+   "w": 3.16,
+   "beta": 1.17,
+   "industry": "Private Sector Bank"
+  },
+  "BAJAJ-AUTO": {
+   "w": 1.14,
+   "beta": 0.85,
+   "industry": "2/3 Wheelers"
+  },
+  "BAJFINANCE": {
+   "w": 2.74,
+   "beta": 1.51,
+   "industry": "Non Banking Financial Company (NBFC)"
+  },
+  "BAJAJFINSV": {
+   "w": 1.05,
+   "beta": 1.29,
+   "industry": "Holding Company"
+  },
+  "BEL": {
+   "w": 1.24,
+   "beta": 0.93,
+   "industry": "Aerospace & Defense"
+  },
+  "BHARTIARTL": {
+   "w": 5.37,
+   "beta": 0.64,
+   "industry": "Telecom - Cellular & Fixed line services"
+  },
+  "CIPLA": {
+   "w": 0.74,
+   "beta": 0.62,
+   "industry": "Pharmaceuticals"
+  },
+  "COALINDIA": {
+   "w": 0.89,
+   "beta": 0.26,
+   "industry": "Coal"
+  },
+  "DRREDDY": {
+   "w": 0.63,
+   "beta": 0.53,
+   "industry": "Pharmaceuticals"
+  },
+  "EICHERMOT": {
+   "w": 0.97,
+   "beta": 1.26,
+   "industry": "2/3 Wheelers"
+  },
+  "ETERNAL": {
+   "w": 1.96,
+   "beta": 1.4,
+   "industry": "E-Retail/ E-Commerce"
+  },
+  "GRASIM": {
+   "w": 1.05,
+   "beta": 1.1,
+   "industry": "Cement & Cement Products"
+  },
+  "HCLTECH": {
+   "w": 1.27,
+   "beta": 0.8,
+   "industry": "Computers - Software & Consulting"
+  },
+  "HDFCBANK": {
+   "w": 10.27,
+   "beta": 1.24,
+   "industry": "Private Sector Bank"
+  },
+  "HDFCLIFE": {
+   "w": 0.53,
+   "beta": 0.89,
+   "industry": "Life Insurance"
+  },
+  "HINDALCO": {
+   "w": 1.26,
+   "beta": 0.85,
+   "industry": "Aluminium"
+  },
+  "HINDUNILVR": {
+   "w": 1.67,
+   "beta": 0.72,
+   "industry": "Diversified FMCG"
+  },
+  "ICICIBANK": {
+   "w": 9.22,
+   "beta": 0.93,
+   "industry": "Private Sector Bank"
+  },
+  "ITC": {
+   "w": 2.43,
+   "beta": 0.61,
+   "industry": "Diversified FMCG"
+  },
+  "INFY": {
+   "w": 3.55,
+   "beta": 0.71,
+   "industry": "Computers - Software & Consulting"
+  },
+  "INDIGO": {
+   "w": 1.05,
+   "beta": 1.82,
+   "industry": "Airline"
+  },
+  "JSWSTEEL": {
+   "w": 1.07,
+   "beta": 1.19,
+   "industry": "Iron & Steel"
+  },
+  "JIOFIN": {
+   "w": 0.75,
+   "beta": 1.58,
+   "industry": "Investment Company"
+  },
+  "KOTAKBANK": {
+   "w": 2.58,
+   "beta": 1.02,
+   "industry": "Private Sector Bank"
+  },
+  "LT": {
+   "w": 4.13,
+   "beta": 1.41,
+   "industry": "Civil Construction"
+  },
+  "M&M": {
+   "w": 2.72,
+   "beta": 1.5,
+   "industry": "Passenger Cars & Utility Vehicles"
+  },
+  "MARUTI": {
+   "w": 1.66,
+   "beta": 1.13,
+   "industry": "Passenger Cars & Utility Vehicles"
+  },
+  "MAXHEALTH": {
+   "w": 0.73,
+   "beta": 0.7,
+   "industry": "Hospital"
+  },
+  "NTPC": {
+   "w": 1.48,
+   "beta": 0.54,
+   "industry": "Power Generation"
+  },
+  "NESTLEIND": {
+   "w": 0.97,
+   "beta": 0.59,
+   "industry": "Packaged Foods"
+  },
+  "ONGC": {
+   "w": 0.84,
+   "beta": 0.07,
+   "industry": "Oil Exploration & Production"
+  },
+  "POWERGRID": {
+   "w": 1.15,
+   "beta": 0.52,
+   "industry": "Power - Transmission"
+  },
+  "RELIANCE": {
+   "w": 7.92,
+   "beta": 0.94,
+   "industry": "Refineries & Marketing"
+  },
+  "SBILIFE": {
+   "w": 0.76,
+   "beta": 0.85,
+   "industry": "Life Insurance"
+  },
+  "SHRIRAMFIN": {
+   "w": 1.31,
+   "beta": 1.9,
+   "industry": "Non Banking Financial Company (NBFC)"
+  },
+  "SBIN": {
+   "w": 3.81,
+   "beta": 1.08,
+   "industry": "Public Sector Bank"
+  },
+  "SUNPHARMA": {
+   "w": 1.89,
+   "beta": 0.53,
+   "industry": "Pharmaceuticals"
+  },
+  "TCS": {
+   "w": 2.16,
+   "beta": 0.79,
+   "industry": "Computers - Software & Consulting"
+  },
+  "TATACONSUM": {
+   "w": 0.63,
+   "beta": 0.63,
+   "industry": "Tea & Coffee"
+  },
+  "TMPV": {
+   "w": 0.64,
+   "beta": 1.5,
+   "industry": "Passenger Cars & Utility Vehicles"
+  },
+  "TATASTEEL": {
+   "w": 1.41,
+   "beta": 1.17,
+   "industry": "Iron & Steel"
+  },
+  "TECHM": {
+   "w": 0.94,
+   "beta": 0.61,
+   "industry": "Computers - Software & Consulting"
+  },
+  "TITAN": {
+   "w": 1.8,
+   "beta": 0.97,
+   "industry": "Gems, Jewellery And Watches"
+  },
+  "TRENT": {
+   "w": 0.9,
+   "beta": 1.26,
+   "industry": "Speciality Retail"
+  },
+  "ULTRACEMCO": {
+   "w": 1.26,
+   "beta": 1.29,
+   "industry": "Cement & Cement Products"
+  },
+  "WIPRO": {
+   "w": 0.45,
+   "beta": 0.68,
+   "industry": "Computers - Software & Consulting"
+  }
+ }
+}

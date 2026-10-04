@@ -1,4 +1,4 @@
-cache/
+/cache/            # fetch.py's own cache at the repo root, not nifty/cache
 __pycache__/
 *.pyc
 .venv/

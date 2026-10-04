@@ -1,0 +1,256 @@
+{
+ "ts": 1791096102.7718573,
+ "fetched": "2026-10-04 12:11",
+ "map": {
+  "ADANIENT": {
+   "name": "Adani Enterprises Ltd.",
+   "sector": "Metals & Mining",
+   "isin": "INE423A01024"
+  },
+  "ADANIPORTS": {
+   "name": "Adani Ports and Special Economic Zone Ltd.",
+   "sector": "Services",
+   "isin": "INE742F01042"
+  },
+  "APOLLOHOSP": {
+   "name": "Apollo Hospitals Enterprise Ltd.",
+   "sector": "Healthcare",
+   "isin": "INE437A01024"
+  },
+  "ASIANPAINT": {
+   "name": "Asian Paints Ltd.",
+   "sector": "Consumer Durables",
+   "isin": "INE021A01026"
+  },
+  "AXISBANK": {
+   "name": "Axis Bank Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE238A01034"
+  },
+  "BSE": {
+   "name": "BSE Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE118H01025"
+  },
+  "BAJAJ-AUTO": {
+   "name": "Bajaj Auto Ltd.",
+   "sector": "Automobile and Auto Components",
+   "isin": "INE917I01010"
+  },
+  "BAJFINANCE": {
+   "name": "Bajaj Finance Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE296A01032"
+  },
+  "BAJAJFINSV": {
+   "name": "Bajaj Finserv Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE918I01026"
+  },
+  "BEL": {
+   "name": "Bharat Electronics Ltd.",
+   "sector": "Capital Goods",
+   "isin": "INE263A01024"
+  },
+  "BHARTIARTL": {
+   "name": "Bharti Airtel Ltd.",
+   "sector": "Telecommunication",
+   "isin": "INE397D01024"
+  },
+  "CIPLA": {
+   "name": "Cipla Ltd.",
+   "sector": "Healthcare",
+   "isin": "INE059A01026"
+  },
+  "COALINDIA": {
+   "name": "Coal India Ltd.",
+   "sector": "Oil Gas & Consumable Fuels",
+   "isin": "INE522F01014"
+  },
+  "DRREDDY": {
+   "name": "Dr. Reddy's Laboratories Ltd.",
+   "sector": "Healthcare",
+   "isin": "INE089A01031"
+  },
+  "EICHERMOT": {
+   "name": "Eicher Motors Ltd.",
+   "sector": "Automobile and Auto Components",
+   "isin": "INE066A01021"
+  },
+  "ETERNAL": {
+   "name": "Eternal Ltd.",
+   "sector": "Consumer Services",
+   "isin": "INE758T01015"
+  },
+  "GRASIM": {
+   "name": "Grasim Industries Ltd.",
+   "sector": "Construction Materials",
+   "isin": "INE047A01021"
+  },
+  "HCLTECH": {
+   "name": "HCL Technologies Ltd.",
+   "sector": "Information Technology",
+   "isin": "INE860A01027"
+  },
+  "HDFCBANK": {
+   "name": "HDFC Bank Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE040A01034"
+  },
+  "HDFCLIFE": {
+   "name": "HDFC Life Insurance Company Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE795G01014"
+  },
+  "HINDALCO": {
+   "name": "Hindalco Industries Ltd.",
+   "sector": "Metals & Mining",
+   "isin": "INE038A01020"
+  },
+  "HINDUNILVR": {
+   "name": "Hindustan Unilever Ltd.",
+   "sector": "Fast Moving Consumer Goods",
+   "isin": "INE030A01027"
+  },
+  "ICICIBANK": {
+   "name": "ICICI Bank Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE090A01021"
+  },
+  "ITC": {
+   "name": "ITC Ltd.",
+   "sector": "Fast Moving Consumer Goods",
+   "isin": "INE154A01025"
+  },
+  "INFY": {
+   "name": "Infosys Ltd.",
+   "sector": "Information Technology",
+   "isin": "INE009A01021"
+  },
+  "INDIGO": {
+   "name": "InterGlobe Aviation Ltd.",
+   "sector": "Services",
+   "isin": "INE646L01027"
+  },
+  "JSWSTEEL": {
+   "name": "JSW Steel Ltd.",
+   "sector": "Metals & Mining",
+   "isin": "INE019A01038"
+  },
+  "JIOFIN": {
+   "name": "Jio Financial Services Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE758E01017"
+  },
+  "KOTAKBANK": {
+   "name": "Kotak Mahindra Bank Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE237A01036"
+  },
+  "LT": {
+   "name": "Larsen & Toubro Ltd.",
+   "sector": "Construction",
+   "isin": "INE018A01030"
+  },
+  "M&M": {
+   "name": "Mahindra & Mahindra Ltd.",
+   "sector": "Automobile and Auto Components",
+   "isin": "INE101A01026"
+  },
+  "MARUTI": {
+   "name": "Maruti Suzuki India Ltd.",
+   "sector": "Automobile and Auto Components",
+   "isin": "INE585B01010"
+  },
+  "MAXHEALTH": {
+   "name": "Max Healthcare Institute Ltd.",
+   "sector": "Healthcare",
+   "isin": "INE027H01010"
+  },
+  "NTPC": {
+   "name": "NTPC Ltd.",
+   "sector": "Power",
+   "isin": "INE733E01010"
+  },
+  "NESTLEIND": {
+   "name": "Nestle India Ltd.",
+   "sector": "Fast Moving Consumer Goods",
+   "isin": "INE239A01024"
+  },
+  "ONGC": {
+   "name": "Oil & Natural Gas Corporation Ltd.",
+   "sector": "Oil Gas & Consumable Fuels",
+   "isin": "INE213A01029"
+  },
+  "POWERGRID": {
+   "name": "Power Grid Corporation of India Ltd.",
+   "sector": "Power",
+   "isin": "INE752E01010"
+  },
+  "RELIANCE": {
+   "name": "Reliance Industries Ltd.",
+   "sector": "Oil Gas & Consumable Fuels",
+   "isin": "INE002A01018"
+  },
+  "SBILIFE": {
+   "name": "SBI Life Insurance Company Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE123W01016"
+  },
+  "SHRIRAMFIN": {
+   "name": "Shriram Finance Ltd.",
+   "sector": "Financial Services",
+   "isin": "INE721A01047"
+  },
+  "SBIN": {
+   "name": "State Bank of India",
+   "sector": "Financial Services",
+   "isin": "INE062A01020"
+  },
+  "SUNPHARMA": {
+   "name": "Sun Pharmaceutical Industries Ltd.",
+   "sector": "Healthcare",
+   "isin": "INE044A01036"
+  },
+  "TCS": {
+   "name": "Tata Consultancy Services Ltd.",
+   "sector": "Information Technology",
+   "isin": "INE467B01029"
+  },
+  "TATACONSUM": {
+   "name": "Tata Consumer Products Ltd.",
+   "sector": "Fast Moving Consumer Goods",
+   "isin": "INE192A01025"
+  },
+  "TMPV": {
+   "name": "Tata Motors Passenger Vehicles Ltd.",
+   "sector": "Automobile and Auto Components",
+   "isin": "INE155A01022"
+  },
+  "TATASTEEL": {
+   "name": "Tata Steel Ltd.",
+   "sector": "Metals & Mining",
+   "isin": "INE081A01020"
+  },
+  "TECHM": {
+   "name": "Tech Mahindra Ltd.",
+   "sector": "Information Technology",
+   "isin": "INE669C01036"
+  },
+  "TITAN": {
+   "name": "Titan Company Ltd.",
+   "sector": "Consumer Durables",
+   "isin": "INE280A01028"
+  },
+  "TRENT": {
+   "name": "Trent Ltd.",
+   "sector": "Consumer Services",
+   "isin": "INE849A01020"
+  },
+  "ULTRACEMCO": {
+   "name": "UltraTech Cement Ltd.",
+   "sector": "Construction Materials",
+   "isin": "INE481G01011"
+  }
+ }
+}

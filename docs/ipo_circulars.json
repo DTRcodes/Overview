@@ -695,6 +695,17 @@
 "subject": "Listing of Equity Shares of A-One Steels India Limited (IPO)",
 "symbol": "AONESTEELS"
 },
+"https://nsearchives.nseindia.com/content/circulars/CML76665.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76665.pdf",
+"circular_date": "October 05, 2026",
+"company": "Shah Investor's Home Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "shahinvestorshome",
+"subject": "Listing of Equity Shares of Shah Investor's Home Limited (IPO)",
+"symbol": "SHAHINVEST"
+},
 "https://nsearchives.nseindia.com/content/circulars/CML76667.pdf": {
 "board": "mainboard",
 "circular": "https://nsearchives.nseindia.com/content/circulars/CML76667.pdf",
@@ -749,6 +760,17 @@
 "match": "runwalenterprises",
 "subject": "Listing of Equity Shares of Runwal Enterprises Limited (IPO)",
 "symbol": "RUNWALENTR"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76690.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76690.pdf",
+"circular_date": "October 05, 2026",
+"company": "SRIT India Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "srit",
+"subject": "Listing of Equity Shares of SRIT India Limited (IPO)",
+"symbol": "SRIT"
 },
 "https://nsearchives.nseindia.com/content/circulars/CML76694.zip": {
 "board": "mainboard",

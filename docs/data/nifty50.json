@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "generated": "2026-10-05T15:38:46+05:30",
- "lastUpdate": "2026-10-05 15:37:43",
+ "generated": "2026-10-05T16:02:35+05:30",
+ "lastUpdate": "2026-10-05 15:40:32",
  "tradeDate": "2026-10-05",
  "market": {
   "status": "Closed",
   "tradeDate": "05-Oct-2026 15:30",
-  "message": "Normal Market has Closed \u2013 Post Close will begin at 15:40 shortly"
+  "message": "Normal Market has Closed"
  },
  "index": {
   "symbol": "NIFTY 50",
@@ -163,23 +163,6 @@
    }
   },
   {
-   "sym": "BAJFINANCE",
-   "name": "Bajaj Finance Ltd.",
-   "sector": "Financial Services",
-   "last": 970,
-   "open": 962.55,
-   "prevClose": 948.3,
-   "high": 995.8,
-   "low": 962.55,
-   "ffmc": 2639566668922.5,
-   "pwc": 948.3,
-   "pmc": 959.4,
-   "official": {
-    "monthEndPdf": 2.5,
-    "mcwb": 2.57
-   }
-  },
-  {
    "sym": "INFY",
    "name": "Infosys Ltd.",
    "sector": "Information Technology",
@@ -194,6 +177,23 @@
    "official": {
     "monthEndPdf": 3.35,
     "mcwb": 3.61
+   }
+  },
+  {
+   "sym": "BAJFINANCE",
+   "name": "Bajaj Finance Ltd.",
+   "sector": "Financial Services",
+   "last": 970,
+   "open": 962.55,
+   "prevClose": 948.3,
+   "high": 995.8,
+   "low": 962.55,
+   "ffmc": 2639566668922.5,
+   "pwc": 948.3,
+   "pmc": 959.4,
+   "official": {
+    "monthEndPdf": 2.5,
+    "mcwb": 2.57
    }
   },
   {

@@ -15102,6 +15102,62 @@
    "low": 50.27,
    "intra_close_pct": -2.04,
    "intra_pop_pct": 12.73
+  },
+  "ORIENTCABL": {
+   "symbol": "ORIENTCABL",
+   "company": "Orient Cables (India) Limited",
+   "issue_price": 272.0,
+   "listing_date": "2026-10-05",
+   "open": 272.0,
+   "last": 405.0,
+   "close": 405.0,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 48.9,
+   "from_open_pct": 48.9
+  },
+  "RUNWALENTR": {
+   "symbol": "RUNWALENTR",
+   "company": "Runwal Enterprises Limited",
+   "issue_price": 305.0,
+   "listing_date": "2026-10-05",
+   "open": 305.0,
+   "last": 296.05,
+   "close": 296.05,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -2.93,
+   "from_open_pct": -2.93
+  },
+  "GERMAN": {
+   "symbol": "GERMAN",
+   "company": "German Green Steel and Power Limited",
+   "issue_price": 139.0,
+   "listing_date": "2026-10-05",
+   "open": 139.0,
+   "last": 134.29,
+   "close": 134.29,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -3.39,
+   "from_open_pct": -3.39
+  },
+  "ACEVECTOR": {
+   "symbol": "ACEVECTOR",
+   "company": "AceVector Limited",
+   "issue_price": 32.0,
+   "listing_date": "2026-10-05",
+   "open": 32.0,
+   "last": 24.74,
+   "close": 24.74,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -22.69,
+   "from_open_pct": -22.69
   }
  },
  "unresolvable": [

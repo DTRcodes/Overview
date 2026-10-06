@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "generated": "2026-10-05T16:41:09+05:30",
+ "generated": "2026-10-06T08:45:02+05:30",
  "lastUpdate": "2026-10-05 15:40:32",
  "tradeDate": "2026-10-05",
  "market": {
-  "status": "Closed",
+  "status": "Open",
   "tradeDate": "05-Oct-2026 15:30",
   "message": "Normal Market has Closed"
  },
@@ -30,20 +30,9 @@
  },
  "constituents": {
   "source": "niftyindices.com/IndexConstituent/ind_nifty50list.csv",
-  "fetched": "2026-10-05 14:58",
+  "fetched": "2026-10-06 08:45",
   "count": 50,
-  "changes": [
-   {
-    "date": "2026-08",
-    "added": [
-     "BSE"
-    ],
-    "removed": [
-     "WIPRO"
-    ],
-    "source": "vs official MCWB 2026-08 list"
-   }
-  ]
+  "changes": []
  },
  "official": [
   {
@@ -54,8 +43,8 @@
   },
   {
    "kind": "mcwb",
-   "label": "MCWB 2026-08",
-   "asof": "2026-08",
+   "label": "MCWB 2026-09",
+   "asof": "2026-09",
    "source": "niftyindices.com - Market Cap, Weightage & Beta (CSV)"
   }
  ],
@@ -74,7 +63,7 @@
    "pmc": 708.7,
    "official": {
     "monthEndPdf": 10.38,
-    "mcwb": 9.85
+    "mcwb": 10.38
    }
   },
   {
@@ -91,7 +80,7 @@
    "pmc": 3092.0,
    "official": {
     "monthEndPdf": 1.21,
-    "mcwb": null
+    "mcwb": 1.21
    }
   },
   {
@@ -108,7 +97,7 @@
    "pmc": 1321.7,
    "official": {
     "monthEndPdf": 9.05,
-    "mcwb": 9.45
+    "mcwb": 9.05
    }
   },
   {
@@ -125,7 +114,7 @@
    "pmc": 1187.0,
    "official": {
     "monthEndPdf": 7.58,
-    "mcwb": 7.83
+    "mcwb": 7.58
    }
   },
   {
@@ -142,7 +131,7 @@
    "pmc": 262.75,
    "official": {
     "monthEndPdf": 2.42,
-    "mcwb": 2.24
+    "mcwb": 2.42
    }
   },
   {
@@ -159,7 +148,7 @@
    "pmc": 1757.0,
    "official": {
     "monthEndPdf": 5.1,
-    "mcwb": 5.0
+    "mcwb": 5.1
    }
   },
   {
@@ -176,7 +165,7 @@
    "pmc": 994.1,
    "official": {
     "monthEndPdf": 3.35,
-    "mcwb": 3.61
+    "mcwb": 3.35
    }
   },
   {
@@ -193,7 +182,7 @@
    "pmc": 959.4,
    "official": {
     "monthEndPdf": 2.5,
-    "mcwb": 2.57
+    "mcwb": 2.5
    }
   },
   {
@@ -210,7 +199,7 @@
    "pmc": 2050.6,
    "official": {
     "monthEndPdf": 2.0,
-    "mcwb": 2.22
+    "mcwb": 2.0
    }
   },
   {
@@ -227,7 +216,7 @@
    "pmc": 320.0,
    "official": {
     "monthEndPdf": 2.22,
-    "mcwb": 2.15
+    "mcwb": 2.22
    }
   },
   {
@@ -244,7 +233,7 @@
    "pmc": 2950.0,
    "official": {
     "monthEndPdf": 2.52,
-    "mcwb": 2.66
+    "mcwb": 2.52
    }
   },
   {
@@ -261,7 +250,7 @@
    "pmc": 417.0,
    "official": {
     "monthEndPdf": 2.93,
-    "mcwb": 2.8
+    "mcwb": 2.93
    }
   },
   {
@@ -278,7 +267,7 @@
    "pmc": 1226.0,
    "official": {
     "monthEndPdf": 3.37,
-    "mcwb": 3.39
+    "mcwb": 3.37
    }
   },
   {
@@ -295,7 +284,7 @@
    "pmc": 11967.0,
    "official": {
     "monthEndPdf": 1.49,
-    "mcwb": 1.6
+    "mcwb": 1.49
    }
   },
   {
@@ -312,7 +301,7 @@
    "pmc": 3760.0,
    "official": {
     "monthEndPdf": 4.2,
-    "mcwb": 4.3
+    "mcwb": 4.2
    }
   },
   {
@@ -329,7 +318,7 @@
    "pmc": 959.5,
    "official": {
     "monthEndPdf": 3.79,
-    "mcwb": 3.98
+    "mcwb": 3.79
    }
   },
   {
@@ -346,7 +335,7 @@
    "pmc": 8165.5,
    "official": {
     "monthEndPdf": 0.8,
-    "mcwb": 0.83
+    "mcwb": 0.8
    }
   },
   {
@@ -363,7 +352,7 @@
    "pmc": 1524.0,
    "official": {
     "monthEndPdf": 0.92,
-    "mcwb": 0.94
+    "mcwb": 0.92
    }
   },
   {
@@ -380,7 +369,7 @@
    "pmc": 2903.4,
    "official": {
     "monthEndPdf": 0.94,
-    "mcwb": 0.75
+    "mcwb": 0.94
    }
   },
   {
@@ -397,7 +386,7 @@
    "pmc": 982.7,
    "official": {
     "monthEndPdf": 1.32,
-    "mcwb": 1.41
+    "mcwb": 1.32
    }
   },
   {
@@ -414,7 +403,7 @@
    "pmc": 1798.3,
    "official": {
     "monthEndPdf": 1.35,
-    "mcwb": 1.07
+    "mcwb": 1.35
    }
   },
   {
@@ -431,7 +420,7 @@
    "pmc": 1230.0,
    "official": {
     "monthEndPdf": 1.24,
-    "mcwb": 1.26
+    "mcwb": 1.24
    }
   },
   {
@@ -448,7 +437,7 @@
    "pmc": 225.8,
    "official": {
     "monthEndPdf": 0.84,
-    "mcwb": 0.82
+    "mcwb": 0.84
    }
   },
   {
@@ -465,7 +454,7 @@
    "pmc": 388.3,
    "official": {
     "monthEndPdf": 1.33,
-    "mcwb": 1.35
+    "mcwb": 1.33
    }
   },
   {
@@ -482,7 +471,7 @@
    "pmc": 941.8,
    "official": {
     "monthEndPdf": 1.3,
-    "mcwb": 1.33
+    "mcwb": 1.3
    }
   },
   {
@@ -499,7 +488,7 @@
    "pmc": 283.5,
    "official": {
     "monthEndPdf": 0.57,
-    "mcwb": 0.59
+    "mcwb": 0.57
    }
   },
   {
@@ -516,7 +505,7 @@
    "pmc": 1233.0,
    "official": {
     "monthEndPdf": 0.72,
-    "mcwb": 0.64
+    "mcwb": 0.72
    }
   },
   {
@@ -533,7 +522,7 @@
    "pmc": 184.3,
    "official": {
     "monthEndPdf": 1.46,
-    "mcwb": 1.38
+    "mcwb": 1.46
    }
   },
   {
@@ -550,7 +539,7 @@
    "pmc": 10874.0,
    "official": {
     "monthEndPdf": 1.13,
-    "mcwb": 1.22
+    "mcwb": 1.13
    }
   },
   {
@@ -567,7 +556,7 @@
    "pmc": 10956.0,
    "official": {
     "monthEndPdf": 1.24,
-    "mcwb": 1.23
+    "mcwb": 1.24
    }
   },
   {
@@ -584,7 +573,7 @@
    "pmc": 216.88,
    "official": {
     "monthEndPdf": 0.68,
-    "mcwb": 0.72
+    "mcwb": 0.68
    }
   },
   {
@@ -601,7 +590,7 @@
    "pmc": 4587.0,
    "official": {
     "monthEndPdf": 1.81,
-    "mcwb": 1.91
+    "mcwb": 1.81
    }
   },
   {
@@ -618,7 +607,7 @@
    "pmc": 425.0,
    "official": {
     "monthEndPdf": 0.97,
-    "mcwb": 0.87
+    "mcwb": 0.97
    }
   },
   {
@@ -635,7 +624,7 @@
    "pmc": 322.75,
    "official": {
     "monthEndPdf": 1.47,
-    "mcwb": 1.41
+    "mcwb": 1.47
    }
   },
   {
@@ -652,7 +641,7 @@
    "pmc": 929.8,
    "official": {
     "monthEndPdf": 0.66,
-    "mcwb": 0.7
+    "mcwb": 0.66
    }
   },
   {
@@ -669,7 +658,7 @@
    "pmc": 7150.0,
    "official": {
     "monthEndPdf": 0.94,
-    "mcwb": 0.99
+    "mcwb": 0.94
    }
   },
   {
@@ -686,7 +675,7 @@
    "pmc": 1816.6,
    "official": {
     "monthEndPdf": 1.84,
-    "mcwb": 1.91
+    "mcwb": 1.84
    }
   },
   {
@@ -703,7 +692,7 @@
    "pmc": 1696.4,
    "official": {
     "monthEndPdf": 0.73,
-    "mcwb": 0.71
+    "mcwb": 0.73
    }
   },
   {
@@ -720,7 +709,7 @@
    "pmc": 1310.0,
    "official": {
     "monthEndPdf": 0.9,
-    "mcwb": 0.97
+    "mcwb": 0.9
    }
   },
   {
@@ -737,7 +726,7 @@
    "pmc": 2402.6,
    "official": {
     "monthEndPdf": 1.04,
-    "mcwb": 1.09
+    "mcwb": 1.04
    }
   },
   {
@@ -754,7 +743,7 @@
    "pmc": 2621.6,
    "official": {
     "monthEndPdf": 0.83,
-    "mcwb": 0.87
+    "mcwb": 0.83
    }
   },
   {
@@ -788,7 +777,7 @@
    "pmc": 260.5,
    "official": {
     "monthEndPdf": 1.13,
-    "mcwb": 1.08
+    "mcwb": 1.13
    }
   },
   {
@@ -805,7 +794,7 @@
    "pmc": 1731.0,
    "official": {
     "monthEndPdf": 0.96,
-    "mcwb": 1.06
+    "mcwb": 0.96
    }
   },
   {
@@ -822,7 +811,7 @@
    "pmc": 521.2,
    "official": {
     "monthEndPdf": 0.54,
-    "mcwb": 0.53
+    "mcwb": 0.54
    }
   },
   {
@@ -839,7 +828,7 @@
    "pmc": 1879.1,
    "official": {
     "monthEndPdf": 1.59,
-    "mcwb": 1.58
+    "mcwb": 1.59
    }
   },
   {
@@ -856,7 +845,7 @@
    "pmc": 949.5,
    "official": {
     "monthEndPdf": 0.59,
-    "mcwb": 0.61
+    "mcwb": 0.59
    }
   },
   {
@@ -890,7 +879,7 @@
    "pmc": 1253.4,
    "official": {
     "monthEndPdf": 1.15,
-    "mcwb": 1.11
+    "mcwb": 1.15
    }
   },
   {
@@ -907,7 +896,7 @@
    "pmc": 3061.9,
    "official": {
     "monthEndPdf": 1.1,
-    "mcwb": 1.15
+    "mcwb": 1.1
    }
   }
  ]

@@ -15198,6 +15198,38 @@
    "gain_open_pct": 0.0,
    "gain_close_pct": 5.0,
    "price_source": "bhavcopy"
+  },
+  "SHAHINVEST": {
+   "symbol": "SHAHINVEST",
+   "company": "Shah Investor's Home Limited",
+   "issue_price": 167.0,
+   "listing_date": "2026-10-06",
+   "open": 171.0,
+   "close": 173.79,
+   "price_source": "bhavcopy",
+   "gain_open_pct": 2.4,
+   "gain_close_pct": 4.07,
+   "from_open_pct": 4.19,
+   "high": 179.55,
+   "low": 171.0,
+   "intra_close_pct": 1.63,
+   "intra_pop_pct": 5.0
+  },
+  "SRIT": {
+   "symbol": "SRIT",
+   "company": "Srit India Limited",
+   "issue_price": 130.0,
+   "listing_date": "2026-10-06",
+   "open": 148.0,
+   "close": 155.09,
+   "price_source": "bhavcopy",
+   "gain_open_pct": 13.85,
+   "gain_close_pct": 19.3,
+   "from_open_pct": 19.3,
+   "high": 155.09,
+   "low": 148.0,
+   "intra_close_pct": 4.79,
+   "intra_pop_pct": 4.79
   }
  },
  "unresolvable": [

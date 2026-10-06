@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-06T08:15:43+05:30",
-  "generated_at_utc": "2026-10-06T02:45:43+00:00",
+  "generated_at": "2026-10-06T19:10:52+05:30",
+  "generated_at_utc": "2026-10-06T13:40:52+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -14,43 +14,43 @@
         "slr": 18.0
       },
       "fx_reference": {
-        "USD": 96.2831,
-        "GBP": 127.2182,
-        "EUR": 107.7883,
-        "JPY_100": 61.03
+        "USD": 96.4348,
+        "GBP": 127.3756,
+        "EUR": 108.0729,
+        "JPY_100": 60.96
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-10-06T08:15:01+05:30",
+      "fetched_at": "2026-10-06T19:10:10+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "buy": 15674.6103515625,
-          "sell": 20373.75,
-          "net": -4699.1396484375,
+          "buy": 11258.7197265625,
+          "sell": 14220.01953125,
+          "net": -2961.2998046875,
           "view": "BEARISH"
         },
         "dii": {
-          "buy": 20492.9296875,
-          "sell": 15311.3095703125,
-          "net": 5181.6201171875,
+          "buy": 20146.400390625,
+          "sell": 15057.48046875,
+          "net": 5088.919921875,
           "view": "BULLISH"
         }
       },
       "fno": {
-        "fii_call_oi_chg": 65734.0,
-        "fii_put_oi_chg": -78263.0,
-        "fii_fut_amt": 1161.840087890625,
-        "fii_fut_oi_chg": 7783.0,
-        "fii_fut_oi": -302391.0,
+        "fii_call_oi_chg": 18247.0,
+        "fii_put_oi_chg": -20549.0,
+        "fii_fut_amt": 1302.199951171875,
+        "fii_fut_oi_chg": 8666.0,
+        "fii_fut_oi": -293725.0,
         "fut_view": "BULLISH",
         "call_view": "BULLISH",
         "put_view": "BULLISH"
       },
-      "as_of": "2026-10-05",
-      "window_days": 20,
+      "as_of": "2026-10-06",
+      "window_days": 21,
       "months_advertised": [
         "2026-April",
         "2026-May",
@@ -63,141 +63,141 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-10-06T08:15:02+05:30",
+      "fetched_at": "2026-10-06T19:10:12+05:30",
       "stale": false,
-      "series_days": 20
+      "series_days": 21
     },
     "fii_derivatives": {
-      "date": "2026-10-05",
+      "date": "2026-10-06",
       "participants": {
         "client": {
-          "index_fut_long": 301687.0,
-          "index_fut_short": 59654.0,
-          "index_fut_net": 242033.0,
-          "stock_fut_net": 3257474.0
+          "index_fut_long": 297348.0,
+          "index_fut_short": 60248.0,
+          "index_fut_net": 237100.0,
+          "stock_fut_net": 3240226.0
         },
         "dii": {
-          "index_fut_long": 47700.0,
-          "index_fut_short": 14872.0,
-          "index_fut_net": 32828.0,
-          "stock_fut_net": -4312935.0
+          "index_fut_long": 47973.0,
+          "index_fut_short": 14072.0,
+          "index_fut_net": 33901.0,
+          "stock_fut_net": -4314222.0
         },
         "fii": {
-          "index_fut_long": 29117.0,
-          "index_fut_short": 331508.0,
-          "index_fut_net": -302391.0,
-          "stock_fut_net": 566988.0
+          "index_fut_long": 30285.0,
+          "index_fut_short": 324010.0,
+          "index_fut_net": -293725.0,
+          "stock_fut_net": 610497.0
         },
         "pro": {
-          "index_fut_long": 54509.0,
-          "index_fut_short": 26979.0,
-          "index_fut_net": 27530.0,
-          "stock_fut_net": 488473.0
+          "index_fut_long": 52602.0,
+          "index_fut_short": 29878.0,
+          "index_fut_net": 22724.0,
+          "stock_fut_net": 463499.0
         }
       },
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-10-06T08:15:03+05:30",
+      "fetched_at": "2026-10-06T19:10:12+05:30",
       "stale": false
     },
     "nse_valuation": {
-      "as_of": "2026-10-05",
+      "as_of": "2026-10-06",
       "indices": {
         "Nifty 50": {
-          "close": 22555.75,
-          "change_pct": 0.6,
-          "pe": 19.3,
-          "pb": 2.77,
-          "div_yield": 1.23
+          "close": 22776.1,
+          "change_pct": 0.98,
+          "pe": 19.49,
+          "pb": 2.8,
+          "div_yield": 1.21
         },
         "Nifty Next 50": {
-          "close": 69213.75,
-          "change_pct": 0.34,
-          "pe": 18.14,
-          "pb": 3.33,
-          "div_yield": 1.05
+          "close": 69973.7,
+          "change_pct": 1.1,
+          "pe": 18.34,
+          "pb": 3.36,
+          "div_yield": 1.04
         },
         "Nifty 500": {
-          "close": 21971.6,
-          "change_pct": 0.52,
-          "pe": 21.67,
-          "pb": 3.08,
-          "div_yield": 1.03
+          "close": 22202.85,
+          "change_pct": 1.05,
+          "pe": 21.9,
+          "pb": 3.11,
+          "div_yield": 1.02
         },
         "Nifty Auto": {
-          "close": 25421.9,
-          "change_pct": 0.15,
-          "pe": 29.55,
-          "pb": 3.97,
-          "div_yield": 1.15
+          "close": 25541.95,
+          "change_pct": 0.47,
+          "pe": 29.69,
+          "pb": 3.99,
+          "div_yield": 1.14
         },
         "Nifty Bank": {
-          "close": 54714.1,
-          "change_pct": 0.48,
-          "pe": 12.97,
-          "pb": 1.65,
+          "close": 55128.4,
+          "change_pct": 0.76,
+          "pe": 13.07,
+          "pb": 1.66,
           "div_yield": 0.72
         },
         "Nifty IT": {
-          "close": 28301.65,
-          "change_pct": -0.01,
-          "pe": 17.8,
-          "pb": 4.95,
-          "div_yield": 2.83
+          "close": 28136.05,
+          "change_pct": -0.59,
+          "pe": 17.7,
+          "pb": 4.93,
+          "div_yield": 2.85
         },
         "Nifty Smallcap 250": {
-          "close": 17655.35,
-          "change_pct": 0.38,
-          "pe": 34.18,
-          "pb": 3.4,
-          "div_yield": 0.62
+          "close": 17902.3,
+          "change_pct": 1.4,
+          "pe": 34.66,
+          "pb": 3.44,
+          "div_yield": 0.61
         },
         "Nifty Midcap 150": {
-          "close": 21755.3,
-          "change_pct": 0.51,
-          "pe": 28.25,
-          "pb": 3.81,
-          "div_yield": 0.73
+          "close": 21979.45,
+          "change_pct": 1.03,
+          "pe": 28.54,
+          "pb": 3.85,
+          "div_yield": 0.72
         }
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-10-06T08:15:03+05:30",
+      "fetched_at": "2026-10-06T19:10:13+05:30",
       "stale": false
     },
     "india_yields": {
       "yields": {
-        "1Y": 6.12,
-        "2Y": 6.69,
-        "3Y": 6.81,
-        "5Y": 7.01,
+        "1Y": 6.13,
+        "2Y": 6.62,
+        "3Y": 6.78,
+        "5Y": 7.04,
         "7Y": 7.17,
-        "10Y": 7.24,
-        "30Y": 7.7
+        "10Y": 7.23,
+        "30Y": 7.69
       },
       "unit": "percent",
       "via": "FBIL par yield (semi-annual)",
-      "as_of": "2026-10-05",
-      "spread_10y_2y": 0.55,
+      "as_of": "2026-10-06",
+      "spread_10y_2y": 0.61,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-10-06T08:15:06+05:30",
+      "fetched_at": "2026-10-06T19:10:14+05:30",
       "stale": false
     },
     "us_rates": {
       "rates": {
         "fed_target_upper": {
           "value": 4.0,
-          "date": "2026-10-05"
+          "date": "2026-10-06"
         },
         "fed_target_lower": {
           "value": 3.75,
-          "date": "2026-10-05"
+          "date": "2026-10-06"
         },
         "fed_effective": {
           "value": 3.88,
-          "date": "2026-10-02"
+          "date": "2026-10-05"
         },
         "us_2y": {
           "value": 4.83,
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-10-06T08:15:08+05:30",
+      "fetched_at": "2026-10-06T19:10:17+05:30",
       "stale": false
     },
     "world_yields": {
@@ -238,20 +238,20 @@
             "date": "2026-10-05"
           },
           "UK": {
-            "value": 4.9132,
-            "date": "2026-10-01"
+            "value": 4.8917,
+            "date": "2026-10-02"
           },
           "Germany": {
-            "value": 3.18,
-            "date": "2026-10-05"
+            "value": 3.21,
+            "date": "2026-10-06"
           },
           "China": {
             "value": 1.409,
             "date": "2026-09-30"
           },
           "India": {
-            "value": 7.01,
-            "date": "2026-10-05"
+            "value": 7.04,
+            "date": "2026-10-06"
           }
         },
         "10": {
@@ -264,20 +264,20 @@
             "date": "2026-10-05"
           },
           "UK": {
-            "value": 5.3665,
-            "date": "2026-10-01"
+            "value": 5.3341,
+            "date": "2026-10-02"
           },
           "Germany": {
-            "value": 3.51,
-            "date": "2026-10-05"
+            "value": 3.52,
+            "date": "2026-10-06"
           },
           "China": {
             "value": 1.6822,
             "date": "2026-09-30"
           },
           "India": {
-            "value": 7.24,
-            "date": "2026-10-05"
+            "value": 7.23,
+            "date": "2026-10-06"
           }
         }
       },
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-10-06T08:15:26+05:30",
+      "fetched_at": "2026-10-06T19:10:37+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 690,
@@ -316,15 +316,15 @@
         "y10_de": 1500,
         "y5_cn": 280,
         "y10_cn": 280,
-        "y5_in": 278,
-        "y10_in": 278
+        "y5_in": 279,
+        "y10_in": 279
       }
     },
     "fx_spot": {
-      "usd_inr": 96.3,
+      "usd_inr": 96.41,
       "as_of": "2026-10-06",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-10-06T08:15:27+05:30",
+      "fetched_at": "2026-10-06T19:10:38+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -338,8 +338,8 @@
           "issue_price": "   167",
           "listing_date": "06-OCT-2026",
           "ipo_closed": "30-SEP-2026",
-          "traded_today": false,
-          "listing_label": "Lists Today",
+          "traded_today": true,
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-10-06",
           "confirmed_listing_dmy": "06-Oct-2026",
           "confirmed_by": "NSE circular October 05, 2026",
@@ -354,8 +354,8 @@
           "issue_price": "   130",
           "listing_date": "06-OCT-2026",
           "ipo_closed": "30-SEP-2026",
-          "traded_today": false,
-          "listing_label": "Lists Today"
+          "traded_today": true,
+          "listing_label": "Listed Today"
         }
       ],
       "awaiting": [
@@ -680,6 +680,39 @@
           "expected_listing": "2026-10-22",
           "expected_listing_dmy": "22-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)"
+        },
+        {
+          "company": "Grace Cancer Foundation - ZCZP",
+          "symbol": "GCFZCZP",
+          "tv": "NSE:GCFZCZP",
+          "price": "Rs.10",
+          "opens": "07-Oct-2026",
+          "closes": "09-Oct-2026",
+          "series": "DEBT",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-10-14",
+          "expected_listing_dmy": "14-Oct-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens tomorrow"
+        },
+        {
+          "company": "HD Fire Protect",
+          "symbol": null,
+          "tv": null,
+          "series": "EQ",
+          "platform": null,
+          "price": "Rs.[.]",
+          "price_range": "Rs.[.]",
+          "opens": "13-Oct-2026",
+          "closes": "15-Oct-2026",
+          "expected_listing": "2026-10-21",
+          "expected_listing_dmy": "21-Oct-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "from_calendar": true,
+          "live": false,
+          "status": "Forthcoming",
+          "listing_label": "Opens 13 Oct"
         }
       ],
       "current": [
@@ -764,6 +797,39 @@
           "expected_listing": "2026-10-22",
           "expected_listing_dmy": "22-Oct-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)"
+        },
+        {
+          "company": "Grace Cancer Foundation - ZCZP",
+          "symbol": "GCFZCZP",
+          "tv": "NSE:GCFZCZP",
+          "price": "Rs.10",
+          "opens": "07-Oct-2026",
+          "closes": "09-Oct-2026",
+          "series": "DEBT",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-10-14",
+          "expected_listing_dmy": "14-Oct-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens tomorrow"
+        },
+        {
+          "company": "HD Fire Protect",
+          "symbol": null,
+          "tv": null,
+          "series": "EQ",
+          "platform": null,
+          "price": "Rs.[.]",
+          "price_range": "Rs.[.]",
+          "opens": "13-Oct-2026",
+          "closes": "15-Oct-2026",
+          "expected_listing": "2026-10-21",
+          "expected_listing_dmy": "21-Oct-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "from_calendar": true,
+          "live": false,
+          "status": "Forthcoming",
+          "listing_label": "Opens 13 Oct"
         }
       ],
       "recent_past": [
@@ -1098,25 +1164,23 @@
         "NSE:EVENTIONS",
         "NSE:NITYAS",
         "NSE:VNL",
-        "NSE:SMCG04"
+        "NSE:SMCG04",
+        "NSE:GCFZCZP"
       ],
-      "deduped_from_open": [
-        "NITYAS",
-        "VNL"
-      ],
+      "deduped_from_open": [],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-10-06",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-10-06T08:15:30+05:30",
+      "fetched_at": "2026-10-06T19:10:40+05:30",
       "stale": false,
-      "calendar_added": 11,
+      "calendar_added": 12,
       "horizon": {
         "min_days": 20,
-        "furthest_open": null,
-        "furthest_open_dmy": null,
-        "furthest_company": null,
-        "days_ahead": null,
-        "forthcoming": 0
+        "furthest_open": "2026-10-13",
+        "furthest_open_dmy": "13-Oct-2026",
+        "furthest_company": "HD Fire Protect",
+        "days_ahead": 7,
+        "forthcoming": 2
       },
       "circular_confirmed": 1,
       "gmp_matched": 0
@@ -1124,27 +1188,27 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Shah Investor's Home Limited",
-          "match": "shahinvestorshome",
           "board": "mainboard",
-          "circular_date": "October 05, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76721.zip",
-          "subject": "Listing of Equity Shares of Shah Investor's Home Limited (IPO)",
+          "circular_date": "October 05, 2026",
+          "company": "Shah Investor's Home Limited",
           "confirmed_listing": "2026-10-06",
-          "symbol": "SHAHINVEST",
           "confirmed_listing_dmy": "06-Oct-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "shahinvestorshome",
+          "subject": "Listing of Equity Shares of Shah Investor's Home Limited (IPO)",
+          "symbol": "SHAHINVEST"
         },
         {
-          "company": "SRIT India Limited",
-          "match": "srit",
           "board": "mainboard",
-          "circular_date": "October 05, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76706.zip",
-          "subject": "Listing of Equity Shares of SRIT India Limited (IPO)",
+          "circular_date": "October 05, 2026",
+          "company": "SRIT India Limited",
           "confirmed_listing": null,
-          "symbol": "SRIT",
-          "date_pending": false
+          "date_pending": false,
+          "match": "srit",
+          "subject": "Listing of Equity Shares of SRIT India Limited (IPO)",
+          "symbol": "SRIT"
         },
         {
           "board": "SME",
@@ -1592,10 +1656,10 @@
       "confirmed": 28,
       "checked": 44,
       "remembered": 75,
-      "as_of": "2026-10-06T08:15:33+05:30",
+      "as_of": "2026-10-06T19:10:41+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-10-06T08:15:33+05:30",
+      "fetched_at": "2026-10-06T19:10:41+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1604,29 +1668,75 @@
         "SHAHINVEST",
         "SRIT"
       ],
-      "live": [],
-      "no_quote_yet": [
-        "SHAHINVEST",
-        "SRIT"
+      "live": [
+        {
+          "symbol": "SHAHINVEST",
+          "company": "Shah Investor's Home Limited",
+          "issue_price": 167.0,
+          "listing_date": "2026-10-06",
+          "open": 167.0,
+          "last": 174.0,
+          "close": 174.0,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 4.19,
+          "from_open_pct": 4.19
+        },
+        {
+          "symbol": "SRIT",
+          "company": "Srit India Limited",
+          "issue_price": 130.0,
+          "listing_date": "2026-10-06",
+          "open": 130.0,
+          "last": 155.09,
+          "close": 155.09,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 19.3,
+          "from_open_pct": 19.3
+        }
       ],
+      "no_quote_yet": [],
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-10-06T08:15:34+05:30",
+      "fetched_at": "2026-10-06T19:10:41+05:30",
       "stale": false
     },
     "ipo_gmp": {
       "current": [],
       "history": [],
       "track_record": null,
-      "as_of": "2026-10-06T08:15:35+05:30",
+      "as_of": "2026-10-06T19:10:43+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-10-06T08:15:35+05:30",
+      "fetched_at": "2026-10-06T19:10:43+05:30",
       "stale": false
     },
     "ipo_calendar": {
       "issues": [
+        {
+          "company": "Vishal Nirmiti",
+          "board": "mainboard",
+          "platform": null,
+          "opens": "2026-10-21",
+          "closes": "2026-10-23",
+          "price_band": "Rs.[.]",
+          "size": "₹[.] Cr.",
+          "match": "vishalnirmiti"
+        },
+        {
+          "company": "HD Fire Protect",
+          "board": "mainboard",
+          "platform": null,
+          "opens": "2026-10-13",
+          "closes": "2026-10-15",
+          "price_band": "Rs.[.]",
+          "size": "₹[.] Cr.",
+          "match": "hdfireprotect"
+        },
         {
           "company": "Vishal Nirmiti",
           "board": "mainboard",
@@ -1968,13 +2078,45 @@
           "match": "blackopalconsultants"
         }
       ],
-      "as_of": "2026-10-06T08:15:37+05:30",
+      "as_of": "2026-10-06T19:10:45+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-10-06T08:15:37+05:30",
+      "fetched_at": "2026-10-06T19:10:45+05:30",
       "stale": false
     },
     "ipo_gains": {
       "listings": [
+        {
+          "symbol": "SHAHINVEST",
+          "company": "Shah Investor's Home Limited",
+          "issue_price": 167.0,
+          "listing_date": "2026-10-06",
+          "open": 171.0,
+          "close": 173.79,
+          "price_source": "bhavcopy",
+          "gain_open_pct": 2.4,
+          "gain_close_pct": 4.07,
+          "from_open_pct": 4.19,
+          "high": 179.55,
+          "low": 171.0,
+          "intra_close_pct": 1.63,
+          "intra_pop_pct": 5.0
+        },
+        {
+          "symbol": "SRIT",
+          "company": "Srit India Limited",
+          "issue_price": 130.0,
+          "listing_date": "2026-10-06",
+          "open": 148.0,
+          "close": 155.09,
+          "price_source": "bhavcopy",
+          "gain_open_pct": 13.85,
+          "gain_close_pct": 19.3,
+          "from_open_pct": 19.3,
+          "high": 155.09,
+          "low": 148.0,
+          "intra_close_pct": 4.79,
+          "intra_pop_pct": 4.79
+        },
         {
           "symbol": "ORIENTCABL",
           "company": "Orient Cables (India) Limited",
@@ -2580,42 +2722,31 @@
           "low": 227.32,
           "intra_close_pct": -4.46,
           "intra_pop_pct": 0.0
-        },
-        {
-          "symbol": "PERNIASPOP",
-          "company": "Purple Style Labs Limited",
-          "issue_price": 575.0,
-          "listing_date": "2026-09-07",
-          "open": 535.0,
-          "close": 568.55,
-          "gain_open_pct": -6.96,
-          "gain_close_pct": -1.12,
-          "price_source": "bhavcopy",
-          "high": 588.9,
-          "low": 515.85,
-          "intra_close_pct": 6.27,
-          "intra_pop_pct": 10.07
-        },
-        {
-          "symbol": "SHANTIINOR",
-          "company": "Shanti Inorganics Limited",
-          "issue_price": 83.0,
-          "listing_date": "2026-09-07",
-          "open": 157.7,
-          "close": 165.55,
-          "gain_open_pct": 90.0,
-          "gain_close_pct": 99.46,
-          "price_source": "bhavcopy",
-          "high": 165.55,
-          "low": 150.0,
-          "intra_close_pct": 4.98,
-          "intra_pop_pct": 4.98
         }
       ],
-      "resolved_total": 987,
+      "resolved_total": 989,
       "added_this_run": 0,
       "bhavcopy_calls": 0,
-      "corrections": [],
+      "corrections": [
+        {
+          "symbol": "SHAHINVEST",
+          "was_provisional": true,
+          "old_open": 167.0,
+          "new_open": 171.0,
+          "old_close": 174.0,
+          "new_close": 173.79,
+          "old_source": "yahoo intraday"
+        },
+        {
+          "symbol": "SRIT",
+          "was_provisional": true,
+          "old_open": 130.0,
+          "new_open": 148.0,
+          "old_close": 155.09,
+          "new_close": 155.09,
+          "old_source": "yahoo intraday"
+        }
+      ],
       "verified_against_bhavcopy": 40,
       "awaiting_bhavcopy": [],
       "monthly": [
@@ -2740,49 +2871,49 @@
         },
         {
           "month": "2026-10",
-          "count": 8,
-          "median_listing_pct": 2.16,
+          "count": 10,
+          "median_listing_pct": 2.4,
           "median_intra_pop_pct": 3.3,
-          "median_intra_close_pct": -2.04
+          "median_intra_close_pct": -1.16
         }
       ],
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 90,
+          "count": 92,
           "from": "2026-07-07",
-          "to": "2026-10-05",
+          "to": "2026-10-06",
           "median_listing_pct": 10.0,
           "median_intra_pop_pct": 5.0,
-          "median_intra_close_pct": 1.38,
-          "positive_open_pct": 72.2
+          "median_intra_close_pct": 1.63,
+          "positive_open_pct": 72.8
         },
         {
           "label": "last 6 months",
-          "count": 116,
+          "count": 118,
           "from": "2026-04-07",
-          "to": "2026-10-05",
+          "to": "2026-10-06",
           "median_listing_pct": 8.11,
           "median_intra_pop_pct": 5.0,
           "median_intra_close_pct": 2.29,
-          "positive_open_pct": 69.0
+          "positive_open_pct": 69.5
         }
       ],
       "stats_last_50": {
         "label": "last 50 listings",
         "count": 50,
         "from": "2026-09-01",
-        "to": "2026-10-05",
-        "median_listing_pct": 6.59,
+        "to": "2026-10-06",
+        "median_listing_pct": 8.11,
         "median_intra_pop_pct": 5.0,
-        "median_intra_close_pct": 4.59,
-        "positive_open_pct": 64.0
+        "median_intra_close_pct": 4.79,
+        "positive_open_pct": 68.0
       },
       "stats_all": {
         "label": "all listings",
-        "count": 987,
+        "count": 989,
         "from": "2019-10-14",
-        "to": "2026-10-05",
+        "to": "2026-10-06",
         "median_listing_pct": 11.67,
         "median_intra_pop_pct": 5.0,
         "median_intra_close_pct": 2.38,
@@ -2790,7 +2921,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-10-06T08:15:42+05:30",
+      "fetched_at": "2026-10-06T19:10:50+05:30",
       "stale": false
     },
     "earnings": {
@@ -2889,32 +3020,32 @@
           "quarters": [
             {
               "quarter": "2026-06-30",
-              "revenue": 489396600000.0,
-              "net_income": 78869700000.0,
+              "revenue": 489955620000.0,
+              "net_income": 78959790000.0,
               "age_days": 98
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 485352000000.0,
-              "net_income": 88499700000.0,
+              "revenue": 485906400000.0,
+              "net_income": 88600790000.0,
               "age_days": 189
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 491033700000.0,
-              "net_income": 71936100000.0,
+              "revenue": 491594590000.0,
+              "net_income": 72018270000.0,
               "age_days": 279
             },
             {
               "quarter": "2025-09-30",
-              "revenue": 488818800000.0,
-              "net_income": 80795700000.0,
+              "revenue": 489377160000.0,
+              "net_income": 80887990000.0,
               "age_days": 371
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 96.3,
+          "fx_used": 96.41,
           "latest_quarter": "2026-06-30",
           "age_days": 98,
           "stale": false
@@ -2955,7 +3086,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 96.3,
+      "usd_inr": 96.41,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -2964,7 +3095,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-10-06T08:15:43+05:30",
+      "fetched_at": "2026-10-06T19:10:52+05:30",
       "stale": false
     }
   }

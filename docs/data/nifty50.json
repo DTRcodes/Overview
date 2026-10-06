@@ -1,19 +1,19 @@
 {
  "schema": 1,
- "generated": "2026-10-06T09:47:55+05:30",
- "lastUpdate": "2026-10-06 09:47:15",
+ "generated": "2026-10-06T10:08:24+05:30",
+ "lastUpdate": "2026-10-06 10:07:45",
  "tradeDate": "2026-10-06",
  "market": {
   "status": "Open",
-  "tradeDate": "06-Oct-2026 09:46",
+  "tradeDate": "06-Oct-2026 10:07",
   "message": "Normal Market is Open"
  },
  "index": {
   "symbol": "NIFTY 50",
-  "last": 22619.4,
+  "last": 22639.3,
   "open": 22603.25,
   "prevClose": 22555.75,
-  "high": 22629.95,
+  "high": 22667.35,
   "low": 22561.6,
   "pwc": 22421.95,
   "pmc": 22620.45
@@ -26,7 +26,7 @@
  "rebalance": {},
  "weights": {
   "method": "Live free-float market cap from NSE (ffmc). weight_i = ffmc_i / sum(ffmc).",
-  "totalFfmcCr": 10440163.59
+  "totalFfmcCr": 10450352.98
  },
  "constituents": {
   "source": "niftyindices.com/IndexConstituent/ind_nifty50list.csv",
@@ -53,12 +53,12 @@
    "sym": "BSE",
    "name": "BSE Ltd.",
    "sector": "Financial Services",
-   "last": 3260.2,
+   "last": 3265.8,
    "open": 3209,
    "prevClose": 3179.6,
    "high": 3292.3,
    "low": 3206.5,
-   "ffmc": 1328887120279.37,
+   "ffmc": 1330802354238.87,
    "pwc": 3046.0,
    "pmc": 3092.0,
    "official": {
@@ -70,12 +70,12 @@
    "sym": "TRENT",
    "name": "Trent Ltd.",
    "sector": "Consumer Services",
-   "last": 2839.9,
+   "last": 2858,
    "open": 2800,
    "prevClose": 2580,
    "high": 2909,
    "low": 2782.3,
-   "ffmc": 942263729194.53,
+   "ffmc": 947937218549.89,
    "pwc": 2580.0,
    "pmc": 2621.6,
    "official": {
@@ -87,12 +87,12 @@
    "sym": "KOTAKBANK",
    "name": "Kotak Mahindra Bank Ltd.",
    "sector": "Financial Services",
-   "last": 432.2,
+   "last": 429.85,
    "open": 422,
    "prevClose": 416,
    "high": 434.4,
    "low": 421.3,
-   "ffmc": 3177309928818.77,
+   "ffmc": 3157848767807.86,
    "pwc": 418.35,
    "pmc": 417.0,
    "official": {
@@ -104,12 +104,12 @@
    "sym": "HDFCBANK",
    "name": "HDFC Bank Ltd.",
    "sector": "Financial Services",
-   "last": 706.75,
+   "last": 707.95,
    "open": 705.6,
    "prevClose": 704.8,
-   "high": 708,
+   "high": 708.5,
    "low": 701,
-   "ffmc": 10804729909703.78,
+   "ffmc": 10823839796349.87,
    "pwc": 721.2,
    "pmc": 708.7,
    "official": {
@@ -121,12 +121,12 @@
    "sym": "RELIANCE",
    "name": "Reliance Industries Ltd.",
    "sector": "Oil Gas & Consumable Fuels",
-   "last": 1198.6,
+   "last": 1202.5,
    "open": 1188.1,
    "prevClose": 1186.4,
-   "high": 1199.1,
+   "high": 1204,
    "low": 1188.1,
-   "ffmc": 7992454724481.23,
+   "ffmc": 8016460094920.18,
    "pwc": 1167.7,
    "pmc": 1187.0,
    "official": {
@@ -138,12 +138,12 @@
    "sym": "APOLLOHOSP",
    "name": "Apollo Hospitals Enterprise Ltd.",
    "sector": "Healthcare",
-   "last": 7880,
+   "last": 7885.5,
    "open": 7970,
    "prevClose": 7985,
    "high": 8017,
    "low": 7806,
-   "ffmc": 808806602781.86,
+   "ffmc": 809319772379.46,
    "pwc": 8133.5,
    "pmc": 8165.5,
    "official": {
@@ -152,15 +152,32 @@
    }
   },
   {
+   "sym": "SHRIRAMFIN",
+   "name": "Shriram Finance Ltd.",
+   "sector": "Financial Services",
+   "last": 970.4,
+   "open": 971.4,
+   "prevClose": 971.4,
+   "high": 975,
+   "low": 968,
+   "ffmc": 1354862662253.19,
+   "pwc": 945.0,
+   "pmc": 982.7,
+   "official": {
+    "monthEndPdf": 1.32,
+    "mcwb": 1.32
+   }
+  },
+  {
    "sym": "AXISBANK",
    "name": "Axis Bank Ltd.",
    "sector": "Financial Services",
-   "last": 1239.1,
+   "last": 1237.5,
    "open": 1234,
    "prevClose": 1222.2,
    "high": 1244.6,
    "low": 1232,
-   "ffmc": 3553546825554.86,
+   "ffmc": 3547525808664.7,
    "pwc": 1217.1,
    "pmc": 1226.0,
    "official": {
@@ -172,12 +189,12 @@
    "sym": "ETERNAL",
    "name": "Eternal Ltd.",
    "sector": "Consumer Services",
-   "last": 321.1,
+   "last": 323.2,
    "open": 322.5,
    "prevClose": 320.8,
-   "high": 322.75,
+   "high": 323.65,
    "low": 319.1,
-   "ffmc": 2321133531409.87,
+   "ffmc": 2335947739813.95,
    "pwc": 313.9,
    "pmc": 320.0,
    "official": {
@@ -189,12 +206,12 @@
    "sym": "ICICIBANK",
    "name": "ICICI Bank Ltd.",
    "sector": "Financial Services",
-   "last": 1332.2,
+   "last": 1333.3,
    "open": 1330.1,
    "prevClose": 1332,
-   "high": 1333.5,
+   "high": 1335,
    "low": 1327.9,
-   "ffmc": 9525921754317.68,
+   "ffmc": 9533070127238.52,
    "pwc": 1310.6,
    "pmc": 1321.7,
    "official": {
@@ -203,15 +220,32 @@
    }
   },
   {
+   "sym": "M&M",
+   "name": "Mahindra & Mahindra Ltd.",
+   "sector": "Automobile and Auto Components",
+   "last": 2849,
+   "open": 2849,
+   "prevClose": 2857.6,
+   "high": 2856.8,
+   "low": 2838,
+   "ffmc": 2537677208565.65,
+   "pwc": 2860.0,
+   "pmc": 2950.0,
+   "official": {
+    "monthEndPdf": 2.52,
+    "mcwb": 2.52
+   }
+  },
+  {
    "sym": "JIOFIN",
    "name": "Jio Financial Services Ltd.",
    "sector": "Financial Services",
-   "last": 216.21,
+   "last": 216.81,
    "open": 212.9,
    "prevClose": 212,
-   "high": 216.85,
+   "high": 217.19,
    "low": 211.7,
-   "ffmc": 707807566393.95,
+   "ffmc": 709345993864.38,
    "pwc": 212.5,
    "pmc": 216.88,
    "official": {
@@ -223,12 +257,12 @@
    "sym": "TCS",
    "name": "Tata Consultancy Services Ltd.",
    "sector": "Information Technology",
-   "last": 2097.1,
+   "last": 2100.4,
    "open": 2097,
    "prevClose": 2114.4,
    "high": 2115,
    "low": 2091.6,
-   "ffmc": 2135942155634.84,
+   "ffmc": 2137367542458.75,
    "pwc": 2075.0,
    "pmc": 2050.6,
    "official": {
@@ -237,49 +271,15 @@
    }
   },
   {
-   "sym": "ITC",
-   "name": "ITC Ltd.",
-   "sector": "Fast Moving Consumer Goods",
-   "last": 266.8,
-   "open": 269,
-   "prevClose": 268.9,
-   "high": 269.4,
-   "low": 266.25,
-   "ffmc": 2564685350561.26,
-   "pwc": 255.9,
-   "pmc": 262.75,
-   "official": {
-    "monthEndPdf": 2.42,
-    "mcwb": 2.42
-   }
-  },
-  {
-   "sym": "M&M",
-   "name": "Mahindra & Mahindra Ltd.",
-   "sector": "Automobile and Auto Components",
-   "last": 2843.9,
-   "open": 2849,
-   "prevClose": 2857.6,
-   "high": 2856.8,
-   "low": 2838,
-   "ffmc": 2533311273969.96,
-   "pwc": 2860.0,
-   "pmc": 2950.0,
-   "official": {
-    "monthEndPdf": 2.52,
-    "mcwb": 2.52
-   }
-  },
-  {
    "sym": "INFY",
    "name": "Infosys Ltd.",
    "sector": "Information Technology",
-   "last": 1012.9,
+   "last": 1012.5,
    "open": 1018,
    "prevClose": 1020.5,
    "high": 1020.5,
    "low": 1010.3,
-   "ffmc": 3567827447762.04,
+   "ffmc": 3564833565210.48,
    "pwc": 1035.0,
    "pmc": 994.1,
    "official": {
@@ -288,15 +288,49 @@
    }
   },
   {
+   "sym": "BHARTIARTL",
+   "name": "Bharti Airtel Ltd.",
+   "sector": "Telecommunication",
+   "last": 1781,
+   "open": 1777,
+   "prevClose": 1779.9,
+   "high": 1784.2,
+   "low": 1771.4,
+   "ffmc": 5401757678421.5,
+   "pwc": 1741.1,
+   "pmc": 1757.0,
+   "official": {
+    "monthEndPdf": 5.1,
+    "mcwb": 5.1
+   }
+  },
+  {
+   "sym": "ITC",
+   "name": "ITC Ltd.",
+   "sector": "Fast Moving Consumer Goods",
+   "last": 265.95,
+   "open": 269,
+   "prevClose": 268.9,
+   "high": 269.4,
+   "low": 265.75,
+   "ffmc": 2556512969875.31,
+   "pwc": 255.9,
+   "pmc": 262.75,
+   "official": {
+    "monthEndPdf": 2.42,
+    "mcwb": 2.42
+   }
+  },
+  {
    "sym": "SBIN",
    "name": "State Bank of India",
    "sector": "Financial Services",
-   "last": 957.45,
+   "last": 956.9,
    "open": 962.1,
    "prevClose": 958,
    "high": 963.65,
    "low": 952.6,
-   "ffmc": 3946990262331.66,
+   "ffmc": 3941014033145.23,
    "pwc": 954.1,
    "pmc": 959.5,
    "official": {
@@ -308,12 +342,12 @@
    "sym": "BEL",
    "name": "Bharat Electronics Ltd.",
    "sector": "Capital Goods",
-   "last": 385.6,
+   "last": 385.25,
    "open": 383.2,
    "prevClose": 384.85,
-   "high": 385.75,
+   "high": 386.85,
    "low": 382.55,
-   "ffmc": 1377232201173.56,
+   "ffmc": 1375803537064.46,
    "pwc": 383.1,
    "pmc": 388.3,
    "official": {
@@ -325,12 +359,12 @@
    "sym": "TATASTEEL",
    "name": "Tata Steel Ltd.",
    "sector": "Metals & Mining",
-   "last": 178.3,
+   "last": 178.85,
    "open": 178.25,
    "prevClose": 178.14,
-   "high": 178.74,
+   "high": 179.38,
    "low": 177,
-   "ffmc": 1475353367423.78,
+   "ffmc": 1479738882200.76,
    "pwc": 178.0,
    "pmc": 184.3,
    "official": {
@@ -339,32 +373,32 @@
    }
   },
   {
-   "sym": "BHARTIARTL",
-   "name": "Bharti Airtel Ltd.",
-   "sector": "Telecommunication",
-   "last": 1774.3,
-   "open": 1777,
-   "prevClose": 1779.9,
-   "high": 1781.2,
-   "low": 1771.4,
-   "ffmc": 5382044341208.69,
-   "pwc": 1741.1,
-   "pmc": 1757.0,
+   "sym": "HDFCLIFE",
+   "name": "HDFC Life Insurance Company Ltd.",
+   "sector": "Financial Services",
+   "last": 542.65,
+   "open": 533.45,
+   "prevClose": 531,
+   "high": 544.8,
+   "low": 528.05,
+   "ffmc": 581759079417.33,
+   "pwc": 534.2,
+   "pmc": 521.2,
    "official": {
-    "monthEndPdf": 5.1,
-    "mcwb": 5.1
+    "monthEndPdf": 0.54,
+    "mcwb": 0.54
    }
   },
   {
    "sym": "MAXHEALTH",
    "name": "Max Healthcare Institute Ltd.",
    "sector": "Healthcare",
-   "last": 904.45,
+   "last": 907.4,
    "open": 921.55,
    "prevClose": 917,
    "high": 921.6,
    "low": 892.25,
-   "ffmc": 671737508883.89,
+   "ffmc": 672999266538.28,
    "pwc": 940.95,
    "pmc": 929.8,
    "official": {
@@ -376,12 +410,12 @@
    "sym": "BAJFINANCE",
    "name": "Bajaj Finance Ltd.",
    "sector": "Financial Services",
-   "last": 970.95,
+   "last": 968.85,
    "open": 970,
    "prevClose": 970,
    "high": 973.25,
    "low": 966.45,
-   "ffmc": 2642287871673.97,
+   "ffmc": 2635484864795.3,
    "pwc": 948.3,
    "pmc": 959.4,
    "official": {
@@ -390,32 +424,15 @@
    }
   },
   {
-   "sym": "MARUTI",
-   "name": "Maruti Suzuki India Ltd.",
-   "sector": "Automobile and Auto Components",
-   "last": 11546,
-   "open": 11485,
-   "prevClose": 11532,
-   "high": 11574,
-   "low": 11451,
-   "ffmc": 1497661489214.93,
-   "pwc": 11386.0,
-   "pmc": 11967.0,
-   "official": {
-    "monthEndPdf": 1.49,
-    "mcwb": 1.49
-   }
-  },
-  {
    "sym": "LT",
    "name": "Larsen & Toubro Ltd.",
    "sector": "Construction",
-   "last": 3744.8,
+   "last": 3750.5,
    "open": 3742.5,
    "prevClose": 3750,
-   "high": 3751.5,
+   "high": 3752.1,
    "low": 3730,
-   "ffmc": 4371267764776.66,
+   "ffmc": 4378271505053.49,
    "pwc": 3693.4,
    "pmc": 3760.0,
    "official": {
@@ -424,32 +441,32 @@
    }
   },
   {
-   "sym": "HCLTECH",
-   "name": "HCL Technologies Ltd.",
-   "sector": "Information Technology",
-   "last": 1199.5,
-   "open": 1202,
-   "prevClose": 1201.9,
-   "high": 1208.9,
-   "low": 1196.2,
-   "ffmc": 1259491882520.61,
-   "pwc": 1243.1,
-   "pmc": 1230.0,
+   "sym": "MARUTI",
+   "name": "Maruti Suzuki India Ltd.",
+   "sector": "Automobile and Auto Components",
+   "last": 11569,
+   "open": 11485,
+   "prevClose": 11532,
+   "high": 11595,
+   "low": 11451,
+   "ffmc": 1500255291586.27,
+   "pwc": 11386.0,
+   "pmc": 11967.0,
    "official": {
-    "monthEndPdf": 1.24,
-    "mcwb": 1.24
+    "monthEndPdf": 1.49,
+    "mcwb": 1.49
    }
   },
   {
    "sym": "ADANIENT",
    "name": "Adani Enterprises Ltd.",
    "sector": "Metals & Mining",
-   "last": 2869.8,
+   "last": 2871.3,
    "open": 2869,
    "prevClose": 2864,
    "high": 2882,
    "low": 2855.6,
-   "ffmc": 969502340569.36,
+   "ffmc": 970685815106.18,
    "pwc": 2816.8,
    "pmc": 2903.4,
    "official": {
@@ -458,32 +475,15 @@
    }
   },
   {
-   "sym": "HINDUNILVR",
-   "name": "Hindustan Unilever Ltd.",
-   "sector": "Fast Moving Consumer Goods",
-   "last": 1858.4,
-   "open": 1847.9,
-   "prevClose": 1838.4,
-   "high": 1871.7,
-   "low": 1834.2,
-   "ffmc": 1644664507209.55,
-   "pwc": 1836.0,
-   "pmc": 1879.1,
-   "official": {
-    "monthEndPdf": 1.59,
-    "mcwb": 1.59
-   }
-  },
-  {
    "sym": "ADANIPORTS",
    "name": "Adani Ports and Special Economic Zone Ltd.",
    "sector": "Services",
-   "last": 1774.8,
+   "last": 1776.9,
    "open": 1773.1,
    "prevClose": 1774,
-   "high": 1779.4,
+   "high": 1781.9,
    "low": 1761.1,
-   "ffmc": 1387084996337.56,
+   "ffmc": 1388648085132.17,
    "pwc": 1737.8,
    "pmc": 1798.3,
    "official": {
@@ -492,15 +492,32 @@
    }
   },
   {
+   "sym": "HCLTECH",
+   "name": "HCL Technologies Ltd.",
+   "sector": "Information Technology",
+   "last": 1197.5,
+   "open": 1202,
+   "prevClose": 1201.9,
+   "high": 1208.9,
+   "low": 1196.2,
+   "ffmc": 1258020881740.16,
+   "pwc": 1243.1,
+   "pmc": 1230.0,
+   "official": {
+    "monthEndPdf": 1.24,
+    "mcwb": 1.24
+   }
+  },
+  {
    "sym": "HINDALCO",
    "name": "Hindalco Industries Ltd.",
    "sector": "Metals & Mining",
-   "last": 944.4,
+   "last": 945.35,
    "open": 945.35,
    "prevClose": 938.4,
    "high": 950.4,
    "low": 941.5,
-   "ffmc": 1363919960179.02,
+   "ffmc": 1364858453773.6,
    "pwc": 941.85,
    "pmc": 941.8,
    "official": {
@@ -509,32 +526,15 @@
    }
   },
   {
-   "sym": "SHRIRAMFIN",
-   "name": "Shriram Finance Ltd.",
-   "sector": "Financial Services",
-   "last": 971,
-   "open": 971.4,
-   "prevClose": 971.4,
-   "high": 975,
-   "low": 968,
-   "ffmc": 1356469191161.36,
-   "pwc": 945.0,
-   "pmc": 982.7,
-   "official": {
-    "monthEndPdf": 1.32,
-    "mcwb": 1.32
-   }
-  },
-  {
    "sym": "TITAN",
    "name": "Titan Company Ltd.",
    "sector": "Consumer Durables",
-   "last": 4572.7,
+   "last": 4564.9,
    "open": 4599.9,
    "prevClose": 4580,
    "high": 4600,
-   "low": 4562.4,
-   "ffmc": 1884791676111.16,
+   "low": 4557.6,
+   "ffmc": 1880299170257.32,
    "pwc": 4515.7,
    "pmc": 4587.0,
    "official": {
@@ -543,66 +543,32 @@
    }
   },
   {
-   "sym": "TECHM",
-   "name": "Tech Mahindra Ltd.",
-   "sector": "Information Technology",
-   "last": 1511.4,
-   "open": 1536,
-   "prevClose": 1535.9,
-   "high": 1540.8,
-   "low": 1508.1,
-   "ffmc": 957385363496.63,
-   "pwc": 1533.0,
-   "pmc": 1524.0,
+   "sym": "HINDUNILVR",
+   "name": "Hindustan Unilever Ltd.",
+   "sector": "Fast Moving Consumer Goods",
+   "last": 1859.4,
+   "open": 1847.9,
+   "prevClose": 1838.4,
+   "high": 1871.7,
+   "low": 1834.2,
+   "ffmc": 1644841476543.73,
+   "pwc": 1836.0,
+   "pmc": 1879.1,
    "official": {
-    "monthEndPdf": 0.92,
-    "mcwb": 0.92
-   }
-  },
-  {
-   "sym": "TMPV",
-   "name": "Tata Motors Passenger Vehicles Ltd.",
-   "sector": "Automobile and Auto Components",
-   "last": 287.7,
-   "open": 288.4,
-   "prevClose": 288.65,
-   "high": 289.25,
-   "low": 286.85,
-   "ffmc": 600328521831.1,
-   "pwc": 279.4,
-   "pmc": 283.5,
-   "official": {
-    "monthEndPdf": 0.57,
-    "mcwb": 0.57
-   }
-  },
-  {
-   "sym": "INDIGO",
-   "name": "InterGlobe Aviation Ltd.",
-   "sector": "Services",
-   "last": 4961.5,
-   "open": 4954.9,
-   "prevClose": 4935,
-   "high": 4973.9,
-   "low": 4925.1,
-   "ffmc": 1119822243713.55,
-   "pwc": 4929.9,
-   "pmc": 4984.0,
-   "official": {
-    "monthEndPdf": 1.08,
-    "mcwb": 1.08
+    "monthEndPdf": 1.59,
+    "mcwb": 1.59
    }
   },
   {
    "sym": "ONGC",
    "name": "Oil & Natural Gas Corporation Ltd.",
    "sector": "Oil Gas & Consumable Fuels",
-   "last": 223.16,
+   "last": 223.59,
    "open": 225,
    "prevClose": 224.9,
    "high": 225.37,
-   "low": 223.16,
-   "ffmc": 865283376413.96,
+   "low": 222.7,
+   "ffmc": 865864415479.51,
    "pwc": 222.37,
    "pmc": 225.8,
    "official": {
@@ -611,32 +577,66 @@
    }
   },
   {
-   "sym": "ULTRACEMCO",
-   "name": "UltraTech Cement Ltd.",
-   "sector": "Construction Materials",
-   "last": 10849,
-   "open": 10850,
-   "prevClose": 10850,
-   "high": 10905,
-   "low": 10831,
-   "ffmc": 1280768412701.11,
-   "pwc": 10710.0,
-   "pmc": 10956.0,
+   "sym": "TMPV",
+   "name": "Tata Motors Passenger Vehicles Ltd.",
+   "sector": "Automobile and Auto Components",
+   "last": 288.65,
+   "open": 288.4,
+   "prevClose": 288.65,
+   "high": 289.25,
+   "low": 286.85,
+   "ffmc": 602206504693.97,
+   "pwc": 279.4,
+   "pmc": 283.5,
    "official": {
-    "monthEndPdf": 1.24,
-    "mcwb": 1.24
+    "monthEndPdf": 0.57,
+    "mcwb": 0.57
+   }
+  },
+  {
+   "sym": "TECHM",
+   "name": "Tech Mahindra Ltd.",
+   "sector": "Information Technology",
+   "last": 1512,
+   "open": 1536,
+   "prevClose": 1535.9,
+   "high": 1540.8,
+   "low": 1508.1,
+   "ffmc": 957195318099.26,
+   "pwc": 1533.0,
+   "pmc": 1524.0,
+   "official": {
+    "monthEndPdf": 0.92,
+    "mcwb": 0.92
+   }
+  },
+  {
+   "sym": "INDIGO",
+   "name": "InterGlobe Aviation Ltd.",
+   "sector": "Services",
+   "last": 4963.4,
+   "open": 4954.9,
+   "prevClose": 4935,
+   "high": 4973.9,
+   "low": 4925.1,
+   "ffmc": 1120657493945.73,
+   "pwc": 4929.9,
+   "pmc": 4984.0,
+   "official": {
+    "monthEndPdf": 1.08,
+    "mcwb": 1.08
    }
   },
   {
    "sym": "BAJAJ-AUTO",
    "name": "Bajaj Auto Ltd.",
    "sector": "Automobile and Auto Components",
-   "last": 9990,
+   "last": 10032,
    "open": 10050,
    "prevClose": 10024,
    "high": 10062,
    "low": 9955,
-   "ffmc": 1086712452014.42,
+   "ffmc": 1092044274398.39,
    "pwc": 10045.0,
    "pmc": 10874.0,
    "official": {
@@ -648,12 +648,12 @@
    "sym": "JSWSTEEL",
    "name": "JSW Steel Ltd.",
    "sector": "Metals & Mining",
-   "last": 1244.5,
+   "last": 1244.1,
    "open": 1241.9,
    "prevClose": 1235.3,
-   "high": 1247.4,
+   "high": 1247.6,
    "low": 1233.5,
-   "ffmc": 1194952509708.48,
+   "ffmc": 1194088410995.05,
    "pwc": 1233.0,
    "pmc": 1253.4,
    "official": {
@@ -665,12 +665,12 @@
    "sym": "SUNPHARMA",
    "name": "Sun Pharmaceutical Industries Ltd.",
    "sector": "Healthcare",
-   "last": 1779.2,
+   "last": 1783.2,
    "open": 1775,
    "prevClose": 1779.7,
-   "high": 1779.4,
+   "high": 1783.2,
    "low": 1768,
-   "ffmc": 1878843925795.11,
+   "ffmc": 1882434342469.85,
    "pwc": 1801.0,
    "pmc": 1816.6,
    "official": {
@@ -679,15 +679,32 @@
    }
   },
   {
+   "sym": "ULTRACEMCO",
+   "name": "UltraTech Cement Ltd.",
+   "sector": "Construction Materials",
+   "last": 10867,
+   "open": 10850,
+   "prevClose": 10850,
+   "high": 10905,
+   "low": 10831,
+   "ffmc": 1282421017104.6,
+   "pwc": 10710.0,
+   "pmc": 10956.0,
+   "official": {
+    "monthEndPdf": 1.24,
+    "mcwb": 1.24
+   }
+  },
+  {
    "sym": "EICHERMOT",
    "name": "Eicher Motors Ltd.",
    "sector": "Automobile and Auto Components",
-   "last": 6986,
+   "last": 7010,
    "open": 7065,
    "prevClose": 7021.5,
    "high": 7065,
    "low": 6976,
-   "ffmc": 961228703127.4,
+   "ffmc": 964530948886.78,
    "pwc": 6920.0,
    "pmc": 7150.0,
    "official": {
@@ -696,49 +713,15 @@
    }
   },
   {
-   "sym": "DRREDDY",
-   "name": "Dr. Reddy's Laboratories Ltd.",
-   "sector": "Healthcare",
-   "last": 1202.3,
-   "open": 1207,
-   "prevClose": 1203,
-   "high": 1207,
-   "low": 1195,
-   "ffmc": 731267729094.9,
-   "pwc": 1206.2,
-   "pmc": 1233.0,
-   "official": {
-    "monthEndPdf": 0.72,
-    "mcwb": 0.72
-   }
-  },
-  {
-   "sym": "HDFCLIFE",
-   "name": "HDFC Life Insurance Company Ltd.",
-   "sector": "Financial Services",
-   "last": 533.85,
-   "open": 533.45,
-   "prevClose": 531,
-   "high": 537.5,
-   "low": 528.05,
-   "ffmc": 572532471610.98,
-   "pwc": 534.2,
-   "pmc": 521.2,
-   "official": {
-    "monthEndPdf": 0.54,
-    "mcwb": 0.54
-   }
-  },
-  {
    "sym": "POWERGRID",
    "name": "Power Grid Corporation of India Ltd.",
    "sector": "Power",
-   "last": 257.2,
+   "last": 257.45,
    "open": 257,
    "prevClose": 257,
-   "high": 257.55,
+   "high": 257.9,
    "low": 256.1,
-   "ffmc": 1160797463736.8,
+   "ffmc": 1163506969584.86,
    "pwc": 254.55,
    "pmc": 260.5,
    "official": {
@@ -747,32 +730,32 @@
    }
   },
   {
-   "sym": "ASIANPAINT",
-   "name": "Asian Paints Ltd.",
-   "sector": "Consumer Durables",
-   "last": 2361.9,
-   "open": 2369.1,
-   "prevClose": 2366,
-   "high": 2369.2,
-   "low": 2349,
-   "ffmc": 1064536188397.66,
-   "pwc": 2407.0,
-   "pmc": 2402.6,
+   "sym": "DRREDDY",
+   "name": "Dr. Reddy's Laboratories Ltd.",
+   "sector": "Healthcare",
+   "last": 1203.3,
+   "open": 1207,
+   "prevClose": 1203,
+   "high": 1207.8,
+   "low": 1195,
+   "ffmc": 731875953106.46,
+   "pwc": 1206.2,
+   "pmc": 1233.0,
    "official": {
-    "monthEndPdf": 1.04,
-    "mcwb": 1.04
+    "monthEndPdf": 0.72,
+    "mcwb": 0.72
    }
   },
   {
    "sym": "COALINDIA",
    "name": "Coal India Ltd.",
    "sector": "Oil Gas & Consumable Fuels",
-   "last": 424.65,
+   "last": 424.5,
    "open": 426.05,
    "prevClose": 425.1,
    "high": 426.95,
    "low": 423.8,
-   "ffmc": 1014037260394.38,
+   "ffmc": 1014276166569.52,
    "pwc": 420.4,
    "pmc": 425.0,
    "official": {
@@ -781,15 +764,49 @@
    }
   },
   {
+   "sym": "NTPC",
+   "name": "NTPC Ltd.",
+   "sector": "Power",
+   "last": 322.2,
+   "open": 323.5,
+   "prevClose": 321.8,
+   "high": 323.5,
+   "low": 320.55,
+   "ffmc": 1526722971091.57,
+   "pwc": 315.1,
+   "pmc": 322.75,
+   "official": {
+    "monthEndPdf": 1.47,
+    "mcwb": 1.47
+   }
+  },
+  {
+   "sym": "ASIANPAINT",
+   "name": "Asian Paints Ltd.",
+   "sector": "Consumer Durables",
+   "last": 2363.8,
+   "open": 2369.1,
+   "prevClose": 2366,
+   "high": 2369.2,
+   "low": 2349,
+   "ffmc": 1065663015593.44,
+   "pwc": 2407.0,
+   "pmc": 2402.6,
+   "official": {
+    "monthEndPdf": 1.04,
+    "mcwb": 1.04
+   }
+  },
+  {
    "sym": "TATACONSUM",
    "name": "Tata Consumer Products Ltd.",
    "sector": "Fast Moving Consumer Goods",
-   "last": 950.05,
+   "last": 951.95,
    "open": 953.75,
    "prevClose": 953.75,
    "high": 956.95,
    "low": 946.25,
-   "ffmc": 616911039382.2,
+   "ffmc": 618112455691.33,
    "pwc": 957.0,
    "pmc": 949.5,
    "official": {
@@ -801,34 +818,17 @@
    "sym": "NESTLEIND",
    "name": "Nestle India Ltd.",
    "sector": "Fast Moving Consumer Goods",
-   "last": 1296,
+   "last": 1297.6,
    "open": 1303.6,
    "prevClose": 1297.1,
    "high": 1305.3,
-   "low": 1295.2,
-   "ffmc": 926310485794.57,
+   "low": 1295,
+   "ffmc": 927168577953.71,
    "pwc": 1307.7,
    "pmc": 1310.0,
    "official": {
     "monthEndPdf": 0.9,
     "mcwb": 0.9
-   }
-  },
-  {
-   "sym": "BAJAJFINSV",
-   "name": "Bajaj Finserv Ltd.",
-   "sector": "Financial Services",
-   "last": 1751.6,
-   "open": 1751,
-   "prevClose": 1751.4,
-   "high": 1751.7,
-   "low": 1738.7,
-   "ffmc": 1015095884789.31,
-   "pwc": 1732.6,
-   "pmc": 1731.0,
-   "official": {
-    "monthEndPdf": 0.96,
-    "mcwb": 0.96
    }
   },
   {
@@ -838,9 +838,9 @@
    "last": 1725.6,
    "open": 1720.2,
    "prevClose": 1709.5,
-   "high": 1728.2,
+   "high": 1729,
    "low": 1708.9,
-   "ffmc": 773540080249.97,
+   "ffmc": 772867709548.01,
    "pwc": 1721.6,
    "pmc": 1696.4,
    "official": {
@@ -849,15 +849,32 @@
    }
   },
   {
+   "sym": "BAJAJFINSV",
+   "name": "Bajaj Finserv Ltd.",
+   "sector": "Financial Services",
+   "last": 1752,
+   "open": 1751,
+   "prevClose": 1751.4,
+   "high": 1754,
+   "low": 1738.7,
+   "ffmc": 1016023442422.47,
+   "pwc": 1732.6,
+   "pmc": 1731.0,
+   "official": {
+    "monthEndPdf": 0.96,
+    "mcwb": 0.96
+   }
+  },
+  {
    "sym": "CIPLA",
    "name": "Cipla Ltd.",
    "sector": "Healthcare",
-   "last": 1324.7,
+   "last": 1327.7,
    "open": 1335,
    "prevClose": 1335.5,
    "high": 1337,
    "low": 1323.2,
-   "ffmc": 743504373710.55,
+   "ffmc": 744907529847.24,
    "pwc": 1344.0,
    "pmc": 1346.0,
    "official": {
@@ -866,32 +883,15 @@
    }
   },
   {
-   "sym": "NTPC",
-   "name": "NTPC Ltd.",
-   "sector": "Power",
-   "last": 321.05,
-   "open": 323.5,
-   "prevClose": 321.8,
-   "high": 323.5,
-   "low": 320.55,
-   "ffmc": 1521509886291.94,
-   "pwc": 315.1,
-   "pmc": 322.75,
-   "official": {
-    "monthEndPdf": 1.47,
-    "mcwb": 1.47
-   }
-  },
-  {
    "sym": "GRASIM",
    "name": "Grasim Industries Ltd.",
    "sector": "Construction Materials",
-   "last": 2978.6,
+   "last": 2983.4,
    "open": 2988,
    "prevClose": 2972,
-   "high": 2988.3,
+   "high": 2988.7,
    "low": 2968,
-   "ffmc": 1121140287478.84,
+   "ffmc": 1123172634168.01,
    "pwc": 2962.0,
    "pmc": 3061.9,
    "official": {

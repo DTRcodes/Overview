@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "generated": "2026-10-06T15:35:08+05:30",
- "lastUpdate": "2026-10-06 15:34:45",
+ "generated": "2026-10-06T15:57:13+05:30",
+ "lastUpdate": "2026-10-06 15:40:32",
  "tradeDate": "2026-10-06",
  "market": {
   "status": "Closed",
   "tradeDate": "06-Oct-2026 15:30",
-  "message": "Normal Market has Closed \u2013 Post Close will begin at 15:40 shortly"
+  "message": "Market in Post-Close Session"
  },
  "index": {
   "symbol": "NIFTY 50",
@@ -662,23 +662,6 @@
    }
   },
   {
-   "sym": "NESTLEIND",
-   "name": "Nestle India Ltd.",
-   "sector": "Fast Moving Consumer Goods",
-   "last": 1341.4,
-   "open": 1303.6,
-   "prevClose": 1297.1,
-   "high": 1341.4,
-   "low": 1293.4,
-   "ffmc": 959204018561.7,
-   "pwc": 1307.7,
-   "pmc": 1310.0,
-   "official": {
-    "monthEndPdf": 0.9,
-    "mcwb": 0.9
-   }
-  },
-  {
    "sym": "TMPV",
    "name": "Tata Motors Passenger Vehicles Ltd.",
    "sector": "Automobile and Auto Components",
@@ -693,6 +676,23 @@
    "official": {
     "monthEndPdf": 0.57,
     "mcwb": 0.57
+   }
+  },
+  {
+   "sym": "NESTLEIND",
+   "name": "Nestle India Ltd.",
+   "sector": "Fast Moving Consumer Goods",
+   "last": 1341.4,
+   "open": 1303.6,
+   "prevClose": 1297.1,
+   "high": 1341.4,
+   "low": 1293.4,
+   "ffmc": 959204018561.7,
+   "pwc": 1307.7,
+   "pmc": 1310.0,
+   "official": {
+    "monthEndPdf": 0.9,
+    "mcwb": 0.9
    }
   },
   {

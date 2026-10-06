@@ -828,5 +828,28 @@
 "match": "benchmarkinfotechservices",
 "subject": "Listing of Equity Shares of Bench Mark Infotech Services Limited (SME IPO)",
 "symbol": "BMISL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76706.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76706.zip",
+"circular_date": "October 05, 2026",
+"company": "SRIT India Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "srit",
+"subject": "Listing of Equity Shares of SRIT India Limited (IPO)",
+"symbol": "SRIT"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76721.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76721.zip",
+"circular_date": "October 05, 2026",
+"company": "Shah Investor's Home Limited",
+"confirmed_listing": "2026-10-06",
+"confirmed_listing_dmy": "06-Oct-2026",
+"date_pending": false,
+"match": "shahinvestorshome",
+"subject": "Listing of Equity Shares of Shah Investor's Home Limited (IPO)",
+"symbol": "SHAHINVEST"
 }
 }

@@ -15180,7 +15180,8 @@
    "open": 85.0,
    "close": 84.85,
    "gain_open_pct": -17.48,
-   "gain_close_pct": -17.62
+   "gain_close_pct": -17.62,
+   "price_source": "bhavcopy"
   },
   "BMISL": {
    "high": 115.5,
@@ -15195,7 +15196,8 @@
    "open": 110.0,
    "close": 115.5,
    "gain_open_pct": 0.0,
-   "gain_close_pct": 5.0
+   "gain_close_pct": 5.0,
+   "price_source": "bhavcopy"
   }
  },
  "unresolvable": [

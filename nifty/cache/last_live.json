@@ -2,32 +2,32 @@
  "idx": {
   "priority": 1,
   "identifier": "NIFTY 50",
-  "change": 220.35,
+  "change": -86.15,
   "symbol": "NIFTY 50",
   "series": null,
   "marketType": null,
-  "lastPrice": 22776.1,
+  "lastPrice": 22689.95,
   "totalTradedVolume": 328807304,
-  "open": 22603.25,
-  "dayHigh": 22776.1,
-  "dayLow": 22561.6,
-  "previousClose": 22555.75,
+  "open": 0,
+  "dayHigh": 0,
+  "dayLow": 0,
+  "previousClose": 22776.1,
   "totalTradedValue": 280970427388.73,
   "yearHigh": 26373.2,
   "yearLow": 22182.55,
   "ffmc": null,
-  "lastUpdateTime": "2026-10-06 15:40:32",
+  "lastUpdateTime": "2026-10-07 09:07:55",
   "stockIndClosePrice": 0,
-  "perChange365d": -9.29,
-  "perChange30d": -4.22,
+  "perChange365d": -9.63,
+  "perChange30d": -4.58,
   "date365dAgo": "06-Oct-2025",
   "date30dAgo": "04-Sep-2026",
-  "nearWKH": 13.639224667465458,
-  "nearWKL": -2.675751886054579,
+  "nearWKH": 13.965882031759513,
+  "nearWKL": -2.287383551485289,
   "chart30Path": "",
   "chart365Path": "",
   "companyName": null,
-  "pChange": 0.98
+  "pChange": -0.38
  },
  "stocks": [
   {
@@ -1531,5 +1531,5 @@
    "pChange": 0.35
   }
  ],
- "saved": "2026-10-07T08:45:55+05:30"
+ "saved": "2026-10-07T09:08:16+05:30"
 }

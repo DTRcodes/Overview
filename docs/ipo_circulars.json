@@ -874,5 +874,50 @@
 "match": "greenasiaimpex",
 "subject": "Listing of Equity Shares of Green Asia Impex Limited (SME IPO)",
 "symbol": "GREENASIA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76761.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76761.pdf",
+"circular_date": "October 07, 2026",
+"company": "Nityas Gems and Jewellery Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "nityasgemsandjewellery",
+"subject": "Listing of Equity Shares of Nityas Gems and Jewellery Limited (IPO)",
+"symbol": "NITYAS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76762.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76762.pdf",
+"circular_date": "October 07, 2026",
+"company": "Vishal Nirmiti Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "vishalnirmiti",
+"subject": "Listing of Equity Shares of Vishal Nirmiti Limited (IPO)",
+"symbol": "VNL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76773.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76773.zip",
+"circular_date": "October 07, 2026",
+"company": "Vishal Nirmiti Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "vishalnirmiti",
+"subject": "Listing of Equity Shares of Vishal Nirmiti Limited (IPO)",
+"symbol": "VNL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76782.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76782.zip",
+"circular_date": "October 07, 2026",
+"company": "Nityas Gems and Jewellery Limited",
+"confirmed_listing": "2026-10-08",
+"confirmed_listing_dmy": "08-Oct-2026",
+"date_pending": false,
+"match": "nityasgemsandjewellery",
+"subject": "Listing of Equity Shares of Nityas Gems and Jewellery Limited (IPO)",
+"symbol": "NITYAS"
 }
 }

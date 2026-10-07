@@ -15230,6 +15230,36 @@
    "low": 148.0,
    "intra_close_pct": 4.79,
    "intra_pop_pct": 4.79
+  },
+  "PAPADMALJI": {
+   "high": 72.3,
+   "low": 68.7,
+   "intra_pop_pct": 0.0,
+   "intra_close_pct": -4.91,
+   "symbol": "PAPADMALJI",
+   "company": "Papadmalji Agro Foods Limited",
+   "issue_price": 72.0,
+   "listing_date": "2026-10-07",
+   "ipo_closed": "01-OCT-2026",
+   "open": 72.3,
+   "close": 68.75,
+   "gain_open_pct": 0.42,
+   "gain_close_pct": -4.51
+  },
+  "GREENASIA": {
+   "high": 89.0,
+   "low": 84.55,
+   "intra_pop_pct": 0.0,
+   "intra_close_pct": -5.0,
+   "symbol": "GREENASIA",
+   "company": "Green Asia Impex Limited",
+   "issue_price": 89.0,
+   "listing_date": "2026-10-07",
+   "ipo_closed": "01-OCT-2026",
+   "open": 89.0,
+   "close": 84.55,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -5.0
   }
  },
  "unresolvable": [

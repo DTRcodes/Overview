@@ -851,5 +851,28 @@
 "match": "shahinvestorshome",
 "subject": "Listing of Equity Shares of Shah Investor's Home Limited (IPO)",
 "symbol": "SHAHINVEST"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76746.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76746.zip",
+"circular_date": "October 06, 2026",
+"company": "Papadmalji Agro Foods Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "papadmaljiagrofoods",
+"subject": "Listing of Equity Shares of Papadmalji Agro Foods Limited (SME IPO)",
+"symbol": "PAPADMALJI"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76752.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76752.zip",
+"circular_date": "October 06, 2026",
+"company": "Green Asia Impex Limited",
+"confirmed_listing": "2026-10-07",
+"confirmed_listing_dmy": "07-Oct-2026",
+"date_pending": false,
+"match": "greenasiaimpex",
+"subject": "Listing of Equity Shares of Green Asia Impex Limited (SME IPO)",
+"symbol": "GREENASIA"
 }
 }

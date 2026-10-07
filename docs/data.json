@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-07T08:16:22+05:30",
-  "generated_at_utc": "2026-10-07T02:46:22+00:00",
+  "generated_at": "2026-10-07T10:18:24+05:30",
+  "generated_at_utc": "2026-10-07T04:48:24+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-10-07T08:15:17+05:30",
+      "fetched_at": "2026-10-07T10:17:07+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-10-07T08:15:18+05:30",
+      "fetched_at": "2026-10-07T10:17:09+05:30",
       "stale": false,
       "series_days": 21
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-10-07T08:15:19+05:30",
+      "fetched_at": "2026-10-07T10:17:10+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-10-07T08:15:20+05:30",
+      "fetched_at": "2026-10-07T10:17:11+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.61,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-10-07T08:15:22+05:30",
+      "fetched_at": "2026-10-07T10:17:13+05:30",
       "stale": false
     },
     "us_rates": {
@@ -223,7 +223,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-10-07T08:15:25+05:30",
+      "fetched_at": "2026-10-07T10:17:16+05:30",
       "stale": false
     },
     "world_yields": {
@@ -303,7 +303,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-10-07T08:15:58+05:30",
+      "fetched_at": "2026-10-07T10:18:07+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 691,
@@ -321,10 +321,10 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 96.36,
+      "usd_inr": 96.4175,
       "as_of": "2026-10-07",
       "source": "yahoo finance (INR=X spot)",
-      "fetched_at": "2026-10-07T08:15:59+05:30",
+      "fetched_at": "2026-10-07T10:18:08+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -1088,7 +1088,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-10-07",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-10-07T08:16:04+05:30",
+      "fetched_at": "2026-10-07T10:18:12+05:30",
       "stale": false,
       "calendar_added": 12,
       "horizon": {
@@ -1105,27 +1105,27 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Green Asia Impex Limited",
-          "match": "greenasiaimpex",
           "board": "SME",
-          "circular_date": "October 06, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76752.zip",
-          "subject": "Listing of Equity Shares of Green Asia Impex Limited (SME IPO)",
+          "circular_date": "October 06, 2026",
+          "company": "Green Asia Impex Limited",
           "confirmed_listing": "2026-10-07",
-          "symbol": "GREENASIA",
           "confirmed_listing_dmy": "07-Oct-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "greenasiaimpex",
+          "subject": "Listing of Equity Shares of Green Asia Impex Limited (SME IPO)",
+          "symbol": "GREENASIA"
         },
         {
-          "company": "Papadmalji Agro Foods Limited",
-          "match": "papadmaljiagrofoods",
           "board": "SME",
-          "circular_date": "October 06, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML76746.zip",
-          "subject": "Listing of Equity Shares of Papadmalji Agro Foods Limited (SME IPO)",
+          "circular_date": "October 06, 2026",
+          "company": "Papadmalji Agro Foods Limited",
           "confirmed_listing": null,
-          "symbol": "PAPADMALJI",
-          "date_pending": false
+          "date_pending": false,
+          "match": "papadmaljiagrofoods",
+          "subject": "Listing of Equity Shares of Papadmalji Agro Foods Limited (SME IPO)",
+          "symbol": "PAPADMALJI"
         },
         {
           "board": "mainboard",
@@ -1573,10 +1573,10 @@
       "confirmed": 29,
       "checked": 46,
       "remembered": 77,
-      "as_of": "2026-10-07T08:16:07+05:30",
+      "as_of": "2026-10-07T10:18:12+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-10-07T08:16:07+05:30",
+      "fetched_at": "2026-10-07T10:18:12+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1593,17 +1593,17 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-10-07T08:16:08+05:30",
+      "fetched_at": "2026-10-07T10:18:13+05:30",
       "stale": false
     },
     "ipo_gmp": {
       "current": [],
       "history": [],
       "track_record": null,
-      "as_of": "2026-10-07T08:16:10+05:30",
+      "as_of": "2026-10-07T10:18:14+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-10-07T08:16:10+05:30",
+      "fetched_at": "2026-10-07T10:18:14+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -1959,9 +1959,9 @@
           "match": "blackopalconsultants"
         }
       ],
-      "as_of": "2026-10-07T08:16:12+05:30",
+      "as_of": "2026-10-07T10:18:16+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-10-07T08:16:12+05:30",
+      "fetched_at": "2026-10-07T10:18:16+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -2783,7 +2783,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-10-07T08:16:20+05:30",
+      "fetched_at": "2026-10-07T10:18:22+05:30",
       "stale": false
     },
     "earnings": {
@@ -2882,32 +2882,32 @@
           "quarters": [
             {
               "quarter": "2026-06-30",
-              "revenue": 489701520000.0,
-              "net_income": 78918840000.0,
+              "revenue": 489993735000.0,
+              "net_income": 78965932500.0,
               "age_days": 99
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 485654400000.0,
-              "net_income": 88554840000.0,
+              "revenue": 485944200000.0,
+              "net_income": 88607682500.0,
               "age_days": 190
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 491339640000.0,
-              "net_income": 71980920000.0,
+              "revenue": 491632832500.0,
+              "net_income": 72023872500.0,
               "age_days": 280
             },
             {
               "quarter": "2025-09-30",
-              "revenue": 489123360000.0,
-              "net_income": 80846040000.0,
+              "revenue": 489415230000.0,
+              "net_income": 80894282500.0,
               "age_days": 372
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 96.36,
+          "fx_used": 96.4175,
           "latest_quarter": "2026-06-30",
           "age_days": 99,
           "stale": false
@@ -2948,7 +2948,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 96.36,
+      "usd_inr": 96.4175,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -2957,7 +2957,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-10-07T08:16:22+05:30",
+      "fetched_at": "2026-10-07T10:18:24+05:30",
       "stale": false
     }
   }

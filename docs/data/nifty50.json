@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "generated": "2026-10-06T16:34:34+05:30",
+ "generated": "2026-10-07T08:45:45+05:30",
  "lastUpdate": "2026-10-06 15:40:32",
  "tradeDate": "2026-10-06",
  "market": {
-  "status": "Closed",
+  "status": "Open",
   "tradeDate": "06-Oct-2026 15:30",
   "message": "Normal Market has Closed"
  },
@@ -30,7 +30,7 @@
  },
  "constituents": {
   "source": "niftyindices.com/IndexConstituent/ind_nifty50list.csv",
-  "fetched": "2026-10-06 14:57",
+  "fetched": "2026-10-07 08:45",
   "count": 50,
   "changes": []
  },

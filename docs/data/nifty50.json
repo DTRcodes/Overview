@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "generated": "2026-10-07T15:32:47+05:30",
- "lastUpdate": "2026-10-07 15:32:14",
+ "generated": "2026-10-07T15:56:05+05:30",
+ "lastUpdate": "2026-10-07 15:40:02",
  "tradeDate": "2026-10-07",
  "market": {
   "status": "Closed",
   "tradeDate": "07-Oct-2026 15:30",
-  "message": "Normal Market has Closed \u2013 Post Close will begin at 15:40 shortly"
+  "message": "Market in Post-Close Session"
  },
  "index": {
   "symbol": "NIFTY 50",
@@ -560,23 +560,6 @@
    }
   },
   {
-   "sym": "JIOFIN",
-   "name": "Jio Financial Services Ltd.",
-   "sector": "Financial Services",
-   "last": 216.44,
-   "open": 217.45,
-   "prevClose": 217.9,
-   "high": 218.78,
-   "low": 215.55,
-   "ffmc": 708462216381.37,
-   "pwc": 212.5,
-   "pmc": 216.88,
-   "official": {
-    "monthEndPdf": 0.68,
-    "mcwb": 0.68
-   }
-  },
-  {
    "sym": "JSWSTEEL",
    "name": "JSW Steel Ltd.",
    "sector": "Metals & Mining",
@@ -591,6 +574,23 @@
    "official": {
     "monthEndPdf": 1.15,
     "mcwb": 1.15
+   }
+  },
+  {
+   "sym": "JIOFIN",
+   "name": "Jio Financial Services Ltd.",
+   "sector": "Financial Services",
+   "last": 216.44,
+   "open": 217.45,
+   "prevClose": 217.9,
+   "high": 218.78,
+   "low": 215.55,
+   "ffmc": 708462216381.37,
+   "pwc": 212.5,
+   "pmc": 216.88,
+   "official": {
+    "monthEndPdf": 0.68,
+    "mcwb": 0.68
    }
   },
   {
@@ -611,23 +611,6 @@
    }
   },
   {
-   "sym": "ADANIPORTS",
-   "name": "Adani Ports and Special Economic Zone Ltd.",
-   "sector": "Services",
-   "last": 1750.1,
-   "open": 1782.5,
-   "prevClose": 1783.4,
-   "high": 1786,
-   "low": 1739.4,
-   "ffmc": 1367780849724.12,
-   "pwc": 1737.8,
-   "pmc": 1798.3,
-   "official": {
-    "monthEndPdf": 1.35,
-    "mcwb": 1.35
-   }
-  },
-  {
    "sym": "DRREDDY",
    "name": "Dr. Reddy's Laboratories Ltd.",
    "sector": "Healthcare",
@@ -645,20 +628,20 @@
    }
   },
   {
-   "sym": "NTPC",
-   "name": "NTPC Ltd.",
-   "sector": "Power",
-   "last": 316.75,
-   "open": 320.15,
-   "prevClose": 321.45,
-   "high": 321.7,
-   "low": 315.9,
-   "ffmc": 1501131463893.39,
-   "pwc": 315.1,
-   "pmc": 322.75,
+   "sym": "ADANIPORTS",
+   "name": "Adani Ports and Special Economic Zone Ltd.",
+   "sector": "Services",
+   "last": 1750.1,
+   "open": 1782.5,
+   "prevClose": 1783.4,
+   "high": 1786,
+   "low": 1739.4,
+   "ffmc": 1367780849724.12,
+   "pwc": 1737.8,
+   "pmc": 1798.3,
    "official": {
-    "monthEndPdf": 1.47,
-    "mcwb": 1.47
+    "monthEndPdf": 1.35,
+    "mcwb": 1.35
    }
   },
   {
@@ -679,6 +662,23 @@
    }
   },
   {
+   "sym": "NTPC",
+   "name": "NTPC Ltd.",
+   "sector": "Power",
+   "last": 316.75,
+   "open": 320.15,
+   "prevClose": 321.45,
+   "high": 321.7,
+   "low": 315.9,
+   "ffmc": 1501131463893.39,
+   "pwc": 315.1,
+   "pmc": 322.75,
+   "official": {
+    "monthEndPdf": 1.47,
+    "mcwb": 1.47
+   }
+  },
+  {
    "sym": "EICHERMOT",
    "name": "Eicher Motors Ltd.",
    "sector": "Automobile and Auto Components",
@@ -693,23 +693,6 @@
    "official": {
     "monthEndPdf": 0.94,
     "mcwb": 0.94
-   }
-  },
-  {
-   "sym": "MAXHEALTH",
-   "name": "Max Healthcare Institute Ltd.",
-   "sector": "Healthcare",
-   "last": 908,
-   "open": 900,
-   "prevClose": 902.5,
-   "high": 911.25,
-   "low": 891.6,
-   "ffmc": 673927029519.45,
-   "pwc": 940.95,
-   "pmc": 929.8,
-   "official": {
-    "monthEndPdf": 0.66,
-    "mcwb": 0.66
    }
   },
   {
@@ -744,6 +727,23 @@
    "official": {
     "monthEndPdf": 0.9,
     "mcwb": 0.9
+   }
+  },
+  {
+   "sym": "MAXHEALTH",
+   "name": "Max Healthcare Institute Ltd.",
+   "sector": "Healthcare",
+   "last": 908,
+   "open": 900,
+   "prevClose": 902.5,
+   "high": 911.25,
+   "low": 891.6,
+   "ffmc": 673927029519.45,
+   "pwc": 940.95,
+   "pmc": 929.8,
+   "official": {
+    "monthEndPdf": 0.66,
+    "mcwb": 0.66
    }
   },
   {
@@ -832,23 +832,6 @@
    }
   },
   {
-   "sym": "POWERGRID",
-   "name": "Power Grid Corporation of India Ltd.",
-   "sector": "Power",
-   "last": 253.05,
-   "open": 256.6,
-   "prevClose": 257.2,
-   "high": 256.65,
-   "low": 252.85,
-   "ffmc": 1142734091416.45,
-   "pwc": 254.55,
-   "pmc": 260.5,
-   "official": {
-    "monthEndPdf": 1.13,
-    "mcwb": 1.13
-   }
-  },
-  {
    "sym": "CIPLA",
    "name": "Cipla Ltd.",
    "sector": "Healthcare",
@@ -863,6 +846,23 @@
    "official": {
     "monthEndPdf": 0.72,
     "mcwb": 0.72
+   }
+  },
+  {
+   "sym": "POWERGRID",
+   "name": "Power Grid Corporation of India Ltd.",
+   "sector": "Power",
+   "last": 253.05,
+   "open": 256.6,
+   "prevClose": 257.2,
+   "high": 256.65,
+   "low": 252.85,
+   "ffmc": 1142734091416.45,
+   "pwc": 254.55,
+   "pmc": 260.5,
+   "official": {
+    "monthEndPdf": 1.13,
+    "mcwb": 1.13
    }
   },
   {

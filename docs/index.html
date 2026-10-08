@@ -877,7 +877,9 @@ function render(){
     S.world_yields,
     '<div class="chart" data-c="w5"></div>',
     '', rangeSeg('w5')));
-  b.push(card('USD / INR', 'Traded spot. The RBI reference fixing is in the FX table.', S.fx_spot,
+  b.push(card('USD / INR',
+    'Traded spot, with the dollar index behind it on the right axis — a weaker rupee against a rising DXY is the dollar moving, not the rupee.',
+    S.fx_spot,
     '<div class="chart" data-c="fx"></div>'));
   b.push(card('Institutional flows',
     `Daily net cash-market activity, ₹ crore — the financial year so far, from
@@ -1194,7 +1196,9 @@ function render(){
   {
     const map = {pe, us: usc, fx, flows, deriv, w10, w5, fno, oi};
     const opts = {pe:{dp:2, height:235, context:{key:'nifty_close',
-                    label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2}, fx:{dp:2}, deriv:{dp:0},
+                    label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2},
+                  fx:{dp:2, context:{key:'dxy', label:'DXY',
+                      color:cssv('--series-4'), dp:1}}, deriv:{dp:0},
                   w10:{dp:2, rangeKey:'w10', height:230, nameLabels:true},
                   w5:{dp:2, rangeKey:'w5',  height:230, nameLabels:true},
                   flows:{dp:0, zeroLine:true, height:210},

@@ -1110,9 +1110,22 @@ def fetch_fx_spot():
     h = yf.Ticker("INR=X").history(period="5d")
     if not len(h):
         raise RuntimeError("no INR=X data")
-    return {"usd_inr": round(float(h["Close"].iloc[-1]), 4),
-            "as_of": str(h.index[-1].date()),
-            "source": "yahoo finance (INR=X spot)"}
+    out = {"usd_inr": round(float(h["Close"].iloc[-1]), 4),
+           "as_of": str(h.index[-1].date()),
+           "source": "yahoo finance (INR=X spot)"}
+
+    # The dollar index, so the rupee's move can be read against the dollar's
+    # own. A rupee that weakens while DXY climbs is the dollar moving; one
+    # that weakens while DXY falls is the rupee. It trades on the US calendar,
+    # so it carries its own date and gets its own history row.
+    try:
+        d = yf.Ticker("DX-Y.NYB").history(period="5d")
+        if len(d):
+            out["dxy"] = round(float(d["Close"].iloc[-1]), 3)
+            out["dxy_as_of"] = str(d.index[-1].date())
+    except Exception as e:
+        out["dxy_error"] = "%s: %s" % (type(e).__name__, e)
+    return out
 
 
 
@@ -2606,7 +2619,7 @@ HISTORY_FIELDS = ["nifty_close", "nifty_pe", "nifty_pb", "nifty_div_yield",
                   "fii_call_oi_chg", "fii_put_oi_chg",
                   "fii_fut_amt", "fii_fut_oi_chg", "fii_fut_oi",
                   "fii_stk_fut_net", "dii_stk_fut_net",
-                  "india_10y", "usd_inr"]
+                  "india_10y", "usd_inr", "dxy"]
 
 
 def load_history():
@@ -2688,6 +2701,7 @@ def rows_from_sections(S):
 
     # Market spot, not the RBI fixing - see fetch_fx_spot.
     put(dig("fx_spot", "as_of") or today, usd_inr=dig("fx_spot", "usd_inr"))
+    put(dig("fx_spot", "dxy_as_of") or today, dxy=dig("fx_spot", "dxy"))
 
     # FRED returns an observation date per series, and they differ: a US
     # holiday or a publication lag leaves one series a day behind another.
@@ -2833,6 +2847,16 @@ def backfill(days=180, pause=0.4):
         if hits and hits % 20 == 0:
             print("  ...%d trading days" % hits)
     print("  got %d trading days" % hits)
+
+    print("Backfilling the dollar index...")
+    try:
+        import yfinance as yf
+        d = yf.Ticker("DX-Y.NYB").history(period="%dd" % max(days, 7))
+        rows += [{"date": str(ix.date()), "dxy": round(float(v), 3)}
+                 for ix, v in d["Close"].items() if v == v]
+        print("  %d days" % len(d))
+    except Exception as e:
+        print("  skipped: %s" % e)
 
     try:
         import yfinance as yf

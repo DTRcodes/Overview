@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "generated": "2026-10-08T15:42:34+05:30",
+ "generated": "2026-10-08T16:06:30+05:30",
  "lastUpdate": "2026-10-08 15:40:32",
  "tradeDate": "2026-10-08",
  "market": {
   "status": "Closed",
   "tradeDate": "08-Oct-2026 15:30",
-  "message": "Market in Post-Close Session"
+  "message": "Normal Market has Closed"
  },
  "index": {
   "symbol": "NIFTY 50",

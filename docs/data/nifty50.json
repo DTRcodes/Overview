@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "generated": "2026-10-07T16:35:19+05:30",
+ "generated": "2026-10-08T08:45:33+05:30",
  "lastUpdate": "2026-10-07 15:40:02",
  "tradeDate": "2026-10-07",
  "market": {
-  "status": "Closed",
+  "status": "Open",
   "tradeDate": "07-Oct-2026 15:30",
   "message": "Normal Market has Closed"
  },
@@ -26,11 +26,11 @@
  "rebalance": {},
  "weights": {
   "method": "Live free-float market cap from NSE (ffmc). weight_i = ffmc_i / sum(ffmc).",
-  "totalFfmcCr": 10430851.06
+  "totalFfmcCr": 10430878.47
  },
  "constituents": {
   "source": "niftyindices.com/IndexConstituent/ind_nifty50list.csv",
-  "fetched": "2026-10-07 14:53",
+  "fetched": "2026-10-08 08:45",
   "count": 50,
   "changes": []
  },
@@ -109,7 +109,7 @@
    "prevClose": 1342.8,
    "high": 1360,
    "low": 1329.9,
-   "ffmc": 9703916240046.71,
+   "ffmc": 9704190424911.41,
    "pwc": 1310.6,
    "pmc": 1321.7,
    "official": {

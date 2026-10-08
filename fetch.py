@@ -1119,10 +1119,13 @@ def fetch_fx_spot():
     # that weakens while DXY falls is the rupee. It trades on the US calendar,
     # so it carries its own date and gets its own history row.
     try:
-        d = yf.Ticker("DX-Y.NYB").history(period="5d")
+        d = yf.Ticker("DX-Y.NYB").history(period="2d", interval="1m")
+        if not len(d):                       # 1m is empty on a long weekend
+            d = yf.Ticker("DX-Y.NYB").history(period="5d")
         if len(d):
             out["dxy"] = round(float(d["Close"].iloc[-1]), 3)
             out["dxy_as_of"] = str(d.index[-1].date())
+            out["dxy_at"] = str(d.index[-1])
     except Exception as e:
         out["dxy_error"] = "%s: %s" % (type(e).__name__, e)
     return out

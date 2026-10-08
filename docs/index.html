@@ -94,7 +94,7 @@ h1{font-size:19px;margin:0 0 3px;letter-spacing:-.015em;font-weight:660}
 .grid{display:grid;gap:13px;grid-template-columns:1fr}
 @media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
 .card{background:var(--surface-1);border:1px solid var(--line);border-radius:var(--radius);
-  padding:14px 15px 13px;min-width:0}
+  padding:14px 15px 13px;min-width:0;display:flex;flex-direction:column}
 .card.wide{grid-column:1/-1}
 h2{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);
   margin:0 0 2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:640}
@@ -114,7 +114,9 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--text
   box-shadow:0 1px 2px rgba(0,0,0,.09)}
 
 /* ---- chart ---- */
-.chart{position:relative;width:100%}
+/* grows into whatever height the row gives the card; the chart functions read
+   the stretched height back and draw at that size, so nothing is scaled. */
+.chart{position:relative;width:100%;flex:1 1 auto;min-height:190px}
 .chart svg{display:block;width:100%;height:auto;overflow:visible}
 .gridline{stroke:var(--grid);stroke-width:1}
 .axis{fill:var(--text-muted);font-size:10.5px;font-variant-numeric:tabular-nums}
@@ -304,18 +306,36 @@ function lineChart(el, series, opts = {}){
     return;
   }
   const W = Math.max(el.clientWidth || 320, 260);
-  const H = opts.height || 190;
+  const H = Math.max(Math.round(el.clientHeight || 0), opts.height || 190);
   // A second axis is a deliberate exception, not the norm: it is only for a
   // faded context line (the index behind the P/E), never for two series the
   // reader is meant to compare directly.
   const ctx = opts.context || null;
-  const padL = ctx ? 44 : 6, padR = opts.nameLabels ? 94 : 46,
-        padT = 12, padB = 22;
+  // Only as much right margin as the scale numbers need. The tags are flush
+  // to the chart's right edge and a long name reaches back OVER the plot
+  // rather than pushing the plot narrower.
+  const padL = ctx ? 44 : 6, padR = 44, padT = 12, padB = 22;
   const iw = W - padL - padR, ih = H - padT - padB;
+
+  // Rebased mode: every series becomes its % change from the first point it
+  // has inside the window, so they share one axis honestly. The tags still
+  // carry the real price - a reader wants the level, not the percentage.
+  const base = {};
+  if(opts.rebase){
+    series.forEach(s => {
+      const first = rows.find(r => r[s.key] != null);
+      if(first) base[s.key] = first[s.key];
+    });
+  }
+  const val = (r, k) => {
+    const v = r[k];
+    if(v == null) return null;
+    return opts.rebase && base[k] ? (v / base[k] - 1) * 100 : v;
+  };
 
   let lo = Infinity, hi = -Infinity;
   series.forEach(s => rows.forEach(r => {
-    const v = r[s.key];
+    const v = val(r, s.key);
     if(v != null){ lo = Math.min(lo, v); hi = Math.max(hi, v); }
   }));
   if(!isFinite(lo)){ el.innerHTML = `<div class="empty">No data.</div>`; return; }
@@ -427,8 +447,8 @@ function lineChart(el, series, opts = {}){
 
   const endLabels = [];
   const paths = series.map((s, si) => {
-    const pts = rows.map(r => r[s.key] == null ? null : {x:X(r), y:Y(r[s.key])})
-                    .filter(Boolean);
+    const pts = rows.map(r => val(r, s.key) == null
+                    ? null : {x:X(r), y:Y(val(r, s.key))}).filter(Boolean);
     if(!pts.length) return '';
     const d = smoothPath(pts);
     const last = pts[pts.length-1];
@@ -444,8 +464,9 @@ function lineChart(el, series, opts = {}){
       : '';
     // direct label — identity is never carried by colour alone
     endLabels.push({
-      text: opts.nameLabels ? `${s.label} ${nf(lastV, opts.dp ?? 2)}`
-                            : nf(lastV, opts.dp ?? 2),
+      text: (opts.nameLabels || series.length > 1)
+              ? `${s.label} ${nf(lastV, opts.dp ?? 2)}`
+              : nf(lastV, opts.dp ?? 2),
       color: s.color, x: last.x - 6, y: last.y + 3.5, v: lastV});
     return area
       + `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2"
@@ -477,18 +498,16 @@ function lineChart(el, series, opts = {}){
   // Named lines put their tag in the scale strip, level with the line, the way
   // a price scale carries the last price. Unnamed charts keep the tag inside
   // the plot, where a bare number beside the line reads fine.
-  const tagX = opts.nameLabels ? padL + iw + 5 : null;
+  const tagRight = W - 3;
   const labelPlates = endLabels.map(l => {
     const w = l.text.length * 5.6 + 9;
-    const x = tagX === null ? l.x - w + 4 : tagX - 3;
-    return `<rect x="${x.toFixed(1)}" y="${(l.y - 10.5).toFixed(1)}"
+    return `<rect x="${(tagRight - w).toFixed(1)}" y="${(l.y - 10.5).toFixed(1)}"
       width="${w.toFixed(1)}" height="13" rx="3"
-      fill="${cssv('--surface-1')}" opacity="${tagX === null ? '.72' : '.88'}"/>`;
+      fill="${cssv('--surface-1')}" opacity=".88"/>`;
   }).join('');
   const labelText = endLabels.map(l =>
-    `<text class="serieslabel" x="${(tagX === null ? l.x : tagX).toFixed(1)}"
-       y="${l.y.toFixed(1)}" text-anchor="${tagX === null ? 'end' : 'start'}"
-       fill="${l.color}">${esc(l.text)}</text>`).join('');
+    `<text class="serieslabel" x="${tagRight.toFixed(1)}" y="${l.y.toFixed(1)}"
+       text-anchor="end" fill="${l.color}">${esc(l.text)}</text>`).join('');
 
   // Drop a scale number only when a tag would print on top of it.
   const axisNumbers = tickYs.filter(t =>
@@ -545,6 +564,7 @@ function lineChart(el, series, opts = {}){
   svg.addEventListener('touchstart', move, {passive:true});
   svg.addEventListener('touchmove', move, {passive:true});
   svg.addEventListener('touchend', leave);
+
 }
 
 /* -------------------------------------------------------------- rendering */
@@ -570,7 +590,8 @@ function monthlyBars(el, rows, opts = {}){
     el.innerHTML = `<div class="empty">Not enough listings yet.</div>`;
     return;
   }
-  const W = Math.max(el.clientWidth || 320, 280), H = opts.height || 235;
+  const W = Math.max(el.clientWidth || 320, 280),
+        H = Math.max(Math.round(el.clientHeight || 0), opts.height || 235);
   const padL = 40, padR = 34, padT = 14, padB = 34;
   const iw = W - padL - padR, ih = H - padT - padB;
 
@@ -648,7 +669,8 @@ function flowBars(el, opts = {}){
     el.innerHTML = `<div class="empty">Not enough history yet.</div>`;
     return;
   }
-  const W = Math.max(el.clientWidth || 320, 280), H = opts.height || 215;
+  const W = Math.max(el.clientWidth || 320, 280),
+        H = Math.max(Math.round(el.clientHeight || 0), opts.height || 215);
   const padL = 46, padR = 10, padT = 12, padB = 26;
   const iw = W - padL - padR, ih = H - padT - padB;
 
@@ -850,7 +872,8 @@ function render(){
   const close= [{key:'nifty_close',label:'Nifty 50',     color:cssv('--series-3')}];
   const usc  = [{key:'us_10y', label:'US 10Y', color:cssv('--series-1')},
                 {key:'us_5y',  label:'US 5Y',  color:cssv('--series-2')}];
-  const fx   = [{key:'usd_inr', label:'USD/INR', color:cssv('--series-2')}];
+  const fx   = [{key:'usd_inr', label:'USD/INR', color:cssv('--series-2')},
+                {key:'dxy',     label:'DXY',     color:cssv('--series-4')}];
   const CTRY = [['us','US'],['de','Germany'],['uk','UK'],
                 ['jp','Japan'],['in','India'],['cn','China']];
   const wy = t => CTRY.map(([k,label],i) =>
@@ -890,7 +913,7 @@ function render(){
     '<div class="chart" data-c="w5"></div>',
     '', rangeSeg('w5')));
   b.push(card('USD / INR',
-    'Traded spot, with the dollar index behind it on the right axis — a weaker rupee against a rising DXY is the dollar moving, not the rupee.',
+    'Both rebased to the start of the window, so the comparison is honest: together is the dollar moving, apart is the rupee. Tags show the actual level.',
     S.fx_spot,
     '<div class="chart" data-c="fx"></div>'));
   b.push(card('Institutional flows',
@@ -1209,24 +1232,43 @@ function render(){
     const map = {pe, us: usc, fx, flows, deriv, w10, w5, fno, oi};
     const opts = {pe:{dp:2, height:235, context:{key:'nifty_close',
                     label:'Nifty 50', color:cssv('--text-secondary'), dp:0}}, us:{dp:2},
-                  fx:{dp:2, context:{key:'dxy', label:'DXY',
-                      color:cssv('--series-4'), dp:1}}, deriv:{dp:0},
+                  fx:{dp:2, rebase:true}, deriv:{dp:0},
                   w10:{dp:2, rangeKey:'w10', height:230, nameLabels:true},
                   w5:{dp:2, rangeKey:'w5',  height:230, nameLabels:true},
                   flows:{dp:0, zeroLine:true, height:210},
                   fno:{dp:0, zeroLine:true, height:210},
                   oi:{dp:0, zeroLine:true, height:200}};
-    document.querySelectorAll('.chart').forEach(el => {
+    // Measure every slot BEFORE drawing into any of them. A chart drawn into
+    // its slot changes that card's height, which can change the row's height,
+    // which changes what the next slot would have reported - measuring first
+    // means every chart is sized against the same stable layout.
+    // Leave room for the legend that lands under the chart. On the first pass
+    // there is none to measure, so 26 is the one-line guess; on the second the
+    // real one is there, and on a narrow card it wraps to two lines and takes
+    // nearer 50 - which is exactly the gap this used to leave behind.
+    const fit = (el, base, h) =>
+      Math.max(base || 190, h - (el.querySelector('.legend')?.offsetHeight || 26));
+    const drawAll = () => {
+    const slots = [...document.querySelectorAll('.chart')]
+      .map(el => ({el, h: el.clientHeight}));
+    slots.forEach(({el, h}) => {
       if(el.dataset.c === 'flows'){
-        flowBars(el, {from: fyStart, height: 215});
+        flowBars(el, {from: fyStart, height: fit(el, 215, h)});
         return;
       }
       if(el.dataset.c === 'ipomonth'){
-        monthlyBars(el, (S.ipo_gains && S.ipo_gains.monthly) || []);
+        monthlyBars(el, (S.ipo_gains && S.ipo_gains.monthly) || [],
+                    {height: fit(el, 235, h)});
         return;
       }
-      lineChart(el, map[el.dataset.c] || [], opts[el.dataset.c] || {});
+      const o = opts[el.dataset.c] || {};
+      lineChart(el, map[el.dataset.c] || [],
+                Object.assign({}, o, {height: fit(el, o.height, h)}));
     });
+    };
+    // Once. A second pass measured the settled layout and changed nothing, and
+    // a loop that reacts to its own growth just chases itself taller.
+    drawAll();
   }
 
   document.getElementById('foot').innerHTML =

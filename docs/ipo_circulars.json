@@ -897,6 +897,18 @@
 "subject": "Listing of Equity Shares of Vishal Nirmiti Limited (IPO)",
 "symbol": "VNL"
 },
+"https://nsearchives.nseindia.com/content/circulars/CML76763.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76763.zip",
+"circular_date": "October 07, 2026",
+"company": "Eventions Limited",
+"confirmed_listing": "2026-10-08",
+"confirmed_listing_dmy": "08-Oct-2026",
+"date_pending": false,
+"match": "eventions",
+"subject": "Listing of Equity Shares of Eventions Limited (SME IPO)",
+"symbol": "EVENTIONS"
+},
 "https://nsearchives.nseindia.com/content/circulars/CML76773.zip": {
 "board": "mainboard",
 "circular": "https://nsearchives.nseindia.com/content/circulars/CML76773.zip",

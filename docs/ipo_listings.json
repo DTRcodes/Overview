@@ -15244,7 +15244,8 @@
    "open": 72.3,
    "close": 68.75,
    "gain_open_pct": 0.42,
-   "gain_close_pct": -4.51
+   "gain_close_pct": -4.51,
+   "price_source": "bhavcopy"
   },
   "GREENASIA": {
    "high": 89.0,
@@ -15259,7 +15260,8 @@
    "open": 89.0,
    "close": 84.55,
    "gain_open_pct": 0.0,
-   "gain_close_pct": -5.0
+   "gain_close_pct": -5.0,
+   "price_source": "bhavcopy"
   }
  },
  "unresolvable": [

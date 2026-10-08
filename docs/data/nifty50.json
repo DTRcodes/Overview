@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "generated": "2026-10-08T08:45:33+05:30",
- "lastUpdate": "2026-10-07 15:40:02",
- "tradeDate": "2026-10-07",
+ "generated": "2026-10-08T09:08:03+05:30",
+ "lastUpdate": "2026-10-08 09:07:19",
+ "tradeDate": "2026-10-08",
  "market": {
   "status": "Open",
-  "tradeDate": "07-Oct-2026 15:30",
-  "message": "Normal Market has Closed"
+  "tradeDate": "08-Oct-2026 09:06",
+  "message": "Market in Pre-Open session"
  },
  "index": {
   "symbol": "NIFTY 50",
-  "last": 22603.05,
-  "open": 22690.45,
-  "prevClose": 22776.1,
-  "high": 22717.65,
-  "low": 22546.3,
+  "last": 22585.15,
+  "open": 0,
+  "prevClose": 22603.05,
+  "high": 0,
+  "low": 0,
   "pwc": 22421.95,
   "pmc": 22620.45
  },

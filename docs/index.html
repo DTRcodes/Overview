@@ -309,7 +309,8 @@ function lineChart(el, series, opts = {}){
   // faded context line (the index behind the P/E), never for two series the
   // reader is meant to compare directly.
   const ctx = opts.context || null;
-  const padL = ctx ? 44 : 6, padR = 46, padT = 12, padB = 22;
+  const padL = ctx ? 44 : 6, padR = opts.nameLabels ? 94 : 46,
+        padT = 12, padB = 22;
   const iw = W - padL - padR, ih = H - padT - padB;
 
   let lo = Infinity, hi = -Infinity;
@@ -363,14 +364,14 @@ function lineChart(el, series, opts = {}){
     <text class="axis" x="${(xCut + 5).toFixed(1)}" y="${padT + 9}"
       opacity=".7">${emphDays === 90 ? '3M' : emphDays + 'd'} &times;${ZOOM}</text>` : '';
 
-  const ticks = 4, gridlines = [], labels = [];
+  const ticks = 4, gridlines = [], labels = [], tickYs = [];
   for(let i = 0; i <= ticks; i++){
     const v = lo + (hi - lo) * (i / ticks), y = Y(v);
     gridlines.push(`<line class="gridline" x1="${padL}" y1="${y.toFixed(1)}"
       x2="${padL+iw}" y2="${y.toFixed(1)}"/>`);
-    labels.push(`<text class="axis" x="${ctx ? padL-7 : padL+iw+7}"
+    tickYs.push({y, html: `<text class="axis" x="${ctx ? padL-7 : padL+iw+7}"
       y="${(y+3.5).toFixed(1)}" text-anchor="${ctx ? 'end' : 'start'}">${
-      nf(v, opts.dp ?? 1)}</text>`);
+      nf(v, opts.dp ?? 1)}</text>`});
   }
 
   // ---- context series: its own scale, drawn behind, dashed and faded
@@ -445,7 +446,7 @@ function lineChart(el, series, opts = {}){
     endLabels.push({
       text: opts.nameLabels ? `${s.label} ${nf(lastV, opts.dp ?? 2)}`
                             : nf(lastV, opts.dp ?? 2),
-      color: s.color, x: last.x - 6, y: last.y - 9, v: lastV});
+      color: s.color, x: last.x - 6, y: last.y + 3.5, v: lastV});
     return area
       + `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round"/>`
@@ -473,20 +474,31 @@ function lineChart(el, series, opts = {}){
 
   // A translucent plate behind each label: these sit over the plot, and a
   // line running under the text is what makes a number hard to read.
+  // Named lines put their tag in the scale strip, level with the line, the way
+  // a price scale carries the last price. Unnamed charts keep the tag inside
+  // the plot, where a bare number beside the line reads fine.
+  const tagX = opts.nameLabels ? padL + iw + 5 : null;
   const labelPlates = endLabels.map(l => {
     const w = l.text.length * 5.6 + 9;
-    return `<rect x="${(l.x - w + 4).toFixed(1)}" y="${(l.y - 10).toFixed(1)}"
+    const x = tagX === null ? l.x - w + 4 : tagX - 3;
+    return `<rect x="${x.toFixed(1)}" y="${(l.y - 10.5).toFixed(1)}"
       width="${w.toFixed(1)}" height="13" rx="3"
-      fill="${cssv('--surface-1')}" opacity=".72"/>`;
+      fill="${cssv('--surface-1')}" opacity="${tagX === null ? '.72' : '.88'}"/>`;
   }).join('');
   const labelText = endLabels.map(l =>
-    `<text class="serieslabel" x="${l.x.toFixed(1)}" y="${l.y.toFixed(1)}"
-       text-anchor="end" fill="${l.color}">${esc(l.text)}</text>`).join('');
+    `<text class="serieslabel" x="${(tagX === null ? l.x : tagX).toFixed(1)}"
+       y="${l.y.toFixed(1)}" text-anchor="${tagX === null ? 'end' : 'start'}"
+       fill="${l.color}">${esc(l.text)}</text>`).join('');
+
+  // Drop a scale number only when a tag would print on top of it.
+  const axisNumbers = tickYs.filter(t =>
+      !endLabels.some(l => Math.abs(l.y - (t.y + 3.5)) < 11))
+    .map(t => t.html).join('');
 
   el.innerHTML =
     `<svg viewBox="0 0 ${W} ${H}" role="img"
        aria-label="${esc(series.map(s=>s.label).join(' and '))} over time">
-       ${gridlines.join('')}${emphasis}${ctxPath}${xlabels}${labels.join('')}${paths}${labelPlates}${labelText}
+       ${gridlines.join('')}${emphasis}${ctxPath}${xlabels}${axisNumbers}${labels.join('')}${paths}${labelPlates}${labelText}
        <g id="cross" style="opacity:0">
          <line y1="${padT}" y2="${padT+ih}" stroke="${cssv('--text-muted')}"
            stroke-width="1" stroke-dasharray="3 3"/>

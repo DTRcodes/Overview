@@ -91,7 +91,7 @@ h1{font-size:19px;margin:0 0 3px;letter-spacing:-.015em;font-weight:660}
 .up{color:var(--up)} .down{color:var(--down)}
 
 /* ---- cards ---- */
-.grid{display:grid;gap:13px;grid-template-columns:1fr}
+.grid{display:grid;gap:13px;grid-template-columns:1fr;align-items:start}
 @media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
 .card{background:var(--surface-1);border:1px solid var(--line);border-radius:var(--radius);
   padding:14px 15px 13px;min-width:0;display:flex;flex-direction:column}
@@ -225,6 +225,12 @@ function ago(iso){
   if(s < 172800) return Math.round(s/3600) + ' h ago';
   return Math.round(s/86400) + ' d ago';
 }
+// Tag codes. The on-chart tag has one job: say which line this is, in the
+// width of a margin. The legend underneath still spells each one out.
+const TAG = {'US':'US', 'UK':'UK', 'Germany':'GER', 'Japan':'JPN', 'India':'IND',
+             'China':'CH', 'USD/INR':'INR', 'DXY':'DXY'};
+const tagName = l => TAG[l] || l;
+
 const shortDate = d => new Date(d + 'T00:00:00')
   .toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
 // Module scope, not inside render(): the flow boxes at the top of the page
@@ -314,7 +320,7 @@ function lineChart(el, series, opts = {}){
   // Only as much right margin as the scale numbers need. The tags are flush
   // to the chart's right edge and a long name reaches back OVER the plot
   // rather than pushing the plot narrower.
-  const padL = ctx ? 44 : 6, padR = 44, padT = 12, padB = 22;
+  const padL = 40, padR = 58, padT = 12, padB = 22;
   const iw = W - padL - padR, ih = H - padT - padB;
 
   // Rebased mode: every series becomes its % change from the first point it
@@ -389,9 +395,8 @@ function lineChart(el, series, opts = {}){
     const v = lo + (hi - lo) * (i / ticks), y = Y(v);
     gridlines.push(`<line class="gridline" x1="${padL}" y1="${y.toFixed(1)}"
       x2="${padL+iw}" y2="${y.toFixed(1)}"/>`);
-    tickYs.push({y, html: `<text class="axis" x="${ctx ? padL-7 : padL+iw+7}"
-      y="${(y+3.5).toFixed(1)}" text-anchor="${ctx ? 'end' : 'start'}">${
-      nf(v, opts.dp ?? 1)}</text>`});
+    tickYs.push({y, html: `<text class="axis" x="${padL-7}"
+      y="${(y+3.5).toFixed(1)}" text-anchor="end">${nf(v, opts.dp ?? 1)}</text>`});
   }
 
   // ---- context series: its own scale, drawn behind, dashed and faded
@@ -411,7 +416,7 @@ function lineChart(el, series, opts = {}){
            stroke-linecap="round" stroke-linejoin="round"/>`;
       for(let i = 0; i <= ticks; i++){
         const v = ctxLo + (ctxHi - ctxLo) * (i / ticks);
-        labels.push(`<text class="axis" x="${padL+iw+7}"
+        labels.push(`<text class="axis" x="${W-3}" text-anchor="end"
           y="${(ctxY(v)+3.5).toFixed(1)}" opacity=".6" fill="${ctx.color}">${
           nf(v, ctx.dp ?? 0)}</text>`);
       }
@@ -465,7 +470,7 @@ function lineChart(el, series, opts = {}){
     // direct label — identity is never carried by colour alone
     endLabels.push({
       text: (opts.nameLabels || series.length > 1)
-              ? `${s.label} ${nf(lastV, opts.dp ?? 2)}`
+              ? `${tagName(s.label)} ${nf(lastV, opts.dp ?? 2)}`
               : nf(lastV, opts.dp ?? 2),
       color: s.color, x: last.x - 6, y: last.y + 3.5, v: lastV});
     return area
@@ -498,16 +503,14 @@ function lineChart(el, series, opts = {}){
   // Named lines put their tag in the scale strip, level with the line, the way
   // a price scale carries the last price. Unnamed charts keep the tag inside
   // the plot, where a bare number beside the line reads fine.
-  const tagRight = W - 3;
-  const labelPlates = endLabels.map(l => {
-    const w = l.text.length * 5.6 + 9;
-    return `<rect x="${(tagRight - w).toFixed(1)}" y="${(l.y - 10.5).toFixed(1)}"
-      width="${w.toFixed(1)}" height="13" rx="3"
-      fill="${cssv('--surface-1')}" opacity=".88"/>`;
-  }).join('');
+  const tagLeft = padL + iw + 4;
+  const labelPlates = endLabels.map(l =>
+    `<rect x="${(tagLeft - 3).toFixed(1)}" y="${(l.y - 10.5).toFixed(1)}"
+      width="${(l.text.length * 5.6 + 7).toFixed(1)}" height="13" rx="3"
+      fill="${cssv('--surface-1')}" opacity=".88"/>`).join('');
   const labelText = endLabels.map(l =>
-    `<text class="serieslabel" x="${tagRight.toFixed(1)}" y="${l.y.toFixed(1)}"
-       text-anchor="end" fill="${l.color}">${esc(l.text)}</text>`).join('');
+    `<text class="serieslabel" x="${tagLeft.toFixed(1)}" y="${l.y.toFixed(1)}"
+       text-anchor="start" fill="${l.color}">${esc(l.text)}</text>`).join('');
 
   // Drop a scale number only when a tag would print on top of it.
   const axisNumbers = tickYs.filter(t =>

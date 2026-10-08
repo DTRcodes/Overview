@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-08T08:14:58+05:30",
-  "generated_at_utc": "2026-10-08T02:44:58+00:00",
+  "generated_at": "2026-10-08T08:19:02+05:30",
+  "generated_at_utc": "2026-10-08T02:49:02+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -324,9 +324,10 @@
       "usd_inr": 96.75,
       "as_of": "2026-10-08",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 102.192,
+      "dxy": 102.203,
       "dxy_as_of": "2026-10-07",
-      "fetched_at": "2026-10-08T08:14:38+05:30",
+      "dxy_at": "2026-10-07 22:38:00-04:00",
+      "fetched_at": "2026-10-08T08:19:02+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -1037,7 +1038,7 @@
       "source": "nseindia.com/api",
       "fetched_at": "2026-10-08T08:14:42+05:30",
       "stale": false,
-      "calendar_added": 10,
+      "calendar_added": 0,
       "horizon": {
         "min_days": 20,
         "furthest_open": "2026-10-21",

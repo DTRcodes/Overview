@@ -15262,6 +15262,34 @@
    "gain_open_pct": 0.0,
    "gain_close_pct": -5.0,
    "price_source": "bhavcopy"
+  },
+  "NITYAS": {
+   "symbol": "NITYAS",
+   "company": "Nityas Gems and Jewellery Limited",
+   "issue_price": 75.0,
+   "listing_date": "2026-10-08",
+   "open": 75.0,
+   "last": 83.95,
+   "close": 83.95,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 11.93,
+   "from_open_pct": 11.93
+  },
+  "VNL": {
+   "symbol": "VNL",
+   "company": "Vishal Nirmiti Limited",
+   "issue_price": 220.0,
+   "listing_date": "2026-10-08",
+   "open": 220.0,
+   "last": 204.25,
+   "close": 204.25,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -7.16,
+   "from_open_pct": -7.16
   }
  },
  "unresolvable": [

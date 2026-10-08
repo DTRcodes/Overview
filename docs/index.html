@@ -91,7 +91,7 @@ h1{font-size:19px;margin:0 0 3px;letter-spacing:-.015em;font-weight:660}
 .up{color:var(--up)} .down{color:var(--down)}
 
 /* ---- cards ---- */
-.grid{display:grid;gap:13px;grid-template-columns:1fr;align-items:start}
+.grid{display:grid;gap:13px;grid-template-columns:1fr}
 @media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
 .card{background:var(--surface-1);border:1px solid var(--line);border-radius:var(--radius);
   padding:14px 15px 13px;min-width:0;display:flex;flex-direction:column}
@@ -114,10 +114,14 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--text
   box-shadow:0 1px 2px rgba(0,0,0,.09)}
 
 /* ---- chart ---- */
-/* grows into whatever height the row gives the card; the chart functions read
-   the stretched height back and draw at that size, so nothing is scaled. */
-.chart{position:relative;width:100%;flex:1 1 auto;min-height:190px}
-.chart svg{display:block;width:100%;height:auto;overflow:visible}
+/* The chart box is a column: the plot takes whatever height is left in the
+   card, the legend sits under it. The SVG is absolute inside the plot and so
+   adds no height of its own - without that a chart grows its own card, which
+   grows the row, which gives the chart more room again. */
+.chart{position:relative;width:100%;flex:1 1 auto;min-height:190px;
+  display:flex;flex-direction:column}
+.plot{position:relative;flex:1 1 auto;min-height:120px}
+.plot svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .gridline{stroke:var(--grid);stroke-width:1}
 .axis{fill:var(--text-muted);font-size:10.5px;font-variant-numeric:tabular-nums}
 .serieslabel{font-size:11px;font-weight:640;font-variant-numeric:tabular-nums}
@@ -133,6 +137,30 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--text
 .tip .r{display:flex;justify-content:space-between;gap:11px}
 .tip .r i{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}
 .empty{color:var(--text-muted);font-size:12px;padding:22px 0;text-align:center}
+
+/* ---- P/E valuation band ---- */
+.peband{margin-top:12px;border-top:1px solid var(--line);padding-top:11px}
+.pbline{font-size:12.5px;color:var(--text-secondary);line-height:1.55;margin:0 0 10px}
+.pbline b{color:var(--text-primary);font-weight:650}
+.pbtop{position:relative;height:15px}
+.pbnow{position:absolute;top:0;transform:translateX(-50%);font-size:11px;font-weight:680;
+  color:var(--text-primary);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pbbar{position:relative;display:flex;height:20px;border-radius:6px;overflow:hidden}
+.pbbar>span{display:block;height:100%}
+.pbmark{position:absolute;top:-3px;height:26px;width:2px;border-radius:2px;
+  background:var(--text-primary);box-shadow:0 0 0 2px var(--surface-1)}
+.pbscale{position:relative;height:14px;margin-top:4px;font-size:10px;
+  color:var(--text-muted);font-variant-numeric:tabular-nums}
+.pbscale i{position:absolute;transform:translateX(-50%);font-style:normal}
+.pbkey{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  gap:2px 14px;margin-top:9px;font-size:11.5px;color:var(--text-secondary)}
+.pbkey div{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.pbkey em{font-style:normal;margin-left:auto;color:var(--text-muted);
+  font-variant-numeric:tabular-nums}
+.pbkey .on{color:var(--text-primary);font-weight:650}
+.pbkey .on em{color:var(--text-secondary)}
+.pbkey u{width:8px;height:8px;border-radius:50%;flex:none;text-decoration:none}
+.pbnote{font-size:11px;color:var(--text-muted);margin:9px 0 0;line-height:1.5}
 
 /* ---- tables ---- */
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -15px;padding:0 15px}
@@ -312,7 +340,7 @@ function lineChart(el, series, opts = {}){
     return;
   }
   const W = Math.max(el.clientWidth || 320, 260);
-  const H = Math.max(Math.round(el.clientHeight || 0), opts.height || 190);
+  const H = Math.max(Math.round(opts.height || 0), 140);
   // A second axis is a deliberate exception, not the norm: it is only for a
   // faded context line (the index behind the P/E), never for two series the
   // reader is meant to compare directly.
@@ -557,7 +585,7 @@ function lineChart(el, series, opts = {}){
     .map(t => t.html).join('');
 
   el.innerHTML =
-    `<svg viewBox="0 0 ${W} ${H}" role="img"
+    `<div class="plot"><svg viewBox="0 0 ${W} ${H}" role="img"
        aria-label="${esc(series.map(s=>s.label).join(' and '))} over time">
        ${gridlines.join('')}${emphasis}${ctxPath}${xlabels}${axisNumbers}${labels.join('')}${paths}${labelPlates}${labelText}
        <g id="cross" style="opacity:0">
@@ -565,7 +593,7 @@ function lineChart(el, series, opts = {}){
            stroke-width="1" stroke-dasharray="3 3"/>
        </g>
        <rect x="${padL}" y="${padT}" width="${iw}" height="${ih}" fill="transparent"/>
-     </svg>
+     </svg></div>
      <div class="tip"></div>` +
     ((series.length > 1 || ctx)
       ? `<div class="legend">${series.map(s =>
@@ -633,7 +661,7 @@ function monthlyBars(el, rows, opts = {}){
     return;
   }
   const W = Math.max(el.clientWidth || 320, 280),
-        H = Math.max(Math.round(el.clientHeight || 0), opts.height || 235);
+        H = Math.max(Math.round(opts.height || 0), 150);
   const padL = 40, padR = 34, padT = 14, padB = 34;
   const iw = W - padL - padR, ih = H - padT - padB;
 
@@ -688,9 +716,9 @@ function monthlyBars(el, rows, opts = {}){
   });
 
   el.innerHTML =
-    `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="IPO listings per month with median intraday moves">
+    `<div class="plot"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="IPO listings per month with median intraday moves">
        ${grid.join('')}${zero}${bars}${ylab.join('')}${labs}
-     </svg>
+     </svg></div>
      <div class="legend">
        <span><i style="background:${cPop}"></i>Open&rarr;high</span>
        <span><i style="background:${cCls}"></i>Open&rarr;close</span>
@@ -712,7 +740,7 @@ function flowBars(el, opts = {}){
     return;
   }
   const W = Math.max(el.clientWidth || 320, 280),
-        H = Math.max(Math.round(el.clientHeight || 0), opts.height || 215);
+        H = Math.max(Math.round(opts.height || 0), 150);
   const padL = 46, padR = 10, padT = 12, padB = 26;
   const iw = W - padL - padR, ih = H - padT - padB;
 
@@ -784,18 +812,78 @@ function flowBars(el, opts = {}){
       opacity=".7">3M &times;${ZOOM}</text>` : '';
 
   el.innerHTML =
-    `<svg viewBox="0 0 ${W} ${H}" role="img"
+    `<div class="plot"><svg viewBox="0 0 ${W} ${H}" role="img"
        aria-label="Daily net FII and DII cash flows, rupees crore">
        ${grid.join('')}${emphasis}${ylab.join('')}
        <line class="zero" x1="${padL}" x2="${W - padR}"
          y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>
        ${bars}${labs}
-     </svg>
+     </svg></div>
      <div class="legend">
        <span><i style="background:${cF}"></i>FII</span>
        <span><i style="background:${cD}"></i>DII</span>
        <span style="color:var(--text-muted)">&#8377; crore, net</span>
      </div>`;
+}
+
+/* The valuation band. Bands are fixed reference zones, not anything derived
+   from our own history: a thick neutral band from 18 to 24 straddling the
+   long-run average of about 21, with thinner layers either side. The forward
+   figures are the historical ranges that went with each zone - a probability,
+   not a forecast - so they are stated as ranges and never as a number. */
+const PE_LO = 11, PE_HI = 32;
+const PE_BANDS = [
+  {to:14, name:'Very cheap',     fwd:'30%+',    act:'step SIPs up, deploy cash',
+   col:'color-mix(in srgb, var(--up) 72%, var(--surface-1))'},
+  {to:16, name:'Cheap',          fwd:'~25–30%', act:'top SIPs up, deploy',
+   col:'color-mix(in srgb, var(--up) 54%, var(--surface-1))'},
+  {to:18, name:'Attractive',     fwd:'~20%',    act:'keep SIPs, add lump sums',
+   col:'color-mix(in srgb, var(--up) 36%, var(--surface-1))'},
+  {to:24, name:'Neutral',        fwd:'~13–15%', act:'keep SIPs, normal lump sums',
+   col:'color-mix(in srgb, var(--series-1) 62%, var(--surface-1))'},
+  {to:26, name:'Expensive',      fwd:'~4–8%',   act:'keep SIPs, stagger lump sums',
+   col:'color-mix(in srgb, var(--warn) 58%, var(--surface-1))'},
+  {to:PE_HI, name:'Very expensive', fwd:'~0–4%', act:'keep SIPs, hold lump sums back',
+   col:'color-mix(in srgb, var(--down) 55%, var(--surface-1))'},
+];
+
+function peBand(pe){
+  if(pe == null || !isFinite(pe)) return '';
+  const pos = v => ((Math.min(Math.max(v, PE_LO), PE_HI) - PE_LO)
+                    / (PE_HI - PE_LO)) * 100;
+  const here = PE_BANDS.find(b => pe < b.to) || PE_BANDS[PE_BANDS.length-1];
+  const range = b => {
+    const i = PE_BANDS.indexOf(b);
+    return i === 0 ? `under ${b.to}`
+         : b.to === PE_HI ? `${PE_BANDS[i-1].to}+`
+         : `${PE_BANDS[i-1].to}–${b.to}`;
+  };
+  const segs = PE_BANDS.map((b, i) => {
+    const from = i ? PE_BANDS[i-1].to : PE_LO;
+    return `<span style="flex:${b.to - from};background:${b.col}"
+      title="${esc(b.name)} ${esc(range(b))} — historically ${esc(b.fwd)} a year"></span>`;
+  }).join('');
+  // only the band edges are marked; a full ruler is noise at this size
+  const ticks = PE_BANDS.slice(0, -1).map(b =>
+    `<i style="left:${pos(b.to).toFixed(2)}%">${b.to}</i>`).join('');
+  const key = PE_BANDS.map(b =>
+    `<div class="${b === here ? 'on' : ''}"><u style="background:${b.col}"></u>${
+      esc(b.name)}<em>${esc(range(b))} · ${esc(b.fwd)}</em></div>`).join('');
+  const nowAt = Math.min(Math.max(pos(pe), 5), 95);
+
+  return `<div class="peband">
+    <p class="pbline">At <b>${nf(pe, 2)}</b> the Nifty 50 is <b>${esc(here.name)}</b>
+      (${esc(range(here))}). Buying this band has historically returned
+      <b>${esc(here.fwd)}</b> a year over the following years — ${esc(here.act)}.</p>
+    <div class="pbtop"><span class="pbnow" style="left:${nowAt.toFixed(2)}%">${
+      nf(pe, 2)}</span></div>
+    <div class="pbbar">${segs}
+      <i class="pbmark" style="left:${pos(pe).toFixed(2)}%"></i></div>
+    <div class="pbscale">${ticks}</div>
+    <div class="pbkey">${key}</div>
+    <p class="pbnote">Trailing P/E, long-run average about 21. The bands are
+      probability zones, not a rule — a cheap market can get cheaper.</p>
+  </div>`;
 }
 
 function card(title, caption, sec, body, cls, head){
@@ -935,7 +1023,8 @@ function render(){
                 {key:'dii_net', label:'DII net', color:cssv('--series-2')}];
 
   b.push(card('Nifty 50 P/E', 'Earnings multiple, from the NSE daily archive. The index sits behind it, dashed, on the right axis — context for the multiple, not a second subject.',
-    S.nse_valuation, '<div class="chart" data-c="pe"></div>'));
+    S.nse_valuation, '<div class="chart" data-c="pe"></div>'
+    + peBand(dig('nse_valuation', 'indices', 'Nifty 50', 'pe'))));
   b.push(card('US Treasury yields', 'Two tenors, one scale.', S.us_rates,
     '<div class="chart" data-c="us"></div>'));
   b.push(card('FII / DII derivatives positioning',
@@ -1284,33 +1373,39 @@ function render(){
     // its slot changes that card's height, which can change the row's height,
     // which changes what the next slot would have reported - measuring first
     // means every chart is sized against the same stable layout.
-    // Leave room for the legend that lands under the chart. On the first pass
-    // there is none to measure, so 26 is the one-line guess; on the second the
-    // real one is there, and on a narrow card it wraps to two lines and takes
-    // nearer 50 - which is exactly the gap this used to leave behind.
-    const fit = (el, base, h) =>
-      Math.max(base || 190, h - (el.querySelector('.legend')?.offsetHeight || 26));
+    // A chart's design height is a floor on its CARD, not a size for the SVG.
+    // The plot then takes whatever the row actually gives the card, which is
+    // how a short card's chart fills the space a taller neighbour creates.
+    const BASE = {flows:215, ipomonth:235};
+    const floorH = el => (opts[el.dataset.c] || {}).height
+                      || BASE[el.dataset.c] || 190;
+
     const drawAll = () => {
-    const slots = [...document.querySelectorAll('.chart')]
-      .map(el => ({el, h: el.clientHeight}));
-    slots.forEach(({el, h}) => {
-      if(el.dataset.c === 'flows'){
-        flowBars(el, {from: fyStart, height: fit(el, 215, h)});
-        return;
-      }
-      if(el.dataset.c === 'ipomonth'){
-        monthlyBars(el, (S.ipo_gains && S.ipo_gains.monthly) || [],
-                    {height: fit(el, 235, h)});
-        return;
-      }
-      const o = opts[el.dataset.c] || {};
-      lineChart(el, map[el.dataset.c] || [],
-                Object.assign({}, o, {height: fit(el, o.height, h)}));
-    });
+      const slots = [...document.querySelectorAll('.chart')];
+      slots.forEach(el => { el.style.minHeight = floorH(el) + 'px'; });
+      // Measure every plot first, against one settled layout: drawing into
+      // one card must not change what the next card would have reported.
+      const hs = slots.map(el =>
+        Math.max(el.querySelector('.plot')?.clientHeight || 0, 140));
+      slots.forEach((el, i) => {
+        const h = hs[i];
+        if(el.dataset.c === 'flows'){
+          flowBars(el, {from: fyStart, height: h});
+          return;
+        }
+        if(el.dataset.c === 'ipomonth'){
+          monthlyBars(el, (S.ipo_gains && S.ipo_gains.monthly) || [], {height: h});
+          return;
+        }
+        const o = opts[el.dataset.c] || {};
+        lineChart(el, map[el.dataset.c] || [], Object.assign({}, o, {height: h}));
+      });
     };
-    // Once. A second pass measured the settled layout and changed nothing, and
-    // a loop that reacts to its own growth just chases itself taller.
-    drawAll();
+    // Twice, and twice is exact: the first pass puts the legends in the
+    // layout, the second measures the plot left over and draws at that size.
+    // Drawing cannot move anything - the SVG has no height of its own - so a
+    // third pass would be identical. This is the loop that used to run away.
+    drawAll(); drawAll();
   }
 
   document.getElementById('foot').innerHTML =

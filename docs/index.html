@@ -317,10 +317,37 @@ function lineChart(el, series, opts = {}){
   // faded context line (the index behind the P/E), never for two series the
   // reader is meant to compare directly.
   const ctx = opts.context || null;
-  // Only as much right margin as the scale numbers need. The tags are flush
-  // to the chart's right edge and a long name reaches back OVER the plot
-  // rather than pushing the plot narrower.
-  const padL = 40, padR = 58, padT = 12, padB = 22;
+  // Width of a tag line, in the same 11px semibold the labels are drawn in.
+  const tagW = txt => txt.length * 5.6;
+  // A tag that does not fit breaks before its value: "FII net idx futures"
+  // over "-2,98,285". The name is what identifies the line, so it keeps the
+  // first line and the number follows it.
+  const wrapTag = (text, max) => {
+    if(tagW(text) <= max) return [text];
+    const i = text.lastIndexOf(' ');
+    return i < 0 ? [text] : [text.slice(0, i), text.slice(i + 1)];
+  };
+  const tagText = ser => {
+    const row = [...rows].reverse().find(x => x[ser.key] != null);
+    if(!row) return null;
+    return (opts.nameLabels || series.length > 1)
+      ? `${tagName(ser.label)} ${nf(row[ser.key], opts.dp ?? 2)}`
+      : nf(row[ser.key], opts.dp ?? 2);
+  };
+
+  // The right margin is sized to the tags, not guessed: work out what they
+  // need at the widest margin we would ever allow, then take only that much.
+  // Anything still too wide wraps, so nothing runs outside the card.
+  // A share of the card, but never so little that a narrow phone card has to
+  // squeeze the text, and never more than 42% - past that the plot is paying
+  // too much for a label.
+  const PAD_CAP = Math.round(Math.min(Math.max(W * 0.24, 108), W * 0.42));
+  const tagLines = series.map(tagText).filter(Boolean)
+                         .flatMap(t => wrapTag(t, PAD_CAP - 11));
+  const padL = 40,
+        padR = Math.min(Math.max(58, Math.max(0, ...tagLines.map(tagW)) + 11), PAD_CAP),
+        padT = 12, padB = 22;
+  const tagAvail = padR - 11;
   const iw = W - padL - padR, ih = H - padT - padB;
 
   // Rebased mode: every series becomes its % change from the first point it
@@ -488,15 +515,23 @@ function lineChart(el, series, opts = {}){
   // the higher yield stays above the label for the lower one, so the stack
   // still reads as the ranking even after they have been nudged apart.
   const LBL_H = 13;                     // line box, a shade over the 11px text
+  // A wrapped tag is a block, not a line: it is centred on its anchor and the
+  // stacking below has to reserve its whole height or two-line tags collide.
+  endLabels.forEach(l => {
+    l.lines = wrapTag(l.text, tagAvail);
+    l.hh = l.lines.length * LBL_H / 2;  // half the block, above and below y
+  });
   endLabels.sort((a, b) => b.v - a.v);  // highest value first = topmost
   const top = padT + 9, bottom = padT + ih - 2;
-  endLabels.forEach((l, i) => {         // push down off the one above
-    if(i) l.y = Math.max(l.y, endLabels[i-1].y + LBL_H);
+  endLabels.forEach((l, i) => {         // push down clear of the one above
+    if(i) l.y = Math.max(l.y, endLabels[i-1].y + endLabels[i-1].hh + l.hh);
   });
-  const overflow = endLabels.length
-    ? endLabels[endLabels.length-1].y - bottom : 0;
+  const tail = endLabels[endLabels.length - 1];
+  const overflow = tail ? tail.y + tail.hh - 6.5 - bottom : 0;
   if(overflow > 0) endLabels.forEach(l => { l.y -= overflow; });
-  endLabels.forEach(l => { l.y = Math.max(l.y, top); });
+  endLabels.forEach(l => { l.y = Math.max(l.y, top + l.hh - 6.5); });
+  // baseline of line i within a block
+  const lineY = (l, i) => l.y + (i - (l.lines.length - 1) / 2) * LBL_H;
 
   // A translucent plate behind each label: these sit over the plot, and a
   // line running under the text is what makes a number hard to read.
@@ -504,17 +539,21 @@ function lineChart(el, series, opts = {}){
   // a price scale carries the last price. Unnamed charts keep the tag inside
   // the plot, where a bare number beside the line reads fine.
   const tagLeft = padL + iw + 4;
-  const labelPlates = endLabels.map(l =>
-    `<rect x="${(tagLeft - 3).toFixed(1)}" y="${(l.y - 10.5).toFixed(1)}"
-      width="${(l.text.length * 5.6 + 7).toFixed(1)}" height="13" rx="3"
-      fill="${cssv('--surface-1')}" opacity=".88"/>`).join('');
-  const labelText = endLabels.map(l =>
-    `<text class="serieslabel" x="${tagLeft.toFixed(1)}" y="${l.y.toFixed(1)}"
-       text-anchor="start" fill="${l.color}">${esc(l.text)}</text>`).join('');
+  const labelPlates = endLabels.map(l => l.lines.map((ln, i) =>
+    `<rect x="${(tagLeft - 3).toFixed(1)}" y="${(lineY(l, i) - 10.5).toFixed(1)}"
+      width="${(Math.min(tagW(ln), tagAvail) + 7).toFixed(1)}" height="13" rx="3"
+      fill="${cssv('--surface-1')}" opacity=".88"/>`).join('')).join('');
+  const labelText = endLabels.map(l => l.lines.map((ln, i) =>
+    `<text class="serieslabel" x="${tagLeft.toFixed(1)}"
+       y="${lineY(l, i).toFixed(1)}" text-anchor="start" fill="${l.color}"${
+       tagW(ln) > tagAvail
+         ? ` textLength="${tagAvail.toFixed(1)}" lengthAdjust="spacingAndGlyphs"`
+         : ''}>${esc(ln)}</text>`).join('')).join('');
 
   // Drop a scale number only when a tag would print on top of it.
+  const tagYs = endLabels.flatMap(l => l.lines.map((_, i) => lineY(l, i)));
   const axisNumbers = tickYs.filter(t =>
-      !endLabels.some(l => Math.abs(l.y - (t.y + 3.5)) < 11))
+      !tagYs.some(y => Math.abs(y - (t.y + 3.5)) < 11))
     .map(t => t.html).join('');
 
   el.innerHTML =

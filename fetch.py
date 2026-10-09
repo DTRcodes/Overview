@@ -2190,6 +2190,114 @@ def mark_bse_only(ipo):
                     r["tv"] = "BSE:" + r["symbol"]
 
 
+# When a row may stay in "awaiting listing" past its expected date. An issue
+# that lists on BSE can never be confirmed here - this board reads NSE
+# bhavcopies - so the expected date is all there is to go on and the row
+# leaves the day after it, exactly as the calendar-only rows already do. An
+# NSE issue gets a week, because its own bhavcopy will confirm it and a real
+# delay is worth showing.
+BSE_GRACE_DAYS = 1
+LISTING_GRACE_DAYS = 7          # 93% of listings land inside T+6
+BSE_CONFIRM_MAX = 10            # quote lookups per run; overdue rows are rare
+BSE_CONFIRM_WINDOW = 10         # days past expected a first print can be
+
+
+def bse_first_trade(symbol, closed, expected):
+    """The day this symbol started trading on BSE, if it can be shown.
+
+    This only ever ADDS a date to a row that is leaving on its dates anyway.
+    It is not allowed to decide anything, because the quote feed cannot be
+    trusted to that standard: asked for a year of RELIANCE.BO it returned a
+    single bar dated today, which any "no history before the issue closed"
+    test reads as a brand-new listing. So the answer is accepted only when it
+    is coherent with the issue it claims to belong to - first print on or
+    after the close, and no later than a fortnight past the expected date -
+    and otherwise we simply do not know.
+    """
+    if not symbol or not closed:
+        return None
+    try:
+        import yfinance as yf
+        h = yf.Ticker(str(symbol).strip().upper() + ".BO").history(
+            start=(closed - dt.timedelta(days=400)).isoformat())
+    except Exception:
+        return None
+    if h is None or not len(h):
+        return None
+    first = min(d.date() for d in h.index)
+    if first < closed:
+        return None                 # somebody else's scrip, same letters
+    if expected and first > expected + dt.timedelta(days=BSE_CONFIRM_WINDOW):
+        return None                 # too late to be this issue's first print
+    return first
+
+
+def resolve_overdue(ipo, today):
+    """Nothing may sit in "awaiting listing" for ever.
+
+    NSE's own IPO is the case that exposed this: SEBI requires an exchange to
+    list its shares elsewhere, so it listed on BSE on 24 September - and this
+    board, which proves a listing by finding the symbol in an NSE bhavcopy,
+    still read "Awaiting listing" a fortnight later. The row had no way out.
+
+    Dates retire the row, not the lookup. Once a row is past the grace its
+    state is no longer forthcoming, whatever the reason - listed somewhere we
+    cannot see, or pulled - so it leaves the pipeline and is recorded in
+    listed_off_nse or lapsed. BSE's quote feed is asked as well, purely to put
+    a real listing date on the record where it can be had.
+    """
+    awaiting = ipo.get("awaiting") or []
+    keep, resolved, lapsed, looked = [], [], [], 0
+
+    for r in awaiting:
+        exp = None
+        if r.get("expected_listing"):
+            try:
+                exp = dt.date.fromisoformat(r["expected_listing"])
+            except (ValueError, TypeError):
+                exp = None
+        closed = _d(r.get("ipo_closed")) or _d(r.get("closes"))
+        if exp is None and closed:
+            # The same T+3 the rest of the board uses - trading days, with NSE
+            # holidays skipped. Counting calendar days here would call an
+            # issue late over a long weekend.
+            exp = expected_listing(closed)
+        if exp is None:
+            keep.append(r)          # nothing to judge it against
+            continue
+
+        overdue = (today - exp).days
+        bse_side = bool(r.get("bse_only")) or str(
+            r.get("platform") or "").upper().startswith("BSE")
+        grace = BSE_GRACE_DAYS if bse_side else LISTING_GRACE_DAYS
+        if overdue <= grace:
+            keep.append(r)
+            continue
+
+        first = None
+        if r.get("symbol") and looked < BSE_CONFIRM_MAX:
+            looked += 1
+            first = bse_first_trade(r["symbol"], closed or exp, exp)
+        if first:
+            resolved.append({"company": r.get("company"),
+                             "symbol": r.get("symbol"),
+                             "listed_on": first.isoformat(),
+                             "exchange": "BSE"})
+        else:
+            lapsed.append({"company": r.get("company"),
+                           "symbol": r.get("symbol"),
+                           "expected_listing": exp.isoformat(),
+                           "days_overdue": overdue,
+                           "reason": "no listing this board can see, %d days "
+                                     "past the expected date" % overdue})
+
+    ipo["awaiting"] = keep
+    if resolved:
+        ipo["listed_off_nse"] = resolved
+    if lapsed:
+        ipo["lapsed"] = lapsed
+
+
 def _acronym(name):
     """'National Stock Exchange of India Limited' -> 'nse'. The words dropped
     are the ones a company is never called by."""
@@ -2388,6 +2496,8 @@ def merge_calendar(sections):
             r["listing_label"] = opens_label(o, today)
 
     mark_bse_only(ipo)
+    resolve_overdue(ipo, today)
+    awaiting = ipo["awaiting"]
     sort_pipeline(awaiting, open_now)
     ipo["current"] = open_now
     # Rebuilt here, not in the fetcher: the calendar rows arrive after it ran,

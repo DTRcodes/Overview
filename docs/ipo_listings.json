@@ -15308,7 +15308,8 @@
    "open": 111.0,
    "close": 105.45,
    "gain_open_pct": -5.93,
-   "gain_close_pct": -10.64
+   "gain_close_pct": -10.64,
+   "price_source": "bhavcopy"
   }
  },
  "unresolvable": [

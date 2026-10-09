@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-09T10:16:38+05:30",
-  "generated_at_utc": "2026-10-09T04:46:38+00:00",
+  "generated_at": "2026-10-09T14:38:30+05:30",
+  "generated_at_utc": "2026-10-09T09:08:30+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -334,26 +334,6 @@
       "listing_today": [],
       "awaiting": [
         {
-          "company": "National Stock Exchange of India Limited",
-          "symbol": "NSE",
-          "tv": "BSE:NSE",
-          "series": "EQ",
-          "price_range": "Rs.1700 to Rs.1785",
-          "issue_price": "-",
-          "listing_date": "-",
-          "ipo_closed": "21-SEP-2026",
-          "days_since_close": 18,
-          "expected_listing": "2026-09-24",
-          "expected_listing_dmy": "24-Sep-2026",
-          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
-          "lists_today_expected": false,
-          "listing_label": "Awaiting listing",
-          "days_to_listing": -15,
-          "platform": "BSE",
-          "bse_only": true,
-          "bse_only_reason": "an exchange may not list on its own platform (SEBI)"
-        },
-        {
           "company": "Acme India Industries",
           "symbol": null,
           "tv": null,
@@ -492,6 +472,24 @@
           "listing_label": "Opens Tuesday"
         },
         {
+          "company": "Fusion CX",
+          "symbol": null,
+          "tv": null,
+          "series": "EQ",
+          "platform": null,
+          "price": "Rs.275 to Rs.289",
+          "price_range": "Rs.275 to Rs.289",
+          "opens": "14-Oct-2026",
+          "closes": "16-Oct-2026",
+          "expected_listing": "2026-10-22",
+          "expected_listing_dmy": "22-Oct-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "from_calendar": true,
+          "live": false,
+          "status": "Forthcoming",
+          "listing_label": "Opens Wednesday"
+        },
+        {
           "company": "Jio Platforms",
           "symbol": null,
           "tv": null,
@@ -572,6 +570,24 @@
           "live": false,
           "status": "Forthcoming",
           "listing_label": "Opens Tuesday"
+        },
+        {
+          "company": "Fusion CX",
+          "symbol": null,
+          "tv": null,
+          "series": "EQ",
+          "platform": null,
+          "price": "Rs.275 to Rs.289",
+          "price_range": "Rs.275 to Rs.289",
+          "opens": "14-Oct-2026",
+          "closes": "16-Oct-2026",
+          "expected_listing": "2026-10-22",
+          "expected_listing_dmy": "22-Oct-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "from_calendar": true,
+          "live": false,
+          "status": "Forthcoming",
+          "listing_label": "Opens Wednesday"
         },
         {
           "company": "Jio Platforms",
@@ -682,19 +698,19 @@
           "listing_date": "05-OCT-2026"
         },
         {
-          "company": "Bench Mark Infotech Services Limited",
-          "symbol": "BMISL",
-          "tv": "NSE:BMISL",
-          "price_range": "Rs.104 to Rs.110",
-          "issue_price": "110",
-          "listing_date": "05-OCT-2026"
-        },
-        {
           "company": "Himalayan Solar Limited",
           "symbol": "HIMALAYAN",
           "tv": "NSE:HIMALAYAN",
           "price_range": "Rs.98 to Rs.103",
           "issue_price": "103",
+          "listing_date": "05-OCT-2026"
+        },
+        {
+          "company": "Bench Mark Infotech Services Limited",
+          "symbol": "BMISL",
+          "tv": "NSE:BMISL",
+          "price_range": "Rs.104 to Rs.110",
+          "issue_price": "110",
           "listing_date": "05-OCT-2026"
         },
         {
@@ -916,7 +932,6 @@
       ],
       "past_total": 1474,
       "tv_watchlist": [
-        "BSE:NSE",
         "NSE:RKFAL",
         "NSE:SMCG04",
         "NSE:HDFIRE",
@@ -926,16 +941,24 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-10-09",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-10-09T10:16:27+05:30",
+      "fetched_at": "2026-10-09T14:38:27+05:30",
       "stale": false,
-      "calendar_added": 5,
+      "listed_off_nse": [
+        {
+          "company": "National Stock Exchange of India Limited",
+          "symbol": "NSE",
+          "listed_on": "2026-09-24",
+          "exchange": "BSE"
+        }
+      ],
+      "calendar_added": 6,
       "horizon": {
         "min_days": 20,
         "furthest_open": "2026-10-21",
         "furthest_open_dmy": "21-Oct-2026",
         "furthest_company": "Jio Platforms",
         "days_ahead": 12,
-        "forthcoming": 4
+        "forthcoming": 5
       },
       "circular_confirmed": 0,
       "gmp_matched": 0
@@ -1412,10 +1435,10 @@
       "confirmed": 31,
       "checked": 49,
       "remembered": 82,
-      "as_of": "2026-10-09T10:16:27+05:30",
+      "as_of": "2026-10-09T14:38:27+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-10-09T10:16:27+05:30",
+      "fetched_at": "2026-10-09T14:38:27+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1426,17 +1449,17 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-10-09T10:16:27+05:30",
+      "fetched_at": "2026-10-09T14:38:28+05:30",
       "stale": false
     },
     "ipo_gmp": {
       "current": [],
       "history": [],
       "track_record": null,
-      "as_of": "2026-10-09T10:16:29+05:30",
+      "as_of": "2026-10-09T14:38:29+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-10-09T10:16:29+05:30",
+      "fetched_at": "2026-10-09T14:38:29+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -1450,6 +1473,16 @@
           "price_band": "Rs.[.]",
           "size": "₹[.] Cr.",
           "match": "jioplatforms"
+        },
+        {
+          "company": "Fusion CX",
+          "board": "mainboard",
+          "platform": null,
+          "opens": "2026-10-14",
+          "closes": "2026-10-16",
+          "price_band": "Rs.275 to Rs.289",
+          "size": "₹702 Cr.",
+          "match": "fusioncx"
         },
         {
           "company": "HD Fire Protect",
@@ -1782,9 +1815,9 @@
           "match": "blackopalconsultants"
         }
       ],
-      "as_of": "2026-10-09T10:16:30+05:30",
+      "as_of": "2026-10-09T14:38:30+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-10-09T10:16:30+05:30",
+      "fetched_at": "2026-10-09T14:38:30+05:30",
       "stale": false
     },
     "ipo_gains": {

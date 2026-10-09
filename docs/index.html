@@ -268,6 +268,13 @@ const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','
 const dmy = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
   return m ? `${m[3]}-${MON[+m[2]-1]}-${m[1]}` : (s || '–'); };
 
+const undmy = s => {
+  const m = /^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/.exec(String(s || ''));
+  if(!m) return null;
+  const mi = MON.findIndex(x => x.toLowerCase() === m[2].toLowerCase());
+  return mi < 0 ? null : new Date(+m[3], mi, +m[1]);
+};
+
 let DATA = null, HIST = [], RANGE = 180;
 // The recent window is drawn at this many times the pixels per day of the
 // span before it. 1 means one scale throughout - the plain chart.
@@ -909,21 +916,53 @@ function rangeSeg(key){
     ).join('') + `</div>`;
 }
 
-// SME issues now outnumber mainboard ones in the pipeline, and most list on
-// BSE where they cannot be traded from an NSE watchlist - so they are hidden
-// unless asked for. The choice is remembered per browser; storage throws in
-// some private windows, so every access is wrapped and the default stands.
+// Filtered down, the pipeline is one thing: NSE mainboard equity. SME issues
+// outnumber mainboard ones and most list on BSE, where they cannot be traded
+// from an NSE watchlist; debt and bond issues are not equity at all. Both are
+// hidden unless asked for. The choice is remembered per browser; storage
+// throws in some private windows, so every access is wrapped and the default
+// stands. The key keeps its old name so a setting already saved survives.
 let HIDE_SME = true;
 try { const v = localStorage.getItem('hideSME'); if(v !== null) HIDE_SME = v === '1'; }
 catch(e){}
-const isSME = x => /SME/i.test(x.platform || '') ||
-  String(x.series || '').toUpperCase() === 'SME';
+// Equity series, not an SME platform, and listing on NSE. A row with no
+// platform is a mainboard issue - the calendar only names a platform for SME.
+const nseMainEq = x =>
+  String(x.series || '').toUpperCase() === 'EQ' &&
+  !/SME/i.test(x.platform || '') &&
+  !x.bse_only &&
+  !/^BSE/i.test(String(x.platform || ''));
 
 function smeSeg(hidden){
-  return `<div class="seg seg-sm" role="group" aria-label="SME issues">
+  return `<div class="seg seg-sm" role="group" aria-label="Pipeline filter">
     <button data-smetoggle="1"${HIDE_SME ? ' aria-pressed="true"' : ''}
-      title="Hide SME issues on both NSE Emerge and BSE SME">Hide SME${
-      HIDE_SME && hidden ? ` &middot; ${hidden}` : ''}</button></div>`;
+      title="Show only NSE mainboard equity — hides SME on both Emerge and BSE SME, debt and bond issues, and anything that lists on BSE alone">NSE EQ only${
+      HIDE_SME && hidden ? ` &middot; ${hidden} hidden` : ''}</button></div>`;
+}
+
+/* How far ahead the board reaches - counted off the rows actually on screen.
+   Taken from the unfiltered horizon it contradicted the table in front of it,
+   promising issues the filter had just removed. */
+function reachNote(ip, visible, hidden){
+  const forth = (visible || []).filter(x => !x.live && undmy(x.opens));
+  const far = forth.reduce((a, b) =>
+    !a || undmy(b.opens) > undmy(a.opens) ? b : a, null);
+  if(!far){
+    return hidden
+      ? `<div class="note"><b>Reach:</b> nothing forthcoming passes the filter;
+          ${hidden} row${hidden > 1 ? 's' : ''} hidden.</div>`
+      : '';
+  }
+  const t0 = new Date(); t0.setHours(0, 0, 0, 0);
+  const days = Math.round((undmy(far.opens) - t0) / 86400000);
+  const minDays = (ip && ip.horizon && ip.horizon.min_days) || 20;
+  return `<div class="note"><b>Reach:</b> furthest announced issue opens
+    <b>${esc(far.opens)}</b> (${esc(far.company)}, ${days}d ahead);
+    ${forth.length} not yet open${hidden ? `. ${hidden} row${hidden > 1 ? 's' : ''}
+    hidden by the filter` : ''}. Everything dated${hidden ? ' that passes the filter' : ''}
+    is shown &mdash; issues only get dates once the RHP and price band are
+    filed, about a week before opening, so no source can see a dated issue
+    ${minDays} days out.</div>`;
 }
 
 function render(){
@@ -1121,13 +1160,13 @@ function render(){
   // ---- IPOs
   const ip = S.nse_ipo, cur = (ip && ip.current) || [];
   // ---- IPO pipeline: listed today (green), awaiting listing (blue), open now
-  const keep = list => HIDE_SME ? list.filter(x => !isSME(x)) : list;
+  const keep = list => HIDE_SME ? list.filter(nseMainEq) : list;
   const allToday = (ip && ip.listing_today) || [];
   const allSoon  = (ip && ip.awaiting) || [];
   const allCur   = (ip && ip.open_now) || cur;
   const today = keep(allToday), soon = keep(allSoon), cur2 = keep(allCur);
-  const smeHidden = (allToday.length + allSoon.length + allCur.length) -
-                    (today.length + soon.length + cur2.length);
+  const hiddenRows = (allToday.length + allSoon.length + allCur.length) -
+                     (today.length + soon.length + cur2.length);
   // The watchlist follows what is on screen: handing over tickers for rows the
   // board is hiding would be a surprise.
   const tvAll = [...today, ...soon, ...cur2].map(x => x.tv).filter(Boolean);
@@ -1214,13 +1253,7 @@ function render(){
     tvRow('tv-all', tvAll) +
     (today.length ? `<div class="note" style="margin-top:6px">Listed today only:</div>` +
         tvRow('tv-today', today.map(x => x.tv).filter(Boolean)) : '') +
-    (ip && ip.horizon && ip.horizon.furthest_open_dmy
-      ? `<div class="note"><b>Reach:</b> furthest announced issue opens
-          <b>${esc(ip.horizon.furthest_open_dmy)}</b> (${esc(ip.horizon.furthest_company)},
-          ${ip.horizon.days_ahead}d ahead); ${ip.horizon.forthcoming} not yet open.
-          Everything dated is shown &mdash; issues only get dates once the RHP
-          and price band are filed, about a week before opening, so no source
-          can see a dated issue ${ip.horizon.min_days} days out.</div>` : '') +
+    reachNote(ip, cur2, hiddenRows) +
     `<div class="note">${ip?esc(ip.past_total):0} past issues in the NSE archive.
       Neither NSE nor Chittorgarh publishes a forward listing date, so the
       expected date is computed from SEBI's T+3 rule &mdash; three trading days
@@ -1230,7 +1263,7 @@ function render(){
       estimate &mdash; 83% of 151 past
       listings landed exactly on T+3, ~93% within T+2 to T+6. It is an estimate
       until the stock appears in a bhavcopy, which is what turns a row
-      green.</div>`, 'wide', smeSeg(smeHidden)));
+      green.</div>`, 'wide', smeSeg(hiddenRows)));
 
   // ---- NIFTY 50 allocation board, framed from its own page.
   // It is a full page in its own right (settings drawer, view modes, its own

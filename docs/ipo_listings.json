@@ -15310,6 +15310,21 @@
    "gain_open_pct": -5.93,
    "gain_close_pct": -10.64,
    "price_source": "bhavcopy"
+  },
+  "RKFAL": {
+   "high": 80.0,
+   "low": 76.0,
+   "intra_pop_pct": 0.0,
+   "intra_close_pct": -5.0,
+   "symbol": "RKFAL",
+   "company": "R.K. Fashion Accessories Limited",
+   "issue_price": 82.0,
+   "listing_date": "2026-10-12",
+   "ipo_closed": "07-OCT-2026",
+   "open": 80.0,
+   "close": 76.0,
+   "gain_open_pct": -2.44,
+   "gain_close_pct": -7.32
   }
  },
  "unresolvable": [

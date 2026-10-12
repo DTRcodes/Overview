@@ -931,5 +931,17 @@
 "match": "nityasgemsandjewellery",
 "subject": "Listing of Equity Shares of Nityas Gems and Jewellery Limited (IPO)",
 "symbol": "NITYAS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76831.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76831.zip",
+"circular_date": "October 09, 2026",
+"company": "R.K. Fashion Accessories Limited",
+"confirmed_listing": "2026-10-12",
+"confirmed_listing_dmy": "12-Oct-2026",
+"date_pending": false,
+"match": "rkfashionaccessories",
+"subject": "Listing of Equity Shares of R.K. Fashion Accessories Limited (SME IPO)",
+"symbol": "RKFAL"
 }
 }

@@ -32011,8 +32011,30 @@
   {
    "date": "2026-10-15",
    "repo": 5.5,
-   "usd_inr": 95.05,
-   "dxy": 102.029
+   "usd_inr": 95.045,
+   "dxy": 102.047,
+   "nifty_close": 22997.35,
+   "nifty_pe": 19.65,
+   "nifty_pb": 2.82,
+   "nifty_div_yield": 1.49,
+   "india_10y": 7.41,
+   "fii_net": -5285.37,
+   "dii_net": 3319.39,
+   "fii_call_oi_chg": 125025.0,
+   "fii_put_oi_chg": -97738.0,
+   "fii_fut_amt": 2551.5,
+   "fii_fut_oi_chg": 16870.0,
+   "fii_fut_oi": -279827.0,
+   "fii_idx_fut_net": -279827.0,
+   "fii_stk_fut_net": 786561.0,
+   "dii_idx_fut_net": 36441.0,
+   "dii_stk_fut_net": -4376554.0,
+   "y5_de": 3.17,
+   "y10_de": 3.45,
+   "y5_cn": 1.39,
+   "y10_cn": 1.6601,
+   "y5_in": 7.25,
+   "y10_in": 7.41
   }
  ]
 }

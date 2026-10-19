@@ -943,5 +943,16 @@
 "match": "rkfashionaccessories",
 "subject": "Listing of Equity Shares of R.K. Fashion Accessories Limited (SME IPO)",
 "symbol": "RKFAL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML76992.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML76992.pdf",
+"circular_date": "October 19, 2026",
+"company": "HD Fire Protect Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "hdfireprotect",
+"subject": "Listing of Equity Shares of HD Fire Protect Limited (IPO)",
+"symbol": "HDFIRE"
 }
 }

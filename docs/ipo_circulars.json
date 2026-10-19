@@ -954,5 +954,27 @@
 "match": "hdfireprotect",
 "subject": "Listing of Equity Shares of HD Fire Protect Limited (IPO)",
 "symbol": "HDFIRE"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77010.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77010.zip",
+"circular_date": "October 19, 2026",
+"company": "Vaibhav Vyapaar Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "vaibhavvyapaar",
+"subject": "Listing of Equity Shares of Vaibhav Vyapaar Limited (SME IPO)",
+"symbol": "LOANFRONT"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77012.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77012.zip",
+"circular_date": "October 19, 2026",
+"company": "HD Fire Protect Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "hdfireprotect",
+"subject": "Listing of Equity Shares of HD Fire Protect Limited (IPO)",
+"symbol": "HDFIRE"
 }
 }

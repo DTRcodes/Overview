@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-20T00:54:17+05:30",
-  "generated_at_utc": "2026-10-19T19:24:17+00:00",
+  "generated_at": "2026-10-20T13:22:11+05:30",
+  "generated_at_utc": "2026-10-20T07:52:11+00:00",
   "failures": [
     {
       "source": "ipo_gmp",
@@ -30,7 +30,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-10-20T00:53:35+05:30",
+      "fetched_at": "2026-10-20T13:21:35+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -72,7 +72,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-10-20T00:53:36+05:30",
+      "fetched_at": "2026-10-20T13:21:36+05:30",
       "stale": false,
       "series_days": 21
     },
@@ -107,7 +107,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-10-20T00:53:37+05:30",
+      "fetched_at": "2026-10-20T13:21:37+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -172,7 +172,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-10-20T00:53:37+05:30",
+      "fetched_at": "2026-10-20T13:21:37+05:30",
       "stale": false
     },
     "india_yields": {
@@ -191,7 +191,7 @@
       "spread_10y_2y": 0.71,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-10-20T00:53:39+05:30",
+      "fetched_at": "2026-10-20T13:21:40+05:30",
       "stale": false
     },
     "us_rates": {
@@ -209,42 +209,42 @@
           "date": "2026-10-16"
         },
         "us_2y": {
-          "value": 4.77,
-          "date": "2026-10-15"
+          "value": 4.74,
+          "date": "2026-10-16"
         },
         "us_5y": {
-          "value": 4.91,
-          "date": "2026-10-15"
+          "value": 4.89,
+          "date": "2026-10-16"
         },
         "us_10y": {
-          "value": 5.1,
-          "date": "2026-10-15"
+          "value": 5.09,
+          "date": "2026-10-16"
         },
         "us_30y": {
           "value": 5.43,
-          "date": "2026-10-15"
+          "date": "2026-10-16"
         },
         "us_10y_2y_spread": {
-          "value": 0.35,
-          "date": "2026-10-16"
+          "value": 0.38,
+          "date": "2026-10-19"
         }
       },
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-10-20T00:53:47+05:30",
+      "fetched_at": "2026-10-20T13:21:42+05:30",
       "stale": false
     },
     "world_yields": {
       "latest": {
         "5": {
           "US": {
-            "value": 4.89,
-            "date": "2026-10-16"
+            "value": 4.94,
+            "date": "2026-10-19"
           },
           "Japan": {
-            "value": 2.335,
-            "date": "2026-10-16"
+            "value": 2.313,
+            "date": "2026-10-19"
           },
           "UK": {
             "value": 4.9187,
@@ -265,12 +265,12 @@
         },
         "10": {
           "US": {
-            "value": 5.09,
-            "date": "2026-10-16"
+            "value": 5.15,
+            "date": "2026-10-19"
           },
           "Japan": {
-            "value": 2.958,
-            "date": "2026-10-16"
+            "value": 2.935,
+            "date": "2026-10-19"
           },
           "UK": {
             "value": 5.3092,
@@ -312,11 +312,11 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-10-20T00:54:00+05:30",
+      "fetched_at": "2026-10-20T13:21:56+05:30",
       "stale": false,
       "series_points": {
-        "y5_us": 698,
-        "y10_us": 698,
+        "y5_us": 699,
+        "y10_us": 699,
         "y5_jp": 1500,
         "y10_jp": 1500,
         "y5_uk": 1500,
@@ -330,13 +330,13 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 94.915,
-      "as_of": "2026-10-19",
+      "usd_inr": 94.92,
+      "as_of": "2026-10-20",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 101.994,
-      "dxy_as_of": "2026-10-19",
-      "dxy_at": "2026-10-19 15:13:00-04:00",
-      "fetched_at": "2026-10-20T00:54:01+05:30",
+      "dxy": 101.763,
+      "dxy_as_of": "2026-10-20",
+      "dxy_at": "2026-10-20 03:41:00-04:00",
+      "fetched_at": "2026-10-20T13:21:57+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -913,7 +913,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-10-20",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-10-20T00:54:03+05:30",
+      "fetched_at": "2026-10-20T13:21:59+05:30",
       "stale": false,
       "listed_off_nse": [
         {
@@ -938,26 +938,26 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "HD Fire Protect Limited",
-          "match": "hdfireprotect",
           "board": "mainboard",
-          "circular_date": "October 19, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML77012.zip",
-          "subject": "Listing of Equity Shares of HD Fire Protect Limited (IPO)",
+          "circular_date": "October 19, 2026",
+          "company": "HD Fire Protect Limited",
           "confirmed_listing": null,
-          "symbol": "HDFIRE",
-          "date_pending": false
+          "date_pending": false,
+          "match": "hdfireprotect",
+          "subject": "Listing of Equity Shares of HD Fire Protect Limited (IPO)",
+          "symbol": "HDFIRE"
         },
         {
-          "company": "Vaibhav Vyapaar Limited",
-          "match": "vaibhavvyapaar",
           "board": "SME",
-          "circular_date": "October 19, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML77010.zip",
-          "subject": "Listing of Equity Shares of Vaibhav Vyapaar Limited (SME IPO)",
+          "circular_date": "October 19, 2026",
+          "company": "Vaibhav Vyapaar Limited",
           "confirmed_listing": null,
-          "symbol": "LOANFRONT",
-          "date_pending": false
+          "date_pending": false,
+          "match": "vaibhavvyapaar",
+          "subject": "Listing of Equity Shares of Vaibhav Vyapaar Limited (SME IPO)",
+          "symbol": "LOANFRONT"
         },
         {
           "board": "SME",
@@ -1406,10 +1406,10 @@
       "confirmed": 32,
       "checked": 52,
       "remembered": 86,
-      "as_of": "2026-10-20T00:54:07+05:30",
+      "as_of": "2026-10-20T13:21:59+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-10-20T00:54:07+05:30",
+      "fetched_at": "2026-10-20T13:21:59+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1420,7 +1420,7 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-10-20T00:54:07+05:30",
+      "fetched_at": "2026-10-20T13:21:59+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2654,7 +2654,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-10-20T00:54:15+05:30",
+      "fetched_at": "2026-10-20T13:22:09+05:30",
       "stale": false
     },
     "earnings": {
@@ -2753,32 +2753,32 @@
           "quarters": [
             {
               "quarter": "2026-06-30",
-              "revenue": 482358030000.00006,
-              "net_income": 77735385000.0,
+              "revenue": 482383440000.0,
+              "net_income": 77739480000.0,
               "age_days": 112
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 478371600000.00006,
-              "net_income": 87226885000.0,
+              "revenue": 478396800000.0,
+              "net_income": 87231480000.0,
               "age_days": 203
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 483971585000.00006,
-              "net_income": 70901505000.0,
+              "revenue": 483997080000.0,
+              "net_income": 70905240000.0,
               "age_days": 293
             },
             {
               "quarter": "2025-09-30",
-              "revenue": 481788540000.00006,
-              "net_income": 79633685000.0,
+              "revenue": 481813920000.0,
+              "net_income": 79637880000.0,
               "age_days": 385
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 94.915,
+          "fx_used": 94.92,
           "latest_quarter": "2026-06-30",
           "age_days": 112,
           "stale": false
@@ -2819,7 +2819,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 94.915,
+      "usd_inr": 94.92,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -2828,7 +2828,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-10-20T00:54:17+05:30",
+      "fetched_at": "2026-10-20T13:22:11+05:30",
       "stale": false
     }
   }

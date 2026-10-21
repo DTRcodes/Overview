@@ -15333,13 +15333,13 @@
    "issue_price": 271.0,
    "listing_date": "2026-10-21",
    "open": 271.0,
-   "last": 308.75,
-   "close": 308.75,
+   "last": 308.9,
+   "close": 308.9,
    "provisional": true,
    "price_source": "yahoo intraday",
    "gain_open_pct": 0.0,
-   "gain_close_pct": 13.93,
-   "from_open_pct": 13.93
+   "gain_close_pct": 13.99,
+   "from_open_pct": 13.99
   }
  },
  "unresolvable": [

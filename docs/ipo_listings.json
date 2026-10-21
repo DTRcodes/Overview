@@ -15326,6 +15326,20 @@
    "gain_open_pct": -2.44,
    "gain_close_pct": -7.32,
    "price_source": "bhavcopy"
+  },
+  "HDFIRE": {
+   "symbol": "HDFIRE",
+   "company": "HD Fire Protect Limited",
+   "issue_price": 271.0,
+   "listing_date": "2026-10-21",
+   "open": 271.0,
+   "last": 308.75,
+   "close": 308.75,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 13.93,
+   "from_open_pct": 13.93
   }
  },
  "unresolvable": [
@@ -15587,6 +15601,7 @@
   "PAR",
   "PARAGMILK",
   "PARIN",
+  "PARTYPP",
   "PASHUPATI",
   "PENTAGLTD",
   "PERFECT",

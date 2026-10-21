@@ -976,5 +976,38 @@
 "match": "hdfireprotect",
 "subject": "Listing of Equity Shares of HD Fire Protect Limited (IPO)",
 "symbol": "HDFIRE"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77020.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77020.pdf",
+"circular_date": "October 21, 2026",
+"company": "Fusion CX Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "fusioncx",
+"subject": "Listing of Equity Shares of Fusion CX Limited (IPO)",
+"symbol": "FUSIONCX"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77035.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77035.zip",
+"circular_date": "October 21, 2026",
+"company": "Fusion CX Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "fusioncx",
+"subject": "Listing of Equity Shares of Fusion CX Limited (IPO)",
+"symbol": "FUSIONCX"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77041.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77041.zip",
+"circular_date": "October 21, 2026",
+"company": "Ravita Engineering Services Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "ravitaengineeringservices",
+"subject": "Listing of Equity Shares of Ravita Engineering Services Limited (SME IPO)",
+"symbol": "RAVITA"
 }
 }

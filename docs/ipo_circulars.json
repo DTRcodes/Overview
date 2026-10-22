@@ -1009,5 +1009,16 @@
 "match": "ravitaengineeringservices",
 "subject": "Listing of Equity Shares of Ravita Engineering Services Limited (SME IPO)",
 "symbol": "RAVITA"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77046.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77046.pdf",
+"circular_date": "October 22, 2026",
+"company": "Bonfiglioli Transmissions Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "bonfigliolitransmissions",
+"subject": "Listing of Equity Shares of Bonfiglioli Transmissions Limited (IPO)",
+"symbol": "BONFIG"
 }
 }

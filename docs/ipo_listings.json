@@ -15364,14 +15364,31 @@
    "company": "Fusion CX Limited",
    "issue_price": 289.0,
    "listing_date": "2026-10-22",
-   "open": 289.0,
-   "last": 290.75,
-   "close": 290.75,
-   "provisional": true,
-   "price_source": "yahoo intraday",
+   "open": 305.0,
+   "close": 289.65,
+   "price_source": "bhavcopy",
+   "gain_open_pct": 5.54,
+   "gain_close_pct": 0.22,
+   "from_open_pct": 0.22,
+   "high": 312.95,
+   "low": 284.35,
+   "intra_close_pct": -5.03,
+   "intra_pop_pct": 2.61
+  },
+  "RAVITA": {
+   "high": 116.45,
+   "low": 106.4,
+   "intra_pop_pct": 3.97,
+   "intra_close_pct": 1.52,
+   "symbol": "RAVITA",
+   "company": "Ravita Engineering Services Limited",
+   "issue_price": 112.0,
+   "listing_date": "2026-10-22",
+   "ipo_closed": "16-OCT-2026",
+   "open": 112.0,
+   "close": 113.7,
    "gain_open_pct": 0.0,
-   "gain_close_pct": 0.61,
-   "from_open_pct": 0.61
+   "gain_close_pct": 1.52
   }
  },
  "unresolvable": [

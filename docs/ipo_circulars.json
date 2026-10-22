@@ -1020,5 +1020,85 @@
 "match": "bonfigliolitransmissions",
 "subject": "Listing of Equity Shares of Bonfiglioli Transmissions Limited (IPO)",
 "symbol": "BONFIG"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77054.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77054.pdf",
+"circular_date": "October 22, 2026",
+"company": "Sahajanand Medical Technologies Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "sahajanandmedicaltechnologies",
+"subject": "Listing of Equity Shares of Sahajanand Medical Technologies Limited (IPO)",
+"symbol": "SMT"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77062.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77062.pdf",
+"circular_date": "October 22, 2026",
+"company": "Zetwerk Manufacturing Businesses Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "zetwerkmanufacturingbusinesses",
+"subject": "Listing of Equity Shares of Zetwerk Manufacturing Businesses Limited (IPO)",
+"symbol": "ZETWERK"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77065.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77065.pdf",
+"circular_date": "October 22, 2026",
+"company": "Tonbo Imaging India Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "tonboimaging",
+"subject": "Listing of Equity Shares of Tonbo Imaging India Limited (IPO)",
+"symbol": "TONBO"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77070.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77070.zip",
+"circular_date": "October 22, 2026",
+"company": "Sahajanand Medical Technologies Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "sahajanandmedicaltechnologies",
+"subject": "Listing of Equity Shares of Sahajanand Medical Technologies Limited (IPO)",
+"symbol": "SMT"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77071.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77071.zip",
+"circular_date": "October 22, 2026",
+"company": "Zetwerk Manufacturing Businesses Limited",
+"confirmed_listing": "2026-10-23",
+"confirmed_listing_dmy": "23-Oct-2026",
+"date_pending": false,
+"match": "zetwerkmanufacturingbusinesses",
+"subject": "Listing of Equity Shares of Zetwerk Manufacturing Businesses Limited (IPO)",
+"symbol": "ZETWERK"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77075.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77075.zip",
+"circular_date": "October 22, 2026",
+"company": "Bonfiglioli Transmissions Limited",
+"confirmed_listing": "2026-10-23",
+"confirmed_listing_dmy": "23-Oct-2026",
+"date_pending": false,
+"match": "bonfigliolitransmissions",
+"subject": "Listing of Equity Shares of Bonfiglioli Transmissions Limited (IPO)",
+"symbol": "BONFIG"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77077.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77077.zip",
+"circular_date": "October 22, 2026",
+"company": "Tonbo Imaging India Limited",
+"confirmed_listing": "2026-10-23",
+"confirmed_listing_dmy": "23-Oct-2026",
+"date_pending": false,
+"match": "tonboimaging",
+"subject": "Listing of Equity Shares of Tonbo Imaging India Limited (IPO)",
+"symbol": "TONBO"
 }
 }

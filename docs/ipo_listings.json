@@ -15388,7 +15388,64 @@
    "open": 112.0,
    "close": 113.7,
    "gain_open_pct": 0.0,
-   "gain_close_pct": 1.52
+   "gain_close_pct": 1.52,
+   "price_source": "bhavcopy"
+  },
+  "ZETWERK": {
+   "symbol": "ZETWERK",
+   "company": "Zetwerk Manufacturing Businesses Limited",
+   "issue_price": 151.0,
+   "listing_date": "2026-10-23",
+   "open": 151.0,
+   "last": 133.97,
+   "close": 133.97,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -11.28,
+   "from_open_pct": -11.28
+  },
+  "TONBO": {
+   "symbol": "TONBO",
+   "company": "Tonbo Imaging India Limited",
+   "issue_price": 700.0,
+   "listing_date": "2026-10-23",
+   "open": 700.0,
+   "last": 1068.9,
+   "close": 1068.9,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 52.7,
+   "from_open_pct": 52.7
+  },
+  "BONFIG": {
+   "symbol": "BONFIG",
+   "company": "Bonfiglioli Transmissions Limited",
+   "issue_price": 586.0,
+   "listing_date": "2026-10-23",
+   "open": 586.0,
+   "last": 577.25,
+   "close": 577.25,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -1.49,
+   "from_open_pct": -1.49
+  },
+  "SMT": {
+   "symbol": "SMT",
+   "company": "Sahajanand Medical Technologies Limited",
+   "issue_price": 344.0,
+   "listing_date": "2026-10-23",
+   "open": 344.0,
+   "last": 371.05,
+   "close": 371.05,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 7.86,
+   "from_open_pct": 7.86
   }
  },
  "unresolvable": [

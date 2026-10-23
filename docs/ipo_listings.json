@@ -15397,13 +15397,13 @@
    "issue_price": 151.0,
    "listing_date": "2026-10-23",
    "open": 151.0,
-   "last": 133.97,
-   "close": 133.97,
+   "last": 138.85,
+   "close": 138.85,
    "provisional": true,
    "price_source": "yahoo intraday",
    "gain_open_pct": 0.0,
-   "gain_close_pct": -11.28,
-   "from_open_pct": -11.28
+   "gain_close_pct": -8.05,
+   "from_open_pct": -8.05
   },
   "TONBO": {
    "symbol": "TONBO",
@@ -15411,13 +15411,13 @@
    "issue_price": 700.0,
    "listing_date": "2026-10-23",
    "open": 700.0,
-   "last": 1068.9,
-   "close": 1068.9,
+   "last": 1098.85,
+   "close": 1098.85,
    "provisional": true,
    "price_source": "yahoo intraday",
    "gain_open_pct": 0.0,
-   "gain_close_pct": 52.7,
-   "from_open_pct": 52.7
+   "gain_close_pct": 56.98,
+   "from_open_pct": 56.98
   },
   "BONFIG": {
    "symbol": "BONFIG",
@@ -15425,13 +15425,13 @@
    "issue_price": 586.0,
    "listing_date": "2026-10-23",
    "open": 586.0,
-   "last": 577.25,
-   "close": 577.25,
+   "last": 584.75,
+   "close": 584.75,
    "provisional": true,
    "price_source": "yahoo intraday",
    "gain_open_pct": 0.0,
-   "gain_close_pct": -1.49,
-   "from_open_pct": -1.49
+   "gain_close_pct": -0.21,
+   "from_open_pct": -0.21
   },
   "SMT": {
    "symbol": "SMT",
@@ -15439,13 +15439,13 @@
    "issue_price": 344.0,
    "listing_date": "2026-10-23",
    "open": 344.0,
-   "last": 371.05,
-   "close": 371.05,
+   "last": 375.3,
+   "close": 375.3,
    "provisional": true,
    "price_source": "yahoo intraday",
    "gain_open_pct": 0.0,
-   "gain_close_pct": 7.86,
-   "from_open_pct": 7.86
+   "gain_close_pct": 9.1,
+   "from_open_pct": 9.1
   }
  },
  "unresolvable": [

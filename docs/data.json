@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-23T13:21:31+05:30",
-  "generated_at_utc": "2026-10-23T07:51:31+00:00",
+  "generated_at": "2026-10-23T14:59:38+05:30",
+  "generated_at_utc": "2026-10-23T09:29:38+00:00",
   "failures": [
     {
       "source": "ipo_gmp",
@@ -30,7 +30,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-10-23T13:20:40+05:30",
+      "fetched_at": "2026-10-23T14:59:03+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -72,7 +72,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-10-23T13:20:41+05:30",
+      "fetched_at": "2026-10-23T14:59:04+05:30",
       "stale": false,
       "series_days": 21
     },
@@ -107,7 +107,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-10-23T13:20:42+05:30",
+      "fetched_at": "2026-10-23T14:59:04+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -172,7 +172,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-10-23T13:20:43+05:30",
+      "fetched_at": "2026-10-23T14:59:05+05:30",
       "stale": false
     },
     "india_yields": {
@@ -191,7 +191,7 @@
       "spread_10y_2y": 0.73,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-10-23T13:20:46+05:30",
+      "fetched_at": "2026-10-23T14:59:07+05:30",
       "stale": false
     },
     "us_rates": {
@@ -232,7 +232,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-10-23T13:20:49+05:30",
+      "fetched_at": "2026-10-23T14:59:10+05:30",
       "stale": false
     },
     "world_yields": {
@@ -247,8 +247,8 @@
             "date": "2026-10-22"
           },
           "UK": {
-            "value": 4.9618,
-            "date": "2026-10-20"
+            "value": 4.9505,
+            "date": "2026-10-21"
           },
           "Germany": {
             "value": 3.2,
@@ -273,8 +273,8 @@
             "date": "2026-10-22"
           },
           "UK": {
-            "value": 5.3516,
-            "date": "2026-10-20"
+            "value": 5.3337,
+            "date": "2026-10-21"
           },
           "Germany": {
             "value": 3.44,
@@ -312,7 +312,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-10-23T13:21:03+05:30",
+      "fetched_at": "2026-10-23T14:59:23+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 702,
@@ -330,13 +330,13 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 94.9275,
+      "usd_inr": 94.9225,
       "as_of": "2026-10-23",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 101.792,
+      "dxy": 101.773,
       "dxy_as_of": "2026-10-23",
-      "dxy_at": "2026-10-23 03:41:00-04:00",
-      "fetched_at": "2026-10-23T13:21:04+05:30",
+      "dxy_at": "2026-10-23 05:19:00-04:00",
+      "fetched_at": "2026-10-23T14:59:24+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -350,7 +350,7 @@
           "issue_price": "   151",
           "listing_date": "23-OCT-2026",
           "ipo_closed": "19-OCT-2026",
-          "traded_today": false,
+          "traded_today": true,
           "listing_label": "Listed Today",
           "confirmed_listing": "2026-10-23",
           "confirmed_listing_dmy": "23-Oct-2026",
@@ -366,7 +366,7 @@
           "issue_price": "   700",
           "listing_date": "23-OCT-2026",
           "ipo_closed": "19-OCT-2026",
-          "traded_today": false,
+          "traded_today": true,
           "listing_label": "Listed Today",
           "confirmed_listing": "2026-10-23",
           "confirmed_listing_dmy": "23-Oct-2026",
@@ -382,7 +382,7 @@
           "issue_price": "   586",
           "listing_date": "23-OCT-2026",
           "ipo_closed": "19-OCT-2026",
-          "traded_today": false,
+          "traded_today": true,
           "listing_label": "Listed Today",
           "confirmed_listing": "2026-10-23",
           "confirmed_listing_dmy": "23-Oct-2026",
@@ -398,8 +398,8 @@
           "issue_price": "   344",
           "listing_date": "23-OCT-2026",
           "ipo_closed": "19-OCT-2026",
-          "traded_today": false,
-          "listing_label": "Lists Today"
+          "traded_today": true,
+          "listing_label": "Listed Today"
         }
       ],
       "awaiting": [
@@ -911,7 +911,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-10-23",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-10-23T13:21:10+05:30",
+      "fetched_at": "2026-10-23T14:59:26+05:30",
       "stale": false,
       "listed_off_nse": [
         {
@@ -1401,10 +1401,10 @@
       "confirmed": 35,
       "checked": 58,
       "remembered": 97,
-      "as_of": "2026-10-23T13:21:10+05:30",
+      "as_of": "2026-10-23T14:59:26+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-10-23T13:21:10+05:30",
+      "fetched_at": "2026-10-23T14:59:26+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1422,13 +1422,13 @@
           "issue_price": 151.0,
           "listing_date": "2026-10-23",
           "open": 151.0,
-          "last": 133.97,
-          "close": 133.97,
+          "last": 138.85,
+          "close": 138.85,
           "provisional": true,
           "price_source": "yahoo intraday",
           "gain_open_pct": 0.0,
-          "gain_close_pct": -11.28,
-          "from_open_pct": -11.28
+          "gain_close_pct": -8.05,
+          "from_open_pct": -8.05
         },
         {
           "symbol": "TONBO",
@@ -1436,13 +1436,13 @@
           "issue_price": 700.0,
           "listing_date": "2026-10-23",
           "open": 700.0,
-          "last": 1068.9,
-          "close": 1068.9,
+          "last": 1098.85,
+          "close": 1098.85,
           "provisional": true,
           "price_source": "yahoo intraday",
           "gain_open_pct": 0.0,
-          "gain_close_pct": 52.7,
-          "from_open_pct": 52.7
+          "gain_close_pct": 56.98,
+          "from_open_pct": 56.98
         },
         {
           "symbol": "BONFIG",
@@ -1450,13 +1450,13 @@
           "issue_price": 586.0,
           "listing_date": "2026-10-23",
           "open": 586.0,
-          "last": 577.25,
-          "close": 577.25,
+          "last": 584.75,
+          "close": 584.75,
           "provisional": true,
           "price_source": "yahoo intraday",
           "gain_open_pct": 0.0,
-          "gain_close_pct": -1.49,
-          "from_open_pct": -1.49
+          "gain_close_pct": -0.21,
+          "from_open_pct": -0.21
         },
         {
           "symbol": "SMT",
@@ -1464,20 +1464,20 @@
           "issue_price": 344.0,
           "listing_date": "2026-10-23",
           "open": 344.0,
-          "last": 371.05,
-          "close": 371.05,
+          "last": 375.3,
+          "close": 375.3,
           "provisional": true,
           "price_source": "yahoo intraday",
           "gain_open_pct": 0.0,
-          "gain_close_pct": 7.86,
-          "from_open_pct": 7.86
+          "gain_close_pct": 9.1,
+          "from_open_pct": 9.1
         }
       ],
       "no_quote_yet": [],
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-10-23T13:21:11+05:30",
+      "fetched_at": "2026-10-23T14:59:27+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -1898,13 +1898,13 @@
           "issue_price": 151.0,
           "listing_date": "2026-10-23",
           "open": 151.0,
-          "last": 133.97,
-          "close": 133.97,
+          "last": 138.85,
+          "close": 138.85,
           "provisional": true,
           "price_source": "yahoo intraday",
           "gain_open_pct": 0.0,
-          "gain_close_pct": -11.28,
-          "from_open_pct": -11.28
+          "gain_close_pct": -8.05,
+          "from_open_pct": -8.05
         },
         {
           "symbol": "TONBO",
@@ -1912,13 +1912,13 @@
           "issue_price": 700.0,
           "listing_date": "2026-10-23",
           "open": 700.0,
-          "last": 1068.9,
-          "close": 1068.9,
+          "last": 1098.85,
+          "close": 1098.85,
           "provisional": true,
           "price_source": "yahoo intraday",
           "gain_open_pct": 0.0,
-          "gain_close_pct": 52.7,
-          "from_open_pct": 52.7
+          "gain_close_pct": 56.98,
+          "from_open_pct": 56.98
         },
         {
           "symbol": "BONFIG",
@@ -1926,13 +1926,13 @@
           "issue_price": 586.0,
           "listing_date": "2026-10-23",
           "open": 586.0,
-          "last": 577.25,
-          "close": 577.25,
+          "last": 584.75,
+          "close": 584.75,
           "provisional": true,
           "price_source": "yahoo intraday",
           "gain_open_pct": 0.0,
-          "gain_close_pct": -1.49,
-          "from_open_pct": -1.49
+          "gain_close_pct": -0.21,
+          "from_open_pct": -0.21
         },
         {
           "symbol": "SMT",
@@ -1940,13 +1940,13 @@
           "issue_price": 344.0,
           "listing_date": "2026-10-23",
           "open": 344.0,
-          "last": 371.05,
-          "close": 371.05,
+          "last": 375.3,
+          "close": 375.3,
           "provisional": true,
           "price_source": "yahoo intraday",
           "gain_open_pct": 0.0,
-          "gain_close_pct": 7.86,
-          "from_open_pct": 7.86
+          "gain_close_pct": 9.1,
+          "from_open_pct": 9.1
         },
         {
           "symbol": "FUSIONCX",
@@ -2708,7 +2708,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-10-23T13:21:29+05:30",
+      "fetched_at": "2026-10-23T14:59:36+05:30",
       "stale": false
     },
     "earnings": {
@@ -2882,7 +2882,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-10-23T13:21:31+05:30",
+      "fetched_at": "2026-10-23T14:59:38+05:30",
       "stale": false
     }
   }

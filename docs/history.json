@@ -32252,10 +32252,34 @@
   {
    "date": "2026-10-26",
    "repo": 5.5,
-   "usd_inr": 95.21,
-   "dxy": 101.83,
+   "usd_inr": 95.175,
+   "dxy": 101.981,
    "y5_cn": 1.3532,
-   "y10_cn": 1.6376
+   "y10_cn": 1.6376,
+   "nifty_close": 22753.2,
+   "nifty_pe": 19.18,
+   "nifty_pb": 2.79,
+   "nifty_div_yield": 1.51,
+   "india_10y": 7.51,
+   "fii_net": -1462.49,
+   "dii_net": 2609.57,
+   "fii_call_oi_chg": 33292.0,
+   "fii_put_oi_chg": -71217.0,
+   "fii_fut_amt": 444.8,
+   "fii_fut_oi_chg": 3078.0,
+   "fii_fut_oi": -277105.0,
+   "fii_idx_fut_net": -277105.0,
+   "fii_stk_fut_net": 881096.0,
+   "dii_idx_fut_net": 40512.0,
+   "dii_stk_fut_net": -4341866.0,
+   "y5_de": 3.18,
+   "y10_de": 3.43,
+   "y5_in": 7.38,
+   "y10_in": 7.51
+  },
+  {
+   "date": "2026-10-27",
+   "repo": 5.5
   }
  ]
 }

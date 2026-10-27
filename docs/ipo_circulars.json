@@ -1134,5 +1134,17 @@
 "match": "parashealthcare",
 "subject": "Listing of Equity Shares of Paras Healthcare Limited (IPO)",
 "symbol": "PARASHLTH"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77136.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77136.zip",
+"circular_date": "October 27, 2026",
+"company": "Paras Healthcare Limited",
+"confirmed_listing": "2026-10-28",
+"confirmed_listing_dmy": "28-Oct-2026",
+"date_pending": false,
+"match": "parashealthcare",
+"subject": "Listing of Equity Shares of Paras Healthcare Limited (IPO)",
+"symbol": "PARASHLTH"
 }
 }

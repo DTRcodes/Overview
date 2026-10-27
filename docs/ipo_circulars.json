@@ -1112,6 +1112,18 @@
 "subject": "Listing of Equity Shares of Jio Platforms Limited (IPO)",
 "symbol": "JPL"
 },
+"https://nsearchives.nseindia.com/content/circulars/CML77117.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77117.zip",
+"circular_date": "October 27, 2026",
+"company": "Jio Platforms Limited",
+"confirmed_listing": "2026-10-28",
+"confirmed_listing_dmy": "28-Oct-2026",
+"date_pending": false,
+"match": "jioplatforms",
+"subject": "Listing of Equity Shares of Jio Platforms Limited (IPO)",
+"symbol": "JPL"
+},
 "https://nsearchives.nseindia.com/content/circulars/CML77121.pdf": {
 "board": "mainboard",
 "circular": "https://nsearchives.nseindia.com/content/circulars/CML77121.pdf",

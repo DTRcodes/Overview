@@ -15461,13 +15461,13 @@
    "issue_price": 693.0,
    "listing_date": "2026-10-28",
    "open": 693.0,
-   "last": 735.2,
-   "close": 735.2,
+   "last": 730.8,
+   "close": 730.8,
    "provisional": true,
    "price_source": "yahoo intraday",
    "gain_open_pct": 0.0,
-   "gain_close_pct": 6.09,
-   "from_open_pct": 6.09
+   "gain_close_pct": 5.45,
+   "from_open_pct": 5.45
   },
   "JPL": {
    "symbol": "JPL",
@@ -15475,13 +15475,13 @@
    "issue_price": 1119.0,
    "listing_date": "2026-10-28",
    "open": 1119.0,
-   "last": 1393.0,
-   "close": 1393.0,
+   "last": 1418.9,
+   "close": 1418.9,
    "provisional": true,
    "price_source": "yahoo intraday",
    "gain_open_pct": 0.0,
-   "gain_close_pct": 24.49,
-   "from_open_pct": 24.49
+   "gain_close_pct": 26.8,
+   "from_open_pct": 26.8
   }
  },
  "unresolvable": [

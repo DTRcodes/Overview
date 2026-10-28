@@ -15454,6 +15454,34 @@
    "low": 346.65,
    "intra_close_pct": 1.75,
    "intra_pop_pct": 10.45
+  },
+  "PARASHLTH": {
+   "symbol": "PARASHLTH",
+   "company": "Paras Healthcare Limited",
+   "issue_price": 693.0,
+   "listing_date": "2026-10-28",
+   "open": 693.0,
+   "last": 735.2,
+   "close": 735.2,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 6.09,
+   "from_open_pct": 6.09
+  },
+  "JPL": {
+   "symbol": "JPL",
+   "company": "Jio Platforms Limited",
+   "issue_price": 1119.0,
+   "listing_date": "2026-10-28",
+   "open": 1119.0,
+   "last": 1393.0,
+   "close": 1393.0,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 24.49,
+   "from_open_pct": 24.49
   }
  },
  "unresolvable": [

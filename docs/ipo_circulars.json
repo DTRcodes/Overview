@@ -1146,5 +1146,16 @@
 "match": "parashealthcare",
 "subject": "Listing of Equity Shares of Paras Healthcare Limited (IPO)",
 "symbol": "PARASHLTH"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77179.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77179.pdf",
+"circular_date": "October 30, 2026",
+"company": "EAAA India Alternatives Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "eaaaalternatives",
+"subject": "Listing of Equity Shares of EAAA India Alternatives Limited (IPO)",
+"symbol": "EDELALTS"
 }
 }

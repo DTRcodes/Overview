@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-30T14:23:04+05:30",
-  "generated_at_utc": "2026-10-30T08:53:04+00:00",
+  "generated_at": "2026-10-30T16:29:27+05:30",
+  "generated_at_utc": "2026-10-30T10:59:27+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -21,7 +21,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-10-30T14:22:27+05:30",
+      "fetched_at": "2026-10-30T16:28:42+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -62,7 +62,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-10-30T14:22:28+05:30",
+      "fetched_at": "2026-10-30T16:28:43+05:30",
       "stale": false,
       "series_days": 21
     },
@@ -97,7 +97,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-10-30T14:22:29+05:30",
+      "fetched_at": "2026-10-30T16:28:44+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -162,7 +162,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-10-30T14:22:29+05:30",
+      "fetched_at": "2026-10-30T16:28:44+05:30",
       "stale": false
     },
     "india_yields": {
@@ -181,7 +181,7 @@
       "spread_10y_2y": 0.49,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-10-30T14:22:32+05:30",
+      "fetched_at": "2026-10-30T16:28:47+05:30",
       "stale": false
     },
     "us_rates": {
@@ -222,7 +222,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-10-30T14:22:34+05:30",
+      "fetched_at": "2026-10-30T16:28:49+05:30",
       "stale": false
     },
     "world_yields": {
@@ -237,16 +237,16 @@
             "date": "2026-10-29"
           },
           "UK": {
-            "value": 4.9444,
-            "date": "2026-10-27"
+            "value": 4.9614,
+            "date": "2026-10-28"
           },
           "Germany": {
             "value": 3.16,
             "date": "2026-10-29"
           },
           "China": {
-            "value": 1.3297,
-            "date": "2026-10-29"
+            "value": 1.3532,
+            "date": "2026-10-30"
           },
           "India": {
             "value": 7.31,
@@ -263,16 +263,16 @@
             "date": "2026-10-29"
           },
           "UK": {
-            "value": 5.3046,
-            "date": "2026-10-27"
+            "value": 5.3087,
+            "date": "2026-10-28"
           },
           "Germany": {
             "value": 3.42,
             "date": "2026-10-29"
           },
           "China": {
-            "value": 1.6233,
-            "date": "2026-10-29"
+            "value": 1.65,
+            "date": "2026-10-30"
           },
           "India": {
             "value": 7.41,
@@ -302,7 +302,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-10-30T14:22:47+05:30",
+      "fetched_at": "2026-10-30T16:29:03+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 707,
@@ -313,20 +313,20 @@
         "y10_uk": 1500,
         "y5_de": 1500,
         "y10_de": 1500,
-        "y5_cn": 296,
-        "y10_cn": 296,
+        "y5_cn": 297,
+        "y10_cn": 297,
         "y5_in": 295,
         "y10_in": 295
       }
     },
     "fx_spot": {
-      "usd_inr": 95.04,
+      "usd_inr": 94.95,
       "as_of": "2026-10-30",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 101.682,
+      "dxy": 101.648,
       "dxy_as_of": "2026-10-30",
-      "dxy_at": "2026-10-30 04:42:00-04:00",
-      "fetched_at": "2026-10-30T14:22:48+05:30",
+      "dxy_at": "2026-10-30 06:49:00-04:00",
+      "fetched_at": "2026-10-30T16:29:04+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -1091,7 +1091,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-10-30",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-10-30T14:22:50+05:30",
+      "fetched_at": "2026-10-30T16:29:06+05:30",
       "stale": false,
       "listed_off_nse": [
         {
@@ -1115,6 +1115,17 @@
     },
     "ipo_circulars": {
       "circulars": [
+        {
+          "company": "EAAA India Alternatives Limited",
+          "match": "eaaaalternatives",
+          "board": "mainboard",
+          "circular_date": "October 30, 2026",
+          "circular": "https://nsearchives.nseindia.com/content/circulars/CML77179.pdf",
+          "subject": "Listing of Equity Shares of EAAA India Alternatives Limited (IPO)",
+          "confirmed_listing": null,
+          "symbol": "EDELALTS",
+          "date_pending": true
+        },
         {
           "board": "mainboard",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML77136.zip",
@@ -1567,26 +1578,15 @@
           "match": "ssretail",
           "subject": "Listing of Equity Shares of SS Retail Limited (IPO)",
           "symbol": "SSRETAIL"
-        },
-        {
-          "board": "mainboard",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76456.pdf",
-          "circular_date": "September 22, 2026",
-          "company": "Jindal Supreme (India) Limited",
-          "confirmed_listing": null,
-          "date_pending": true,
-          "match": "jindalsupreme",
-          "subject": "Listing of Equity Shares of Jindal Supreme (India) Limited (IPO)",
-          "symbol": "JSIPL"
         }
       ],
       "confirmed": 37,
-      "checked": 60,
-      "remembered": 101,
-      "as_of": "2026-10-30T14:22:50+05:30",
+      "checked": 61,
+      "remembered": 102,
+      "as_of": "2026-10-30T16:29:08+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-10-30T14:22:50+05:30",
+      "fetched_at": "2026-10-30T16:29:08+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1599,17 +1599,17 @@
       ],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-10-30T14:22:50+05:30",
+      "fetched_at": "2026-10-30T16:29:08+05:30",
       "stale": false
     },
     "ipo_gmp": {
       "current": [],
       "history": [],
       "track_record": null,
-      "as_of": "2026-10-30T14:22:50+05:30",
+      "as_of": "2026-10-30T16:29:08+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-10-30T14:22:50+05:30",
+      "fetched_at": "2026-10-30T16:29:08+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -1875,9 +1875,9 @@
           "match": "vaibhavvyapaar"
         }
       ],
-      "as_of": "2026-10-30T14:22:52+05:30",
+      "as_of": "2026-10-30T16:29:14+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-10-30T14:22:52+05:30",
+      "fetched_at": "2026-10-30T16:29:14+05:30",
       "stale": false
     },
     "ipo_gains": {
@@ -2701,7 +2701,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-10-30T14:23:02+05:30",
+      "fetched_at": "2026-10-30T16:29:26+05:30",
       "stale": false
     },
     "earnings": {
@@ -2800,32 +2800,32 @@
           "quarters": [
             {
               "quarter": "2026-09-30",
-              "revenue": 488967937500.0,
-              "net_income": 77645637500.0,
+              "revenue": 488517750000.0,
+              "net_income": 77574150000.0,
               "age_days": 30
             },
             {
               "quarter": "2026-06-30",
-              "revenue": 482980575000.0,
-              "net_income": 77835712500.0,
+              "revenue": 482535900000.0,
+              "net_income": 77764050000.0,
               "age_days": 122
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 478989000000.0,
-              "net_income": 87339462500.0,
+              "revenue": 478548000000.0,
+              "net_income": 87259050000.0,
               "age_days": 213
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 484596212500.0,
-              "net_income": 70993012500.0,
+              "revenue": 484150050000.0,
+              "net_income": 70927650000.0,
               "age_days": 303
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 95.0375,
+          "fx_used": 94.95,
           "latest_quarter": "2026-09-30",
           "age_days": 30,
           "stale": false
@@ -2866,7 +2866,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 95.0375,
+      "usd_inr": 94.95,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -2875,7 +2875,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-10-30T14:23:04+05:30",
+      "fetched_at": "2026-10-30T16:29:27+05:30",
       "stale": false
     }
   }

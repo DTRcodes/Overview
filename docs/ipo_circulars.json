@@ -1157,5 +1157,17 @@
 "match": "eaaaalternatives",
 "subject": "Listing of Equity Shares of EAAA India Alternatives Limited (IPO)",
 "symbol": "EDELALTS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77192.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77192.zip",
+"circular_date": "October 30, 2026",
+"company": "EAAA India Alternatives Limited",
+"confirmed_listing": "2026-11-02",
+"confirmed_listing_dmy": "02-Nov-2026",
+"date_pending": false,
+"match": "eaaaalternatives",
+"subject": "Listing of Equity Shares of EAAA India Alternatives Limited (IPO)",
+"symbol": "EDELALTS"
 }
 }

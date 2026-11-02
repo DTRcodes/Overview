@@ -1169,5 +1169,27 @@
 "match": "eaaaalternatives",
 "subject": "Listing of Equity Shares of EAAA India Alternatives Limited (IPO)",
 "symbol": "EDELALTS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77223.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77223.pdf",
+"circular_date": "November 02, 2026",
+"company": "SFC Environmental Technologies Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "sfcenvironmentaltechnologies",
+"subject": "Listing of Equity Shares of SFC Environmental Technologies Limited (IPO)",
+"symbol": "SFCTECH"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77226.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77226.pdf",
+"circular_date": "November 02, 2026",
+"company": "BLS Polymers Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "blspolymers",
+"subject": "Listing of Equity Shares of BLS Polymers Limited (IPO)",
+"symbol": "BLSPOLY"
 }
 }

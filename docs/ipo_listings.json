@@ -15492,14 +15492,16 @@
    "company": "EAAA India Alternatives Limited",
    "issue_price": 1665.0,
    "listing_date": "2026-11-02",
-   "open": 1665.0,
-   "last": 1725.9,
-   "close": 1725.9,
-   "provisional": true,
-   "price_source": "yahoo intraday",
-   "gain_open_pct": 0.0,
-   "gain_close_pct": 3.66,
-   "from_open_pct": 3.66
+   "open": 1675.5,
+   "close": 1727.8,
+   "price_source": "bhavcopy",
+   "gain_open_pct": 0.63,
+   "gain_close_pct": 3.77,
+   "from_open_pct": 3.78,
+   "high": 1762.5,
+   "low": 1601.0,
+   "intra_close_pct": 3.12,
+   "intra_pop_pct": 5.19
   }
  },
  "unresolvable": [

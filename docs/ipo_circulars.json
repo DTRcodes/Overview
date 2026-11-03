@@ -1215,5 +1215,16 @@
 "match": "blspolymers",
 "subject": "Listing of Equity Shares of BLS Polymers Limited (IPO)",
 "symbol": "BLSPOLY"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77254.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77254.pdf",
+"circular_date": "November 03, 2026",
+"company": "M. K. Sons Fine Jewels Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "mksonsfinejewels",
+"subject": "Listing of Equity Shares of M. K. Sons Fine Jewels Limited (IPO)",
+"symbol": "MKJEWELS"
 }
 }

@@ -1226,5 +1226,17 @@
 "match": "mksonsfinejewels",
 "subject": "Listing of Equity Shares of M. K. Sons Fine Jewels Limited (IPO)",
 "symbol": "MKJEWELS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77257.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77257.zip",
+"circular_date": "November 03, 2026",
+"company": "M. K. Sons Fine Jewels Limited",
+"confirmed_listing": "2026-11-04",
+"confirmed_listing_dmy": "04-Nov-2026",
+"date_pending": false,
+"match": "mksonsfinejewels",
+"subject": "Listing of Equity Shares of M. K. Sons Fine Jewels Limited (IPO)",
+"symbol": "MKJEWELS"
 }
 }

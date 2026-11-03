@@ -15502,6 +15502,34 @@
    "low": 1601.0,
    "intra_close_pct": 3.12,
    "intra_pop_pct": 5.19
+  },
+  "BLSPOLY": {
+   "symbol": "BLSPOLY",
+   "company": "BLS Polymers Limited",
+   "issue_price": 150.0,
+   "listing_date": "2026-11-03",
+   "open": 150.0,
+   "last": 271.37,
+   "close": 271.37,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 80.91,
+   "from_open_pct": 80.91
+  },
+  "SFCTECH": {
+   "symbol": "SFCTECH",
+   "company": "SFC Environmental Technologies Limited",
+   "issue_price": 330.0,
+   "listing_date": "2026-11-03",
+   "open": 330.0,
+   "last": 426.1,
+   "close": 426.1,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 29.12,
+   "from_open_pct": 29.12
   }
  },
  "unresolvable": [

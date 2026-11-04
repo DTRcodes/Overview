@@ -1238,5 +1238,16 @@
 "match": "mksonsfinejewels",
 "subject": "Listing of Equity Shares of M. K. Sons Fine Jewels Limited (IPO)",
 "symbol": "MKJEWELS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77283.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77283.pdf",
+"circular_date": "November 04, 2026",
+"company": "Bombay Coated and Special Steels Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "bombaycoatedandspecialsteels",
+"subject": "Listing of Equity Shares of Bombay Coated and Special Steels Limited (IPO)",
+"symbol": "BCSSL"
 }
 }

@@ -15534,6 +15534,22 @@
    "low": 355.1,
    "intra_close_pct": 19.99,
    "intra_pop_pct": 19.99
+  },
+  "MKJEWELS": {
+   "symbol": "MKJEWELS",
+   "company": "M. K. Sons Fine Jewels Limited",
+   "issue_price": 162.0,
+   "listing_date": "2026-11-04",
+   "open": 171.0,
+   "close": 162.2,
+   "price_source": "bhavcopy",
+   "gain_open_pct": 5.56,
+   "gain_close_pct": 0.12,
+   "from_open_pct": 0.04,
+   "high": 175.0,
+   "low": 162.0,
+   "intra_close_pct": -5.15,
+   "intra_pop_pct": 2.34
   }
  },
  "unresolvable": [

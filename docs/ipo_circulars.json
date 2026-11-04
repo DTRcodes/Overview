@@ -1249,5 +1249,17 @@
 "match": "bombaycoatedandspecialsteels",
 "subject": "Listing of Equity Shares of Bombay Coated and Special Steels Limited (IPO)",
 "symbol": "BCSSL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77305.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77305.zip",
+"circular_date": "November 04, 2026",
+"company": "Bombay Coated and Special Steels Limited",
+"confirmed_listing": "2026-11-05",
+"confirmed_listing_dmy": "05-Nov-2026",
+"date_pending": false,
+"match": "bombaycoatedandspecialsteels",
+"subject": "Listing of Equity Shares of Bombay Coated and Special Steels Limited (IPO)",
+"symbol": "BCSSL"
 }
 }

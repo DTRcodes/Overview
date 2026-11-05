@@ -1261,5 +1261,28 @@
 "match": "bombaycoatedandspecialsteels",
 "subject": "Listing of Equity Shares of Bombay Coated and Special Steels Limited (IPO)",
 "symbol": "BCSSL"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77320.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77320.zip",
+"circular_date": "November 05, 2026",
+"company": "HGS (India) Limited",
+"confirmed_listing": null,
+"date_pending": false,
+"match": "hgs",
+"subject": "Listing of Equity Shares of HGS (India) Limited (SME IPO)",
+"symbol": "HGSINDIALT"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77323.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77323.zip",
+"circular_date": "November 05, 2026",
+"company": "Maxwell Engineering Solutions Limited",
+"confirmed_listing": "2026-11-06",
+"confirmed_listing_dmy": "06-Nov-2026",
+"date_pending": false,
+"match": "maxwellengineeringsolutions",
+"subject": "Listing of Equity Shares of Maxwell Engineering Solutions Limited (SME IPO)",
+"symbol": "MAXENGS"
 }
 }

@@ -15556,14 +15556,16 @@
    "company": "Bombay Coated and Special Steels Limited",
    "issue_price": 82.0,
    "listing_date": "2026-11-05",
-   "open": 82.0,
-   "last": 95.55,
-   "close": 95.55,
-   "provisional": true,
-   "price_source": "yahoo intraday",
-   "gain_open_pct": 0.0,
-   "gain_close_pct": 16.52,
-   "from_open_pct": 16.52
+   "open": 91.0,
+   "close": 94.81,
+   "price_source": "bhavcopy",
+   "gain_open_pct": 10.98,
+   "gain_close_pct": 15.62,
+   "from_open_pct": 16.52,
+   "high": 95.55,
+   "low": 91.0,
+   "intra_close_pct": 4.19,
+   "intra_pop_pct": 5.0
   }
  },
  "unresolvable": [

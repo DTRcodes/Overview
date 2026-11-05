@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-05T01:59:12+05:30",
-  "generated_at_utc": "2026-11-04T20:29:12+00:00",
+  "generated_at": "2026-11-05T15:15:43+05:30",
+  "generated_at_utc": "2026-11-05T09:45:43+00:00",
   "failures": [],
   "sections": {
     "rbi": {
@@ -14,14 +14,14 @@
         "slr": 18.0
       },
       "fx_reference": {
-        "USD": 94.8416,
-        "GBP": 127.6514,
-        "EUR": 106.5283,
-        "JPY_100": 59.99
+        "USD": 94.3996,
+        "GBP": 127.3746,
+        "EUR": 106.3314,
+        "JPY_100": 59.79
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-11-05T01:58:33+05:30",
+      "fetched_at": "2026-11-05T15:14:54+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -63,7 +63,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-11-05T01:58:35+05:30",
+      "fetched_at": "2026-11-05T15:14:57+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -98,7 +98,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-11-05T01:58:36+05:30",
+      "fetched_at": "2026-11-05T15:14:58+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -163,7 +163,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-11-05T01:58:37+05:30",
+      "fetched_at": "2026-11-05T15:14:59+05:30",
       "stale": false
     },
     "india_yields": {
@@ -182,7 +182,7 @@
       "spread_10y_2y": 0.35,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-11-05T01:58:39+05:30",
+      "fetched_at": "2026-11-05T15:15:01+05:30",
       "stale": false
     },
     "us_rates": {
@@ -200,54 +200,54 @@
           "date": "2026-11-03"
         },
         "us_2y": {
-          "value": 4.59,
-          "date": "2026-11-02"
+          "value": 4.61,
+          "date": "2026-11-03"
         },
         "us_5y": {
-          "value": 4.7,
-          "date": "2026-11-02"
+          "value": 4.74,
+          "date": "2026-11-03"
         },
         "us_10y": {
-          "value": 4.91,
-          "date": "2026-11-02"
+          "value": 4.95,
+          "date": "2026-11-03"
         },
         "us_30y": {
-          "value": 5.28,
-          "date": "2026-11-02"
+          "value": 5.32,
+          "date": "2026-11-03"
         },
         "us_10y_2y_spread": {
-          "value": 0.34,
-          "date": "2026-11-03"
+          "value": 0.32,
+          "date": "2026-11-04"
         }
       },
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-11-05T01:58:41+05:30",
+      "fetched_at": "2026-11-05T15:15:05+05:30",
       "stale": false
     },
     "world_yields": {
       "latest": {
         "5": {
           "US": {
-            "value": 4.74,
-            "date": "2026-11-03"
+            "value": 4.69,
+            "date": "2026-11-04"
           },
           "Japan": {
-            "value": 2.243,
-            "date": "2026-11-02"
+            "value": 2.269,
+            "date": "2026-11-04"
           },
           "UK": {
-            "value": 4.8165,
-            "date": "2026-11-02"
+            "value": 4.8554,
+            "date": "2026-11-03"
           },
           "Germany": {
             "value": 3.12,
             "date": "2026-11-04"
           },
           "China": {
-            "value": 1.3255,
-            "date": "2026-11-04"
+            "value": 1.3236,
+            "date": "2026-11-05"
           },
           "India": {
             "value": 7.12,
@@ -256,24 +256,24 @@
         },
         "10": {
           "US": {
-            "value": 4.95,
-            "date": "2026-11-03"
+            "value": 4.9,
+            "date": "2026-11-04"
           },
           "Japan": {
-            "value": 2.817,
-            "date": "2026-11-02"
+            "value": 2.855,
+            "date": "2026-11-04"
           },
           "UK": {
-            "value": 5.1677,
-            "date": "2026-11-02"
+            "value": 5.2098,
+            "date": "2026-11-03"
           },
           "Germany": {
             "value": 3.38,
             "date": "2026-11-04"
           },
           "China": {
-            "value": 1.6077,
-            "date": "2026-11-04"
+            "value": 1.6038,
+            "date": "2026-11-05"
           },
           "India": {
             "value": 7.23,
@@ -303,57 +303,53 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-11-05T01:58:54+05:30",
+      "fetched_at": "2026-11-05T15:15:24+05:30",
       "stale": false,
       "series_points": {
-        "y5_us": 710,
-        "y10_us": 710,
+        "y5_us": 711,
+        "y10_us": 711,
         "y5_jp": 1500,
         "y10_jp": 1500,
         "y5_uk": 1500,
         "y10_uk": 1500,
         "y5_de": 1500,
         "y10_de": 1500,
-        "y5_cn": 300,
-        "y10_cn": 300,
+        "y5_cn": 301,
+        "y10_cn": 301,
         "y5_in": 299,
         "y10_in": 299
       }
     },
     "fx_spot": {
-      "usd_inr": 94.63,
-      "as_of": "2026-11-04",
+      "usd_inr": 94.497,
+      "as_of": "2026-11-05",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 101.537,
-      "dxy_as_of": "2026-11-04",
-      "dxy_at": "2026-11-04 15:18:00-05:00",
-      "fetched_at": "2026-11-05T01:58:55+05:30",
+      "dxy": 101.483,
+      "dxy_as_of": "2026-11-05",
+      "dxy_at": "2026-11-05 04:35:00-05:00",
+      "fetched_at": "2026-11-05T15:15:25+05:30",
       "stale": false
     },
     "nse_ipo": {
-      "listing_today": [],
-      "awaiting": [
+      "listing_today": [
         {
           "company": "Bombay Coated and Special Steels Limited",
           "symbol": "BCSSL",
           "tv": "NSE:BCSSL",
-          "series": "EQ",
+          "series": "BE",
           "price_range": "Rs.78 to Rs.82",
-          "issue_price": "-",
-          "listing_date": "-",
+          "issue_price": "    82",
+          "listing_date": "05-NOV-2026",
           "ipo_closed": "02-NOV-2026",
-          "days_since_close": 3,
-          "expected_listing": "2026-11-05",
-          "expected_listing_dmy": "05-Nov-2026",
-          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
-          "lists_today_expected": true,
-          "listing_label": "Lists Today",
-          "days_to_listing": 0,
+          "traded_today": false,
+          "listing_label": "Listed Today",
           "confirmed_listing": "2026-11-05",
           "confirmed_listing_dmy": "05-Nov-2026",
           "confirmed_by": "NSE circular November 04, 2026",
           "circular_url": "https://nsearchives.nseindia.com/content/circulars/CML77305.zip"
-        },
+        }
+      ],
+      "awaiting": [
         {
           "company": "HGS (India) Limited",
           "symbol": "HGSINDIALT",
@@ -476,8 +472,8 @@
           "symbol": "BCSSL",
           "tv": "NSE:BCSSL",
           "price_range": "Rs.78 to Rs.82",
-          "issue_price": "-",
-          "listing_date": "-"
+          "issue_price": "    82",
+          "listing_date": "05-NOV-2026"
         },
         {
           "company": "M. K. Sons Fine Jewels Limited",
@@ -779,7 +775,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-11-05",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-11-05T01:58:57+05:30",
+      "fetched_at": "2026-11-05T15:15:27+05:30",
       "stale": false,
       "listed_off_nse": [
         {
@@ -804,16 +800,16 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Bombay Coated and Special Steels Limited",
-          "match": "bombaycoatedandspecialsteels",
           "board": "mainboard",
-          "circular_date": "November 04, 2026",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML77305.zip",
-          "subject": "Listing of Equity Shares of Bombay Coated and Special Steels Limited (IPO)",
+          "circular_date": "November 04, 2026",
+          "company": "Bombay Coated and Special Steels Limited",
           "confirmed_listing": "2026-11-05",
-          "symbol": "BCSSL",
           "confirmed_listing_dmy": "05-Nov-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "bombaycoatedandspecialsteels",
+          "subject": "Listing of Equity Shares of Bombay Coated and Special Steels Limited (IPO)",
+          "symbol": "BCSSL"
         },
         {
           "board": "mainboard",
@@ -1272,31 +1268,48 @@
       "confirmed": 42,
       "checked": 65,
       "remembered": 111,
-      "as_of": "2026-11-05T01:58:58+05:30",
+      "as_of": "2026-11-05T15:15:27+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-11-05T01:58:58+05:30",
+      "fetched_at": "2026-11-05T15:15:27+05:30",
       "stale": false
     },
     "ipo_listing_live": {
       "date": "2026-11-05",
-      "listed_today": [],
-      "live": [],
+      "listed_today": [
+        "BCSSL"
+      ],
+      "live": [
+        {
+          "symbol": "BCSSL",
+          "company": "Bombay Coated and Special Steels Limited",
+          "issue_price": 82.0,
+          "listing_date": "2026-11-05",
+          "open": 82.0,
+          "last": 95.55,
+          "close": 95.55,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 16.52,
+          "from_open_pct": 16.52
+        }
+      ],
       "no_quote_yet": [],
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-11-05T01:58:58+05:30",
+      "fetched_at": "2026-11-05T15:15:28+05:30",
       "stale": false
     },
     "ipo_gmp": {
       "current": [],
       "history": [],
       "track_record": null,
-      "as_of": "2026-11-05T01:58:59+05:30",
+      "as_of": "2026-11-05T15:15:28+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-11-05T01:58:59+05:30",
+      "fetched_at": "2026-11-05T15:15:28+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -1472,13 +1485,27 @@
           "match": "vectrasenprocon"
         }
       ],
-      "as_of": "2026-11-05T01:59:02+05:30",
+      "as_of": "2026-11-05T15:15:30+05:30",
       "source": "ipowatch.in",
-      "fetched_at": "2026-11-05T01:59:02+05:30",
+      "fetched_at": "2026-11-05T15:15:30+05:30",
       "stale": false
     },
     "ipo_gains": {
       "listings": [
+        {
+          "symbol": "BCSSL",
+          "company": "Bombay Coated and Special Steels Limited",
+          "issue_price": 82.0,
+          "listing_date": "2026-11-05",
+          "open": 82.0,
+          "last": 95.55,
+          "close": 95.55,
+          "provisional": true,
+          "price_source": "yahoo intraday",
+          "gain_open_pct": 0.0,
+          "gain_close_pct": 16.52,
+          "from_open_pct": 16.52
+        },
         {
           "symbol": "MKJEWELS",
           "company": "M. K. Sons Fine Jewels Limited",
@@ -2102,30 +2129,16 @@
           "low": 102.31,
           "intra_close_pct": 4.99,
           "intra_pop_pct": 4.99
-        },
-        {
-          "high": 106.5,
-          "low": 101.1,
-          "intra_pop_pct": 1.53,
-          "intra_close_pct": -1.76,
-          "symbol": "KHERIAAUTO",
-          "company": "Kheria Autocomp Limited",
-          "issue_price": 101.0,
-          "listing_date": "2026-09-24",
-          "ipo_closed": "21-SEP-2026",
-          "open": 104.9,
-          "close": 103.05,
-          "gain_open_pct": 3.86,
-          "gain_close_pct": 2.03,
-          "price_source": "bhavcopy"
         }
       ],
-      "resolved_total": 1009,
+      "resolved_total": 1010,
       "added_this_run": 0,
       "bhavcopy_calls": 0,
       "corrections": [],
-      "verified_against_bhavcopy": 40,
-      "awaiting_bhavcopy": [],
+      "verified_against_bhavcopy": 39,
+      "awaiting_bhavcopy": [
+        "BCSSL"
+      ],
       "monthly": [
         {
           "month": "2025-06",
@@ -2248,8 +2261,8 @@
         },
         {
           "month": "2026-11",
-          "count": 4,
-          "median_listing_pct": 7.61,
+          "count": 5,
+          "median_listing_pct": 5.56,
           "median_intra_pop_pct": 14.92,
           "median_intra_close_pct": 8.39
         }
@@ -2257,40 +2270,40 @@
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 95,
+          "count": 96,
           "from": "2026-08-06",
-          "to": "2026-11-04",
+          "to": "2026-11-05",
           "median_listing_pct": 7.61,
           "median_intra_pop_pct": 4.97,
           "median_intra_close_pct": 1.02,
-          "positive_open_pct": 70.5
+          "positive_open_pct": 69.8
         },
         {
           "label": "last 6 months",
-          "count": 133,
+          "count": 134,
           "from": "2026-05-08",
-          "to": "2026-11-04",
+          "to": "2026-11-05",
           "median_listing_pct": 6.85,
           "median_intra_pop_pct": 4.99,
           "median_intra_close_pct": 1.38,
-          "positive_open_pct": 68.4
+          "positive_open_pct": 67.9
         }
       ],
       "stats_last_50": {
         "label": "last 50 listings",
         "count": 50,
         "from": "2026-09-17",
-        "to": "2026-11-04",
-        "median_listing_pct": 3.9,
-        "median_intra_pop_pct": 4.11,
-        "median_intra_close_pct": 0.28,
-        "positive_open_pct": 68.0
+        "to": "2026-11-05",
+        "median_listing_pct": 3.86,
+        "median_intra_pop_pct": 4.01,
+        "median_intra_close_pct": -0.18,
+        "positive_open_pct": 66.0
       },
       "stats_all": {
         "label": "all listings",
-        "count": 1009,
+        "count": 1010,
         "from": "2019-10-14",
-        "to": "2026-11-04",
+        "to": "2026-11-05",
         "median_listing_pct": 11.08,
         "median_intra_pop_pct": 5.0,
         "median_intra_close_pct": 2.25,
@@ -2298,7 +2311,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-11-05T01:59:11+05:30",
+      "fetched_at": "2026-11-05T15:15:40+05:30",
       "stale": false
     },
     "earnings": {
@@ -2397,32 +2410,32 @@
           "quarters": [
             {
               "quarter": "2026-09-30",
-              "revenue": 486871350000.0,
-              "net_income": 77312710000.0,
+              "revenue": 486253950000.0,
+              "net_income": 77214670000.0,
               "age_days": 36
             },
             {
               "quarter": "2026-06-30",
-              "revenue": 480909660000.0,
-              "net_income": 77501970000.0,
+              "revenue": 480299820000.0,
+              "net_income": 77403690000.0,
               "age_days": 128
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 476935200000.0,
-              "net_income": 86964970000.0,
+              "revenue": 476330400000.0,
+              "net_income": 86854690000.0,
               "age_days": 219
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 482518370000.0,
-              "net_income": 70688610000.0,
+              "revenue": 481906490000.0,
+              "net_income": 70598970000.0,
               "age_days": 309
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 94.63,
+          "fx_used": 94.51,
           "latest_quarter": "2026-09-30",
           "age_days": 36,
           "stale": false
@@ -2463,7 +2476,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 94.63,
+      "usd_inr": 94.51,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -2472,7 +2485,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-11-05T01:59:12+05:30",
+      "fetched_at": "2026-11-05T15:15:43+05:30",
       "stale": false
     }
   }

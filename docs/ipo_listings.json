@@ -15550,6 +15550,20 @@
    "low": 162.0,
    "intra_close_pct": -5.15,
    "intra_pop_pct": 2.34
+  },
+  "BCSSL": {
+   "symbol": "BCSSL",
+   "company": "Bombay Coated and Special Steels Limited",
+   "issue_price": 82.0,
+   "listing_date": "2026-11-05",
+   "open": 82.0,
+   "last": 95.55,
+   "close": 95.55,
+   "provisional": true,
+   "price_source": "yahoo intraday",
+   "gain_open_pct": 0.0,
+   "gain_close_pct": 16.52,
+   "from_open_pct": 16.52
   }
  },
  "unresolvable": [

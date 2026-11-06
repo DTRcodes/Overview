@@ -1284,5 +1284,17 @@
 "match": "maxwellengineeringsolutions",
 "subject": "Listing of Equity Shares of Maxwell Engineering Solutions Limited (SME IPO)",
 "symbol": "MAXENGS"
+},
+"https://nsearchives.nseindia.com/content/circulars/CML77326.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.com/content/circulars/CML77326.zip",
+"circular_date": "November 06, 2026",
+"company": "Vedant Poly Fabs Limited",
+"confirmed_listing": "2026-11-09",
+"confirmed_listing_dmy": "09-Nov-2026",
+"date_pending": false,
+"match": "vedantpolyfabs",
+"subject": "Listing of Equity Shares of Vedant Poly Fabs Limited (SME IPO)",
+"symbol": "VPFL"
 }
 }

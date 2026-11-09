@@ -15580,7 +15580,8 @@
    "open": 160.0,
    "close": 168.0,
    "gain_open_pct": 33.33,
-   "gain_close_pct": 40.0
+   "gain_close_pct": 40.0,
+   "price_source": "bhavcopy"
   },
   "MAXENGS": {
    "high": 315.2,
@@ -15595,7 +15596,8 @@
    "open": 300.2,
    "close": 315.2,
    "gain_open_pct": 90.0,
-   "gain_close_pct": 99.49
+   "gain_close_pct": 99.49,
+   "price_source": "bhavcopy"
   }
  },
  "unresolvable": [
@@ -15609,6 +15611,7 @@
   "12VPT28A",
   "1305DCCL29",
   "13DCCL28",
+  "13DCCL29A",
   "727NGEL36",
   "734IREDA29",
   "745ISL28",

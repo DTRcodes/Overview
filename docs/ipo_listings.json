@@ -15598,6 +15598,21 @@
    "gain_open_pct": 90.0,
    "gain_close_pct": 99.49,
    "price_source": "bhavcopy"
+  },
+  "VPFL": {
+   "high": 94.0,
+   "low": 89.3,
+   "intra_pop_pct": 0.0,
+   "intra_close_pct": -5.0,
+   "symbol": "VPFL",
+   "company": "Vedant Poly Fabs Limited",
+   "issue_price": 94.0,
+   "listing_date": "2026-11-09",
+   "ipo_closed": "04-NOV-2026",
+   "open": 94.0,
+   "close": 89.3,
+   "gain_open_pct": 0.0,
+   "gain_close_pct": -5.0
   }
  },
  "unresolvable": [

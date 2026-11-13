@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated": "2026-11-13T16:13:12+05:30",
+ "generated": "2026-11-13T23:33:34+05:30",
  "lastUpdate": "2026-11-13 15:40:31",
  "tradeDate": "2026-11-13",
  "market": {
@@ -30,7 +30,7 @@
  },
  "constituents": {
   "source": "niftyindices.com/IndexConstituent/ind_nifty50list.csv",
-  "fetched": "2026-11-13 16:13",
+  "fetched": "2026-11-13 23:33",
   "count": 50,
   "changes": []
  },

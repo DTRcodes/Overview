@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-16T15:33:00+05:30",
-  "generated_at_utc": "2026-11-16T10:03:00+00:00",
+  "generated_at": "2026-11-16T18:32:57+05:30",
+  "generated_at_utc": "2026-11-16T13:02:57+00:00",
   "failures": [
     {
       "source": "ipo_gmp",
@@ -30,22 +30,22 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-11-16T15:32:24+05:30",
+      "fetched_at": "2026-11-16T18:32:24+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "buy": 18339.5703125,
-          "sell": 12603.01953125,
-          "net": 5736.55078125,
-          "view": "BULLISH"
+          "date": "16-Nov-2026",
+          "buy": 15636.88,
+          "sell": 10772.2,
+          "net": 4864.68
         },
         "dii": {
-          "buy": 11745.9501953125,
-          "sell": 13999.5302734375,
-          "net": -2253.580078125,
-          "view": "BEARISH"
+          "date": "16-Nov-2026",
+          "buy": 11752.03,
+          "sell": 15271.08,
+          "net": -3519.05
         }
       },
       "fno": {
@@ -58,8 +58,8 @@
         "call_view": "BEARISH",
         "put_view": "BEARISH"
       },
-      "as_of": "2026-11-13",
-      "window_days": 22,
+      "as_of": "2026-11-16",
+      "window_days": 23,
       "months_advertised": [
         "2026-May",
         "2026-June",
@@ -70,11 +70,11 @@
         "2026-November"
       ],
       "unit": "INR crore",
-      "via": "sensibull (rolling window)",
+      "via": "nseindia for 2026-11-16, sensibull window behind at 2026-11-13",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-11-16T15:32:26+05:30",
+      "fetched_at": "2026-11-16T18:32:25+05:30",
       "stale": false,
-      "series_days": 22
+      "series_days": 23
     },
     "fii_derivatives": {
       "date": "2026-11-13",
@@ -107,72 +107,72 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-11-16T15:32:26+05:30",
+      "fetched_at": "2026-11-16T18:32:27+05:30",
       "stale": false
     },
     "nse_valuation": {
-      "as_of": "2026-11-13",
+      "as_of": "2026-11-16",
       "indices": {
         "Nifty 50": {
-          "close": 25144.3,
-          "change_pct": -0.61,
-          "pe": 20.49,
-          "pb": 3.08,
-          "div_yield": 1.4
+          "close": 25291.1,
+          "change_pct": 0.58,
+          "pe": 20.6,
+          "pb": 3.1,
+          "div_yield": 1.37
         },
         "Nifty Next 50": {
-          "close": 72874.7,
-          "change_pct": -0.83,
-          "pe": 17.67,
-          "pb": 3.5,
-          "div_yield": 1.35
+          "close": 72490.25,
+          "change_pct": -0.53,
+          "pe": 17.58,
+          "pb": 3.48,
+          "div_yield": 1.36
         },
         "Nifty 500": {
-          "close": 23734.2,
-          "change_pct": -0.55,
-          "pe": 22.19,
-          "pb": 3.32,
-          "div_yield": 1.23
+          "close": 23752.4,
+          "change_pct": 0.08,
+          "pe": 22.18,
+          "pb": 3.33,
+          "div_yield": 1.21
         },
         "Nifty Auto": {
-          "close": 27929.85,
-          "change_pct": -1.07,
-          "pe": 30.99,
-          "pb": 4.36,
-          "div_yield": 1.05
+          "close": 27570.25,
+          "change_pct": -1.29,
+          "pe": 30.12,
+          "pb": 4.31,
+          "div_yield": 1.06
         },
         "Nifty Bank": {
-          "close": 61034.1,
-          "change_pct": -0.79,
-          "pe": 13.49,
-          "pb": 1.84,
-          "div_yield": 1.03
+          "close": 61575.9,
+          "change_pct": 0.89,
+          "pe": 13.61,
+          "pb": 1.85,
+          "div_yield": 1.02
         },
         "Nifty IT": {
-          "close": 31931.15,
-          "change_pct": -0.72,
+          "close": 31941.05,
+          "change_pct": 0.03,
           "pe": 19.41,
           "pb": 5.55,
           "div_yield": 3.61
         },
         "Nifty Smallcap 250": {
-          "close": 17940.55,
-          "change_pct": -0.3,
-          "pe": 32.55,
-          "pb": 3.46,
+          "close": 17771.25,
+          "change_pct": -0.94,
+          "pe": 32.06,
+          "pb": 3.42,
           "div_yield": 0.76
         },
         "Nifty Midcap 150": {
-          "close": 22681.25,
-          "change_pct": -0.35,
-          "pe": 28.17,
-          "pb": 3.97,
-          "div_yield": 0.95
+          "close": 22588.35,
+          "change_pct": -0.41,
+          "pe": 28.01,
+          "pb": 3.96,
+          "div_yield": 0.93
         }
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-11-16T15:32:27+05:30",
+      "fetched_at": "2026-11-16T18:32:27+05:30",
       "stale": false
     },
     "india_yields": {
@@ -191,18 +191,18 @@
       "spread_10y_2y": 0.58,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-11-16T15:32:29+05:30",
+      "fetched_at": "2026-11-16T18:32:29+05:30",
       "stale": false
     },
     "us_rates": {
       "rates": {
         "fed_target_upper": {
           "value": 4.0,
-          "date": "2026-11-15"
+          "date": "2026-11-16"
         },
         "fed_target_lower": {
           "value": 3.75,
-          "date": "2026-11-15"
+          "date": "2026-11-16"
         },
         "fed_effective": {
           "value": 3.88,
@@ -232,7 +232,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-11-16T15:32:32+05:30",
+      "fetched_at": "2026-11-16T18:32:33+05:30",
       "stale": false
     },
     "world_yields": {
@@ -251,8 +251,8 @@
             "date": "2026-11-12"
           },
           "Germany": {
-            "value": 3.18,
-            "date": "2026-11-13"
+            "value": 3.2,
+            "date": "2026-11-16"
           },
           "China": {
             "value": 1.3582,
@@ -277,8 +277,8 @@
             "date": "2026-11-12"
           },
           "Germany": {
-            "value": 3.43,
-            "date": "2026-11-13"
+            "value": 3.45,
+            "date": "2026-11-16"
           },
           "China": {
             "value": 1.6285,
@@ -312,7 +312,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-11-16T15:32:47+05:30",
+      "fetched_at": "2026-11-16T18:32:42+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 717,
@@ -330,20 +330,82 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 93.92,
+      "usd_inr": 93.9225,
       "as_of": "2026-11-16",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 103.524,
+      "dxy": 103.484,
       "dxy_as_of": "2026-11-16",
-      "dxy_at": "2026-11-16 04:52:00-05:00",
-      "fetched_at": "2026-11-16T15:32:48+05:30",
+      "dxy_at": "2026-11-16 07:52:00-05:00",
+      "fetched_at": "2026-11-16T18:32:43+05:30",
       "stale": false
     },
     "nse_ipo": {
       "listing_today": [],
       "awaiting": [],
-      "open_now": [],
-      "current": [],
+      "open_now": [
+        {
+          "company": "Crystal Crop Protection Limited",
+          "symbol": "CRYSTALCP",
+          "tv": "NSE:CRYSTALCP",
+          "price": "Rs.259 to Rs.272",
+          "opens": "18-Nov-2026",
+          "closes": "20-Nov-2026",
+          "series": "Equity",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-11-26",
+          "expected_listing_dmy": "26-Nov-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens Wednesday"
+        },
+        {
+          "company": "Watrana Rentals Limited",
+          "symbol": "WATRANA",
+          "tv": "NSE:WATRANA",
+          "price": "Rs.232 to Rs.245",
+          "opens": "19-Nov-2026",
+          "closes": "23-Nov-2026",
+          "series": "SME",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-11-27",
+          "expected_listing_dmy": "27-Nov-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens Thursday"
+        }
+      ],
+      "current": [
+        {
+          "company": "Crystal Crop Protection Limited",
+          "symbol": "CRYSTALCP",
+          "tv": "NSE:CRYSTALCP",
+          "price": "Rs.259 to Rs.272",
+          "opens": "18-Nov-2026",
+          "closes": "20-Nov-2026",
+          "series": "Equity",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-11-26",
+          "expected_listing_dmy": "26-Nov-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens Wednesday"
+        },
+        {
+          "company": "Watrana Rentals Limited",
+          "symbol": "WATRANA",
+          "tv": "NSE:WATRANA",
+          "price": "Rs.232 to Rs.245",
+          "opens": "19-Nov-2026",
+          "closes": "23-Nov-2026",
+          "series": "SME",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-11-27",
+          "expected_listing_dmy": "27-Nov-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens Thursday"
+        }
+      ],
       "recent_past": [
         {
           "company": "Vedant Poly Fabs Limited",
@@ -667,21 +729,24 @@
         }
       ],
       "past_total": 1493,
-      "tv_watchlist": [],
+      "tv_watchlist": [
+        "NSE:CRYSTALCP",
+        "NSE:WATRANA"
+      ],
       "deduped_from_open": [],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-11-16",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-11-16T15:32:50+05:30",
+      "fetched_at": "2026-11-16T18:32:45+05:30",
       "stale": false,
       "calendar_added": 0,
       "horizon": {
         "min_days": 20,
-        "furthest_open": null,
-        "furthest_open_dmy": null,
-        "furthest_company": null,
-        "days_ahead": null,
-        "forthcoming": 0
+        "furthest_open": "2026-11-19",
+        "furthest_open_dmy": "19-Nov-2026",
+        "furthest_company": "Watrana Rentals Limited",
+        "days_ahead": 3,
+        "forthcoming": 2
       },
       "circular_confirmed": 0,
       "gmp_matched": 0
@@ -1157,10 +1222,10 @@
       "confirmed": 44,
       "checked": 68,
       "remembered": 114,
-      "as_of": "2026-11-16T15:32:50+05:30",
+      "as_of": "2026-11-16T18:32:45+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-11-16T15:32:50+05:30",
+      "fetched_at": "2026-11-16T18:32:45+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1171,7 +1236,7 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-11-16T15:32:50+05:30",
+      "fetched_at": "2026-11-16T18:32:46+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2175,7 +2240,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-11-16T15:32:58+05:30",
+      "fetched_at": "2026-11-16T18:32:55+05:30",
       "stale": false
     },
     "earnings": {
@@ -2274,32 +2339,32 @@
           "quarters": [
             {
               "quarter": "2026-09-30",
-              "revenue": 483218400000.0,
-              "net_income": 76732640000.0,
+              "revenue": 483231262500.0,
+              "net_income": 76734682500.0,
               "age_days": 47
             },
             {
               "quarter": "2026-06-30",
-              "revenue": 477301440000.0,
-              "net_income": 76920480000.0,
+              "revenue": 477314145000.0,
+              "net_income": 76922527500.0,
               "age_days": 139
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 473356800000.0,
-              "net_income": 86312480000.0,
+              "revenue": 473369400000.0,
+              "net_income": 86314777500.0,
               "age_days": 230
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 478898080000.0,
-              "net_income": 70158240000.0,
+              "revenue": 478910827500.0,
+              "net_income": 70160107500.0,
               "age_days": 320
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 93.92,
+          "fx_used": 93.9225,
           "latest_quarter": "2026-09-30",
           "age_days": 47,
           "stale": false
@@ -2340,7 +2405,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 93.92,
+      "usd_inr": 93.9225,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -2349,7 +2414,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-11-16T15:33:00+05:30",
+      "fetched_at": "2026-11-16T18:32:57+05:30",
       "stale": false
     }
   }

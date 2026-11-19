@@ -1,7 +1,7 @@
 {
  "schema": 1,
- "generated": "2026-11-19T16:49:08+05:30",
- "lastUpdate": "2026-11-19 15:40:32",
+ "generated": "2026-11-20T00:39:42+05:30",
+ "lastUpdate": "2026-11-19 15:40:31",
  "tradeDate": "2026-11-19",
  "market": {
   "status": "Closed",
@@ -30,7 +30,7 @@
  },
  "constituents": {
   "source": "niftyindices.com/IndexConstituent/ind_nifty50list.csv",
-  "fetched": "2026-11-19 16:49",
+  "fetched": "2026-11-20 00:39",
   "count": 50,
   "changes": []
  },

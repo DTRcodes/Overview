@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-19T19:14:03+05:30",
-  "generated_at_utc": "2026-11-19T13:44:03+00:00",
+  "generated_at": "2026-11-20T03:12:00+05:30",
+  "generated_at_utc": "2026-11-19T21:42:00+00:00",
   "failures": [
     {
       "source": "ipo_calendar",
@@ -26,33 +26,33 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-11-19T19:13:36+05:30",
+      "fetched_at": "2026-11-20T03:11:27+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "date": "19-Nov-2026",
-          "buy": 20706.95,
-          "sell": 13295.54,
-          "net": 7411.41
+          "buy": 20706.94921875,
+          "sell": 13295.5400390625,
+          "net": 7411.4091796875,
+          "view": "BULLISH"
         },
         "dii": {
-          "date": "19-Nov-2026",
           "buy": 17651.5,
-          "sell": 19008.07,
-          "net": -1356.57
+          "sell": 19008.0703125,
+          "net": -1356.5703125,
+          "view": "BEARISH"
         }
       },
       "fno": {
-        "fii_call_oi_chg": -79666.0,
-        "fii_put_oi_chg": 4586.0,
-        "fii_fut_amt": -987.259765625,
-        "fii_fut_oi_chg": -5547.0,
-        "fii_fut_oi": -70670.0,
-        "fut_view": "BEARISH",
-        "call_view": "BEARISH",
-        "put_view": "BEARISH"
+        "fii_call_oi_chg": 96555.0,
+        "fii_put_oi_chg": -41823.0,
+        "fii_fut_amt": 507.2001953125,
+        "fii_fut_oi_chg": 2423.0,
+        "fii_fut_oi": -68247.0,
+        "fut_view": "BULLISH",
+        "call_view": "BULLISH",
+        "put_view": "BULLISH"
       },
       "as_of": "2026-11-19",
       "window_days": 23,
@@ -66,9 +66,9 @@
         "2026-November"
       ],
       "unit": "INR crore",
-      "via": "nseindia for 2026-11-19, sensibull window behind at 2026-11-18",
+      "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-11-19T19:13:38+05:30",
+      "fetched_at": "2026-11-20T03:11:28+05:30",
       "stale": false,
       "series_days": 23
     },
@@ -103,7 +103,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-11-19T19:13:38+05:30",
+      "fetched_at": "2026-11-20T03:11:28+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -168,7 +168,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-11-19T19:13:38+05:30",
+      "fetched_at": "2026-11-20T03:11:29+05:30",
       "stale": false
     },
     "india_yields": {
@@ -187,7 +187,7 @@
       "spread_10y_2y": 0.67,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-11-19T19:13:40+05:30",
+      "fetched_at": "2026-11-20T03:11:31+05:30",
       "stale": false
     },
     "us_rates": {
@@ -202,23 +202,23 @@
         },
         "fed_effective": {
           "value": 3.88,
-          "date": "2026-11-17"
+          "date": "2026-11-18"
         },
         "us_2y": {
           "value": 4.8,
-          "date": "2026-11-17"
+          "date": "2026-11-18"
         },
         "us_5y": {
-          "value": 4.9,
-          "date": "2026-11-17"
+          "value": 4.89,
+          "date": "2026-11-18"
         },
         "us_10y": {
-          "value": 5.1,
-          "date": "2026-11-17"
+          "value": 5.07,
+          "date": "2026-11-18"
         },
         "us_30y": {
-          "value": 5.46,
-          "date": "2026-11-17"
+          "value": 5.41,
+          "date": "2026-11-18"
         },
         "us_10y_2y_spread": {
           "value": 0.27,
@@ -228,15 +228,15 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-11-19T19:13:41+05:30",
+      "fetched_at": "2026-11-20T03:11:33+05:30",
       "stale": false
     },
     "world_yields": {
       "latest": {
         "5": {
           "US": {
-            "value": 4.89,
-            "date": "2026-11-18"
+            "value": 4.86,
+            "date": "2026-11-19"
           },
           "Japan": {
             "value": 2.268,
@@ -261,8 +261,8 @@
         },
         "10": {
           "US": {
-            "value": 5.07,
-            "date": "2026-11-18"
+            "value": 5.04,
+            "date": "2026-11-19"
           },
           "Japan": {
             "value": 2.916,
@@ -308,11 +308,11 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-11-19T19:13:50+05:30",
+      "fetched_at": "2026-11-20T03:11:46+05:30",
       "stale": false,
       "series_points": {
-        "y5_us": 720,
-        "y10_us": 720,
+        "y5_us": 721,
+        "y10_us": 721,
         "y5_jp": 1500,
         "y10_jp": 1500,
         "y5_uk": 1500,
@@ -326,13 +326,13 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 93.29,
+      "usd_inr": 93.28,
       "as_of": "2026-11-19",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 103.682,
+      "dxy": 103.956,
       "dxy_as_of": "2026-11-19",
-      "dxy_at": "2026-11-19 08:33:00-05:00",
-      "fetched_at": "2026-11-19T19:13:51+05:30",
+      "dxy_at": "2026-11-19 16:31:00-05:00",
+      "fetched_at": "2026-11-20T03:11:47+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -350,19 +350,19 @@
           "listing_date": "09-NOV-2026"
         },
         {
-          "company": "HGS (India) Limited",
-          "symbol": "HGSINDIALT",
-          "tv": "NSE:HGSINDIALT",
-          "price_range": "Rs.114 to Rs.120",
-          "issue_price": "120",
-          "listing_date": "06-NOV-2026"
-        },
-        {
           "company": "Maxwell Engineering Solutions Limited",
           "symbol": "MAXENGS",
           "tv": "NSE:MAXENGS",
           "price_range": "Rs.150 to Rs.158",
           "issue_price": "158",
+          "listing_date": "06-NOV-2026"
+        },
+        {
+          "company": "HGS (India) Limited",
+          "symbol": "HGSINDIALT",
+          "tv": "NSE:HGSINDIALT",
+          "price_range": "Rs.114 to Rs.120",
+          "issue_price": "120",
           "listing_date": "06-NOV-2026"
         },
         {
@@ -422,11 +422,11 @@
           "listing_date": "28-OCT-2026"
         },
         {
-          "company": "Bonfiglioli Transmissions Limited",
-          "symbol": "BONFIG",
-          "tv": "NSE:BONFIG",
-          "price_range": "Rs.558 to Rs.586",
-          "issue_price": "   586",
+          "company": "Tonbo Imaging India Limited",
+          "symbol": "TONBO",
+          "tv": "NSE:TONBO",
+          "price_range": "Rs.665 to Rs.700",
+          "issue_price": "   700",
           "listing_date": "23-OCT-2026"
         },
         {
@@ -446,11 +446,11 @@
           "listing_date": "23-OCT-2026"
         },
         {
-          "company": "Tonbo Imaging India Limited",
-          "symbol": "TONBO",
-          "tv": "NSE:TONBO",
-          "price_range": "Rs.665 to Rs.700",
-          "issue_price": "   700",
+          "company": "Bonfiglioli Transmissions Limited",
+          "symbol": "BONFIG",
+          "tv": "NSE:BONFIG",
+          "price_range": "Rs.558 to Rs.586",
+          "issue_price": "   586",
           "listing_date": "23-OCT-2026"
         },
         {
@@ -534,19 +534,19 @@
           "listing_date": "07-OCT-2026"
         },
         {
-          "company": "Shah Investor's Home Limited",
-          "symbol": "SHAHINVEST",
-          "tv": "NSE:SHAHINVEST",
-          "price_range": "Rs.159 to Rs.167",
-          "issue_price": "   167",
-          "listing_date": "06-OCT-2026"
-        },
-        {
           "company": "Srit India Limited",
           "symbol": "SRIT",
           "tv": "NSE:SRIT",
           "price_range": "Rs.123 to Rs.130",
           "issue_price": "   130",
+          "listing_date": "06-OCT-2026"
+        },
+        {
+          "company": "Shah Investor's Home Limited",
+          "symbol": "SHAHINVEST",
+          "tv": "NSE:SHAHINVEST",
+          "price_range": "Rs.159 to Rs.167",
+          "issue_price": "   167",
           "listing_date": "06-OCT-2026"
         },
         {
@@ -566,19 +566,19 @@
           "listing_date": "05-OCT-2026"
         },
         {
-          "company": "German Green Steel and Power Limited",
-          "symbol": "GERMAN",
-          "tv": "NSE:GERMAN",
-          "price_range": "Rs.132 to Rs.139",
-          "issue_price": "   139",
-          "listing_date": "05-OCT-2026"
-        },
-        {
           "company": "Orient Cables (India) Limited",
           "symbol": "ORIENTCABL",
           "tv": "NSE:ORIENTCABL",
           "price_range": "Rs.258 to Rs.272",
           "issue_price": "   272",
+          "listing_date": "05-OCT-2026"
+        },
+        {
+          "company": "German Green Steel and Power Limited",
+          "symbol": "GERMAN",
+          "tv": "NSE:GERMAN",
+          "price_range": "Rs.132 to Rs.139",
+          "issue_price": "   139",
           "listing_date": "05-OCT-2026"
         },
         {
@@ -598,19 +598,19 @@
           "listing_date": "05-OCT-2026"
         },
         {
-          "company": "A-One Steels India Limited",
-          "symbol": "AONESTEELS",
-          "tv": "NSE:AONESTEELS",
-          "price_range": "Rs.385 to Rs.405",
-          "issue_price": "   405",
-          "listing_date": "01-OCT-2026"
-        },
-        {
           "company": "Moneyview Limited",
           "symbol": "MONEYVIEW",
           "tv": "NSE:MONEYVIEW",
           "price_range": "Rs.32 to Rs.34",
           "issue_price": "    34",
+          "listing_date": "01-OCT-2026"
+        },
+        {
+          "company": "A-One Steels India Limited",
+          "symbol": "AONESTEELS",
+          "tv": "NSE:AONESTEELS",
+          "price_range": "Rs.385 to Rs.405",
+          "issue_price": "   405",
           "listing_date": "01-OCT-2026"
         },
         {
@@ -622,11 +622,11 @@
           "listing_date": "07-OCT-2026"
         },
         {
-          "company": "Elevate Campuses Limited",
-          "symbol": "ELEVATE",
-          "tv": "NSE:ELEVATE",
-          "price_range": "Rs.343 to Rs.362",
-          "issue_price": "   362",
+          "company": "ArMee Infotech Limited",
+          "symbol": "ARMEE",
+          "tv": "NSE:ARMEE",
+          "price_range": "Rs.350 to Rs.375",
+          "issue_price": "   375",
           "listing_date": "30-SEP-2026"
         },
         {
@@ -638,19 +638,19 @@
           "listing_date": "30-SEP-2026"
         },
         {
-          "company": "ArMee Infotech Limited",
-          "symbol": "ARMEE",
-          "tv": "NSE:ARMEE",
-          "price_range": "Rs.350 to Rs.375",
-          "issue_price": "   375",
-          "listing_date": "30-SEP-2026"
-        },
-        {
           "company": "Adroit Industries (India) Limited",
           "symbol": "ADROITIND",
           "tv": "NSE:ADROITIND",
           "price_range": "Rs.126 to Rs.134",
           "issue_price": "   134",
+          "listing_date": "30-SEP-2026"
+        },
+        {
+          "company": "Elevate Campuses Limited",
+          "symbol": "ELEVATE",
+          "tv": "NSE:ELEVATE",
+          "price_range": "Rs.343 to Rs.362",
+          "issue_price": "   362",
           "listing_date": "30-SEP-2026"
         },
         {
@@ -666,9 +666,9 @@
       "tv_watchlist": [],
       "deduped_from_open": [],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
-      "as_of": "2026-11-19",
+      "as_of": "2026-11-20",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-11-19T19:13:52+05:30",
+      "fetched_at": "2026-11-20T03:11:49+05:30",
       "stale": false,
       "calendar_added": 0,
       "horizon": {
@@ -1153,21 +1153,21 @@
       "confirmed": 44,
       "checked": 68,
       "remembered": 114,
-      "as_of": "2026-11-19T19:13:52+05:30",
+      "as_of": "2026-11-20T03:11:49+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-11-19T19:13:52+05:30",
+      "fetched_at": "2026-11-20T03:11:49+05:30",
       "stale": false
     },
     "ipo_listing_live": {
-      "date": "2026-11-19",
+      "date": "2026-11-20",
       "listed_today": [],
       "live": [],
       "no_quote_yet": [],
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-11-19T19:13:53+05:30",
+      "fetched_at": "2026-11-20T03:11:49+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -1223,10 +1223,10 @@
       ],
       "history": [],
       "track_record": null,
-      "as_of": "2026-11-19T19:13:54+05:30",
+      "as_of": "2026-11-20T03:11:51+05:30",
       "caveat": "Grey market premium is unofficial and unregulated. It is an indication of sentiment, not a price you can trade or a forecast anyone stands behind.",
       "source": "ipowatch.in",
-      "fetched_at": "2026-11-19T19:13:54+05:30",
+      "fetched_at": "2026-11-20T03:11:51+05:30",
       "stale": false
     },
     "ipo_calendar": {
@@ -2178,13 +2178,13 @@
       "cohorts": [
         {
           "label": "last 3 months",
-          "count": 87,
-          "from": "2026-08-20",
+          "count": 86,
+          "from": "2026-08-21",
           "to": "2026-11-09",
           "median_listing_pct": 5.56,
           "median_intra_pop_pct": 4.79,
           "median_intra_close_pct": 0.28,
-          "positive_open_pct": 66.7
+          "positive_open_pct": 66.3
         },
         {
           "label": "last 6 months",
@@ -2219,7 +2219,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-11-19T19:14:02+05:30",
+      "fetched_at": "2026-11-20T03:11:58+05:30",
       "stale": false
     },
     "earnings": {
@@ -2230,32 +2230,32 @@
               "quarter": "2026-09-30",
               "revenue": 3306010000000.0,
               "net_income": 255480000000.0,
-              "age_days": 50
+              "age_days": 51
             },
             {
               "quarter": "2026-06-30",
               "revenue": 3094680000000.0,
               "net_income": 209460000000.0,
-              "age_days": 142
+              "age_days": 143
             },
             {
               "quarter": "2026-03-31",
               "revenue": 2940590000000.0,
               "net_income": 169710000000.0,
-              "age_days": 233
+              "age_days": 234
             },
             {
               "quarter": "2025-12-31",
               "revenue": 2649050000000.0,
               "net_income": 186450000000.0,
-              "age_days": 323
+              "age_days": 324
             }
           ],
           "currency": "INR",
           "converted_from": null,
           "fx_used": null,
           "latest_quarter": "2026-09-30",
-          "age_days": 50,
+          "age_days": 51,
           "stale": false
         },
         "HDFCBANK.NS": {
@@ -2264,20 +2264,20 @@
               "quarter": "2025-06-30",
               "revenue": 853464600000.0,
               "net_income": 162579100000.0,
-              "age_days": 507
+              "age_days": 508
             },
             {
               "quarter": "2025-03-31",
               "revenue": 953058900000.0,
               "net_income": 153934600000.0,
-              "age_days": 598
+              "age_days": 599
             }
           ],
           "currency": "INR",
           "converted_from": null,
           "fx_used": null,
           "latest_quarter": "2025-06-30",
-          "age_days": 507,
+          "age_days": 508,
           "stale": true
         },
         "TCS.NS": {
@@ -2286,66 +2286,66 @@
               "quarter": "2026-09-30",
               "revenue": 731880000000.0,
               "net_income": 138840000000.0,
-              "age_days": 50
+              "age_days": 51
             },
             {
               "quarter": "2026-06-30",
               "revenue": 722750000000.0,
               "net_income": 133490000000.0,
-              "age_days": 142
+              "age_days": 143
             },
             {
               "quarter": "2026-03-31",
               "revenue": 706980000000.0,
               "net_income": 137180000000.0,
-              "age_days": 233
+              "age_days": 234
             },
             {
               "quarter": "2025-12-31",
               "revenue": 670870000000.0,
               "net_income": 106570000000.0,
-              "age_days": 323
+              "age_days": 324
             }
           ],
           "currency": "INR",
           "converted_from": null,
           "fx_used": null,
           "latest_quarter": "2026-09-30",
-          "age_days": 50,
+          "age_days": 51,
           "stale": false
         },
         "INFY.NS": {
           "quarters": [
             {
               "quarter": "2026-09-30",
-              "revenue": 479977050000.00006,
-              "net_income": 76217930000.0,
-              "age_days": 50
+              "revenue": 479925600000.0,
+              "net_income": 76209760000.0,
+              "age_days": 51
             },
             {
               "quarter": "2026-06-30",
-              "revenue": 474099780000.00006,
-              "net_income": 76404510000.0,
-              "age_days": 142
+              "revenue": 474048960000.0,
+              "net_income": 76396320000.0,
+              "age_days": 143
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 470181600000.00006,
-              "net_income": 85733510000.0,
-              "age_days": 233
+              "revenue": 470131200000.0,
+              "net_income": 85724320000.0,
+              "age_days": 234
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 475685710000.00006,
-              "net_income": 69687630000.0,
-              "age_days": 323
+              "revenue": 475634720000.0,
+              "net_income": 69680160000.0,
+              "age_days": 324
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 93.29,
+          "fx_used": 93.28,
           "latest_quarter": "2026-09-30",
-          "age_days": 50,
+          "age_days": 51,
           "stale": false
         },
         "ICICIBANK.NS": {
@@ -2354,46 +2354,46 @@
               "quarter": "2026-09-30",
               "revenue": 401531700000.0,
               "net_income": 163331800000.0,
-              "age_days": 50
+              "age_days": 51
             },
             {
               "quarter": "2026-06-30",
               "revenue": 383657400000.0,
               "net_income": 154400600000.0,
-              "age_days": 142
+              "age_days": 143
             },
             {
               "quarter": "2026-03-31",
               "revenue": 357423400000.0,
               "net_income": 147550600000.0,
-              "age_days": 233
+              "age_days": 234
             },
             {
               "quarter": "2025-12-31",
               "revenue": 352926000000.0,
               "net_income": 125379800000.0,
-              "age_days": 323
+              "age_days": 324
             }
           ],
           "currency": "INR",
           "converted_from": null,
           "fx_used": null,
           "latest_quarter": "2026-09-30",
-          "age_days": 50,
+          "age_days": 51,
           "stale": false
         }
       },
       "unit": "INR",
-      "usd_inr": 93.29,
+      "usd_inr": 93.28,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
-          "issue": "newest quarter 2025-06-30 is 507 days old"
+          "issue": "newest quarter 2025-06-30 is 508 days old"
         }
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-11-19T19:14:03+05:30",
+      "fetched_at": "2026-11-20T03:12:00+05:30",
       "stale": false
     }
   }

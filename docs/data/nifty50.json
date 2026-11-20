@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "generated": "2026-11-20T16:36:09+05:30",
+ "generated": "2026-11-21T00:19:58+05:30",
  "lastUpdate": "2026-11-20 15:40:31",
  "tradeDate": "2026-11-20",
  "market": {
-  "status": "Closed",
+  "status": "Close",
   "tradeDate": "20-Nov-2026 15:30",
-  "message": "Normal Market has Closed"
+  "message": "Market is Closed"
  },
  "index": {
   "symbol": "NIFTY 50",
@@ -30,7 +30,7 @@
  },
  "constituents": {
   "source": "niftyindices.com/IndexConstituent/ind_nifty50list.csv",
-  "fetched": "2026-11-20 16:36",
+  "fetched": "2026-11-21 00:19",
   "count": 50,
   "changes": []
  },

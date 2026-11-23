@@ -1,0 +1,34 @@
+[
+ {
+  "bcEndDate": "-",
+  "bcStartDate": "-",
+  "caBroadcastDate": null,
+  "comp": "Pashupati Cotspin Limited",
+  "exDate": "23-Nov-2026",
+  "faceVal": "1",
+  "ind": "-",
+  "isin": "INE124Y01010",
+  "ndEndDate": "-",
+  "ndStartDate": "-",
+  "recDate": "23-Nov-2026",
+  "series": "EQ",
+  "subject": "Interim Dividend - Re 0.02 Per Share",
+  "symbol": "PASHUPATI"
+ },
+ {
+  "bcEndDate": "-",
+  "bcStartDate": "-",
+  "caBroadcastDate": null,
+  "comp": "GOVERNMENT OF INDIA",
+  "exDate": "23-Nov-2026",
+  "faceVal": "100",
+  "ind": "-",
+  "isin": "IN0020140060",
+  "ndEndDate": "-",
+  "ndStartDate": "-",
+  "recDate": "23-Nov-2026",
+  "series": "GS",
+  "subject": "Interest Payment",
+  "symbol": "815GS2026"
+ }
+]

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-24T06:34:22+05:30",
-  "generated_at_utc": "2026-11-24T01:04:22+00:00",
+  "generated_at": "2026-11-24T18:20:05+05:30",
+  "generated_at_utc": "2026-11-24T12:50:05+00:00",
   "failures": [
     {
       "source": "ipo_gmp",
@@ -30,7 +30,7 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-11-24T06:33:35+05:30",
+      "fetched_at": "2026-11-24T18:19:25+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -72,7 +72,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-11-24T06:33:36+05:30",
+      "fetched_at": "2026-11-24T18:19:26+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -107,7 +107,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-11-24T06:33:36+05:30",
+      "fetched_at": "2026-11-24T18:19:27+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -172,7 +172,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-11-24T06:33:37+05:30",
+      "fetched_at": "2026-11-24T18:19:28+05:30",
       "stale": false
     },
     "india_yields": {
@@ -191,7 +191,7 @@
       "spread_10y_2y": 0.57,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-11-24T06:33:39+05:30",
+      "fetched_at": "2026-11-24T18:19:31+05:30",
       "stale": false
     },
     "us_rates": {
@@ -232,7 +232,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-11-24T06:33:42+05:30",
+      "fetched_at": "2026-11-24T18:19:33+05:30",
       "stale": false
     },
     "world_yields": {
@@ -247,16 +247,16 @@
             "date": "2026-11-20"
           },
           "UK": {
-            "value": 4.9407,
-            "date": "2026-11-19"
+            "value": 4.8697,
+            "date": "2026-11-20"
           },
           "Germany": {
-            "value": 3.12,
-            "date": "2026-11-23"
+            "value": 3.08,
+            "date": "2026-11-24"
           },
           "China": {
-            "value": 1.3262,
-            "date": "2026-11-23"
+            "value": 1.3259,
+            "date": "2026-11-24"
           },
           "India": {
             "value": 7.11,
@@ -273,16 +273,16 @@
             "date": "2026-11-20"
           },
           "UK": {
-            "value": 5.2885,
-            "date": "2026-11-19"
+            "value": 5.2072,
+            "date": "2026-11-20"
           },
           "Germany": {
-            "value": 3.37,
-            "date": "2026-11-23"
+            "value": 3.33,
+            "date": "2026-11-24"
           },
           "China": {
-            "value": 1.5861,
-            "date": "2026-11-23"
+            "value": 1.5853,
+            "date": "2026-11-24"
           },
           "India": {
             "value": 7.24,
@@ -312,7 +312,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-11-24T06:34:01+05:30",
+      "fetched_at": "2026-11-24T18:19:45+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 723,
@@ -323,20 +323,20 @@
         "y10_uk": 1500,
         "y5_de": 1500,
         "y10_de": 1500,
-        "y5_cn": 313,
-        "y10_cn": 313,
+        "y5_cn": 314,
+        "y10_cn": 314,
         "y5_in": 311,
         "y10_in": 311
       }
     },
     "fx_spot": {
-      "usd_inr": 92.673,
-      "as_of": "2026-11-23",
+      "usd_inr": 92.9,
+      "as_of": "2026-11-24",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 104.293,
-      "dxy_as_of": "2026-11-23",
-      "dxy_at": "2026-11-23 19:53:00-05:00",
-      "fetched_at": "2026-11-24T06:34:02+05:30",
+      "dxy": 103.924,
+      "dxy_as_of": "2026-11-24",
+      "dxy_at": "2026-11-24 07:39:00-05:00",
+      "fetched_at": "2026-11-24T18:19:47+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -768,7 +768,7 @@
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-11-24",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-11-24T06:34:05+05:30",
+      "fetched_at": "2026-11-24T18:19:50+05:30",
       "stale": false,
       "calendar_added": 0,
       "horizon": {
@@ -1253,10 +1253,10 @@
       "confirmed": 44,
       "checked": 68,
       "remembered": 114,
-      "as_of": "2026-11-24T06:34:06+05:30",
+      "as_of": "2026-11-24T18:19:51+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-11-24T06:34:06+05:30",
+      "fetched_at": "2026-11-24T18:19:51+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1267,7 +1267,7 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-11-24T06:34:06+05:30",
+      "fetched_at": "2026-11-24T18:19:51+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2320,7 +2320,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-11-24T06:34:20+05:30",
+      "fetched_at": "2026-11-24T18:20:02+05:30",
       "stale": false
     },
     "earnings": {
@@ -2419,32 +2419,32 @@
           "quarters": [
             {
               "quarter": "2026-09-30",
-              "revenue": 476802585000.0,
-              "net_income": 75713841000.0,
+              "revenue": 477970500000.0,
+              "net_income": 75899300000.0,
               "age_days": 55
             },
             {
               "quarter": "2026-06-30",
-              "revenue": 470964186000.0,
-              "net_income": 75899187000.0,
+              "revenue": 472117800000.0,
+              "net_income": 76085100000.0,
               "age_days": 147
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 467071920000.0,
-              "net_income": 85166487000.0,
+              "revenue": 468216000000.0,
+              "net_income": 85375100000.0,
               "age_days": 238
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 472539627000.0,
-              "net_income": 69226731000.0,
+              "revenue": 473697100000.0,
+              "net_income": 69396300000.0,
               "age_days": 328
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 92.673,
+          "fx_used": 92.9,
           "latest_quarter": "2026-09-30",
           "age_days": 55,
           "stale": false
@@ -2485,7 +2485,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 92.673,
+      "usd_inr": 92.9,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -2494,7 +2494,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-11-24T06:34:22+05:30",
+      "fetched_at": "2026-11-24T18:20:05+05:30",
       "stale": false
     }
   }

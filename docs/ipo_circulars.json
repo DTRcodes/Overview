@@ -1296,5 +1296,16 @@
 "match": "vedantpolyfabs",
 "subject": "Listing of Equity Shares of Vedant Poly Fabs Limited (SME IPO)",
 "symbol": "VPFL"
+},
+"https://nsearchives.nseindia.in/content/circulars/CML77589.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.in/content/circulars/CML77589.pdf",
+"circular_date": "November 25, 2026",
+"company": "Crystal Crop Protection Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "crystalcropprotection",
+"subject": "Listing of Equity Shares of Crystal Crop Protection Limited (IPO)",
+"symbol": "CRYSTALCP"
 }
 }

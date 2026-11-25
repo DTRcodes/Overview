@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-25T04:38:55+05:30",
-  "generated_at_utc": "2026-11-24T23:08:55+00:00",
+  "generated_at": "2026-11-25T17:06:22+05:30",
+  "generated_at_utc": "2026-11-25T11:36:22+00:00",
   "failures": [
     {
       "source": "ipo_gmp",
@@ -23,14 +23,14 @@
         "slr": 18.0
       },
       "fx_reference": {
-        "USD": 92.7968,
-        "GBP": 121.7905,
-        "EUR": 102.0403,
-        "JPY_100": 58.39
+        "USD": 92.4895,
+        "GBP": 120.967,
+        "EUR": 101.128,
+        "JPY_100": 58.0
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-11-25T04:38:19+05:30",
+      "fetched_at": "2026-11-25T17:05:43+05:30",
       "stale": false
     },
     "nse_fii_dii": {
@@ -72,7 +72,7 @@
       "unit": "INR crore",
       "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-11-25T04:38:20+05:30",
+      "fetched_at": "2026-11-25T17:05:45+05:30",
       "stale": false,
       "series_days": 22
     },
@@ -107,7 +107,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-11-25T04:38:21+05:30",
+      "fetched_at": "2026-11-25T17:05:46+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -172,7 +172,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-11-25T04:38:22+05:30",
+      "fetched_at": "2026-11-25T17:05:47+05:30",
       "stale": false
     },
     "india_yields": {
@@ -191,7 +191,7 @@
       "spread_10y_2y": 0.57,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-11-25T04:38:25+05:30",
+      "fetched_at": "2026-11-25T17:05:50+05:30",
       "stale": false
     },
     "us_rates": {
@@ -232,7 +232,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-11-25T04:38:27+05:30",
+      "fetched_at": "2026-11-25T17:05:52+05:30",
       "stale": false
     },
     "world_yields": {
@@ -243,20 +243,20 @@
             "date": "2026-11-24"
           },
           "Japan": {
-            "value": 2.198,
-            "date": "2026-11-20"
+            "value": 2.141,
+            "date": "2026-11-24"
           },
           "UK": {
-            "value": 4.8697,
-            "date": "2026-11-20"
+            "value": 4.863,
+            "date": "2026-11-23"
           },
           "Germany": {
-            "value": 3.08,
-            "date": "2026-11-24"
+            "value": 3.04,
+            "date": "2026-11-25"
           },
           "China": {
-            "value": 1.3259,
-            "date": "2026-11-24"
+            "value": 1.3262,
+            "date": "2026-11-25"
           },
           "India": {
             "value": 7.11,
@@ -269,20 +269,20 @@
             "date": "2026-11-24"
           },
           "Japan": {
-            "value": 2.838,
-            "date": "2026-11-20"
+            "value": 2.781,
+            "date": "2026-11-24"
           },
           "UK": {
-            "value": 5.2072,
-            "date": "2026-11-20"
+            "value": 5.1793,
+            "date": "2026-11-23"
           },
           "Germany": {
-            "value": 3.33,
-            "date": "2026-11-24"
+            "value": 3.3,
+            "date": "2026-11-25"
           },
           "China": {
-            "value": 1.5853,
-            "date": "2026-11-24"
+            "value": 1.5914,
+            "date": "2026-11-25"
           },
           "India": {
             "value": 7.24,
@@ -312,7 +312,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-11-25T04:38:41+05:30",
+      "fetched_at": "2026-11-25T17:06:06+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 724,
@@ -323,20 +323,20 @@
         "y10_uk": 1500,
         "y5_de": 1500,
         "y10_de": 1500,
-        "y5_cn": 314,
-        "y10_cn": 314,
+        "y5_cn": 315,
+        "y10_cn": 315,
         "y5_in": 311,
         "y10_in": 311
       }
     },
     "fx_spot": {
-      "usd_inr": 92.9,
-      "as_of": "2026-11-24",
+      "usd_inr": 92.22,
+      "as_of": "2026-11-25",
       "source": "yahoo finance (INR=X spot)",
-      "dxy": 103.824,
-      "dxy_as_of": "2026-11-24",
-      "dxy_at": "2026-11-24 17:58:00-05:00",
-      "fetched_at": "2026-11-25T04:38:42+05:30",
+      "dxy": 104.021,
+      "dxy_as_of": "2026-11-25",
+      "dxy_at": "2026-11-25 06:26:00-05:00",
+      "fetched_at": "2026-11-25T17:06:07+05:30",
       "stale": false
     },
     "nse_ipo": {
@@ -379,6 +379,51 @@
           "expected_listing_dmy": "03-Dec-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "listing_label": "Opens tomorrow"
+        },
+        {
+          "company": "Airpro Technology India Limited",
+          "symbol": "AIRPRO",
+          "tv": "NSE:AIRPRO",
+          "price": "Rs.99",
+          "opens": "27-Nov-2026",
+          "closes": "01-Dec-2026",
+          "series": "SME",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-12-04",
+          "expected_listing_dmy": "04-Dec-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens Friday"
+        },
+        {
+          "company": "A J Packaging Limited",
+          "symbol": "AJPACK",
+          "tv": "NSE:AJPACK",
+          "price": "Rs.175 to Rs.180",
+          "opens": "01-Dec-2026",
+          "closes": "03-Dec-2026",
+          "series": "SME",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-12-08",
+          "expected_listing_dmy": "08-Dec-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens Tuesday"
+        },
+        {
+          "company": "Monomark Engineering (India) Limited",
+          "symbol": "MONOMARK",
+          "tv": "NSE:MONOMARK",
+          "price": "Rs.60 to Rs.65",
+          "opens": "02-Dec-2026",
+          "closes": "04-Dec-2026",
+          "series": "Equity",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-12-09",
+          "expected_listing_dmy": "09-Dec-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens 02 Dec"
         }
       ],
       "current": [
@@ -396,6 +441,51 @@
           "expected_listing_dmy": "03-Dec-2026",
           "expected_basis": "T+3 trading days from issue close (SEBI)",
           "listing_label": "Opens tomorrow"
+        },
+        {
+          "company": "Airpro Technology India Limited",
+          "symbol": "AIRPRO",
+          "tv": "NSE:AIRPRO",
+          "price": "Rs.99",
+          "opens": "27-Nov-2026",
+          "closes": "01-Dec-2026",
+          "series": "SME",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-12-04",
+          "expected_listing_dmy": "04-Dec-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens Friday"
+        },
+        {
+          "company": "A J Packaging Limited",
+          "symbol": "AJPACK",
+          "tv": "NSE:AJPACK",
+          "price": "Rs.175 to Rs.180",
+          "opens": "01-Dec-2026",
+          "closes": "03-Dec-2026",
+          "series": "SME",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-12-08",
+          "expected_listing_dmy": "08-Dec-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens Tuesday"
+        },
+        {
+          "company": "Monomark Engineering (India) Limited",
+          "symbol": "MONOMARK",
+          "tv": "NSE:MONOMARK",
+          "price": "Rs.60 to Rs.65",
+          "opens": "02-Dec-2026",
+          "closes": "04-Dec-2026",
+          "series": "Equity",
+          "status": "Forthcoming",
+          "live": false,
+          "expected_listing": "2026-12-09",
+          "expected_listing_dmy": "09-Dec-2026",
+          "expected_basis": "T+3 trading days from issue close (SEBI)",
+          "listing_label": "Opens 02 Dec"
         }
       ],
       "recent_past": [
@@ -723,28 +813,42 @@
       "past_total": 1496,
       "tv_watchlist": [
         "NSE:WATRANA",
-        "NSE:FOODLINK"
+        "NSE:FOODLINK",
+        "NSE:AIRPRO",
+        "NSE:AJPACK",
+        "NSE:MONOMARK"
       ],
       "deduped_from_open": [],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
       "as_of": "2026-11-25",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-11-25T04:38:44+05:30",
+      "fetched_at": "2026-11-25T17:06:10+05:30",
       "stale": false,
       "calendar_added": 0,
       "horizon": {
         "min_days": 20,
-        "furthest_open": "2026-11-26",
-        "furthest_open_dmy": "26-Nov-2026",
-        "furthest_company": "Foodlink F&B Holdings (India) Limited",
-        "days_ahead": 1,
-        "forthcoming": 1
+        "furthest_open": "2026-12-02",
+        "furthest_open_dmy": "02-Dec-2026",
+        "furthest_company": "Monomark Engineering (India) Limited",
+        "days_ahead": 7,
+        "forthcoming": 4
       },
       "circular_confirmed": 0,
       "gmp_matched": 1
     },
     "ipo_circulars": {
       "circulars": [
+        {
+          "company": "Crystal Crop Protection Limited",
+          "match": "crystalcropprotection",
+          "board": "mainboard",
+          "circular_date": "November 25, 2026",
+          "circular": "https://nsearchives.nseindia.in/content/circulars/CML77589.pdf",
+          "subject": "Listing of Equity Shares of Crystal Crop Protection Limited (IPO)",
+          "confirmed_listing": null,
+          "symbol": "CRYSTALCP",
+          "date_pending": true
+        },
         {
           "board": "SME",
           "circular": "https://nsearchives.nseindia.com/content/circulars/CML77326.zip",
@@ -1198,26 +1302,15 @@
           "match": "varmoragranito",
           "subject": "Listing of Equity Shares of Varmora Granito Limited (IPO)",
           "symbol": "VARMORA"
-        },
-        {
-          "board": "mainboard",
-          "circular": "https://nsearchives.nseindia.com/content/circulars/CML76599.pdf",
-          "circular_date": "September 29, 2026",
-          "company": "Adroit Industries (India) Limited",
-          "confirmed_listing": null,
-          "date_pending": true,
-          "match": "adroitindustries",
-          "subject": "Listing of Equity Shares of Adroit Industries (India) Limited (IPO)",
-          "symbol": "ADROITIND"
         }
       ],
       "confirmed": 44,
-      "checked": 68,
-      "remembered": 114,
-      "as_of": "2026-11-25T04:38:45+05:30",
+      "checked": 69,
+      "remembered": 115,
+      "as_of": "2026-11-25T17:06:12+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-11-25T04:38:45+05:30",
+      "fetched_at": "2026-11-25T17:06:12+05:30",
       "stale": false
     },
     "ipo_listing_live": {
@@ -1228,7 +1321,7 @@
       "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-11-25T04:38:45+05:30",
+      "fetched_at": "2026-11-25T17:06:12+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2281,7 +2374,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-11-25T04:38:54+05:30",
+      "fetched_at": "2026-11-25T17:06:20+05:30",
       "stale": false
     },
     "earnings": {
@@ -2380,32 +2473,32 @@
           "quarters": [
             {
               "quarter": "2026-09-30",
-              "revenue": 477970500000.0,
-              "net_income": 75899300000.0,
+              "revenue": 474471900000.0,
+              "net_income": 75343740000.0,
               "age_days": 56
             },
             {
               "quarter": "2026-06-30",
-              "revenue": 472117800000.0,
-              "net_income": 76085100000.0,
+              "revenue": 468662040000.0,
+              "net_income": 75528180000.0,
               "age_days": 148
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 468216000000.0,
-              "net_income": 85375100000.0,
+              "revenue": 464788800000.0,
+              "net_income": 84750180000.0,
               "age_days": 239
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 473697100000.0,
-              "net_income": 69396300000.0,
+              "revenue": 470229780000.0,
+              "net_income": 68888340000.0,
               "age_days": 329
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 92.9,
+          "fx_used": 92.22,
           "latest_quarter": "2026-09-30",
           "age_days": 56,
           "stale": false
@@ -2446,7 +2539,7 @@
         }
       },
       "unit": "INR",
-      "usd_inr": 92.9,
+      "usd_inr": 92.22,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
@@ -2455,7 +2548,7 @@
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-11-25T04:38:55+05:30",
+      "fetched_at": "2026-11-25T17:06:22+05:30",
       "stale": false
     }
   }

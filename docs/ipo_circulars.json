@@ -1307,5 +1307,17 @@
 "match": "crystalcropprotection",
 "subject": "Listing of Equity Shares of Crystal Crop Protection Limited (IPO)",
 "symbol": "CRYSTALCP"
+},
+"https://nsearchives.nseindia.in/content/circulars/CML77612.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.in/content/circulars/CML77612.zip",
+"circular_date": "November 25, 2026",
+"company": "Crystal Crop Protection Limited",
+"confirmed_listing": "2026-11-26",
+"confirmed_listing_dmy": "26-Nov-2026",
+"date_pending": false,
+"match": "crystalcropprotection",
+"subject": "Listing of Equity Shares of Crystal Crop Protection Limited (IPO)",
+"symbol": "CRYSTALCP"
 }
 }

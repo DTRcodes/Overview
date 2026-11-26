@@ -1320,6 +1320,18 @@
 "subject": "Listing of Equity Shares of Crystal Crop Protection Limited (IPO)",
 "symbol": "CRYSTALCP"
 },
+"https://nsearchives.nseindia.in/content/circulars/CML77616.zip": {
+"board": "SME",
+"circular": "https://nsearchives.nseindia.in/content/circulars/CML77616.zip",
+"circular_date": "November 26, 2026",
+"company": "Watrana Rentals Limited",
+"confirmed_listing": "2026-11-27",
+"confirmed_listing_dmy": "27-Nov-2026",
+"date_pending": false,
+"match": "watranarentals",
+"subject": "Listing of Equity Shares of Watrana Rentals Limited (SME IPO)",
+"symbol": "WATRANA"
+},
 "https://nsearchives.nseindia.in/content/circulars/CML77620.pdf": {
 "board": "mainboard",
 "circular": "https://nsearchives.nseindia.in/content/circulars/CML77620.pdf",
@@ -1327,6 +1339,18 @@
 "company": "Mahanadi Coalfields Limited",
 "confirmed_listing": null,
 "date_pending": true,
+"match": "mahanadicoalfields",
+"subject": "Listing of Equity Shares of Mahanadi Coalfields Limited (IPO)",
+"symbol": "MAHACOAL"
+},
+"https://nsearchives.nseindia.in/content/circulars/CML77630.zip": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.in/content/circulars/CML77630.zip",
+"circular_date": "November 26, 2026",
+"company": "Mahanadi Coalfields Limited",
+"confirmed_listing": "2026-11-27",
+"confirmed_listing_dmy": "27-Nov-2026",
+"date_pending": false,
 "match": "mahanadicoalfields",
 "subject": "Listing of Equity Shares of Mahanadi Coalfields Limited (IPO)",
 "symbol": "MAHACOAL"

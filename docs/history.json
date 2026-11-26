@@ -33096,7 +33096,20 @@
    "y5_de": 3.07,
    "y10_de": 3.32,
    "y5_cn": 1.3321,
-   "y10_cn": 1.5912
+   "y10_cn": 1.5912,
+   "nifty_close": 25884.5,
+   "nifty_pe": 21.08,
+   "nifty_pb": 3.18,
+   "nifty_div_yield": 1.32,
+   "india_10y": 7.27,
+   "fii_net": 5843.33,
+   "dii_net": 5630.72,
+   "fii_idx_fut_net": -88469.0,
+   "fii_stk_fut_net": 883936.0,
+   "dii_idx_fut_net": 8549.0,
+   "dii_stk_fut_net": -3982743.0,
+   "y5_in": 7.14,
+   "y10_in": 7.27
   }
  ]
 }

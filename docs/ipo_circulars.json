@@ -1319,5 +1319,16 @@
 "match": "crystalcropprotection",
 "subject": "Listing of Equity Shares of Crystal Crop Protection Limited (IPO)",
 "symbol": "CRYSTALCP"
+},
+"https://nsearchives.nseindia.in/content/circulars/CML77620.pdf": {
+"board": "mainboard",
+"circular": "https://nsearchives.nseindia.in/content/circulars/CML77620.pdf",
+"circular_date": "November 26, 2026",
+"company": "Mahanadi Coalfields Limited",
+"confirmed_listing": null,
+"date_pending": true,
+"match": "mahanadicoalfields",
+"subject": "Listing of Equity Shares of Mahanadi Coalfields Limited (IPO)",
+"symbol": "MAHACOAL"
 }
 }

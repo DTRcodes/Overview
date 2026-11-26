@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-26T19:43:16+05:30",
-  "generated_at_utc": "2026-11-26T14:13:16+00:00",
+  "generated_at": "2026-11-27T03:58:59+05:30",
+  "generated_at_utc": "2026-11-26T22:28:59+00:00",
   "failures": [
     {
       "source": "ipo_gmp",
@@ -30,36 +30,36 @@
       },
       "unit": "percent",
       "source": "rbi.org.in",
-      "fetched_at": "2026-11-26T19:42:33+05:30",
+      "fetched_at": "2026-11-27T03:58:23+05:30",
       "stale": false
     },
     "nse_fii_dii": {
       "flows": {
         "fii": {
-          "date": "26-Nov-2026",
-          "buy": 17879.74,
-          "sell": 12036.41,
-          "net": 5843.33
+          "buy": 17879.740234375,
+          "sell": 12036.41015625,
+          "net": 5843.330078125,
+          "view": "BULLISH"
         },
         "dii": {
-          "date": "26-Nov-2026",
-          "buy": 24352.87,
-          "sell": 18722.15,
-          "net": 5630.72
+          "buy": 24352.869140625,
+          "sell": 18722.150390625,
+          "net": 5630.71875,
+          "view": "BULLISH"
         }
       },
       "fno": {
-        "fii_call_oi_chg": -31940.0,
-        "fii_put_oi_chg": -40342.0,
-        "fii_fut_amt": 1034.94970703125,
-        "fii_fut_oi_chg": 5719.0,
-        "fii_fut_oi": -85230.0,
-        "fut_view": "BULLISH",
-        "call_view": "BEARISH",
+        "fii_call_oi_chg": 12621.0,
+        "fii_put_oi_chg": -55389.0,
+        "fii_fut_amt": -599.719970703125,
+        "fii_fut_oi_chg": -3239.0,
+        "fii_fut_oi": -88469.0,
+        "fut_view": "BEARISH",
+        "call_view": "BULLISH",
         "put_view": "BULLISH"
       },
       "as_of": "2026-11-26",
-      "window_days": 23,
+      "window_days": 22,
       "months_advertised": [
         "2026-May",
         "2026-June",
@@ -70,11 +70,11 @@
         "2026-November"
       ],
       "unit": "INR crore",
-      "via": "nseindia for 2026-11-26, sensibull window behind at 2026-11-25",
+      "via": "sensibull (rolling window)",
       "source": "oxide.sensibull.com/v1/compute/cache/fii_dii_daily",
-      "fetched_at": "2026-11-26T19:42:34+05:30",
+      "fetched_at": "2026-11-27T03:58:25+05:30",
       "stale": false,
-      "series_days": 23
+      "series_days": 22
     },
     "fii_derivatives": {
       "date": "2026-11-26",
@@ -107,7 +107,7 @@
       "unit": "contracts of open interest",
       "caveat": "Open interest in equity derivatives - NOT the cash INR-crore flow shown on the FII/DII tile.",
       "source": "nsearchives.nseindia.com/content/nsccl",
-      "fetched_at": "2026-11-26T19:42:35+05:30",
+      "fetched_at": "2026-11-27T03:58:26+05:30",
       "stale": false
     },
     "nse_valuation": {
@@ -172,7 +172,7 @@
       },
       "note": "NSE switched Nifty P/E from standalone to consolidated earnings on 31-Mar-2021; the series has a level break there.",
       "source": "nsearchives.nseindia.com",
-      "fetched_at": "2026-11-26T19:42:36+05:30",
+      "fetched_at": "2026-11-27T03:58:26+05:30",
       "stale": false
     },
     "india_yields": {
@@ -191,7 +191,7 @@
       "spread_10y_2y": 0.51,
       "tenors_available": 200,
       "source": "fbil.org.in/wasdm/gsec",
-      "fetched_at": "2026-11-26T19:42:37+05:30",
+      "fetched_at": "2026-11-27T03:58:29+05:30",
       "stale": false
     },
     "us_rates": {
@@ -232,7 +232,7 @@
       "unit": "percent",
       "via": "fred",
       "source": "fred.stlouisfed.org",
-      "fetched_at": "2026-11-26T19:42:39+05:30",
+      "fetched_at": "2026-11-27T03:58:30+05:30",
       "stale": false
     },
     "world_yields": {
@@ -312,7 +312,7 @@
       "monthly": [],
       "note": "All six from daily national sources: US Treasury, Bundesbank, Bank of England, Japan MOF, ChinaBond and FBIL. India is FBIL's semi-annual par yield, the convention its 10Y is quoted in.",
       "source": "treasury.gov, mof.go.jp, bankofengland.co.uk, bundesbank.de, fred.stlouisfed.org",
-      "fetched_at": "2026-11-26T19:42:48+05:30",
+      "fetched_at": "2026-11-27T03:58:43+05:30",
       "stale": false,
       "series_points": {
         "y5_us": 725,
@@ -330,34 +330,28 @@
       }
     },
     "fx_spot": {
-      "usd_inr": 92.54,
+      "usd_inr": 92.435,
       "as_of": "2026-11-26",
       "source": "yahoo finance (INR=X spot)",
       "dxy": 103.81,
       "dxy_as_of": "2026-11-25",
       "dxy_at": "2026-11-25 23:58:00-05:00",
-      "fetched_at": "2026-11-26T19:42:50+05:30",
+      "fetched_at": "2026-11-27T03:58:44+05:30",
       "stale": false
     },
     "nse_ipo": {
-      "listing_today": [],
-      "awaiting": [
+      "listing_today": [
         {
           "company": "Watrana Rentals Limited",
           "symbol": "WATRANA",
           "tv": "NSE:WATRANA",
           "series": "SME",
           "price_range": "Rs.232 to Rs.245",
-          "issue_price": "-",
-          "listing_date": "-",
+          "issue_price": "245",
+          "listing_date": "27-NOV-2026",
           "ipo_closed": "23-NOV-2026",
-          "days_since_close": 3,
-          "expected_listing": "2026-11-27",
-          "expected_listing_dmy": "27-Nov-2026",
-          "expected_basis": "T+3 (SEBI rule; 83% exact over 151 past listings)",
-          "lists_today_expected": false,
-          "listing_label": "Lists tomorrow",
-          "days_to_listing": 1,
+          "traded_today": false,
+          "listing_label": "Lists Today",
           "confirmed_listing": "2026-11-27",
           "confirmed_listing_dmy": "27-Nov-2026",
           "confirmed_by": "NSE circular November 26, 2026",
@@ -368,22 +362,8 @@
           "gmp_direction": "premium"
         }
       ],
+      "awaiting": [],
       "open_now": [
-        {
-          "company": "Airpro Technology India Limited",
-          "symbol": "AIRPRO",
-          "tv": "NSE:AIRPRO",
-          "price": "Rs.99",
-          "opens": "27-Nov-2026",
-          "closes": "01-Dec-2026",
-          "series": "SME",
-          "status": "Forthcoming",
-          "live": false,
-          "expected_listing": "2026-12-04",
-          "expected_listing_dmy": "04-Dec-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens tomorrow"
-        },
         {
           "company": "A J Packaging Limited",
           "symbol": "AJPACK",
@@ -431,21 +411,6 @@
         }
       ],
       "current": [
-        {
-          "company": "Airpro Technology India Limited",
-          "symbol": "AIRPRO",
-          "tv": "NSE:AIRPRO",
-          "price": "Rs.99",
-          "opens": "27-Nov-2026",
-          "closes": "01-Dec-2026",
-          "series": "SME",
-          "status": "Forthcoming",
-          "live": false,
-          "expected_listing": "2026-12-04",
-          "expected_listing_dmy": "04-Dec-2026",
-          "expected_basis": "T+3 trading days from issue close (SEBI)",
-          "listing_label": "Opens tomorrow"
-        },
         {
           "company": "A J Packaging Limited",
           "symbol": "AJPACK",
@@ -498,16 +463,16 @@
           "symbol": "MAHACOAL",
           "tv": "NSE:MAHACOAL",
           "price_range": "Rs.129 to Rs.136",
-          "issue_price": "-",
-          "listing_date": "-"
+          "issue_price": "   136",
+          "listing_date": "27-NOV-2026"
         },
         {
           "company": "Watrana Rentals Limited",
           "symbol": "WATRANA",
           "tv": "NSE:WATRANA",
           "price_range": "Rs.232 to Rs.245",
-          "issue_price": "-",
-          "listing_date": "-"
+          "issue_price": "245",
+          "listing_date": "27-NOV-2026"
         },
         {
           "company": "Crystal Crop Protection Limited",
@@ -817,16 +782,15 @@
       "past_total": 1496,
       "tv_watchlist": [
         "NSE:WATRANA",
-        "NSE:AIRPRO",
         "NSE:AJPACK",
         "NSE:MATANGI",
         "NSE:MONOMARK"
       ],
       "deduped_from_open": [],
       "tv_note": "NSE assigns the symbol at issue open, so these resolve on TradingView before the stock lists.",
-      "as_of": "2026-11-26",
+      "as_of": "2026-11-27",
       "source": "nseindia.com/api",
-      "fetched_at": "2026-11-26T19:42:51+05:30",
+      "fetched_at": "2026-11-27T03:58:46+05:30",
       "stale": false,
       "calendar_added": 0,
       "horizon": {
@@ -834,8 +798,8 @@
         "furthest_open": "2026-12-02",
         "furthest_open_dmy": "02-Dec-2026",
         "furthest_company": "Monomark Engineering (India) Limited",
-        "days_ahead": 6,
-        "forthcoming": 4
+        "days_ahead": 5,
+        "forthcoming": 3
       },
       "circular_confirmed": 1,
       "gmp_matched": 1
@@ -843,28 +807,28 @@
     "ipo_circulars": {
       "circulars": [
         {
-          "company": "Mahanadi Coalfields Limited",
-          "match": "mahanadicoalfields",
           "board": "mainboard",
-          "circular_date": "November 26, 2026",
           "circular": "https://nsearchives.nseindia.in/content/circulars/CML77630.zip",
-          "subject": "Listing of Equity Shares of Mahanadi Coalfields Limited (IPO)",
+          "circular_date": "November 26, 2026",
+          "company": "Mahanadi Coalfields Limited",
           "confirmed_listing": "2026-11-27",
-          "symbol": "MAHACOAL",
           "confirmed_listing_dmy": "27-Nov-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "mahanadicoalfields",
+          "subject": "Listing of Equity Shares of Mahanadi Coalfields Limited (IPO)",
+          "symbol": "MAHACOAL"
         },
         {
-          "company": "Watrana Rentals Limited",
-          "match": "watranarentals",
           "board": "SME",
-          "circular_date": "November 26, 2026",
           "circular": "https://nsearchives.nseindia.in/content/circulars/CML77616.zip",
-          "subject": "Listing of Equity Shares of Watrana Rentals Limited (SME IPO)",
+          "circular_date": "November 26, 2026",
+          "company": "Watrana Rentals Limited",
           "confirmed_listing": "2026-11-27",
-          "symbol": "WATRANA",
           "confirmed_listing_dmy": "27-Nov-2026",
-          "date_pending": false
+          "date_pending": false,
+          "match": "watranarentals",
+          "subject": "Listing of Equity Shares of Watrana Rentals Limited (SME IPO)",
+          "symbol": "WATRANA"
         },
         {
           "board": "mainboard",
@@ -1313,23 +1277,25 @@
       "confirmed": 47,
       "checked": 71,
       "remembered": 119,
-      "as_of": "2026-11-26T19:42:55+05:30",
+      "as_of": "2026-11-27T03:58:47+05:30",
       "note": "NSE's own listing circular - the earliest authoritative listing date. Supersedes the T+3 estimate.",
       "source": "nseindia.com/api/circulars",
-      "fetched_at": "2026-11-26T19:42:55+05:30",
+      "fetched_at": "2026-11-27T03:58:47+05:30",
       "stale": false
     },
     "ipo_listing_live": {
-      "date": "2026-11-26",
-      "listed_today": [],
-      "live": [],
-      "no_quote_yet": [],
-      "excluded_migrations": [
-        "OLIL"
+      "date": "2026-11-27",
+      "listed_today": [
+        "WATRANA"
       ],
+      "live": [],
+      "no_quote_yet": [
+        "WATRANA"
+      ],
+      "excluded_migrations": [],
       "note": "Provisional. Yahoo intraday, because NSE's quote API is bot-walled; the bhavcopy overwrites these after close.",
       "source": "yfinance",
-      "fetched_at": "2026-11-26T19:42:55+05:30",
+      "fetched_at": "2026-11-27T03:58:48+05:30",
       "stale": false
     },
     "ipo_gmp": {
@@ -2382,7 +2348,7 @@
       },
       "note": "Gain measured against the issue price. Open = the listing pop; close = holding the first day out.",
       "source": "nseindia.com/api + sec_bhavdata_full",
-      "fetched_at": "2026-11-26T19:43:13+05:30",
+      "fetched_at": "2026-11-27T03:58:56+05:30",
       "stale": false
     },
     "earnings": {
@@ -2393,32 +2359,32 @@
               "quarter": "2026-09-30",
               "revenue": 3306010000000.0,
               "net_income": 255480000000.0,
-              "age_days": 57
+              "age_days": 58
             },
             {
               "quarter": "2026-06-30",
               "revenue": 3094680000000.0,
               "net_income": 209460000000.0,
-              "age_days": 149
+              "age_days": 150
             },
             {
               "quarter": "2026-03-31",
               "revenue": 2940590000000.0,
               "net_income": 169710000000.0,
-              "age_days": 240
+              "age_days": 241
             },
             {
               "quarter": "2025-12-31",
               "revenue": 2649050000000.0,
               "net_income": 186450000000.0,
-              "age_days": 330
+              "age_days": 331
             }
           ],
           "currency": "INR",
           "converted_from": null,
           "fx_used": null,
           "latest_quarter": "2026-09-30",
-          "age_days": 57,
+          "age_days": 58,
           "stale": false
         },
         "HDFCBANK.NS": {
@@ -2427,20 +2393,20 @@
               "quarter": "2025-06-30",
               "revenue": 853464600000.0,
               "net_income": 162579100000.0,
-              "age_days": 514
+              "age_days": 515
             },
             {
               "quarter": "2025-03-31",
               "revenue": 953058900000.0,
               "net_income": 153934600000.0,
-              "age_days": 605
+              "age_days": 606
             }
           ],
           "currency": "INR",
           "converted_from": null,
           "fx_used": null,
           "latest_quarter": "2025-06-30",
-          "age_days": 514,
+          "age_days": 515,
           "stale": true
         },
         "TCS.NS": {
@@ -2449,66 +2415,66 @@
               "quarter": "2026-09-30",
               "revenue": 731880000000.0,
               "net_income": 138840000000.0,
-              "age_days": 57
+              "age_days": 58
             },
             {
               "quarter": "2026-06-30",
               "revenue": 722750000000.0,
               "net_income": 133490000000.0,
-              "age_days": 149
+              "age_days": 150
             },
             {
               "quarter": "2026-03-31",
               "revenue": 706980000000.0,
               "net_income": 137180000000.0,
-              "age_days": 240
+              "age_days": 241
             },
             {
               "quarter": "2025-12-31",
               "revenue": 670870000000.0,
               "net_income": 106570000000.0,
-              "age_days": 330
+              "age_days": 331
             }
           ],
           "currency": "INR",
           "converted_from": null,
           "fx_used": null,
           "latest_quarter": "2026-09-30",
-          "age_days": 57,
+          "age_days": 58,
           "stale": false
         },
         "INFY.NS": {
           "quarters": [
             {
               "quarter": "2026-09-30",
-              "revenue": 476118300000.00006,
-              "net_income": 75605180000.0,
-              "age_days": 57
+              "revenue": 475578075000.0,
+              "net_income": 75519395000.0,
+              "age_days": 58
             },
             {
               "quarter": "2026-06-30",
-              "revenue": 470288280000.00006,
-              "net_income": 75790260000.0,
-              "age_days": 149
+              "revenue": 469754670000.0,
+              "net_income": 75704265000.0,
+              "age_days": 150
             },
             {
               "quarter": "2026-03-31",
-              "revenue": 466401600000.00006,
-              "net_income": 85044260000.0,
-              "age_days": 240
+              "revenue": 465872400000.0,
+              "net_income": 84947765000.0,
+              "age_days": 241
             },
             {
               "quarter": "2025-12-31",
-              "revenue": 471861460000.00006,
-              "net_income": 69127380000.0,
-              "age_days": 330
+              "revenue": 471326065000.0,
+              "net_income": 69048945000.0,
+              "age_days": 331
             }
           ],
           "currency": "USD",
           "converted_from": "USD",
-          "fx_used": 92.54,
+          "fx_used": 92.435,
           "latest_quarter": "2026-09-30",
-          "age_days": 57,
+          "age_days": 58,
           "stale": false
         },
         "ICICIBANK.NS": {
@@ -2517,46 +2483,46 @@
               "quarter": "2026-09-30",
               "revenue": 401531700000.0,
               "net_income": 163331800000.0,
-              "age_days": 57
+              "age_days": 58
             },
             {
               "quarter": "2026-06-30",
               "revenue": 383657400000.0,
               "net_income": 154400600000.0,
-              "age_days": 149
+              "age_days": 150
             },
             {
               "quarter": "2026-03-31",
               "revenue": 357423400000.0,
               "net_income": 147550600000.0,
-              "age_days": 240
+              "age_days": 241
             },
             {
               "quarter": "2025-12-31",
               "revenue": 352926000000.0,
               "net_income": 125379800000.0,
-              "age_days": 330
+              "age_days": 331
             }
           ],
           "currency": "INR",
           "converted_from": null,
           "fx_used": null,
           "latest_quarter": "2026-09-30",
-          "age_days": 57,
+          "age_days": 58,
           "stale": false
         }
       },
       "unit": "INR",
-      "usd_inr": 92.54,
+      "usd_inr": 92.435,
       "problems": [
         {
           "ticker": "HDFCBANK.NS",
-          "issue": "newest quarter 2025-06-30 is 514 days old"
+          "issue": "newest quarter 2025-06-30 is 515 days old"
         }
       ],
       "caveat": "Yahoo is the only source still current for Indian quarterlies - NSE's results API and screener.in both stop at Dec-2024 - but its coverage lapses per company, so each row carries the age of the quarter it quotes.",
       "source": "yahoo finance",
-      "fetched_at": "2026-11-26T19:43:16+05:30",
+      "fetched_at": "2026-11-27T03:58:59+05:30",
       "stale": false
     }
   }

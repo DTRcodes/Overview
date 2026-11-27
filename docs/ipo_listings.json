@@ -15614,6 +15614,21 @@
    "gain_open_pct": 0.0,
    "gain_close_pct": -5.0,
    "price_source": "bhavcopy"
+  },
+  "WATRANA": {
+   "high": 254.5,
+   "low": 230.9,
+   "intra_pop_pct": 4.73,
+   "intra_close_pct": 3.29,
+   "symbol": "WATRANA",
+   "company": "Watrana Rentals Limited",
+   "issue_price": 245.0,
+   "listing_date": "2026-11-27",
+   "ipo_closed": "23-NOV-2026",
+   "open": 243.0,
+   "close": 251.0,
+   "gain_open_pct": -0.82,
+   "gain_close_pct": 2.45
   }
  },
  "unresolvable": [
